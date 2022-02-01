@@ -1,6 +1,9 @@
 import HeaderCSS from "../Components/Header/Header.module.css";
 
 export default (function () {
+
+  console.log("asdasdsaa")
+
   /*Almacenamos en una const, todos los elementos de tipo "section"
      que tienen el data-attribute "data-scroll-spy"*/
   const $sections = document.querySelectorAll(
