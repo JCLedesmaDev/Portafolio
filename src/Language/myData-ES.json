@@ -1,0 +1,236 @@
+{
+  "header": {
+    "myPortfolio": "<span>Mi </span>Portafolio",
+    "home": "Inicio",
+    "aboutMe": "Sobre mi",
+    "portfolio": "Portafolio",
+    "contact": "Contacto"
+  },
+
+  "home": {
+    "presentation": "Hola! Mi nombre es <br/> <span> Juan Cruz Ledesma </span> <br/> Y soy <span>Desarrollador Web.</span>",
+    "knowMe": "Conoceme!"
+  },
+
+  "aboutMe": {
+    "nameCompleted": "Juan Cruz Ledesma",
+    "rol": "Desarrollador Web.",
+    "aboutme": "Sobre mi:",
+    "presentPt1": "Tengo 21 años y me considero una persona que sabe escuchar y entender rápidamente las necesidades de los clientes. <br/>  Me gusta mucho el diseño web, por lo que me preocupo en que se vean con una estética y un arte equilibrado acorde a lo que el cliente necesita.",
+    "presentPt2": "Mi formación en el diseño de planos arquitectónicos me ayudó a entender la necesidad de tener una buena arquitectura, además de un buen diseño, lo que hace que este continuamente formándome en el Desarrollo <i> <b>Back-End</b> </i>, para lograr un código robusto, elegante y flexible. <br/> Me <b>entusiasma</b> aprender cosas nuevas, es por eso que estoy siempre en continua formación.",
+    "presentPt3": " Actualmente me encuentro cursando la <b>Tecnicatura Superior en Desarrollo de Software</b> en el Instituto Técnico Superior Córdoba (I.T.S. Córdoba), con el objetivo de profundizar más en el mundo del <b>Software</b>.",
+    "presentPt4": " Si bien mis conocimientos me permiten definirme como Desarrollador <i> <b>Front-End</b> </i>, tengo algunos conocimientos en el entorno de <b>NodeJS</b> y actualmente estoy enfocando mis esfuerzos en comprender cabalmente estos lenguajes para definirme como <b>Full-Stack</b>",
+    "downloadCV": "DESCARGA MI CV",
+
+    "mySkills": "Mis Habilidades:",
+    "mySkillsPt1": "Considero que soy <b>detallista</b> (hablando del diseño), me importan mucho los detalles aunque estos sean mínimos y trato de que todo esté en armonía en cuanto a los colores y formas de los objetos.",
+    "mySkillsPt2": "A su vez, también me considero <b>autocrítico</b> ya que siempre pienso que podría mejorar cierto detalle o aspecto. <br /> Por último, siempre <b>acepto</b> y tomo muy en cuenta cualquier crítica, sugerencia y/o tip sobre cómo hacer de cierta manera algún trabajo.",
+
+    "skills_area": ["Front-End:", "Back-End:", "Otros:", "Proximamente:"],
+    "technology": "Tecnologias:",
+    "front_Technologies": [
+      {
+        "title": "HTML5",
+        "alt": "icon html5"
+      },
+      {
+        "title": "CSS3",
+        "alt": "icon css3"
+      },
+      {
+        "title": "Handlebars",
+        "alt": "icon handlebarsjs"
+      },
+      {
+        "title": "JavaScript",
+        "alt": "icon JS EcmaScript6"
+      },
+      {
+        "title": "ReactJS",
+        "alt": "icon react"
+      },
+      {
+        "title": "Ionic 5",
+        "alt": "icon ionic"
+      }
+    ],
+
+    "back_Technologies": [
+      {
+        "title": "NodeJS",
+        "alt": "icon nodejs"
+      },
+      {
+        "title": "ExpressJS",
+        "content": "Express <span> JS</span>"
+      },
+      {
+        "title": "MongoDB",
+        "alt": "icon mongodb"
+      }
+    ],
+
+    "other_technology": [
+      {
+        "title": "TypeScript",
+        "alt": "icon typescript"
+      },
+      {
+        "title": "Git",
+        "alt": "icon git"
+      }
+    ],
+
+    "coming_soon": [
+      {
+        "title": "Redux",
+        "alt": "icon redux"
+      },
+      {
+        "title": "NextJS",
+        "alt": "icon nextjs"
+      },
+      {
+        "title": "MySQL",
+        "alt": "icon mysql"
+      }
+    ]
+  },
+
+  "portfolio": {
+    "myWorks": "Mis trabajos",
+    "proyects": [
+      {
+        "title": "CRUD de Libros",
+        "description": "Proyecto que lleva el registro de una bibloteca personal para organizar tu propia bibloteca.",
+        "createdWith": "Esta aplicacion fue creada utilizando: <br/> <b>- En el <i> Back-End</i> :</b> NodeJS, ExpressJS, MongoDB. <br/> <b>- En el <i>Front-End</i> :</b> HTML5, CSS3 / Bootstrap 4 y Vanilla JavaScript.",
+        "datesModal": [
+          { "title": "<b>CLIENTE:</b>", "content": " --- " },
+          { "title": "<b>FECHA:</b>", "content": "10/11/2020" },
+          { "title": "<b>TIPO:</b>", "content": "Sitio <i>Web Responsive</i>" },
+          {
+            "title": "<b>ENLACE:</b>",
+            "content": "<a href='https://github.com/JCLedesmaDev/CRUD-de-Libros' target='_blank' rel='noopener'>Haz click aqui</a>"
+          }
+        ]
+      },
+      {
+        "title": "CRUD de notas con Login & Registro",
+        "description": "Proyecto que lleva el registro de notas personales para utilizarlas de recordatorio.",
+        "createdWith": "Esta aplicacion fue creada utilizando: <br/> <b>- En el <i> Back-End</i> :</b> NodeJS, Express, MongoDB y el modulo 'passport.js' para la autenticacion de usuarios. <br/> <b>- En el <i>Front-End</i> :</b> Handlebars, Bootstrap 4 y Vanilla JavaScript.",
+        "datesModal": [
+          { "title": "<b>CLIENTE:</b>", "content": " --- " },
+          { "title": "<b>FECHA:</b>", "content": "15/12/2020" },
+          { "title": "<b>TIPO:</b>", "content": "Sitio <i>Web Responsive</i>" },
+          {
+            "title": "<b>ENLACE:</b>",
+            "content": "<a href='https://github.com/JCLedesmaDev/CRUD-de-Notas-con-Login-y-Registro' target='_blank' rel='noopener'>Haz click aqui</a>"
+          }
+        ]
+      },
+      {
+        "title": "Mi portafolio",
+        "description": "Proyecto para la presentacion de mis conocimientos en el desarrollo web.",
+        "createdWith": "Esta aplicacion fue creada utilizando: <br> <b>- En el <i>Front-End</i> :</b> HTML5, CSS3 y Vanilla JavaScript (ES 6)",
+        "datesModal": [
+          { "title": "<b>CLIENTE:</b>", "content": " --- " },
+          { "title": "<b>FECHA:</b>", "content": "11/01/2021" },
+          {
+            "title": "<b>TIPO:</b>",
+            "content": "Diseño <i>Web Responsive</i>"
+          },
+          {
+            "title": "<b>ENLACE:</b>",
+            "content": "<a href='https://github.com/JCLedesmaDev/Portafolio-CV' target='_blank' rel='noopener'>Haz click aqui</a>"
+          }
+        ]
+      },
+      {
+        "title": "CRUD de Proyectos con Stack M.E.R.N",
+        "description": "Proyecto que nos permite anotar las tareas pendientes a desarrollar, de cada proyecto en particular en el que estemos trabajando.",
+        "createdWith": "Esta aplicacion esta siendo creada utilizando: <br/> <b>- En el <i>Back-End</i> :</b> NodeJS, Express, MongoDB. <br/> <b>- En el <i>Front-End</i> :</b> ReactJS con sus respectivos Hooks tales como: useState, useEffect, useContext y useReducer; <br/>",
+        "datesModal": [
+          { "title": "<b>CLIENTE:</b>", "content": " --- " },
+          { "title": "<b>FECHA:</b>", "content": "24/04/2021" },
+          {
+            "title": "<b>TIPO:</b>",
+            "content": "Diseño <i>Web Responsive</i>"
+          },
+          {
+            "title": "<b>ENLACE:</b>",
+            "content": "<a href='https://github.com/JCLedesmaDev/CRUD-de-proyectos-STACK-MERN' target='_blank' rel='noopener'>Haz click aqui</a>"
+          }
+        ]
+      }
+    ],
+    "clickMe": "Haz click para saber mas..."
+  },
+
+  "contact": {
+    "interested": "¿Interesado?",
+    "modeContact": [
+      {
+        "icon": "fas fa-map-marker-alt",
+        "title": "UBICACION",
+        "links": [
+          "<a href='https://www.google.com.ar/maps/dir//Córdoba,+Capital,+Córdoba/@-31.4200053,-64.2237957,13z/data=!3m1!4b1!4m9!4m8!1m0!1m5!1m1!1s0x9432985f478f5b69:0xb0a24f9a5366b092!2m2!1d-64.1887761!2d-31.4200833!3e1' target='_blank' rel='noopener'>Cordoba Capital, Cordoba, Argentina.</a>"
+        ]
+      },
+      {
+        "icon": "fas fa-phone",
+        "title": "TELEFONO",
+        "links": ["<a href='tel:3512371503'>(+54) 351-2371503</a>"]
+      },
+      {
+        "icon": "fas fa-envelope",
+        "title": "EMAIL",
+        "links": [
+          "<a href='mailto:juancruzledesma@yahoo.com.ar'>juancruzledesma@yahoo.com.ar</a>"
+        ]
+      },
+      {
+        "icon": "fas fa-hashtag",
+        "title": "REDES SOCIALES",
+        "links": [
+          "<a href='https://github.com/JCLedesmaDev' target='_blank' rel='noopener' > <i data-icon='github' class='fab fa-github'/></a>",
+          "<a href='https://www.linkedin.com/in/juan-cruz-ledesma-383b40191/' target='_blank' rel='noopener'> <i data-icon='linkedIn' class='fab fa-linkedin-in'/></a>",
+          "<a href='https://www.instagram.com/juanchii_ledesmaok/' target='_blank' rel='noopener'> <i data-icon='instagram' class='fab fa-instagram'/></a>"
+        ]
+      }
+    ],
+    "formContactInputs": [
+      {
+        "type": "text",
+        "name": "name",
+        "placeholder": "Ingrese su nombre",
+        "messageError": "El 'nombre' tiene que ser de 1 a 40 dígitos y solo puede contener letras y espacios en blanco.",
+        "autoComplete": "off"
+      },
+      {
+        "type": "email",
+        "name": "email",
+        "placeholder": "Ingrese su correo electrónico",
+        "messageError": "El correo solo puede contener letras, numeros, puntos, guiones y guion bajo.",
+        "autoComplete": "off"
+      },
+      {
+        "type": "textarea",
+        "name": "comment",
+        "placeholder": "Dejeme su consulta aquí",
+        "messageError": "Su consulta no debe acceder de los 255 caracteres.",
+        "autoComplete": "off",
+        "cols": 50,
+        "rows": 10
+      }
+    ],
+    "button": "Enviar mensaje",
+    "modalContact": "¡Muchas gracias por su consulta!",
+    "modalContactError": "Uupss.. Ha ocurrido un error, intentelo mas tarde."
+  },
+
+  "footer": {
+    "sitie": "Sitio diseñado por ",
+    "linkedIn": "<a href='https://www.linkedin.com/in/juan-cruz-ledesma/' target='_blank' rel='noopene'> Juan Cruz Ledesma </a>",
+    "gitHub": "<a href='https://github.com/JCLedesmaDev' target='_blank' rel='noopene'> @JCLedesmaDev </a>"
+  }
+}

@@ -1,0 +1,186 @@
+:root {
+  /* Variables que re utilizaremos en el proyecto */
+  --color-principal: #dc143c;
+  --color-secundario: #14172d;
+  --color-naranja: #ff6a00;
+  --color-blanco: #fff;
+  --color-enlaces: #509ee3;
+  --color-titulo: #333;
+  --color-texto: #222;
+
+  --color-footer: #501464;
+
+  --color-principal-opacidad: rgba(220, 20, 60, 0.75);
+  --color-negro-opacidad: rgba(0, 0, 0, 0.4);
+
+  --max-width: 75rem;
+  --header-nav-height: 4rem;
+  --font: "Raleway", sans-serif;
+
+  /* Background Degrade */
+  --color-naranja-degrade: #ff6a0074;
+  --color-verde-degrade: rgba(29, 241, 171, 0.455);
+  --color-azulado-degrade: rgba(42, 162, 214, 0.638);
+}
+
+/* ------------ Estilos generales ------------ */
+
+/* Propiedades que tendra todos los elementos del HTML */
+
+html {
+  box-sizing: border-box;
+  font-family: var(--font);
+  font-size: 16px;
+  scroll-behavior: smooth;
+}
+
+*,
+*::after,
+*::before {
+  box-sizing: inherit;
+}
+
+/* Propiedades que tendra la etiqueta body */
+body {
+  margin: 0;
+  overflow-x: hidden;
+  color: var(--color-texto);
+}
+/* Propiedades que tendran exclusivamente los enlaces */
+a {
+  color: var(--color-enlaces);
+  transition: all 0.3s ease-out;
+  text-decoration: none;
+}
+a:hover {
+  opacity: 0.75;
+}
+
+/* Propiedades que tendran por defecto todos los H */
+h1 {
+  font-size: 2rem;
+  margin: 0;
+}
+
+h2 {
+  font-size: 1.5em;
+  margin: 0;
+}
+
+h3 {
+  font-size: 1.25rem;
+  margin: 0;
+}
+
+h4 {
+  font-size: 1rem;
+  margin: 0;
+}
+
+h5 {
+  font-size: 0.85rem;
+  margin: 0;
+}
+
+h6 {
+  font-size: 0.7rem;
+  margin: 0;
+}
+
+/* Propiedades para hacer las imagenes responsive */
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Propiedades en comun para todos los parrafos*/
+p {
+  line-height: 1.6;
+}
+
+/* ------------ Estilos generales ------------ */
+
+/* ------------ Clases re utilizables. ------------ */
+
+.noneElement {
+  display: none;
+}
+
+.button {
+  /* Clase generica para los botones */
+  border-radius: 0.5rem;
+  padding: 1rem;
+  display: inline-block;
+  width: 12.5rem;
+  font-weight: bold;
+  text-align: center;
+  color: var(--color-blanco);
+  background-color: var(--color-principal);
+}
+
+/* Clase generica para centrar elementos */
+.centerContainer {
+  margin: auto;
+  max-width: var(--max-width);
+}
+
+.section-space {
+  padding: 1rem;
+  padding-top: 1.5rem;
+  padding-bottom: 0;
+}
+
+.article-space {
+  margin-bottom: 2rem;
+}
+
+.text-color-principal {
+  color: var(--color-principal);
+}
+
+.scale-img {
+  width: 90%;
+}
+
+/* Clases generica para alinear los elementos tanto normal como responsive */
+.text-center {
+  text-align: center;
+}
+@media screen and (min-width: 1024px) {
+  .full-lg-screen {
+    width: 100%;
+    min-height: 100vh;
+  }
+}
+
+.box-shadow {
+  /* Clase generica para darle sombreado elementos */
+  box-shadow: 0.25rem 0.25rem 1rem rgba(0, 0, 0, 0.25);
+}
+
+.section-title {
+  border-top: 3px solid var(--color-principal);
+  border-bottom: 3px solid var(--color-principal);
+  width: 15rem;
+  text-align: center;
+  margin: 2rem auto;
+  margin-top: 1rem;
+  padding: 0.5rem 1rem;
+  color: var(--color-titulo);
+}
+
+.sub-section-title {
+  display: inline-block;
+  width: 80%;
+  margin: 0 auto;
+  padding: 0.75rem 0 0.25rem 0;
+  border-bottom: 2px solid var(--color-principal);
+}
+
+.avatar {
+  border-radius: 20%;
+  width: 25rem ;
+  height:25rem ;
+}
+
+/* ------------ Clases re utilizables. ------------ */

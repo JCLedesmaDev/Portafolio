@@ -1,0 +1,131 @@
+import React, { useEffect, useState } from "react";
+import { useMyData } from "../../Hooks/useMyData";
+
+import parse from "html-react-parser";
+
+import AboutMeCSS from "./AboutMe.module.css";
+
+// import myPhoto from "../../Static/fotoCV.jpg";
+import myPhoto from "../../Static/img.jpg";
+import loaderSVG from "../../Static/Spin-1s-200px.svg";
+
+import { Technology } from "./Technology/Technology";
+
+export const AboutMe: React.FC = () => {
+  const { aboutMe } = useMyData();
+
+  /// HOOKS
+  const [technologies, setTechnologies] = useState<any[]>([]);
+  const [loader, setLoader] = useState(false);
+  const [filterActive, setFilterActive] = useState(0);
+
+  /// METODOS
+
+  const getTechnologiesByArea = (skillsArea: string, index: number) => {
+    setLoader(false);
+
+    let Technologies: any[] = [];
+
+    if (skillsArea.includes("Front")) {
+      aboutMe.front_Technologies.map((techno) => Technologies.push(techno));
+    }
+    if (skillsArea.includes("Back")) {
+      aboutMe.back_Technologies.map((techno) => Technologies.push(techno));
+    }
+    if (skillsArea.includes("Otros") || skillsArea.includes("Other")) {
+      aboutMe.other_technology.map((techno) => Technologies.push(techno));
+    }
+    if (skillsArea.includes("Proximamente") || skillsArea.includes("coming")) {
+      aboutMe.coming_soon.map((techno) => Technologies.push(techno));
+    }
+
+    setFilterActive(index);
+    setTechnologies(Technologies);
+
+    setTimeout(() => {
+      setLoader(true);
+    }, 500);
+  };
+
+  useEffect(() => {
+    getTechnologiesByArea("Front", 0);
+  }, []);
+
+  return (
+    <section
+      id="aboutMe"
+      className={`${AboutMeCSS.aboutMe} centerContainer section-space full-lg-screen`}
+      data-scroll-spy
+    >
+      <h2 className="titulo"> {aboutMe.aboutme}</h2>
+
+      <article className="article-space text-center">
+        <aside>
+          <h1>{aboutMe.nameCompleted}</h1>
+          <h4 className="text-color-principal">{aboutMe.rol}</h4>
+        </aside>
+
+        <p>{parse(`${aboutMe.presentPt1}`)}</p>
+
+        <p>{parse(`${aboutMe.presentPt2}`)}</p>
+
+        <p>{parse(`${aboutMe.presentPt3}`)}</p>
+
+        <p>{parse(`${aboutMe.presentPt4}`)}</p>
+
+        <div>
+          <a
+            href="./static/C.V - Desarrollador Web - Juan Cruz Ledesma.pdf"
+            className="button"
+            target="_blank"
+            rel="noopener"
+          >
+            {aboutMe.downloadCV}
+          </a>
+        </div>
+      </article>
+
+      <article className="article-space text-center">
+        <img src={myPhoto} className="scale-img avatar" alt="Juan Cruz Ledesma" />
+      </article>
+
+      <article className="text-center">
+        <h2 className="sub-section-title">{aboutMe.mySkills}</h2>
+
+        <p>{parse(`${aboutMe.mySkillsPt1}`)}</p>
+
+        <p>{parse(`${aboutMe.mySkillsPt2}`)}</p>
+
+
+        <h3 className="sub-section-title">{aboutMe.technology}</h3>
+
+        <div className={AboutMeCSS.container_skills}>
+          <div className="categorias">
+            {aboutMe.skills_area.map((area, index) => (
+              <a
+                key={index}
+                href={"#/"}
+                className={
+                  filterActive === index ? AboutMeCSS.buttonFilterActive : ""
+                }
+                onClick={(e: any) => getTechnologiesByArea(area, index)}
+              >
+                {area}
+              </a>
+            ))}
+          </div>
+
+          <div>
+            {loader === true ? (
+              technologies.map((technology, index) => (
+                <Technology key={index} technology={technology} />
+              ))
+            ) : (
+              <img src={loaderSVG} alt="loader" />
+            )}
+          </div>
+        </div>
+      </article>
+    </section>
+  );
+};
