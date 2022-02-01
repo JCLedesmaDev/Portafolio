@@ -1,4 +1,4 @@
-import { Fragment, useEffect } from "react";
+import { Fragment } from "react";
 
 import "./App.css";
 import { Header } from "./Components/Header/Header";
@@ -7,8 +7,6 @@ import { AboutMe } from "./Components/AboutMe/AboutMe";
 import { Portfolio } from "./Components/Portfolio/Portfolio";
 import { Footer } from "./Components/Footer/Footer";
 import { Contact } from "./Components/Contact/Contact";
-
-
 
 function App() {
   return (
@@ -22,7 +20,7 @@ function App() {
 
         <Portfolio />
 
-        <Contact/>
+        <Contact />
 
         <Footer />
       </main>

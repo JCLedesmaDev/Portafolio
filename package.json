@@ -1,7 +1,7 @@
 {
   "name": "react-portafolio-pwa",
   "version": "0.1.0",
-  "homepage": "https://jcledesmadev.github.io/Portafolio-con-React",
+  "homepage": "https://jcledesmadev.github.io/portafolio",
   "private": true,
   "dependencies": {
     "@testing-library/jest-dom": "^5.16.1",
