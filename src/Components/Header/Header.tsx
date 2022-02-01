@@ -4,6 +4,7 @@ import { noneElement } from "../../Utils/noneElement";
 import HeaderCSS from "./Header.module.css";
 import parse from "html-react-parser";
 import { useMyData } from "../../Hooks/useMyData";
+import { menuScrollSpy } from "../../Utils/menuScrollSpy";
 
 export const Header: React.FC = () => {
   /// Variables
@@ -38,6 +39,7 @@ export const Header: React.FC = () => {
   useEffect(() => {
     changeModelNav();
     closeMenuOnClick();
+    menuScrollSpy();
   }, [desplazamiento_actual]);
 
   return (
@@ -62,12 +64,7 @@ export const Header: React.FC = () => {
             <a href="#home" data-scroll-spy onClick={redirectSection}>
               {header.home}
             </a>
-            <a
-              href="#aboutMe"
-              data-scroll-spy
-              onClick={redirectSection}
-              className={HeaderCSS.active}
-            >
+            <a href="#aboutMe" data-scroll-spy onClick={redirectSection}>
               {header.aboutMe}
             </a>
             <a href="#portfolio" data-scroll-spy onClick={redirectSection}>
