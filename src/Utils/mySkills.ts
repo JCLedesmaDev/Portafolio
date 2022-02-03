@@ -12,6 +12,9 @@ import redux from "../Static/skills/redux.svg";
 import typescript from "../Static/skills/typescript.svg";
 import git from "../Static/skills/git.png";
 
+import reactnative from "../Static/skills/react-native.png";
+
+
 export const skills: any = {
   Handlebars: { css: "orange", icon: handlebarsjs },
   "Ionic 5": { css: "#bbb", icon: ionic },
@@ -28,4 +31,5 @@ export const skills: any = {
   Redux: { css: "", icon: redux },
   TypeScript: { css: "", icon: typescript },
   Git: { css: "", icon: git },
+  "React Native": { css: "#fff", icon: reactnative },
 };

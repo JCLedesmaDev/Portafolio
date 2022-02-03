@@ -15,7 +15,7 @@ import { useLocation } from "react-use";
 export const Contact: React.FC = () => {
   /// VARIABLES
   const { contact } = useMyData();
-  const formInputs = contact.formContactInputs;
+  const formInputs = contact?.formContactInputs;
   const CssOpenModal = `${PortfolioCSS.portfolioModal} ${PortfolioCSS.openPortafolioModal}`;
 
   /// HOOKS
@@ -25,7 +25,6 @@ export const Contact: React.FC = () => {
 
   /// METODOS
 
-  // TODO: ACtualizar fotos de proyecto Web portafolio
 
   const onSubmit = handleSubmit(async (dataForm) => {
     try {
@@ -69,15 +68,15 @@ export const Contact: React.FC = () => {
       data-scroll-spy
     >
       <div className="centerContainer">
-        <h2 className="section-title">{contact.interested}</h2>
+        <h2 className="section-title">{contact?.interested}</h2>
 
         {/* <!-- SOCIALES --> */}
         <article className={`${SocialsCSS.contact__cards} centerContainer`}>
-          {contact.modeContact.map((contact) => (
+          {contact?.modeContact?.map((contact) => (
             <aside className={`${SocialsCSS.contact__cardTarget} box-shadow`}>
-              <i className={contact.icon} />
-              <h5>{contact.title}</h5>
-              <small>{contact.links.map((link) => parse(link))}</small>
+              <i className={contact?.icon} />
+              <h5>{contact?.title}</h5>
+              <small>{contact?.links.map((link) => parse(link))}</small>
             </aside>
           ))}
         </article>
@@ -87,7 +86,7 @@ export const Contact: React.FC = () => {
           className={`${FormCSS.contact__form} box-shadow`}
           onSubmit={onSubmit}
         >
-          {formInputs.map((inputForm, index) => (
+          {formInputs?.map((inputForm, index) => (
 
             <div id={`form__${inputForm.name}`} key={index}>
               {inputForm.type !== "textarea" ? (
@@ -118,7 +117,7 @@ export const Contact: React.FC = () => {
               style={{
                 marginTop: ".5rem",
               }}
-              value={contact.button}
+              value={contact?.button}
             />
           </div>
         </form>
@@ -134,8 +133,8 @@ export const Contact: React.FC = () => {
           <div>
             <article className={FormCSS.modal__contactForm_response}>
               <h3>
-                {location?.includes("#gracias") && contact.modalContact}
-                {location?.includes("#ups") && contact.modalContactError}
+                {location?.includes("#gracias") && contact?.modalContact}
+                {location?.includes("#ups") && contact?.modalContactError}
               </h3>
 
               <i className="far fa-smile-wink"></i>

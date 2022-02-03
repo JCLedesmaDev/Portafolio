@@ -8,10 +8,12 @@ export const Footer: React.FC = () => {
 
   return (
     <footer className={FooterCSS.footer}>
-      <small>
-        {footer.sitie}
-        {parse(footer.linkedIn)} | {parse(footer.gitHub)}
-      </small>
+      {footer && (
+        <small>
+          {footer.sitie}
+          {parse(footer.linkedIn)} | {parse(footer.gitHub)}
+        </small>
+      )}
     </footer>
   );
 };

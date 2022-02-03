@@ -8,6 +8,9 @@ import { Portfolio } from "./Components/Portfolio/Portfolio";
 import { Footer } from "./Components/Footer/Footer";
 import { Contact } from "./Components/Contact/Contact";
 
+
+// localStorage.setItem("leng", "ES")
+
 function App() {
   return (
     <Fragment>

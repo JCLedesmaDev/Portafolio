@@ -14,6 +14,7 @@ import { Technology } from "./Technology/Technology";
 export const AboutMe: React.FC = () => {
   const { aboutMe } = useMyData();
 
+
   /// HOOKS
   const [technologies, setTechnologies] = useState<any[]>([]);
   const [loader, setLoader] = useState(false);
@@ -27,16 +28,16 @@ export const AboutMe: React.FC = () => {
     let Technologies: any[] = [];
 
     if (skillsArea.includes("Front")) {
-      aboutMe.front_Technologies.map((techno) => Technologies.push(techno));
+      aboutMe?.front_Technologies.map((techno) => Technologies.push(techno));
     }
     if (skillsArea.includes("Back")) {
-      aboutMe.back_Technologies.map((techno) => Technologies.push(techno));
+      aboutMe?.back_Technologies.map((techno) => Technologies.push(techno));
     }
     if (skillsArea.includes("Otros") || skillsArea.includes("Other")) {
-      aboutMe.other_technology.map((techno) => Technologies.push(techno));
+      aboutMe?.other_technology.map((techno) => Technologies.push(techno));
     }
     if (skillsArea.includes("Proximamente") || skillsArea.includes("coming")) {
-      aboutMe.coming_soon.map((techno) => Technologies.push(techno));
+      aboutMe?.coming_soon.map((techno) => Technologies.push(techno));
     }
 
     setFilterActive(index);
@@ -57,51 +58,51 @@ export const AboutMe: React.FC = () => {
       className={`${AboutMeCSS.aboutMe} centerContainer section-space full-lg-screen`}
       data-scroll-spy
     >
-      <h2 className="titulo"> {aboutMe.aboutme}</h2>
+      <h2 className="titulo"> {aboutMe?.aboutme}</h2>
 
       <article className="article-space text-center">
         <aside>
-          <h1>{aboutMe.nameCompleted}</h1>
-          <h4 className="text-color-principal">{aboutMe.rol}</h4>
+          <h1>{aboutMe?.nameCompleted}</h1>
+          <h4 className="text-color-principal">{aboutMe?.rol}</h4>
         </aside>
 
-        <p>{parse(`${aboutMe.presentPt1}`)}</p>
-
-        <p>{parse(`${aboutMe.presentPt2}`)}</p>
-
-        <p>{parse(`${aboutMe.presentPt3}`)}</p>
-
-        <p>{parse(`${aboutMe.presentPt4}`)}</p>
+        {aboutMe?.presentations.map((present) => (
+          <p>{parse(`${present}`)}</p>
+        ))}
 
         <div>
+          {/* Subir a Drive y compartir enlace */}
           <a
-            href="./static/C.V - Desarrollador Web - Juan Cruz Ledesma.pdf"
+            href={aboutMe?.CVLink}
             className="button"
             target="_blank"
-            rel="noopener"
+            rel="noopener noreferrer"
           >
-            {aboutMe.downloadCV}
+            {aboutMe?.downloadCV}
           </a>
         </div>
       </article>
 
       <article className="article-space text-center">
-        <img src={myPhoto} className="scale-img avatar" alt="Juan Cruz Ledesma" />
+        <img
+          src={myPhoto}
+          className="scale-img avatar"
+          alt="Juan Cruz Ledesma"
+        />
       </article>
 
       <article className="text-center">
-        <h2 className="sub-section-title">{aboutMe.mySkills}</h2>
+        <h2 className="sub-section-title">{aboutMe?.mySkills}</h2>
 
-        <p>{parse(`${aboutMe.mySkillsPt1}`)}</p>
+        {aboutMe?.mySkillsPresentations.map((skillsPresent) => (
+          <p>{parse(`${skillsPresent}`)}</p>
+        ))}
 
-        <p>{parse(`${aboutMe.mySkillsPt2}`)}</p>
-
-
-        <h3 className="sub-section-title">{aboutMe.technology}</h3>
+        <h3 className="sub-section-title">{aboutMe?.technology}</h3>
 
         <div className={AboutMeCSS.container_skills}>
           <div className="categorias">
-            {aboutMe.skills_area.map((area, index) => (
+            {aboutMe?.skills_area.map((area, index) => (
               <a
                 key={index}
                 href={"#/"}

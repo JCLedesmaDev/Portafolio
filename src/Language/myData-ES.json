@@ -1,4 +1,6 @@
 {
+  "lenguage": "ES",
+  
   "header": {
     "myPortfolio": "<span>Mi </span>Portafolio",
     "home": "Inicio",
@@ -16,15 +18,21 @@
     "nameCompleted": "Juan Cruz Ledesma",
     "rol": "Desarrollador Web.",
     "aboutme": "Sobre mi:",
-    "presentPt1": "Tengo 21 años y me considero una persona que sabe escuchar y entender rápidamente las necesidades de los clientes. <br/>  Me gusta mucho el diseño web, por lo que me preocupo en que se vean con una estética y un arte equilibrado acorde a lo que el cliente necesita.",
-    "presentPt2": "Mi formación en el diseño de planos arquitectónicos me ayudó a entender la necesidad de tener una buena arquitectura, además de un buen diseño, lo que hace que este continuamente formándome en el Desarrollo <i> <b>Back-End</b> </i>, para lograr un código robusto, elegante y flexible. <br/> Me <b>entusiasma</b> aprender cosas nuevas, es por eso que estoy siempre en continua formación.",
-    "presentPt3": " Actualmente me encuentro cursando la <b>Tecnicatura Superior en Desarrollo de Software</b> en el Instituto Técnico Superior Córdoba (I.T.S. Córdoba), con el objetivo de profundizar más en el mundo del <b>Software</b>.",
-    "presentPt4": " Si bien mis conocimientos me permiten definirme como Desarrollador <i> <b>Front-End</b> </i>, tengo algunos conocimientos en el entorno de <b>NodeJS</b> y actualmente estoy enfocando mis esfuerzos en comprender cabalmente estos lenguajes para definirme como <b>Full-Stack</b>",
+    "presentations": [
+      "Tengo 21 años y me considero una persona que sabe escuchar y entender rápidamente las necesidades de los clientes. <br/>  Me gusta mucho el diseño web, por lo que me preocupo en que se vean con una estética y un arte equilibrado acorde a lo que el cliente necesita.",
+      "Mi formación en el diseño de planos arquitectónicos me ayudó a entender la necesidad de tener una buena arquitectura, además de un buen diseño, lo que hace que este continuamente formándome en el Desarrollo <i> <b>Back-End</b> </i>, para lograr un código robusto, elegante y flexible. <br/> Me <b>entusiasma</b> aprender cosas nuevas, es por eso que estoy siempre en continua formación.",
+
+      " Actualmente me encuentro cursando la <b>Tecnicatura Superior en Desarrollo de Software</b> en el Instituto Técnico Superior Córdoba (I.T.S. Córdoba), con el objetivo de profundizar más en el mundo del <b>Software</b>.",
+      " Si bien mis conocimientos me permiten definirme como Desarrollador <i> <b>Front-End</b> </i>, tengo algunos conocimientos en el entorno de <b>NodeJS</b> y actualmente estoy enfocando mis esfuerzos en comprender cabalmente estos lenguajes para definirme como <b>Full-Stack</b>"
+    ],
     "downloadCV": "DESCARGA MI CV",
+    "CVLink": "https://drive.google.com/file/d/14COSVOf9dtuEBvC-bL2JYBcaa7HLL8E2/view?usp=sharing",
 
     "mySkills": "Mis Habilidades:",
-    "mySkillsPt1": "Considero que soy <b>detallista</b> (hablando del diseño), me importan mucho los detalles aunque estos sean mínimos y trato de que todo esté en armonía en cuanto a los colores y formas de los objetos.",
-    "mySkillsPt2": "A su vez, también me considero <b>autocrítico</b> ya que siempre pienso que podría mejorar cierto detalle o aspecto. <br /> Por último, siempre <b>acepto</b> y tomo muy en cuenta cualquier crítica, sugerencia y/o tip sobre cómo hacer de cierta manera algún trabajo.",
+    "mySkillsPresentations": [
+      "Considero que soy <b>detallista</b> (hablando del diseño), me importan mucho los detalles aunque estos sean mínimos y trato de que todo esté en armonía en cuanto a los colores y formas de los objetos.",
+      "A su vez, también me considero <b>autocrítico</b> ya que siempre pienso que podría mejorar cierto detalle o aspecto. <br /> Por último, siempre <b>acepto</b> y tomo muy en cuenta cualquier crítica, sugerencia y/o tip sobre cómo hacer de cierta manera algún trabajo."
+    ],
 
     "skills_area": ["Front-End:", "Back-End:", "Otros:", "Proximamente:"],
     "technology": "Tecnologias:",
@@ -91,6 +99,10 @@
         "alt": "icon nextjs"
       },
       {
+        "title": "React Native",
+        "alt": "icon react native"
+      },
+      {
         "title": "MySQL",
         "alt": "icon mysql"
       }
@@ -129,23 +141,6 @@
         ]
       },
       {
-        "title": "Mi portafolio",
-        "description": "Proyecto para la presentacion de mis conocimientos en el desarrollo web.",
-        "createdWith": "Esta aplicacion fue creada utilizando: <br> <b>- En el <i>Front-End</i> :</b> HTML5, CSS3 y Vanilla JavaScript (ES 6)",
-        "datesModal": [
-          { "title": "<b>CLIENTE:</b>", "content": " --- " },
-          { "title": "<b>FECHA:</b>", "content": "11/01/2021" },
-          {
-            "title": "<b>TIPO:</b>",
-            "content": "Diseño <i>Web Responsive</i>"
-          },
-          {
-            "title": "<b>ENLACE:</b>",
-            "content": "<a href='https://github.com/JCLedesmaDev/Portafolio-CV' target='_blank' rel='noopener'>Haz click aqui</a>"
-          }
-        ]
-      },
-      {
         "title": "CRUD de Proyectos con Stack M.E.R.N",
         "description": "Proyecto que nos permite anotar las tareas pendientes a desarrollar, de cada proyecto en particular en el que estemos trabajando.",
         "createdWith": "Esta aplicacion esta siendo creada utilizando: <br/> <b>- En el <i>Back-End</i> :</b> NodeJS, Express, MongoDB. <br/> <b>- En el <i>Front-End</i> :</b> ReactJS con sus respectivos Hooks tales como: useState, useEffect, useContext y useReducer; <br/>",
@@ -159,6 +154,24 @@
           {
             "title": "<b>ENLACE:</b>",
             "content": "<a href='https://github.com/JCLedesmaDev/CRUD-de-proyectos-STACK-MERN' target='_blank' rel='noopener'>Haz click aqui</a>"
+          }
+        ]
+      },
+      {
+        "title": "Mi portafolio",
+        "description": "Proyecto para la presentacion de mis conocimientos en el desarrollo web.",
+
+        "createdWith": "Esta aplicacion fue creada utilizando: <br> <b>- En el <i>Front-End</i> :</b> React y TypeScript",
+        "datesModal": [
+          { "title": "<b>CLIENTE:</b>", "content": " --- " },
+          { "title": "<b>FECHA:</b>", "content": "02/02/2022" },
+          {
+            "title": "<b>TIPO:</b>",
+            "content": "PWA ( <i>Progressive Web App</i>  )"
+          },
+          {
+            "title": "<b>ENLACE:</b>",
+            "content": "<a href='https://github.com/JCLedesmaDev/Portafolio' target='_blank' rel='noopener'>Haz click aqui</a>"
           }
         ]
       }

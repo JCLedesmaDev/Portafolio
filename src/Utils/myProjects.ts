@@ -32,11 +32,11 @@ export const projects = [
     imagesModal: [crud_notas1, crud_notas2, crud_notas3, crud_notas4, crud_notas5],
   },
   {
-    mainImage: portfolio1,
-    imagesModal: [portfolio1, portfolio2, portfolio3, portfolio4, portfolio5],
-  },
-  {
     mainImage: crud_MERN1,
     imagesModal: [crud_MERN1],
+  },
+  {
+    mainImage: portfolio1,
+    imagesModal: [portfolio1, portfolio2, portfolio3, portfolio4, portfolio5],
   },
 ];

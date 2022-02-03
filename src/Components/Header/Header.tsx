@@ -10,6 +10,7 @@ export const Header: React.FC = () => {
   /// Variables
   const { y: desplazamiento_actual } = useWindowScroll();
   const { header } = useMyData();
+  // const { header,changeLenguage } = useMyData();
 
   /// Hooks
   const [openMenuResponsive, setOpenMenuResponsive] = useState(false);
@@ -48,7 +49,7 @@ export const Header: React.FC = () => {
         <div className={`${HeaderCSS.container} centerContainer`}>
           {/* Logo */}
           <div>
-            <a href="#home">{parse(`${header.myPortfolio}`)}</a>
+            <a href="#home">{parse(`${header?.myPortfolio}`)}</a>
           </div>
 
           {/* Boton Menu */}
@@ -62,17 +63,18 @@ export const Header: React.FC = () => {
           {/* Menu Enlaces  */}
           <div className={openMenuResponsive ? HeaderCSS.is_active : ""}>
             <a href="#home" data-scroll-spy onClick={redirectSection}>
-              {header.home}
+              {header?.home}
             </a>
             <a href="#aboutMe" data-scroll-spy onClick={redirectSection}>
-              {header.aboutMe}
+              {header?.aboutMe}
             </a>
             <a href="#portfolio" data-scroll-spy onClick={redirectSection}>
-              {header.portfolio}
+              {header?.portfolio}
             </a>
             <a href="#contact" data-scroll-spy onClick={redirectSection}>
-              {header.contact}
+              {header?.contact}
             </a>
+            {/* <a onClick={changeLenguage} > asdadsd</a> */}
           </div>
         </div>
       </nav>

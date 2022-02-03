@@ -97,9 +97,9 @@ export const Portfolio: React.FC = () => {
       data-scroll-spy
     >
       <div className="centerContainer">
-        <h2 className="section-title">{portfolio.myWorks}</h2>
+        <h2 className="section-title">{portfolio?.myWorks}</h2>
 
-        {portfolio.proyects.map((project, index) => (
+        {portfolio?.proyects.map((project, index) => (
           <Fragment key={index}>
             <a
               href={`#trabajo_${index}`}
@@ -117,7 +117,7 @@ export const Portfolio: React.FC = () => {
                   <p>{project.description}</p>
 
                   <div className={PortfolioCSS.portfolioCard__infoEnlace}>
-                    <button className="button">{portfolio.clickMe}</button>
+                    <button className="button">{portfolio?.clickMe}</button>
                   </div>
                 </div>
               </aside>
