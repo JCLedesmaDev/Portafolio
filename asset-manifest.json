@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "https://jcledesmadev.github.io/Portafolio/static/css/main.df0e5007.css",
-    "main.js": "https://jcledesmadev.github.io/Portafolio/static/js/main.b7cbd00f.js",
+    "main.js": "https://jcledesmadev.github.io/Portafolio/static/js/main.38aa2d6e.js",
     "static/js/377.61b9fc02.chunk.js": "https://jcledesmadev.github.io/Portafolio/static/js/377.61b9fc02.chunk.js",
     "static/media/mi-portafolio-1.png": "https://jcledesmadev.github.io/Portafolio/static/media/mi-portafolio-1.fdeaabecbbd00c5fa7c2.png",
     "static/media/img.jpg": "https://jcledesmadev.github.io/Portafolio/static/media/img.fec892c0c0ecb05611e9.jpg",
@@ -30,11 +30,11 @@
     "static/media/css.svg": "https://jcledesmadev.github.io/Portafolio/static/media/css.8cc445df0bb929bc639a6fd799022d50.svg",
     "static/media/html.svg": "https://jcledesmadev.github.io/Portafolio/static/media/html.cfea90bb17d04c931c944dff7505fa88.svg",
     "main.df0e5007.css.map": "https://jcledesmadev.github.io/Portafolio/static/css/main.df0e5007.css.map",
-    "main.b7cbd00f.js.map": "https://jcledesmadev.github.io/Portafolio/static/js/main.b7cbd00f.js.map",
+    "main.38aa2d6e.js.map": "https://jcledesmadev.github.io/Portafolio/static/js/main.38aa2d6e.js.map",
     "377.61b9fc02.chunk.js.map": "https://jcledesmadev.github.io/Portafolio/static/js/377.61b9fc02.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.df0e5007.css",
-    "static/js/main.b7cbd00f.js"
+    "static/js/main.38aa2d6e.js"
   ]
 }
