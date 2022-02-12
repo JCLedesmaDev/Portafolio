@@ -17,6 +17,8 @@
   left: 50%;
   transform: translateX(-50%);
 
+  /* background: rgba(0, 0, 0, 0.658); */
+
   font-size: 1.25rem;
   color: var(--color-principal);
   padding: 0.5rem;
@@ -83,6 +85,9 @@
   border-radius: 1rem;
   animation: visual 1s 1 normal 0s ease-in-out;
   transition: transform 0.4s ease;
+}
+.technology span{
+  padding: 0 .3rem;
 }
 
 @keyframes visual {

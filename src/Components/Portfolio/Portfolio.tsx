@@ -1,10 +1,11 @@
-import React, { Fragment} from "react";
+import React, { Fragment } from "react";
 import parse from "html-react-parser";
 import { useMyData } from "../../Hooks/useMyData";
 import { projects } from "../../Utils/myProjects";
 
 import PortfolioCSS from "./Portfolio.module.css";
 import { useLocation } from "react-use";
+import { ModalContainer } from "../ModalContainer/ModalContainer";
 
 enum Images {
   CANTIDAD_MININA = 5,
@@ -124,12 +125,8 @@ export const Portfolio: React.FC = () => {
             </a>
 
             {/* <!-- Ventanas modal del portafolio (en el css, ta todo) --> */}
-            <article
-              className={
-                location?.includes(`#trabajo_${index}`)
-                  ? CssOpenModal
-                  : `${PortfolioCSS.portfolioModal}`
-              }
+            <ModalContainer
+              validation={location?.includes(`#trabajo_${index}`)}
             >
               <div className={PortfolioCSS.modalContent}>
                 <a href="#close" className={PortfolioCSS.modalContent_closeBtn}>
@@ -189,9 +186,8 @@ export const Portfolio: React.FC = () => {
                   </div>
                 </article>
               </div>
-            </article>
+            </ModalContainer>
 
-            {/* <!-- Ventanas modal del portafolio (en el css, ta todo) --> */}
           </Fragment>
         ))}
       </div>

@@ -11,6 +11,7 @@ import { InputForm } from "./InputForm";
 import { TexTarea } from "./TexTareaForm";
 import { axiosMethod } from "../../Utils/axiosMethod";
 import { useLocation } from "react-use";
+import { ModalContainer } from "../ModalContainer/ModalContainer";
 
 export const Contact: React.FC = () => {
   /// VARIABLES
@@ -24,7 +25,6 @@ export const Contact: React.FC = () => {
   const [loaderActive, setLoaderActive] = useState(false);
 
   /// METODOS
-
 
   const onSubmit = handleSubmit(async (dataForm) => {
     try {
@@ -72,11 +72,22 @@ export const Contact: React.FC = () => {
 
         {/* <!-- SOCIALES --> */}
         <article className={`${SocialsCSS.contact__cards} centerContainer`}>
-          {contact?.modeContact?.map((contact) => (
-            <aside className={`${SocialsCSS.contact__cardTarget} box-shadow`}>
+          {contact?.modeContact?.map((contact, indexContact) => (
+            <aside
+              key={indexContact}
+              className={`${SocialsCSS.contact__cardTarget} box-shadow`}
+            >
               <i className={contact?.icon} />
               <h5>{contact?.title}</h5>
-              <small>{contact?.links.map((link) => parse(link))}</small>
+              {indexContact !== 3 ? (
+                <small>{parse(contact.links[0])}</small>
+              ) : (
+                <div>
+                  {contact?.links.map((link, indexLink) => (
+                    <small key={indexLink}>{parse(link)}</small>
+                  ))}
+                </div>
+              )}
             </aside>
           ))}
         </article>
@@ -87,7 +98,6 @@ export const Contact: React.FC = () => {
           onSubmit={onSubmit}
         >
           {formInputs?.map((inputForm, index) => (
-
             <div id={`form__${inputForm.name}`} key={index}>
               {inputForm.type !== "textarea" ? (
                 <InputForm form={inputForm} register={register} />
@@ -98,7 +108,6 @@ export const Contact: React.FC = () => {
               <p className={FormCSS.contact_messageError}>
                 {inputForm.messageError}
               </p>
-
             </div>
           ))}
 
@@ -123,11 +132,9 @@ export const Contact: React.FC = () => {
         </form>
 
         {/* <!-- MODAL DEL FORMULARIO --> */}
-        <article
-          className={
+        <ModalContainer
+          validation={
             location?.includes("#gracias") || location?.includes("#ups")
-              ? CssOpenModal
-              : `${PortfolioCSS.portfolioModal}`
           }
         >
           <div>
@@ -140,7 +147,7 @@ export const Contact: React.FC = () => {
               <i className="far fa-smile-wink"></i>
             </article>
           </div>
-        </article>
+        </ModalContainer>
       </div>
     </section>
   );

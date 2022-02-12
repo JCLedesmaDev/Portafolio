@@ -14,7 +14,6 @@ import { Technology } from "./Technology/Technology";
 export const AboutMe: React.FC = () => {
   const { aboutMe } = useMyData();
 
-
   /// HOOKS
   const [technologies, setTechnologies] = useState<any[]>([]);
   const [loader, setLoader] = useState(false);
@@ -66,8 +65,8 @@ export const AboutMe: React.FC = () => {
           <h4 className="text-color-principal">{aboutMe?.rol}</h4>
         </aside>
 
-        {aboutMe?.presentations.map((present) => (
-          <p>{parse(`${present}`)}</p>
+        {aboutMe?.presentations.map((present, indexPresent) => (
+          <p key={indexPresent}>{parse(`${present}`)}</p>
         ))}
 
         <div>
@@ -94,22 +93,24 @@ export const AboutMe: React.FC = () => {
       <article className="text-center">
         <h2 className="sub-section-title">{aboutMe?.mySkills}</h2>
 
-        {aboutMe?.mySkillsPresentations.map((skillsPresent) => (
-          <p>{parse(`${skillsPresent}`)}</p>
+        {aboutMe?.mySkillsPresentations.map((skillsPresent, indexSkill) => (
+          <p key={indexSkill}>{parse(`${skillsPresent}`)}</p>
         ))}
 
         <h3 className="sub-section-title">{aboutMe?.technology}</h3>
 
         <div className={AboutMeCSS.container_skills}>
           <div className="categorias">
-            {aboutMe?.skills_area.map((area, index) => (
+            {aboutMe?.skills_area.map((area, indexArea) => (
               <a
-                key={index}
+                key={indexArea}
                 href={"#/"}
                 className={
-                  filterActive === index ? AboutMeCSS.buttonFilterActive : ""
+                  filterActive === indexArea
+                    ? AboutMeCSS.buttonFilterActive
+                    : ""
                 }
-                onClick={(e: any) => getTechnologiesByArea(area, index)}
+                onClick={(e: any) => getTechnologiesByArea(area, indexArea)}
               >
                 {area}
               </a>
@@ -118,8 +119,8 @@ export const AboutMe: React.FC = () => {
 
           <div>
             {loader === true ? (
-              technologies.map((technology, index) => (
-                <Technology key={index} technology={technology} />
+              technologies.map((technology, indexTechno) => (
+                <Technology key={indexTechno} technology={technology} />
               ))
             ) : (
               <img src={loaderSVG} alt="loader" />

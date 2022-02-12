@@ -1,14 +1,14 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import App from './App';
-import * as serviceWorkerRegistration from './serviceWorkerRegistration';
-import reportWebVitals from './reportWebVitals';
+import React from "react";
+import ReactDOM from "react-dom";
+import App from "./App";
+import * as serviceWorkerRegistration from "./serviceWorkerRegistration";
+import reportWebVitals from "./reportWebVitals";
 
 ReactDOM.render(
   <React.StrictMode>
     <App />
   </React.StrictMode>,
-  document.getElementById('root')
+  document.getElementById("root")
 );
 
 // If you want your app to work offline and load faster, you can change
@@ -16,13 +16,14 @@ ReactDOM.render(
 // Learn more about service workers: https://cra.link/PWA
 // serviceWorkerRegistration.unregister();
 serviceWorkerRegistration.register({
+  // Actualiza automaticamente la APP al subir cambios y evita todo el tema de cache
   onUpdate: async (registration) => {
     if (registration && registration.waiting) {
       await registration.unregister();
-      registration.waiting.postMessage({type: "SKIP_WAITING"});
+      registration.waiting.postMessage({ type: "SKIP_WAITING" });
       window.location.reload();
     }
-  }
+  },
 });
 
 // If you want to start measuring performance in your app, pass a function
