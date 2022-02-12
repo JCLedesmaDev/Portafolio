@@ -86,6 +86,7 @@ export const Portfolio: React.FC = () => {
 
         {portfolio?.proyects.map((project, index) => (
           <Fragment key={index}>
+          
             <div className={PortfolioCSS.portfolioCard}>
               <img
                 className={PortfolioCSS.portfolioCard__img}
@@ -171,9 +172,10 @@ export const Portfolio: React.FC = () => {
                 </article>
               </div>
             </ModalContainer>
+
           </Fragment>
         ))}
-        
+
       </div>
     </section>
   );
