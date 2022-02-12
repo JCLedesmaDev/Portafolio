@@ -36,9 +36,7 @@ export const Contact: React.FC = () => {
         data: dataForm,
       });
 
-      if (message) {
-        throw new Error(message);
-      }
+      if (message) throw new Error(message);
 
       openModal("#gracias");
     } catch (error) {
@@ -148,6 +146,10 @@ export const Contact: React.FC = () => {
             </article>
           </div>
         </ModalContainer>
+
+        {/* <ModalContainer validation={true}>
+          <h3>asdasw</h3>
+        </ModalContainer> */}
       </div>
     </section>
   );

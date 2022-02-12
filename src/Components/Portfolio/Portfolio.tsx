@@ -16,7 +16,6 @@ export const Portfolio: React.FC = () => {
   const { portfolio } = useMyData();
   const location = useLocation().hash;
   const CssCarrouselSlide = `${PortfolioCSS.slidesContainer__slides} ${PortfolioCSS.slidesContainer__slides__carrousel} `;
-  const CssOpenModal = `${PortfolioCSS.portfolioModal} ${PortfolioCSS.openPortafolioModal}`;
   let indeximage = 0,
     translateX = 0;
 
@@ -76,21 +75,6 @@ export const Portfolio: React.FC = () => {
     }
   };
 
-  (function () {
-    const $body = document.querySelector("body") as HTMLBodyElement;
-    if (location?.includes(`#trabajo_`)) {
-      // slideCarrusel();
-      $body.style.overflowY = "hidden";
-    } else {
-      $body.style.overflowY = "scroll";
-    }
-    document.addEventListener("keydown", (e) => {
-      if (e.code === "Escape") {
-        window.location.hash = "#close";
-      }
-    });
-  })();
-
   return (
     <section
       id="portfolio"
@@ -102,17 +86,17 @@ export const Portfolio: React.FC = () => {
 
         {portfolio?.proyects.map((project, index) => (
           <Fragment key={index}>
-            <a
-              href={`#trabajo_${index}`}
-              className={PortfolioCSS.portfolioCard}
-            >
+            <div className={PortfolioCSS.portfolioCard}>
               <img
                 className={PortfolioCSS.portfolioCard__img}
                 src={projects[index]?.mainImage}
                 alt={`trabajo practica ${index}`}
               />
 
-              <aside className={PortfolioCSS.portfolioCard__info}>
+              <a
+                href={`#trabajo_${index}`}
+                className={PortfolioCSS.portfolioCard__info}
+              >
                 <div className={PortfolioCSS.portfolioCard__infoContainer}>
                   <h3>{project.title}</h3>
                   <p>{project.description}</p>
@@ -121,8 +105,8 @@ export const Portfolio: React.FC = () => {
                     <button className="button">{portfolio?.clickMe}</button>
                   </div>
                 </div>
-              </aside>
-            </a>
+              </a>
+            </div>
 
             {/* <!-- Ventanas modal del portafolio (en el css, ta todo) --> */}
             <ModalContainer
@@ -187,9 +171,9 @@ export const Portfolio: React.FC = () => {
                 </article>
               </div>
             </ModalContainer>
-
           </Fragment>
         ))}
+        
       </div>
     </section>
   );
