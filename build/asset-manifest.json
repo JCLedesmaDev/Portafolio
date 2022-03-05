@@ -1,11 +1,14 @@
 {
   "files": {
-    "main.css": "/Portafolio/static/css/main.971c1bd8.css",
-    "main.js": "/Portafolio/static/js/main.25a78ac3.js",
+    "main.css": "/Portafolio/static/css/main.b16df9fe.css",
+    "main.js": "/Portafolio/static/js/main.593af8b7.js",
     "static/js/377.61b9fc02.chunk.js": "/Portafolio/static/js/377.61b9fc02.chunk.js",
     "static/media/mi-portafolio-1.png": "/Portafolio/static/media/mi-portafolio-1.fdeaabecbbd00c5fa7c2.png",
     "static/media/img.jpg": "/Portafolio/static/media/img.fec892c0c0ecb05611e9.jpg",
     "static/media/home-image.jpg": "/Portafolio/static/media/home-image.bea898c3ecb962665005.jpg",
+    "static/media/activities4.png": "/Portafolio/static/media/activities4.e255ba97597a42d1ee92.png",
+    "static/media/activities2.png": "/Portafolio/static/media/activities2.617460036288eb96e85c.png",
+    "static/media/activities5.png": "/Portafolio/static/media/activities5.905133a34226c2bb5459.png",
     "static/media/mi-portafolio-4.png": "/Portafolio/static/media/mi-portafolio-4.fecb4b0c1afa20d2dab7.png",
     "static/media/node.png": "/Portafolio/static/media/node.d4622bbe22616a90d064.png",
     "service-worker.js": "/Portafolio/service-worker.js",
@@ -13,9 +16,11 @@
     "static/media/mi-portafolio-3.png": "/Portafolio/static/media/mi-portafolio-3.44e2e57b68f496983df7.png",
     "static/media/crud-libros-3.png": "/Portafolio/static/media/crud-libros-3.43c5264b30773da47878.png",
     "static/media/crud-libros-4.png": "/Portafolio/static/media/crud-libros-4.f407cd9c123eb4a6f16c.png",
+    "static/media/activities1.png": "/Portafolio/static/media/activities1.a3ca4362bf9370863898.png",
     "static/media/ionic.svg": "/Portafolio/static/media/ionic.02a2a01b80acb87e715e06ee2d1f0ec3.svg",
     "static/media/mi-portafolio-2.png": "/Portafolio/static/media/mi-portafolio-2.e8d49afc025174a8a8d3.png",
     "static/media/mi-portafolio-5.png": "/Portafolio/static/media/mi-portafolio-5.f21bb3d423197445425d.png",
+    "static/media/activities3.png": "/Portafolio/static/media/activities3.4bfcf82f2656f4685b0c.png",
     "static/media/react-native.png": "/Portafolio/static/media/react-native.e11824049ac61c177cf1.png",
     "static/media/mongodb.svg": "/Portafolio/static/media/mongodb.b508609b24c1a2bc58576411df58bb4b.svg",
     "static/media/handlebarsjs.svg": "/Portafolio/static/media/handlebarsjs.caa49d8d0e8464cdc92a3801673e67cb.svg",
@@ -29,12 +34,12 @@
     "static/media/redux.svg": "/Portafolio/static/media/redux.0a4a6ca2be44339bedb69de15f66d243.svg",
     "static/media/css.svg": "/Portafolio/static/media/css.8cc445df0bb929bc639a6fd799022d50.svg",
     "static/media/html.svg": "/Portafolio/static/media/html.cfea90bb17d04c931c944dff7505fa88.svg",
-    "main.971c1bd8.css.map": "/Portafolio/static/css/main.971c1bd8.css.map",
-    "main.25a78ac3.js.map": "/Portafolio/static/js/main.25a78ac3.js.map",
+    "main.b16df9fe.css.map": "/Portafolio/static/css/main.b16df9fe.css.map",
+    "main.593af8b7.js.map": "/Portafolio/static/js/main.593af8b7.js.map",
     "377.61b9fc02.chunk.js.map": "/Portafolio/static/js/377.61b9fc02.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.971c1bd8.css",
-    "static/js/main.25a78ac3.js"
+    "static/css/main.b16df9fe.css",
+    "static/js/main.593af8b7.js"
   ]
 }

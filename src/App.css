@@ -183,4 +183,10 @@ p {
   height:25rem ;
 }
 
+
+@media screen and (max-width: 325px) {
+  html{
+    font-size: calc(16px * 0.853);
+  }
+}
 /* ------------ Clases re utilizables. ------------ */

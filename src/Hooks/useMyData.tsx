@@ -32,10 +32,9 @@ export const useMyData = () => {
   //   },
   // };
 
-
   // const changeLenguage = () => {
   //   lenguage === "ES" ? selectLenguage["EN"]() : selectLenguage["ES"]();
-  //   window.location.reload()
+  //   window.location.reload();
   // };
 
   // useEffect(() => {
@@ -45,6 +44,7 @@ export const useMyData = () => {
   /*  */
   return {
     ...INITIAL_STATE.spanish,
+    // ...INITIAL_STATE.english
     // ...idioma,
     // changeLenguage,
   };

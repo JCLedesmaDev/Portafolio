@@ -135,6 +135,7 @@ export const Contact: React.FC = () => {
             location?.includes("#gracias") || location?.includes("#ups")
           }
         >
+
           <div>
             <article className={FormCSS.modal__contactForm_response}>
               <h3>
@@ -145,11 +146,9 @@ export const Contact: React.FC = () => {
               <i className="far fa-smile-wink"></i>
             </article>
           </div>
+
         </ModalContainer>
 
-        {/* <ModalContainer validation={true}>
-          <h3>asdasw</h3>
-        </ModalContainer> */}
       </div>
     </section>
   );

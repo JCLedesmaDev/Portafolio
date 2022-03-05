@@ -10,7 +10,7 @@
   },
 
   "home": {
-    "presentation": "Hola! Mi nombre es <br/> <span> Juan Cruz Ledesma </span> <br/> Y soy <span>Desarrollador Web.</span>",
+    "presentation": "Hola! Mi nombre es <br/> <span> Juan Cruz Ledesma </span> <br/> Y soy <span>Desarrollador Full-Stack.</span>",
     "knowMe": "Conoceme!"
   },
 
@@ -60,6 +60,10 @@
       {
         "title": "Ionic 5",
         "alt": "icon ionic"
+      },
+      {
+        "title": "Redux",
+        "alt": "icon redux"
       }
     ],
 
@@ -91,10 +95,6 @@
 
     "coming_soon": [
       {
-        "title": "Redux",
-        "alt": "icon redux"
-      },
-      {
         "title": "NextJS",
         "alt": "icon nextjs"
       },
@@ -110,10 +110,10 @@
   },
 
   "portfolio": {
-    "myWorks": "Mis trabajos",
+    "myWorks": "Proyectos realizados",
     "proyects": [
       {
-        "title": "CRUD de Libros",
+        "title": "Sistema de Gestion de Libros",
         "description": "Proyecto que lleva el registro de una bibloteca personal para organizar tu propia bibloteca.",
         "createdWith": "Esta aplicacion fue creada utilizando: <br/> <b>- En el <i> Back-End</i> :</b> NodeJS, ExpressJS, MongoDB. <br/> <b>- En el <i>Front-End</i> :</b> HTML5, CSS3 / Bootstrap 4 y Vanilla JavaScript.",
         "datesModal": [
@@ -121,27 +121,13 @@
           { "title": "<b>FECHA:</b>", "content": "10/11/2020" },
           { "title": "<b>TIPO:</b>", "content": "Sitio <i>Web Responsive</i>" },
           {
-            "title": "<b>ENLACE:</b>",
-            "content": "<a href='https://github.com/JCLedesmaDev/CRUD-de-Libros' target='_blank' rel='noopener'>Haz click aqui</a>"
+            "title": "<b>REPOSITORIO:</b>",
+            "content": "<a href='https://github.com/JCLedesmaDev/Sistema-de-Gestion-de-Libros' target='_blank' rel='noopener'>Haz click aqui</a>"
           }
         ]
       },
       {
-        "title": "CRUD de notas con Login & Registro",
-        "description": "Proyecto que lleva el registro de notas personales para utilizarlas de recordatorio.",
-        "createdWith": "Esta aplicacion fue creada utilizando: <br/> <b>- En el <i> Back-End</i> :</b> NodeJS, Express, MongoDB y el modulo 'passport.js' para la autenticacion de usuarios. <br/> <b>- En el <i>Front-End</i> :</b> Handlebars, Bootstrap 4 y Vanilla JavaScript.",
-        "datesModal": [
-          { "title": "<b>CLIENTE:</b>", "content": " --- " },
-          { "title": "<b>FECHA:</b>", "content": "15/12/2020" },
-          { "title": "<b>TIPO:</b>", "content": "Sitio <i>Web Responsive</i>" },
-          {
-            "title": "<b>ENLACE:</b>",
-            "content": "<a href='https://github.com/JCLedesmaDev/CRUD-de-Notas-con-Login-y-Registro' target='_blank' rel='noopener'>Haz click aqui</a>"
-          }
-        ]
-      },
-      {
-        "title": "CRUD de Proyectos con Stack M.E.R.N",
+        "title": "Sistema de Gestion de Proyectos con Stack M.E.R.N",
         "description": "Proyecto que nos permite anotar las tareas pendientes a desarrollar, de cada proyecto en particular en el que estemos trabajando.",
         "createdWith": "Esta aplicacion esta siendo creada utilizando: <br/> <b>- En el <i>Back-End</i> :</b> NodeJS, Express, MongoDB. <br/> <b>- En el <i>Front-End</i> :</b> ReactJS con sus respectivos Hooks tales como: useState, useEffect, useContext y useReducer; <br/>",
         "datesModal": [
@@ -152,26 +138,48 @@
             "content": "Diseño <i>Web Responsive</i>"
           },
           {
-            "title": "<b>ENLACE:</b>",
-            "content": "<a href='https://github.com/JCLedesmaDev/CRUD-de-proyectos-STACK-MERN' target='_blank' rel='noopener'>Haz click aqui</a>"
+            "title": "<b>REPOSITORIO:</b>",
+            "content": "<a href='https://github.com/JCLedesmaDev/Sistema-de-Gestion-de-Proyectos' target='_blank' rel='noopener'>Haz click aqui</a>"
           }
         ]
       },
       {
-        "title": "Mi portafolio",
+        "title": "Pagina Web - Mi portafolio",
         "description": "Proyecto para la presentacion de mis conocimientos en el desarrollo web.",
 
-        "createdWith": "Esta aplicacion fue creada utilizando: <br> <b>- En el <i>Front-End</i> :</b> React y TypeScript",
+        "createdWith": "Esta aplicacion fue creada utilizando: <br> <b>- En el <i>Front-End</i> :</b> React con TypeScript, Axios, Html-react-parser",
         "datesModal": [
           { "title": "<b>CLIENTE:</b>", "content": " --- " },
           { "title": "<b>FECHA:</b>", "content": "02/02/2022" },
           {
             "title": "<b>TIPO:</b>",
-            "content": "PWA ( <i>Progressive Web App</i>  )"
+            "content": "PWA ( <i>Progressive Web App</i> )"
           },
           {
-            "title": "<b>ENLACE:</b>",
-            "content": "<a href='https://github.com/JCLedesmaDev/Portafolio' target='_blank' rel='noopener'>Haz click aqui</a>"
+            "title": "<b>REPOSITORIO:</b>",
+            "content": "<a href='https://github.com/JCLedesmaDev/Pagina-Web-Mi-portafolio' target='_blank' rel='noopener'>Haz click aqui</a>"
+          }
+        ]
+      },
+      {
+        "title": "Sistema de Gestion Mis actividades",
+        "description": "Proyecto que nos permite registrar nuestras actividades dependiendo de su categoria",
+
+        "createdWith": "Esta aplicacion fue creada utilizando: <br> <b>- En el <i>Front-End</i> :</b> Ionic con React y TypeScript con sus respectivos Hooks tales como:  useEffect, useContext, useReducer y Hooks personalizados. <br/>",
+        "datesModal": [
+          { "title": "<b>CLIENTE:</b>", "content": " --- " },
+          { "title": "<b>FECHA:</b>", "content": "01/03/2021" },
+          {
+            "title": "<b>TIPO:</b>",
+            "content": "Aplicacion movil"
+          },
+          {
+            "title": "<b>REPOSITORIO:</b>",
+            "content": "<a href='https://github.com/JCLedesmaDev/Sistema-de-Gestion-de-Mis-actividades' target='_blank' rel='noopener'>Haz click aqui</a>"
+          },
+          {
+            "title": "<b>DESCARGAR APK:</b>",
+            "content": "<a href='https://drive.google.com/file/d/1V7vvkIhBCB36NC-2U6Dmt2yS5IScJEzH/view?usp=sharing' target='_blank' rel='noopener'>Haz click aqui</a>"
           }
         ]
       }
