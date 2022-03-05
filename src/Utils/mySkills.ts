@@ -1,5 +1,4 @@
 import css from "../Static/skills/css.svg";
-import handlebarsjs from "../Static/skills/handlebarsjs.svg";
 import html from "../Static/skills/html.svg";
 import ionic from "../Static/skills/ionic.svg";
 import js from "../Static/skills/js.svg";
@@ -16,7 +15,6 @@ import reactnative from "../Static/skills/react-native.png";
 
 
 export const skills: any = {
-  Handlebars: { css: "orange", icon: handlebarsjs },
   "Ionic 5": { css: "#bbb", icon: ionic },
   NodeJS: { css: "rgba(0, 0, 0, 0.9)", icon: nodejs },
   MongoDB: { css: "#a5a284", icon: mongodb },

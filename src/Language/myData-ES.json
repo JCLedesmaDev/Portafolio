@@ -46,10 +46,6 @@
         "alt": "icon css3"
       },
       {
-        "title": "Handlebars",
-        "alt": "icon handlebarsjs"
-      },
-      {
         "title": "JavaScript",
         "alt": "icon JS EcmaScript6"
       },
@@ -157,7 +153,7 @@
           },
           {
             "title": "<b>REPOSITORIO:</b>",
-            "content": "<a href='https://github.com/JCLedesmaDev/Pagina-Web-Mi-portafolio' target='_blank' rel='noopener'>Haz click aqui</a>"
+            "content": "<a href='https://github.com/JCLedesmaDev/Portafolio' target='_blank' rel='noopener'>Haz click aqui</a>"
           }
         ]
       },
