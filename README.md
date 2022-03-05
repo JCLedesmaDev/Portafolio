@@ -1,2 +1,2 @@
 # Portafolio
-Mi portafolio creado con React
+Proyecto para la presentación de mis conocimientos en el desarrollo web.
