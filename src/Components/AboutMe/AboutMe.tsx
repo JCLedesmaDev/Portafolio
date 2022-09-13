@@ -47,6 +47,9 @@ export const AboutMe: React.FC = () => {
     }, 500);
   };
 
+  const getCssFilter = (indexArea: number) => filterActive === indexArea ? AboutMeCSS.buttonFilterActive : ""
+
+
   useEffect(() => {
     getTechnologiesByArea("Front", 0);
   }, []);
@@ -70,13 +73,8 @@ export const AboutMe: React.FC = () => {
         ))}
 
         <div>
-          {/* Subir a Drive y compartir enlace */}
-          <a
-            href={aboutMe?.CVLink}
-            className="button"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
+          <a href={aboutMe?.CVLink} className="button"
+            target="_blank" rel="noopener noreferrer">
             {aboutMe?.downloadCV}
           </a>
         </div>
@@ -100,16 +98,12 @@ export const AboutMe: React.FC = () => {
         <h3 className="sub-section-title">{aboutMe?.technology}</h3>
 
         <div className={AboutMeCSS.container_skills}>
-          <div className="categorias">
+
+          <div>
             {aboutMe?.skills_area.map((area, indexArea) => (
               <a
-                key={indexArea}
-                href={"#/"}
-                className={
-                  filterActive === indexArea
-                    ? AboutMeCSS.buttonFilterActive
-                    : ""
-                }
+                key={indexArea} href={"#/"}
+                className={getCssFilter(indexArea)}
                 onClick={(e: any) => getTechnologiesByArea(area, indexArea)}
               >
                 {area}
@@ -118,14 +112,30 @@ export const AboutMe: React.FC = () => {
           </div>
 
           <div>
-            {loader === true ? (
-              technologies.map((technology, indexTechno) => (
-                <Technology key={indexTechno} technology={technology} />
-              ))
-            ) : (
-              <img src={loaderSVG} alt="loader" />
-            )}
+            {
+              loader ? (
+                technologies.map((technology, indexTechno) => (
+                  <Technology key={indexTechno} technology={technology} />
+                ))
+                // <div>
+                //   {
+                //     technologies.map((technology, indexTechno) => (
+                //       <Technology key={indexTechno} technology={technology} />
+                //     ))
+                //   }
+                  
+                //   <div style={{marginTop: '1rem'}}>
+                //       <button className={AboutMeCSS.buttonFilterActive}>1</button>
+                //       <button className={AboutMeCSS.buttonFilterActive}>2</button>
+                //   </div>
+
+                // </div>
+              ) : ( <img src={loaderSVG} alt="loader" /> )
+            }
           </div>
+
+
+
         </div>
       </article>
     </section>

@@ -1,6 +1,6 @@
 import React from "react";
 import { skills } from "../../../Utils/mySkills";
-import AboutMeCSS from "../AboutMe.module.css";
+import TechnologyCSS from "./Technology.module.css";
 import parse from "html-react-parser";
 
 interface Props {
@@ -10,7 +10,7 @@ interface Props {
 export const Technology: React.FC<Props> = ({ technology }) => {
   return (
     <div
-      className={AboutMeCSS.technology}
+      className={TechnologyCSS.technology}
       style={{ backgroundColor: skills[technology.title]?.css }}
     >
       {technology.title !== "ExpressJS" ? (
