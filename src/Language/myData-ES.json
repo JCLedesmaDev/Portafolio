@@ -70,7 +70,7 @@
         "alt": "icon angular"
       },
       {
-        "title": "Blazor",
+        "title": "Blazor WebAssembly",
         "alt": "icon blazor"
       },
       {
@@ -98,14 +98,14 @@
         "alt": "icon mongodb"
       },
       {
+        "title": ".Net 6",
+        "alt": "icon .net 6"
+      },
+      {
         "title": "Entity Framework Core",
         "alt": "icon entity framework core"
       }
       ,
-      {
-        "title": ".Net 6",
-        "alt": "icon .net 6"
-      },
       {
         "title": "Sql Server",
         "alt": "icon sql server"
@@ -120,6 +120,10 @@
       {
         "title": "Git",
         "alt": "icon git"
+      },
+      {
+        "title": "NVM",
+        "alt": "icon nvm"
       }
     ],
 

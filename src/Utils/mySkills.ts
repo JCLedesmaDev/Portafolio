@@ -15,12 +15,13 @@ import jquery from "../Static/skills/front/jquery.svg";
 import mongodb from "../Static/skills/back/mongodb.svg";
 import nodejs from "../Static/skills/back/node.png";
 import entityFramework from "../Static/skills/back/entity.png";
-import net from "../Static/skills/back/netCore.svg";
+import net from "../Static/skills/back/net.png";
 import sqlServer from "../Static/skills/back/sqlserver.png";
 
 // Otros
 import typescript from "../Static/skills/other/typescript.svg";
 import git from "../Static/skills/other/git.png";
+import nvm from "../Static/skills/other/nvm.png";
 
 // Proximamente
 import nextjs from "../Static/skills/comingSon/nextjs.svg";
@@ -38,7 +39,7 @@ export const skills: any = {
   ReactJS: { css: "", icon: react },
   Redux: { css: "", icon: redux },
   "Angular 12": { css: "", icon: angular },
-  Blazor: { css: "", icon: blazor },
+  "Blazor WebAssembly": { css: "", icon: blazor },
   "Vue 3": { css: "", icon: vue },
   "Quasar v2": { css: "", icon: quasar },
   Jquery: { css: "", icon: jquery },
@@ -54,6 +55,7 @@ export const skills: any = {
   // Otros
   TypeScript: { css: "", icon: typescript },
   Git: { css: "", icon: git },
+  NVM: { css: "", icon: nvm },
    
   // Proximamente
   MySQL: { css: "#eee", icon: mysql },
