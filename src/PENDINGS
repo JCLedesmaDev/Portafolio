@@ -1,16 +1,7 @@
 ⏰ Aplicar Metodologia BEM en todo el proyecto
-
-⏰ Aplicar filtrado en Tecnologias
-
-⏰ Modificar icono .net 6
-
+⏰ Aplicar psginado en Tecnologias
+👍 Modificar icono .net 6
 ⏰ Agregar nuevos proyectos.
-
-
-
-
-Futuro: NodeJS y MongoDB
-
-Subir proyectos a finde año de Práctica y Modelado con Blazor.
-
-Hacer psginado de Tecnologías en la sección de tecnología (muchas tecnos)
+⏰ Colocar Loader a nivel general utilizando useContext : https://www.youtube.com/watch?v=rs_JwbyZ4dA&list=RDCMUCOD6LXgeBoeiUZTsPLdG-0g&start_radio=1
+⏰ Solcuionar que no se ve todo el Title de los iconos
+⏰ Subir proyectos a finde año de Práctica y Modelado con Blazor.
