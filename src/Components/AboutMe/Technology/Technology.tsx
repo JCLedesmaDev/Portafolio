@@ -23,7 +23,9 @@ export const Technology: React.FC<Props> = ({ technology }) => {
       )}
       
       <div>
-        <p>{technology.title}</p>
+        <p style={{
+          marginTop: technology.title === "ExpressJS" ? '-.45rem' : 'auto' 
+        }}>{technology.title}</p>
       </div>
 
     </div>
