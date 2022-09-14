@@ -144,15 +144,32 @@ export const AboutMe: React.FC = () => {
                 // technologies.map((technology, indexTechno) => (
                 //   <Technology key={indexTechno} technology={technology} />
                 // ))
-                <div>
-                  { displayTechnology }
+                displayTechnology
+                // <div>
+                //   { displayTechnology }
                   
+                //   <ReactPaginate
+                //     previousLabel={"Anterior"}
+                //     nextLabel={"Siguiente"}
+                    
+                    
+                //     pageCount={pageCount}
+                //     onPageChange={handleChangePage}
+                //     containerClassName={AboutMeCSS.PaginationBttns}
+                //     activeClassName={AboutMeCSS.paginationActive}
 
+                //     previousLinkClassName={"AnteriorBtn"}
+                //     nextLinkClassName={"SiguienteBtn"}
+                //     disabledClassName={"paginationDisabled"}
+                //     breakLabel="..."
+                //     pageRangeDisplayed={5}
+                //   />
 
-                </div>
+                // </div>
               ) : ( <img src={loaderSVG} alt="loader" /> )
             }
           </div>
+
           <ReactPaginate
             previousLabel={"Anterior"}
             nextLabel={"Siguiente"}
