@@ -17,9 +17,9 @@ export const menuScrollSpy = () =>  {
       ) as HTMLElement;
 
       if (entry.isIntersecting) {
-        enlace.classList.add(`${HeaderCSS.active}`);
+        enlace.classList.add(`${HeaderCSS.navMenuContainer__linkMenuSelected}`);
       } else {
-        enlace.classList.remove(`${HeaderCSS.active}`);
+        enlace.classList.remove(`${HeaderCSS.navMenuContainer__linkMenuSelected}`);
       }
     });
   };
