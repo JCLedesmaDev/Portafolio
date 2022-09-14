@@ -27,9 +27,7 @@ export const Header: React.FC = () => {
     }
   };
 
-  const redirectSection = () => {
-    setOpenMenuResponsive(false);
-  };
+  const redirectSection = () => setOpenMenuResponsive(false);
 
   const closeMenuOnClick = () => {
     document.addEventListener("click", (e: any) => {

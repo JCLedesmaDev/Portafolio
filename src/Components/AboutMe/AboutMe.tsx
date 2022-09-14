@@ -13,14 +13,11 @@ import { usePaginate } from "../../Hooks/usePaginate";
 import { ITechnology } from "../../Interface/ITechnology";
 
 
-
-
 export const AboutMe: React.FC = () => {
 
   /// VARIABLES
   const technologyPerPage = 9;
   
-
   /// HOOKS
   const [technologies, setTechnologies] = useState<ITechnology[]>([]);
   const [loader, setLoader] = useState(false);
@@ -29,7 +26,6 @@ export const AboutMe: React.FC = () => {
   const { elementsPaginate, pageCount, 
     locatedPageNumber, setLocatedPageNumber 
   } = usePaginate(technologyPerPage, technologies)
-
 
   /// METODOS
   const getTechnologiesByArea = (skillsArea: string, index: number) => {
@@ -54,9 +50,7 @@ export const AboutMe: React.FC = () => {
     changePage({selected: 0})
     setTechnologies(Technologies);
   
-    setTimeout(() => {
-      setLoader(true);
-    }, 500);
+    setTimeout(() => setLoader(true), 500);
 
   };
 
@@ -68,24 +62,25 @@ export const AboutMe: React.FC = () => {
     }, 500);
   };
 
-  const getCssFilter = (indexArea: number) => filterActive === indexArea ? AboutMeCSS.buttonFilterActive : ""
+  const getCssFilter = (indexArea: number) => filterActive === indexArea 
+    ? AboutMeCSS.technologyContainer__navLinksActive : ""
 
 
-  useEffect(() => {
-    getTechnologiesByArea("Front", 0);
-  }, []);
+  useEffect(() => getTechnologiesByArea("Front", 0), []);
 
 
 
   return (
     <section
       id="aboutMe"
-      className={`${AboutMeCSS.aboutMe} centerContainer section-space full-lg-screen`}
+      className={`${AboutMeCSS.aboutMeContainer} centerContainer section-space full-lg-screen`}
       data-scroll-spy
     >
-      <h2 className="titulo"> {aboutMe?.aboutme}</h2>
+      <h2 className={AboutMeCSS.aboutMeContainer__titulo}> {aboutMe?.aboutme}</h2>
 
+      {/* Mi descripcion */}
       <article className="article-space text-center">
+        
         <aside>
           <h1>{aboutMe?.nameCompleted}</h1>
           <h4 className="text-color-principal">{aboutMe?.rol}</h4>
@@ -101,8 +96,10 @@ export const AboutMe: React.FC = () => {
             {aboutMe?.downloadCV}
           </a>
         </div>
+
       </article>
 
+      {/* Mi imagen perfil */}
       <article className="article-space text-center">
         <img
           src={myPhoto}
@@ -111,7 +108,9 @@ export const AboutMe: React.FC = () => {
         />
       </article>
 
-      <article className="text-center">
+      {/*  Mis habilidades */}
+      <article className={`${AboutMeCSS.aboutMeContainer__skills} text-center`}>
+       
         <h2 className="sub-section-title">{aboutMe?.mySkills}</h2>
 
         {aboutMe?.mySkillsPresentations.map((skillsPresent, indexSkill) => (
@@ -120,9 +119,10 @@ export const AboutMe: React.FC = () => {
 
         <h3 className="sub-section-title">{aboutMe?.technology}</h3>
 
-        <div className={AboutMeCSS.container_skills}>
+        <aside className={AboutMeCSS.technologyContainer}>
 
-          <div>
+          <div className={AboutMeCSS.technologyContainer__navLinks}>
+
             {aboutMe?.skills_area.map((area, indexArea) => (
               <a
                 key={indexArea} href={"#/"}
@@ -132,9 +132,10 @@ export const AboutMe: React.FC = () => {
                 {area}
               </a>
             ))}
+
           </div>
 
-          <div>
+          <div className={AboutMeCSS.technologyContainer__imagesTechnologys}>
             {
               loader ? (
                 // technologies.map((technology, indexTechno) => (
@@ -168,13 +169,12 @@ export const AboutMe: React.FC = () => {
             }
           </div>
 
-          <ReactPaginate
-            previousLabel={"Anterior"}
+           {loader  && <ReactPaginate
             nextLabel={"Siguiente"}
-            
+            onPageChange={changePage}
+            previousLabel={"Anterior"}
             
             pageCount={pageCount}
-            onPageChange={changePage}
             forcePage={locatedPageNumber}
             containerClassName={AboutMeCSS.PaginationBttns}
             activeClassName={AboutMeCSS.paginationActive}
@@ -183,11 +183,12 @@ export const AboutMe: React.FC = () => {
             previousLinkClassName={"AnteriorBtn"}
             nextLinkClassName={"SiguienteBtn"}
             disabledClassName={"paginationDisabled"}
-          />
+          />}
 
+        </aside>
 
-        </div>
       </article>
+
     </section>
   );
 };

@@ -1,4 +1,4 @@
-.aboutMe > h2:first-child {
+.aboutMeContainer > .aboutMeContainer__titulo {
   position: relative;
   text-align: center;
   font-size: 1.75rem;
@@ -10,22 +10,19 @@
   padding-bottom: 1rem;
   text-align: center;
 }
-.aboutMe > h2:first-child::after {
+.aboutMeContainer > .aboutMeContainer__titulo::after {
   content: "¿Quien soy?";
   position: absolute;
   top: 1.75rem;
   left: 50%;
   transform: translateX(-50%);
-
-  /* background: rgba(0, 0, 0, 0.658); */
-
   font-size: 1.25rem;
   color: var(--color-principal);
   padding: 0.5rem;
   background: var(--color-blanco);
   text-align: center;
 }
-.aboutMe > h2:first-child::before {
+.aboutMeContainer > .aboutMeContainer__titulo::before {
   content: "";
   position: absolute;
   top: 3rem;
@@ -36,13 +33,13 @@
   background-color: var(--color-titulo);
 }
 
-.container_skills > div:first-child {
+.technologyContainer > .technologyContainer__navLinks {
   /* background-color: orange; */
   display: flex;
   justify-content: space-evenly;
   margin-top: 1rem;
 }
-.container_skills > div:first-child > a {
+.technologyContainer > .technologyContainer__navLinks > a {
   color: #000;
   font-size: 0.875rem;
   font-weight: 600;
@@ -51,15 +48,15 @@
   opacity: 1;
 }
 
-.buttonFilterActive,
-.container_skills > div:first-child > a:hover {
+.technologyContainer__navLinksActive,
+.technologyContainer > .technologyContainer__navLinks > a:hover {
   color: var(--color-blanco) !important;
   background-color: var(--color-principal);
   font-weight: 600;
   opacity: 0.75;
 }
 
-.container_skills > div:nth-child(2) {
+.technologyContainer > .technologyContainer__imagesTechnologys {
   display: grid;
   grid-template-columns: repeat(3, 30%);
   justify-content: space-between;
@@ -68,7 +65,7 @@
   grid-row-gap: 1rem;
 }
 
-.container_skills > div:nth-child(2) > img {
+.technologyContainer > .technologyContainer__imagesTechnologys > img {
   margin-top: 2rem !important;
   grid-column: span 3;
   margin: auto;
@@ -77,24 +74,24 @@
 
 /* Para tablets*/
 @media screen and (min-width: 768px) {
-  .container_skills {
+  .aboutMeContainer > .aboutMeContainer__titulo{
+    margin-top: 4rem;
+  }
+  .technologyContainer {
     width: 70%;
     margin: 0 auto;
-  }
-  .aboutMe > h2:first-child{
-    margin-top: 4rem;
   }
 }
 /* Escritorio  */
 @media screen and (min-width: 1024px) {
-  .aboutMe {
+  .aboutMeContainer {
     display: grid;
     grid-template-columns: repeat(3, 32%);
     justify-content: space-between;
     align-content: center;
   }
 
-  .aboutMe > h2 {
+  .aboutMeContainer > .aboutMeContainer__titulo {
     grid-column: span 3;
     margin-top: var(--header-nav-height);
   }
@@ -103,7 +100,7 @@
     margin-bottom: 0;
   }
 
-  .container_skills {
+  .aboutMeContainer__skills > .technologyContainer {
     width: 100%;
   }
 }
@@ -118,6 +115,7 @@
   list-style: none;
   display: flex;
   justify-content: center;
+  background-color: red;
 }
 
 .PaginationBttns a {
@@ -132,3 +130,4 @@
   color: white;
   background-color: #2b2eff;
 }
+
