@@ -39,7 +39,7 @@ export const skills: any = {
   ReactJS: { css: "", icon: react },
   Redux: { css: "", icon: redux },
   "Angular 12": { css: "", icon: angular },
-  "Blazor WebAssembly": { css: "", icon: blazor },
+  Blazor: { css: "", icon: blazor },
   "Vue 3": { css: "", icon: vue },
   "Quasar v2": { css: "", icon: quasar },
   jQuery: { css: "", icon: jquery },
@@ -48,7 +48,7 @@ export const skills: any = {
   ExpressJS: { css: "#ddd" },
   NodeJS: { css: "rgba(0, 0, 0, 0.9)", icon: nodejs },
   MongoDB: { css: "#a5a284", icon: mongodb },
-  "Entity Framework Core": { css: "", icon: entityFramework },
+  "EF Core": { css: "", icon: entityFramework },
   ".Net 6": { css: "", icon: net },
   "Sql Server": { css: "#007500", icon: sqlServer },
   

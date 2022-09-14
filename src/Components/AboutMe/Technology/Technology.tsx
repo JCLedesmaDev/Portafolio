@@ -2,9 +2,10 @@ import React from "react";
 import { skills } from "../../../Utils/mySkills";
 import TechnologyCSS from "./Technology.module.css";
 import parse from "html-react-parser";
+import { ITechnology } from "../../../Interface/ITechnology";
 
 interface Props {
-  technology: any;
+  technology: ITechnology;
 }
 
 export const Technology: React.FC<Props> = ({ technology }) => {

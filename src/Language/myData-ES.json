@@ -70,7 +70,7 @@
         "alt": "icon angular"
       },
       {
-        "title": "Blazor WebAssembly",
+        "title": "Blazor",
         "alt": "icon blazor"
       },
       {
@@ -102,7 +102,7 @@
         "alt": "icon .net 6"
       },
       {
-        "title": "Entity Framework Core",
+        "title": "EF Core",
         "alt": "icon entity framework core"
       }
       ,

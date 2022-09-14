@@ -1,23 +1,34 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState } from "react";
 import { useMyData } from "../../Hooks/useMyData";
 import parse from "html-react-parser";
 import AboutMeCSS from "./AboutMe.module.css";
 import ReactPaginate from 'react-paginate';
 
-// import myPhoto from "../../Static/fotoCV.jpg";
 import myPhoto from "../../Static/img.jpg";
 import loaderSVG from "../../Static/Spin-1s-200px.svg";
 
 import { Technology } from "./Technology/Technology";
+import { usePaginate } from "../../Hooks/usePaginate";
+import { ITechnology } from "../../Interface/ITechnology";
+
+
+
 
 export const AboutMe: React.FC = () => {
-  const { aboutMe } = useMyData();
+
+  /// VARIABLES
+  const technologyPerPage = 9;
+  
 
   /// HOOKS
-  const [technologies, setTechnologies] = useState<any[]>([]);
+  const [technologies, setTechnologies] = useState<ITechnology[]>([]);
   const [loader, setLoader] = useState(false);
   const [filterActive, setFilterActive] = useState(0);
+  const { aboutMe } = useMyData();
+  const { elementsPaginate, pageCount, 
+    locatedPageNumber, setLocatedPageNumber 
+  } = usePaginate(technologyPerPage, technologies)
 
 
   /// METODOS
@@ -40,12 +51,18 @@ export const AboutMe: React.FC = () => {
     }
 
     setFilterActive(index);
+    changePage({selected: 0})
     setTechnologies(Technologies);
-    
-    setTechologyPaginate(Technologies) // probando
+  
+    setTimeout(() => {
+      setLoader(true);
+    }, 500);
 
-    // https://parzibyte.me/blog/2019/04/16/javascript-dividir-arreglo-pedazos-arreglos-mas-pequenos/
+  };
 
+  const changePage = ({selected}: any) => {
+    setLoader(false);
+    setLocatedPageNumber(selected);
     setTimeout(() => {
       setLoader(true);
     }, 500);
@@ -53,33 +70,12 @@ export const AboutMe: React.FC = () => {
 
   const getCssFilter = (indexArea: number) => filterActive === indexArea ? AboutMeCSS.buttonFilterActive : ""
 
+
   useEffect(() => {
     getTechnologiesByArea("Front", 0);
-  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
 
-
-
-
-  /* PROBAAAANDO */ 
-
-  const [techologyPaginate, setTechologyPaginate] = useState<any[]>([]);
-  const [pageNumber, setPageNumber] = useState(0); /// Contador d epagina
-  const technologyPerPage = 6;
-  const pagesVisited = pageNumber * technologyPerPage; 
-  const pageCount = Math.ceil(techologyPaginate.length / technologyPerPage);
-
-  const displayTechnology = techologyPaginate
-      .slice(pagesVisited, pagesVisited + technologyPerPage)
-      .map((technology: any, indexTechno: any) => (
-        <Technology key={indexTechno} technology={technology} />
-      ))
-
-
-  const handleChangePage = ({selectedPage}:any) => {
-    setPageNumber(selectedPage);
-  }
 
   return (
     <section
@@ -144,7 +140,9 @@ export const AboutMe: React.FC = () => {
                 // technologies.map((technology, indexTechno) => (
                 //   <Technology key={indexTechno} technology={technology} />
                 // ))
-                displayTechnology
+                elementsPaginate.map((technology: ITechnology, indexTechno: number) => (
+                    <Technology key={indexTechno} technology={technology} />
+                  ))
                 // <div>
                 //   { displayTechnology }
                   
@@ -176,15 +174,15 @@ export const AboutMe: React.FC = () => {
             
             
             pageCount={pageCount}
-            onPageChange={handleChangePage}
+            onPageChange={changePage}
+            forcePage={locatedPageNumber}
             containerClassName={AboutMeCSS.PaginationBttns}
             activeClassName={AboutMeCSS.paginationActive}
+
 
             previousLinkClassName={"AnteriorBtn"}
             nextLinkClassName={"SiguienteBtn"}
             disabledClassName={"paginationDisabled"}
-            breakLabel="..."
-            pageRangeDisplayed={5}
           />
 
 
