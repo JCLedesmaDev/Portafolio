@@ -2,7 +2,7 @@ import { Fragment } from "react";
 
 import "./App.css";
 import { Header } from "./Components/Header/Header";
-import { Home } from "./Components/Inicio/Home";
+import { Home } from "./Components/Home/Home";
 import { AboutMe } from "./Components/AboutMe/AboutMe";
 import { Portfolio } from "./Components/Portfolio/Portfolio";
 import { Footer } from "./Components/Footer/Footer";
