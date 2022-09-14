@@ -17,7 +17,7 @@ export const Technology: React.FC<Props> = ({ technology }) => {
       {technology.title !== "ExpressJS" ? (
         <img src={skills[technology.title]?.icon} 
           alt={technology.alt} 
-          style={{scale: technology.title === "Sql Server" ? '0.9' : '1'}}
+          style={{scale: technology.title === "Sql Server" ? '0.9' : '1'}} // no funciona en chrome
         />
       ) : (
         <p>{parse(`${technology.content}`)}</p>
