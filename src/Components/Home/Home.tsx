@@ -9,18 +9,15 @@ export const Home: React.FC = () => {
 
 
   return (
-    <section id="home" className={HomeCSS.home} data-scroll-spy>
+    <section id="home" className={HomeCSS.homeContainer} data-scroll-spy>
       {/* <!-- Este article, contendra la imagen de fondo --> */}
-      <article>
+      <article className={HomeCSS.homeContainer__backgroundImage}>
         {/* <!-- Este aside, le dara la opacidad a la imagen de fondo --> */}
-        <aside>
+        <aside className={HomeCSS.homeContainer__backgroundColor}>
           {home && (
-            <div className={HomeCSS.home_image_content}>
+            <div className={HomeCSS.homeContainer__content}>
               <h3>{parse(`${home.presentation}`)}</h3>
-
-              <a href="#aboutMe" className="button">
-                {home.knowMe}
-              </a>
+              <a href="#aboutMe" className="button">{home.knowMe}</a>
             </div>
           )}
         </aside>
