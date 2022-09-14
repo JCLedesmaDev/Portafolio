@@ -1,9 +1,9 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import React, { useEffect, useState } from "react";
 import { useMyData } from "../../Hooks/useMyData";
-
 import parse from "html-react-parser";
-
 import AboutMeCSS from "./AboutMe.module.css";
+import ReactPaginate from 'react-paginate';
 
 // import myPhoto from "../../Static/fotoCV.jpg";
 import myPhoto from "../../Static/img.jpg";
@@ -41,6 +41,10 @@ export const AboutMe: React.FC = () => {
 
     setFilterActive(index);
     setTechnologies(Technologies);
+    
+    setTechologyPaginate(Technologies) // probando
+
+    // https://parzibyte.me/blog/2019/04/16/javascript-dividir-arreglo-pedazos-arreglos-mas-pequenos/
 
     setTimeout(() => {
       setLoader(true);
@@ -49,10 +53,33 @@ export const AboutMe: React.FC = () => {
 
   const getCssFilter = (indexArea: number) => filterActive === indexArea ? AboutMeCSS.buttonFilterActive : ""
 
-
   useEffect(() => {
     getTechnologiesByArea("Front", 0);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+
+
+
+
+  /* PROBAAAANDO */ 
+
+  const [techologyPaginate, setTechologyPaginate] = useState<any[]>([]);
+  const [pageNumber, setPageNumber] = useState(0); /// Contador d epagina
+  const technologyPerPage = 6;
+  const pagesVisited = pageNumber * technologyPerPage; 
+  const pageCount = Math.ceil(techologyPaginate.length / technologyPerPage);
+
+  const displayTechnology = techologyPaginate
+      .slice(pagesVisited, pagesVisited + technologyPerPage)
+      .map((technology: any, indexTechno: any) => (
+        <Technology key={indexTechno} technology={technology} />
+      ))
+
+
+  const handleChangePage = ({selectedPage}:any) => {
+    setPageNumber(selectedPage);
+  }
 
   return (
     <section
@@ -114,26 +141,34 @@ export const AboutMe: React.FC = () => {
           <div>
             {
               loader ? (
-                technologies.map((technology, indexTechno) => (
-                  <Technology key={indexTechno} technology={technology} />
-                ))
-                // <div>
-                //   {
-                //     technologies.map((technology, indexTechno) => (
-                //       <Technology key={indexTechno} technology={technology} />
-                //     ))
-                //   }
+                // technologies.map((technology, indexTechno) => (
+                //   <Technology key={indexTechno} technology={technology} />
+                // ))
+                <div>
+                  { displayTechnology }
                   
-                //   <div style={{marginTop: '1rem'}}>
-                //       <button className={AboutMeCSS.buttonFilterActive}>1</button>
-                //       <button className={AboutMeCSS.buttonFilterActive}>2</button>
-                //   </div>
 
-                // </div>
+
+                </div>
               ) : ( <img src={loaderSVG} alt="loader" /> )
             }
           </div>
+          <ReactPaginate
+            previousLabel={"Anterior"}
+            nextLabel={"Siguiente"}
+            
+            
+            pageCount={pageCount}
+            onPageChange={handleChangePage}
+            containerClassName={AboutMeCSS.PaginationBttns}
+            activeClassName={AboutMeCSS.paginationActive}
 
+            previousLinkClassName={"AnteriorBtn"}
+            nextLinkClassName={"SiguienteBtn"}
+            disabledClassName={"paginationDisabled"}
+            breakLabel="..."
+            pageRangeDisplayed={5}
+          />
 
 
         </div>
