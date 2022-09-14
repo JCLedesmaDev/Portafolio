@@ -19,9 +19,11 @@ export const Header: React.FC = () => {
   /// Metodos
   const changeModelNav = () => {
     if (desplazamiento_actual >= 150) {
-      setClassNav(HeaderCSS.navModelo2);
+      // setClassNav(HeaderCSS.navModelo2);
+      setClassNav(HeaderCSS.headerContainer__navMenu___BackgroundColor);
     } else {
-      setClassNav(HeaderCSS.navModelo1);
+      // setClassNav(HeaderCSS.navModelo1);
+      setClassNav(HeaderCSS.headerContainer__navMenu___Transparent);
     }
   };
 
@@ -41,27 +43,33 @@ export const Header: React.FC = () => {
     changeModelNav();
     closeMenuOnClick();
     menuScrollSpy();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [desplazamiento_actual]);
 
   return (
-    <header className={HeaderCSS.header}>
-      <nav id="nav" className={classNav}>
-        <div className={`${HeaderCSS.container} centerContainer`}>
+    <header className={HeaderCSS.headerContainer}>
+
+      <nav id="nav" className={`${HeaderCSS.headerContainer__navMenu} ${classNav}`}>
+
+        <div className={`${HeaderCSS.navMenuContainer} centerContainer`}>
+
           {/* Logo */}
-          <div>
+          <div className={HeaderCSS.navMenuContainer__logo}>
             <a href="#home">{parse(`${header?.myPortfolio}`)}</a>
           </div>
 
           {/* Boton Menu */}
-          <button onClick={() => setOpenMenuResponsive(!openMenuResponsive)}>
+          <button className={HeaderCSS.navMenuContainer__btnMenu}
+            onClick={() => setOpenMenuResponsive(!openMenuResponsive)}
+          >
             <i className={`fas fa-bars ${noneElement(openMenuResponsive)}`}></i>
-            <i
-              className={`fas fa-times ${noneElement(!openMenuResponsive)}`}
-            ></i>
+            <i className={`fas fa-times ${noneElement(!openMenuResponsive)}`}></i>
           </button>
 
           {/* Menu Enlaces  */}
-          <div className={openMenuResponsive ? HeaderCSS.is_active : ""}>
+          <div className={`${HeaderCSS.navMenuContainer__linksMenu}  
+            ${openMenuResponsive ? HeaderCSS.navMenuContainer__linksMenu___IsActive : ""}`}
+          >
             <a href="#home" data-scroll-spy onClick={redirectSection}>
               {header?.home}
             </a>
@@ -74,7 +82,7 @@ export const Header: React.FC = () => {
             <a href="#contact" data-scroll-spy onClick={redirectSection}>
               {header?.contact}
             </a>
-            {/* <a onClick={changeLenguage} > asdadsd</a> */}
+            {/* <a onClick={changeLenguage}> Cambiar </a> */}
           </div>
         </div>
       </nav>

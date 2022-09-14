@@ -1,7 +1,7 @@
 /* ------------ Mobile ------------ */
 
 /* Header - Nav */
-.header nav {
+.headerContainer > .headerContainer__navMenu {
   position: fixed;
   left: 0;
   bottom: 0;
@@ -11,14 +11,14 @@
 
   z-index: 1000;
 }
-.header nav.navModelo1,
-.header nav.navModelo2 {
+.headerContainer > .headerContainer__navMenu___Transparent,
+.headerContainer > .headerContainer__navMenu___BackgroundColor {
   background-color: var(--color-secundario);
   height: var(--header-nav-height);
 }
 
 /* Contenedor */
-.container {
+.headerContainer__navMenu > .navMenuContainer {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -27,23 +27,23 @@
 }
 
 /* Logo */
-.container > div:first-child > a {
+.navMenuContainer > .navMenuContainer__logo > a {
   color: var(--color-principal);
   font-weight: bold;
   font-size: 1.45rem;
 }
-.container > div:first-child > a > span {
+.navMenuContainer__logo > a > span {
   color: var(--color-blanco);
 }
 
 /* Boton Menu */
-.container > button {
+.navMenuContainer > .navMenuContainer__btnMenu {
   background-color: var(--color-secundario);
   outline: thin solid var(--color-principal);
   border: none;
   cursor: pointer;
 }
-.container > button > i {
+.navMenuContainer__btnMenu > i {
   color: var(--color-blanco);
   font-size: 1.5rem;
   padding: 0.25rem;
@@ -51,7 +51,7 @@
 }
 
 /* Menu Enlaces */
-.container > div:last-child {
+.navMenuContainer > .navMenuContainer__linksMenu {
   position: fixed;
   bottom: var(--header-nav-height);
   right: 0;
@@ -65,30 +65,31 @@
   opacity: 0;
   pointer-events: none; /* Quitamos con CSS los eventos de Click*/
 }
-.container > div:last-child.is_active {
+.navMenuContainer > .navMenuContainer__linksMenu___IsActive {
   opacity: 1 !important;
   pointer-events: auto !important;
 }
 
-.container > div:last-child > a {
+.navMenuContainer__linksMenu > a {
   padding: 1rem;
   font-size: 1.25rem;
   text-align: center;
   color: var(--color-naranja);
   font-weight: 500;
 }
-.container > div:last-child > a:hover,
-.active {
+.navMenuContainer__linksMenu > a:hover,
+.navMenuContainer__linkMenuSelected {
   color: var(--color-blanco) !important;
   background-color: var(--color-principal) !important;
   font-weight: 600 !important;
 }
 
 /* ------------ Escritorio ------------ */
+
 @media screen and (min-width: 1024px) {
   /* Header - Nav */
 
-  .header > nav {
+  .headerContainer > .headerContainer__navMenu {
     position: fixed;
     left: 0;
     top: 0;
@@ -97,25 +98,25 @@
     transition: all 0.3s ease;
     box-shadow: 0 0 0.75rem var(--color-negro-opacidad);
   }
-  .header > nav.navModelo1 {
+  .headerContainer > .headerContainer__navMenu___Transparent {
     background-color: transparent;
     height: var(--header-nav-height);
   }
 
 
   /* Logo */
-  .container > div:first-child {
+  .navMenuContainer > .navMenuContainer__logo {
     display: flex;
     align-items: center;
   }
 
   /* Boton Menu */
-  .container > button {
+  .navMenuContainer > .navMenuContainer__btnMenu {
     display: none;
   }
 
   /* Menu Enlaces v1 */
-  .container > div:last-child {
+  .navMenuContainer > .navMenuContainer__linksMenu {
     position: static;
     opacity: 1;
     pointer-events: auto;
@@ -125,23 +126,23 @@
     flex-direction: row;
   }
 
-  .container > div:last-child > a {
+  .navMenuContainer__linksMenu > a {
     padding: 0.5rem;
     color: var(--color-blanco);
   }
 
   /* Header - Nav v2*/
-  .header > nav.navModelo2 {
+  .headerContainer > .headerContainer__navMenu___BackgroundColor{
     background-color: var(--color-secundario);
     height: calc(var(--header-nav-height) + 0.6rem);
   }
 
   /*Menu Enlace v2 */
-  .header > nav.navModelo2 > .container > div:last-child > a {
+  .navMenuContainer__linksMenu > a {
     color: var(--color-naranja);
   }
-  .header > nav.navModelo2 > .container > div:last-child > a:hover,
-  .header > nav.navModelo2 > .container > div:last-child > a.active {
+  .navMenuContainer__linksMenu > a:hover,
+  .navMenuContainer__linkMenuSelected {
     color: var(--color-blanco);
     background-color: var(--color-principal);
     font-weight: 600;
