@@ -42,7 +42,7 @@ export const skills: any = {
   "Blazor WebAssembly": { css: "", icon: blazor },
   "Vue 3": { css: "", icon: vue },
   "Quasar v2": { css: "", icon: quasar },
-  Jquery: { css: "", icon: jquery },
+  jQuery: { css: "", icon: jquery },
   
   // Back-End
   ExpressJS: { css: "#ddd" },

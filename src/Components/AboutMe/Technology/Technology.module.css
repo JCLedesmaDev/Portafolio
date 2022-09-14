@@ -46,7 +46,7 @@
     position: absolute;
     top: 0.25rem;
     width: 5.25rem;
-    height: 1.15rem;
+    min-height: 1.15rem;
   
     background-color: var(--color-principal);
     border-radius: 1rem;
@@ -59,6 +59,8 @@
   }
   /* Especie de Popup */
   
+
+  /* Express JS*/
   .technology p {
     display: flex;
     flex-direction: column;
