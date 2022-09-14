@@ -11,10 +11,13 @@ export const Technology: React.FC<Props> = ({ technology }) => {
   return (
     <div
       className={TechnologyCSS.technology}
-      style={{ backgroundColor: skills[technology.title]?.css }}
+      style={{ backgroundColor: skills[technology.title]?.css}}
     >
       {technology.title !== "ExpressJS" ? (
-        <img src={skills[technology.title]?.icon} alt={technology.alt} />
+        <img src={skills[technology.title]?.icon} 
+          alt={technology.alt} 
+          style={{scale: technology.title === "Sql Server" ? '0.9' : '1'}}
+        />
       ) : (
         <p>{parse(`${technology.content}`)}</p>
       )}

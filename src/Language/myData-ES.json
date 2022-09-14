@@ -50,6 +50,10 @@
         "alt": "icon JS EcmaScript6"
       },
       {
+        "title": "Jquery",
+        "alt": "icon jquery"
+      },
+      {
         "title": "ReactJS",
         "alt": "icon react"
       },
@@ -60,7 +64,24 @@
       {
         "title": "Redux",
         "alt": "icon redux"
+      },
+      {
+        "title": "Angular 12",
+        "alt": "icon angular"
+      },
+      {
+        "title": "Blazor",
+        "alt": "icon blazor"
+      },
+      {
+        "title": "Vue 3",
+        "alt": "icon vue js"
+      },
+      {
+        "title": "Quasar v2",
+        "alt": "icon quasar"
       }
+
     ],
 
     "back_Technologies": [
@@ -75,6 +96,19 @@
       {
         "title": "MongoDB",
         "alt": "icon mongodb"
+      },
+      {
+        "title": "Entity Framework Core",
+        "alt": "icon entity framework core"
+      }
+      ,
+      {
+        "title": ".Net 6",
+        "alt": "icon .net 6"
+      },
+      {
+        "title": "Sql Server",
+        "alt": "icon sql server"
       }
     ],
 

@@ -19,8 +19,8 @@ export const AboutMe: React.FC = () => {
   const [loader, setLoader] = useState(false);
   const [filterActive, setFilterActive] = useState(0);
 
-  /// METODOS
 
+  /// METODOS
   const getTechnologiesByArea = (skillsArea: string, index: number) => {
     setLoader(false);
 
