@@ -3,31 +3,34 @@ import React, { useEffect, useState } from "react";
 import { useMyData } from "../../Hooks/useMyData";
 import parse from "html-react-parser";
 import AboutMeCSS from "./AboutMe.module.css";
-import ReactPaginate from 'react-paginate';
 
 import myPhoto from "../../Static/img.jpg";
+
 import loaderSVG from "../../Static/Spin-1s-200px.svg";
 
-import { Technology } from "./Technology/Technology";
 import { usePaginate } from "../../Hooks/usePaginate";
 import { ITechnology } from "../../Interface/ITechnology";
+import { Technologys } from "./Components/Technologys/Technologys";
 
 
 export const AboutMe: React.FC = () => {
 
   /// VARIABLES
+
   const technologyPerPage = 9;
   
   /// HOOKS
+
   const [technologies, setTechnologies] = useState<ITechnology[]>([]);
   const [loader, setLoader] = useState(false);
   const [filterActive, setFilterActive] = useState(0);
   const { aboutMe } = useMyData();
-  const { elementsPaginate, pageCount, 
-    locatedPageNumber, setLocatedPageNumber 
+  const { 
+    elementsPaginate, pageCount, locatedPageNumber, setLocatedPageNumber 
   } = usePaginate(technologyPerPage, technologies)
 
   /// METODOS
+
   const getTechnologiesByArea = (skillsArea: string, index: number) => {
     setLoader(false);
 
@@ -51,15 +54,12 @@ export const AboutMe: React.FC = () => {
     setTechnologies(Technologies);
   
     setTimeout(() => setLoader(true), 500);
-
   };
 
   const changePage = ({selected}: any) => {
     setLoader(false);
     setLocatedPageNumber(selected);
-    setTimeout(() => {
-      setLoader(true);
-    }, 500);
+    setTimeout(() => setLoader(true), 500);
   };
 
   const getCssFilter = (indexArea: number) => filterActive === indexArea 
@@ -67,7 +67,6 @@ export const AboutMe: React.FC = () => {
 
 
   useEffect(() => getTechnologiesByArea("Front", 0), []);
-
 
 
   return (
@@ -135,55 +134,20 @@ export const AboutMe: React.FC = () => {
 
           </div>
 
-          <div className={AboutMeCSS.technologyContainer__imagesTechnologys}>
+          <div className={AboutMeCSS.technologyContainer__technologys}>
             {
               loader ? (
-                // technologies.map((technology, indexTechno) => (
-                //   <Technology key={indexTechno} technology={technology} />
-                // ))
-                elementsPaginate.map((technology: ITechnology, indexTechno: number) => (
-                    <Technology key={indexTechno} technology={technology} />
-                  ))
-                // <div>
-                //   { displayTechnology }
-                  
-                //   <ReactPaginate
-                //     previousLabel={"Anterior"}
-                //     nextLabel={"Siguiente"}
-                    
-                    
-                //     pageCount={pageCount}
-                //     onPageChange={handleChangePage}
-                //     containerClassName={AboutMeCSS.PaginationBttns}
-                //     activeClassName={AboutMeCSS.paginationActive}
-
-                //     previousLinkClassName={"AnteriorBtn"}
-                //     nextLinkClassName={"SiguienteBtn"}
-                //     disabledClassName={"paginationDisabled"}
-                //     breakLabel="..."
-                //     pageRangeDisplayed={5}
-                //   />
-
-                // </div>
-              ) : ( <img src={loaderSVG} alt="loader" /> )
+                <Technologys 
+                  ElementsPaginate={elementsPaginate}
+                  ChangePage={changePage}
+                  PageCount={pageCount}
+                  LocatedPageNumber={locatedPageNumber}
+                /> 
+              ) : ( 
+                <img src={loaderSVG} alt="loader" className={AboutMeCSS.technologyContainer__technologysLoader}/> 
+              )
             }
           </div>
-
-           {loader  && <ReactPaginate
-            nextLabel={"Siguiente"}
-            onPageChange={changePage}
-            previousLabel={"Anterior"}
-            
-            pageCount={pageCount}
-            forcePage={locatedPageNumber}
-            containerClassName={AboutMeCSS.PaginationBttns}
-            activeClassName={AboutMeCSS.paginationActive}
-
-
-            previousLinkClassName={"AnteriorBtn"}
-            nextLinkClassName={"SiguienteBtn"}
-            disabledClassName={"paginationDisabled"}
-          />}
 
         </aside>
 

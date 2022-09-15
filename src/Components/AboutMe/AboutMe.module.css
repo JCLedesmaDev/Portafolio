@@ -39,6 +39,7 @@
   justify-content: space-evenly;
   margin-top: 1rem;
 }
+
 .technologyContainer > .technologyContainer__navLinks > a {
   color: #000;
   font-size: 0.875rem;
@@ -56,21 +57,14 @@
   opacity: 0.75;
 }
 
-.technologyContainer > .technologyContainer__imagesTechnologys {
-  display: grid;
-  grid-template-columns: repeat(3, 30%);
-  justify-content: space-between;
-  align-content: center;
-  grid-column-gap: 0.75rem;
-  grid-row-gap: 1rem;
-}
 
-.technologyContainer > .technologyContainer__imagesTechnologys > img {
+.technologyContainer__technologys > .technologyContainer__technologysLoader {
   margin-top: 2rem !important;
   grid-column: span 3;
   margin: auto;
   transform: scale(0.8);
 }
+
 
 /* Para tablets*/
 @media screen and (min-width: 768px) {
@@ -82,6 +76,7 @@
     margin: 0 auto;
   }
 }
+
 /* Escritorio  */
 @media screen and (min-width: 1024px) {
   .aboutMeContainer {
@@ -104,30 +99,3 @@
     width: 100%;
   }
 }
-
-
-
-
-/* PROBAANDO */
-.PaginationBttns{
-  width: 80%;
-  height: 40px;
-  list-style: none;
-  display: flex;
-  justify-content: center;
-  background-color: red;
-}
-
-.PaginationBttns a {
-  padding: 10px;
-  margin: 8px;
-  border-radius: 5px;
-  border: 1px solid #2b2eff;
-  cursor: pointer;
-}
-.PaginationBttns a:hover,
-.paginationActive a{
-  color: white;
-  background-color: #2b2eff;
-}
-

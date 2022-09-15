@@ -1,12 +1,12 @@
 import React from "react";
-import { skills } from "../../../Utils/mySkills";
-import TechnologyCSS from "./Technology.module.css";
+import { skills } from "../../../../Utils/mySkills";
+import TechnologyCSS from "./ImageTechnology.module.css";
 import parse from "html-react-parser";
-import { ITechnology } from "../../../Interface/ITechnology";
+import { ITechnology } from "../../../../Interface/ITechnology";
 
 interface Props { technology: ITechnology; }
 
-export const Technology: React.FC<Props> = ({ technology }) => {
+export const ImageTechnology: React.FC<Props> = ({ technology }) => {
   return (
     <div
       className={TechnologyCSS.technology}
