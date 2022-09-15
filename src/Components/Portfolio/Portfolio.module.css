@@ -239,7 +239,7 @@
 }
 
 .containerPaginate{
-  grid-column: span 3;
+  grid-column: span 1;
 }
 
 
@@ -252,6 +252,8 @@
     justify-content: space-around;
     align-items: center;
   }
+
+  .containerPaginate,
   .portfolio h2 {
     grid-column: span 2;
   }
@@ -302,6 +304,9 @@
   .portfolio h2 {
     grid-column: span 3;
     margin-top: var(--header-nav-height);
+  }
+  .containerPaginate{
+    grid-column: span 3;
   }
 
   /* Articulo */

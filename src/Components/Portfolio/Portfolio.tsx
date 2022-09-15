@@ -174,20 +174,19 @@ export const Portfolio: React.FC = () => {
                   </ModalContainer>
                 </div>
               ))}
-              
-
-              <div className={PortfolioCSS.containerPaginate}>
-                <Paginate
-                  ChangePage={changePage}          
-                  PageCount={pageCount}
-                  LocatedPageNumber={locatedPageNumber}
-                />
-              </div>
 
             </Fragment>
             
           )
         }
+        
+        <div className={PortfolioCSS.containerPaginate}>
+          <Paginate
+            ChangePage={changePage}          
+            PageCount={pageCount}
+            LocatedPageNumber={locatedPageNumber}
+          /> 
+        </div>
 
       </div>
 

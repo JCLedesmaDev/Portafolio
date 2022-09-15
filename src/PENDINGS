@@ -1,7 +1,10 @@
-⏰ Aplicar Metodologia BEM en todo el proyecto
 👍 Aplicar psginado en Tecnologias
 👍 Modificar icono .net 6
-⏰ Agregar nuevos proyectos.
-⏰ Colocar Loader a nivel general utilizando useContext : https://www.youtube.com/watch?v=rs_JwbyZ4dA&list=RDCMUCOD6LXgeBoeiUZTsPLdG-0g&start_radio=1
 👍 Solcuionar que no se ve todo el Title de los iconos
-⏰ Aplicar CSS al paginado.
+👍 Aplicar CSS al paginado.
+
+
+⏰ Aplicar Metodologia BEM en todo el proyecto (PORTFOLIO, CONTACT, FOOTER, MODAL)
+⏰ Agregar nuevos proyectos.
+¿⏰? Colocar Loader a nivel general utilizando useContext : https://www.youtube.com/watch?v=rs_JwbyZ4dA&list=RDCMUCOD6LXgeBoeiUZTsPLdG-0g&start_radio=1
+⏰ Dentro de Proyecto, no funciona el filtraod del paginado.

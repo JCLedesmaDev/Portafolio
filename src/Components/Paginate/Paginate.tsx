@@ -11,6 +11,8 @@ interface Props {
 
 export const Paginate : React.FC<Props> = (props) => {
     
+    // https://www.npmjs.com/package/react-paginate
+
     const { ChangePage,  PageCount, LocatedPageNumber } = props;
     
     return (
@@ -23,7 +25,8 @@ export const Paginate : React.FC<Props> = (props) => {
             forcePage={LocatedPageNumber}
             containerClassName={PaginateCSS.PaginationBttns}
             activeClassName={PaginateCSS.paginationActive}
-            
+ 
+
             previousLinkClassName={"AnteriorBtn"}
             nextLinkClassName={"SiguienteBtn"}
             disabledClassName={"paginationDisabled"}
