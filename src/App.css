@@ -183,6 +183,12 @@ p {
   height:25rem ;
 }
 
+.loader{
+  margin-top: 2rem !important;
+  grid-column: span 3;
+  margin: auto;
+  transform: scale(0.8);
+}
 
 @media screen and (max-width: 325px) {
   html{
