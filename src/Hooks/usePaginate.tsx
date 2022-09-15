@@ -10,10 +10,20 @@ export const usePaginate = (elementsPerPage: number, elements: any[]) => {
     const elementsVisited = locatedPageNumber * elementsPerPage; 
     const elementsPaginate = elements.slice(elementsVisited, elementsVisited + elementsPerPage)
      
+    const [loader, setLoader] = useState(false);
+
+    const changePage = ({selected}: any) => {
+      setLoader(true);
+      setLocatedPageNumber(selected);
+      setTimeout(() => setLoader(false), 500);
+    };
+
     return {
         elementsPaginate,
         pageCount,
         locatedPageNumber,
-        setLocatedPageNumber
+        loader,
+        changePage,
+        setLoader
     }
 }
