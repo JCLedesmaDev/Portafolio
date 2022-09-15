@@ -1,16 +1,16 @@
 import React, { Fragment } from "react";
-import ReactPaginate from 'react-paginate';
 import { ImageTechnology } from "../ImageTechnology/ImageTechnology";
 import { ITechnology } from "../../../../Interface/ITechnology";
 
 import TechnologysCSS from "./Technologys.module.css"
+import { Paginate } from "../../../Paginate/Paginate";
 
 
 interface Props {
-    ChangePage: ({selected}: any) => void;
-    ElementsPaginate: ITechnology[];
-    PageCount: number;
-    LocatedPageNumber: number | undefined;
+  ChangePage: ({selected}: any) => void;
+  ElementsPaginate: ITechnology[];
+  PageCount: number;
+  LocatedPageNumber: number | undefined;
 }
 
 export const Technologys :React.FC<Props> = (props) => {
@@ -29,19 +29,10 @@ export const Technologys :React.FC<Props> = (props) => {
           }                              
         </div>
         
-        <ReactPaginate
-          nextLabel={"Siguiente"}
-          onPageChange={ChangePage}
-          previousLabel={"Anterior"}
-          
-          pageCount={PageCount}
-          forcePage={LocatedPageNumber}
-          containerClassName={TechnologysCSS.PaginationBttns}
-          activeClassName={TechnologysCSS.paginationActive}
-          
-          previousLinkClassName={"AnteriorBtn"}
-          nextLinkClassName={"SiguienteBtn"}
-          disabledClassName={"paginationDisabled"}
+        <Paginate
+          ChangePage={ChangePage}          
+          PageCount={PageCount}
+          LocatedPageNumber={LocatedPageNumber}
         />
         
       </Fragment>
