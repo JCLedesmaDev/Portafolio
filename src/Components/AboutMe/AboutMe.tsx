@@ -13,26 +13,27 @@ import { ITechnology } from "../../Interface/ITechnology";
 import { Technologys } from "./Components/Technologys/Technologys";
 
 
+enum Technology {
+  PER_PAGE = 9
+}
+
 export const AboutMe: React.FC = () => {
 
-  /// VARIABLES
-
-  const technologyPerPage = 9;
-  
   /// HOOKS
 
   const [technologies, setTechnologies] = useState<ITechnology[]>([]);
-  const [loader, setLoader] = useState(false);
   const [filterActive, setFilterActive] = useState(0);
   const { aboutMe } = useMyData();
   const { 
-    elementsPaginate, pageCount, locatedPageNumber, setLocatedPageNumber 
-  } = usePaginate(technologyPerPage, technologies)
+    elementsPaginate, pageCount, 
+    locatedPageNumber, loader,
+    changePage, setLoader
+  } = usePaginate(Technology.PER_PAGE, technologies)
 
   /// METODOS
 
   const getTechnologiesByArea = (skillsArea: string, index: number) => {
-    setLoader(false);
+    setLoader(true);
 
     let Technologies: any[] = [];
 
@@ -53,14 +54,9 @@ export const AboutMe: React.FC = () => {
     changePage({selected: 0})
     setTechnologies(Technologies);
   
-    setTimeout(() => setLoader(true), 500);
+    setTimeout(() => setLoader(false), 500);
   };
 
-  const changePage = ({selected}: any) => {
-    setLoader(false);
-    setLocatedPageNumber(selected);
-    setTimeout(() => setLoader(true), 500);
-  };
 
   const getCssFilter = (indexArea: number) => filterActive === indexArea 
     ? AboutMeCSS.technologyContainer__navLinksActive : ""
@@ -136,15 +132,13 @@ export const AboutMe: React.FC = () => {
 
           <div className={AboutMeCSS.technologyContainer__technologys}>
             {
-              loader ? (
+              loader ? ( <img src={loaderSVG} alt="loader" className="loader"/> ) : ( 
                 <Technologys 
                   ElementsPaginate={elementsPaginate}
                   ChangePage={changePage}
                   PageCount={pageCount}
                   LocatedPageNumber={locatedPageNumber}
                 /> 
-              ) : ( 
-                <img src={loaderSVG} alt="loader" className={AboutMeCSS.technologyContainer__technologysLoader}/> 
               )
             }
           </div>

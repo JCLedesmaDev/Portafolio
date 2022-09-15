@@ -58,14 +58,6 @@
 }
 
 
-.technologyContainer__technologys > .technologyContainer__technologysLoader {
-  margin-top: 2rem !important;
-  grid-column: span 3;
-  margin: auto;
-  transform: scale(0.8);
-}
-
-
 /* Para tablets*/
 @media screen and (min-width: 768px) {
   .aboutMeContainer > .aboutMeContainer__titulo{
