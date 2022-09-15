@@ -238,6 +238,11 @@
   text-decoration: underline;
 }
 
+.containerPaginate{
+  grid-column: span 3;
+}
+
+
 /* Media queries para tablet */
 @media screen and (min-width: 768px) {
   /* Articulo */

@@ -1,4 +1,4 @@
-import React, { Fragment } from "react";
+import React, { Fragment, useEffect, useState } from "react";
 import parse from "html-react-parser";
 import { useMyData } from "../../Hooks/useMyData";
 import { projects } from "../../Utils/myProjects";
@@ -6,18 +6,32 @@ import { projects } from "../../Utils/myProjects";
 import PortfolioCSS from "./Portfolio.module.css";
 import { useLocation } from "react-use";
 import { ModalContainer } from "../ModalContainer/ModalContainer";
+import { Paginate } from "../Paginate/Paginate";
+import { usePaginate } from "../../Hooks/usePaginate";
+import loaderSVG from "../../Static/Spin-1s-200px.svg";
 
-enum Images {
-  CANTIDAD_MININA = 5,
-}
+
+
+enum Images { CANTIDAD_MININA = 5 }
+enum Proyect { PER_PAGE = 3 }
 
 export const Portfolio: React.FC = () => {
+
   /// VARIABLES
+
   const { portfolio } = useMyData();
   const location = useLocation().hash;
   const CssCarrouselSlide = `${PortfolioCSS.slidesContainer__slides} ${PortfolioCSS.slidesContainer__slides__carrousel} `;
-  let indeximage = 0,
-    translateX = 0;
+  let indeximage = 0, translateX = 0;
+
+
+  /// HOOKS
+  const { 
+    elementsPaginate, pageCount, 
+    locatedPageNumber, loader,
+    changePage
+  } = usePaginate(Proyect.PER_PAGE, portfolio?.proyects)
+
 
   /// METODOS
   const returnImagesModal = (index: number): JSX.Element[] => {
@@ -76,7 +90,9 @@ export const Portfolio: React.FC = () => {
     }
   };
 
+
   return (
+
     <section
       id="portfolio"
       className={`${PortfolioCSS.portfolio} section-space`}
@@ -85,96 +101,96 @@ export const Portfolio: React.FC = () => {
       <div className="centerContainer">
         <h2 className="section-title">{portfolio?.myWorks}</h2>
 
-        {portfolio?.proyects.map((project, index) => (
-          <Fragment key={index}>
-            <div className={PortfolioCSS.portfolioCard}>
-              <img
-                className={PortfolioCSS.portfolioCard__img}
-                src={projects[index]?.mainImage}
-                alt={`trabajo practica ${index}`}
-              />
-
-              <a
-                href={`#trabajo_${index}`}
-                className={PortfolioCSS.portfolioCard__info}
-              >
-                <div className={PortfolioCSS.portfolioCard__infoContainer}>
-                  <h3>{project.title}</h3>
-                  <p>{project.description}</p>
-
-                  <div className={PortfolioCSS.portfolioCard__infoEnlace}>
-                    <button className="button">{portfolio?.clickMe}</button>
-                  </div>
-                </div>
-              </a>
-            </div>
-
-            {/* <!-- Ventanas modal del portafolio (en el css, ta todo) --> */}
-            <ModalContainer
-              validation={location?.includes(`#trabajo_${index}`)}
-            >
-              <div className={PortfolioCSS.modalContent}>
-                <a href="#close" className={PortfolioCSS.modalContent_closeBtn}>
-                  <i className="fas fa-times"></i>
-                </a>
-
-                <article className={PortfolioCSS.modalContent__openModal}>
-                  <div
-                    className={PortfolioCSS.slidesContainer}
-                    id={`carrousel_${index}`}
-                  >
-                    <div
-                      className={
-                        location?.includes(`#trabajo_${index}`) &&
-                        projects[index]?.imagesModal.length >=
-                          Images.CANTIDAD_MININA //Para que los proyectos con menos de 5 imagens no se muevan.
-                          ? CssCarrouselSlide
-                          : `${PortfolioCSS.slidesContainer__slides}`
-                      }
+        {
+          loader ? ( <img src={loaderSVG} alt="loader" className="loader"/> ) 
+          :(
+            <Fragment>
+              
+              {elementsPaginate.map((project, index) => (
+                <div key={index}>
+                  <div className={PortfolioCSS.portfolioCard}>
+                    <img
+                      className={PortfolioCSS.portfolioCard__img}
+                      src={projects[index]?.mainImage}
+                      alt={`trabajo practica ${index}`}
+                    />
+                    <a
+                      href={`#trabajo_${index}`}
+                      className={PortfolioCSS.portfolioCard__info}
                     >
-                      {returnImagesModal(index)}
-                    </div>
-
-                    {projects[index]?.imagesModal.length >=
-                      Images.CANTIDAD_MININA && (
-                      <div className={PortfolioCSS.slidesContainer__buttons}>
-                        <button
-                          className="prev"
-                          onClick={() =>
-                            buttonSlide("prev", `#carrousel_${index}`)
-                          }
-                        >
-                          &laquo;
-                        </button>
-
-                        <button
-                          className="next"
-                          onClick={() =>
-                            buttonSlide("next", `#carrousel_${index}`)
-                          }
-                        >
-                          &raquo;
-                        </button>
+                      <div className={PortfolioCSS.portfolioCard__infoContainer}>
+                        <h3>{project.title}</h3>
+                        <p>{project.description}</p>
+                        <div className={PortfolioCSS.portfolioCard__infoEnlace}>
+                          <button className="button">{portfolio?.clickMe}</button>
+                        </div>
                       </div>
-                    )}
+                    </a>
                   </div>
 
-                  <div className={PortfolioCSS.slidesContainer__info}>
-                    <h3>{project.title}</h3>
-                    <p>{parse(project.createdWith)}</p>
+                  {/* <!-- Ventanas modal del portafolio (en el css, ta todo) --> */}
+                  <ModalContainer
+                    validation={location?.includes(`#trabajo_${index}`)}
+                  >
+                    <div className={PortfolioCSS.modalContent}>
+                      <a href="#close" className={PortfolioCSS.modalContent_closeBtn}>
+                        <i className="fas fa-times"></i>
+                      </a>
+                      <article className={PortfolioCSS.modalContent__openModal}>
+                        <div className={PortfolioCSS.slidesContainer} id={`carrousel_${index}`}>
+                          <div className={
+                              location?.includes(`#trabajo_${index}`) &&
+                              projects[index]?.imagesModal.length >=
+                                Images.CANTIDAD_MININA //Para que los proyectos con menos de 5 imagens no se muevan.
+                                ? CssCarrouselSlide
+                                : `${PortfolioCSS.slidesContainer__slides}`
+                            }
+                          >
+                            {returnImagesModal(index)}
+                          </div>
+                          {projects[index]?.imagesModal.length >=
+                            Images.CANTIDAD_MININA && (
+                            <div className={PortfolioCSS.slidesContainer__buttons}>
+                              <button className="prev"
+                                onClick={() =>
+                                  buttonSlide("prev", `#carrousel_${index}`)
+                                }
+                              > &laquo; </button>
+                              <button className="next"
+                                onClick={() =>buttonSlide("next", `#carrousel_${index}`)}
+                              > &raquo; </button>
+                            </div>
+                          )}
+                        </div>
+                        <div className={PortfolioCSS.slidesContainer__info}>
+                          <h3>{project.title}</h3>
+                          <p>{parse(project.createdWith)}</p>
+                          <aside className={PortfolioCSS.slidesContainer__info__details}>
+                            {returnDatesModal(project)}
+                          </aside>
+                        </div>
+                      </article>
+                    </div>
+                  </ModalContainer>
+                </div>
+              ))}
+              
 
-                    <aside
-                      className={PortfolioCSS.slidesContainer__info__details}
-                    >
-                      {returnDatesModal(project)}
-                    </aside>
-                  </div>
-                </article>
+              <div className={PortfolioCSS.containerPaginate}>
+                <Paginate
+                  ChangePage={changePage}          
+                  PageCount={pageCount}
+                  LocatedPageNumber={locatedPageNumber}
+                />
               </div>
-            </ModalContainer>
-          </Fragment>
-        ))}
+
+            </Fragment>
+            
+          )
+        }
+
       </div>
+
     </section>
   );
 };
