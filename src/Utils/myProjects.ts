@@ -24,20 +24,24 @@ import activities4 from "../Static/mis-actividades/activities4.png";
 import activities5 from "../Static/mis-actividades/activities5.png";
 
 
-export const projects = [
+export const myProjects = [
   {
+    title: "Sistema de Gestion de Libros",
     mainImage: crud_libros1,
     imagesModal: [crud_libros1, crud_libros2, crud_libros3, crud_libros4, crud_libros5],
   },
   {
+    title: "Sistema de Gestion de Proyectos con Stack M.E.R.N",
     mainImage: crud_MERN1,
     imagesModal: [crud_MERN1],
   },
   {
+    title: "Pagina Web - Mi portafolio",
     mainImage: portfolio1,
     imagesModal: [portfolio1, portfolio2, portfolio3, portfolio4, portfolio5],
   },
   {
+    title: "Sistema de Gestion Mis actividades",
     mainImage: activities1,
     imagesModal: [activities1, activities2, activities3, activities4, activities5],
   },
