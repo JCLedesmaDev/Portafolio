@@ -18,7 +18,7 @@ export const Project : React.FC<Props> = ({project}) => {
 
 
     /// HOOKS
-    const { portfolio } = useMyData();
+    const { doneProjects } = useMyData();
 
     /// METODOS
     const getDataProject = () => myProjects.find(element => element.title === project.title)
@@ -43,7 +43,7 @@ export const Project : React.FC<Props> = ({project}) => {
               <p>{project.description}</p>
 
               <div className={ProjectCSS.projectContainer__infoEnlace}>
-                <button className="button">{portfolio?.clickMe}</button>
+                <button className="button">{doneProjects?.clickMe}</button>
               </div>
 
             </div>

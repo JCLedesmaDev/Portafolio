@@ -7,9 +7,8 @@
 
 
 ⏰ Aplicar Metodologia BEM en todo el proyecto (PORTFOLIO, CONTACT, FOOTER, MODAL)
-
 ⏰ Deployar proyectos realizados.
 ⏰ Agregar nuevos proyectos.
 ¿⏰? Colocar Loader a nivel general utilizando useContext : https://www.youtube.com/watch?v=rs_JwbyZ4dA&list=RDCMUCOD6LXgeBoeiUZTsPLdG-0g&start_radio=1
-
 ⏰ Ver si tengo CSS de portfolio en COntacot por el tema de abrir modal, de ser asi. Hacer ese css generico
+⏰ Permitir descargar CV
