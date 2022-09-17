@@ -50,7 +50,7 @@ export const skills: any = {
   MongoDB: { css: "#a5a284", icon: mongodb },
   "EF Core": { css: "", icon: entityFramework },
   ".Net 6": { css: "", icon: net },
-  "Sql Server": { css: "#007500", icon: sqlServer },
+  "Sql Server": { css: "#1C5FF8", icon: sqlServer },
   
   // Otros
   TypeScript: { css: "", icon: typescript },

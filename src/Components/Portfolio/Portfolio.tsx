@@ -34,9 +34,9 @@ export const Portfolio: React.FC = () => {
         {
           loader ? (<img src={loaderSVG} alt="loader" className="loader" />)
           : (
-            elementsPaginate.map((project, index) => (
-              <Project project={project} key={index} indexProject={index}/>
-            ))
+            elementsPaginate.map(
+              (project, index) => (<Project project={project} key={index}/>)
+            )
           )
         }
 
