@@ -13,12 +13,12 @@ enum Proyect { PER_PAGE = 6 }
 export const DoneProjects: React.FC = () => {
 
   /// HOOKS
-  const { portfolio } = useMyData();
+  const { doneProjects } = useMyData();
   const {
     elementsPaginate, pageCount,
     locatedPageNumber, loader,
     changePage
-  } = usePaginate(Proyect.PER_PAGE, portfolio?.proyects)
+  } = usePaginate(Proyect.PER_PAGE, doneProjects?.projects)
   
 
   return (
@@ -29,7 +29,9 @@ export const DoneProjects: React.FC = () => {
       data-scroll-spy
     >
       <div className={`${DoneProjectsCSS.myProjectsContainer} centerContainer`}>
-        <h2 className={` ${DoneProjectsCSS.myProjectsContainer__titulo} section-title`}>{portfolio?.myWorks}</h2>
+        <h2 className={` 
+         ${DoneProjectsCSS.myProjectsContainer__titulo} section-title`}
+        >{doneProjects?.myWorks}</h2>
 
         {
           loader ? (<img src={loaderSVG} alt="loader" className="loader" />)

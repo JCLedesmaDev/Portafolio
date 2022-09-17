@@ -142,9 +142,9 @@
     ]
   },
 
-  "portfolio": {
+  "doneProjects": {
     "myWorks": "Proyectos realizados",
-    "proyects": [
+    "projects": [
       {
         "title": "Sistema de Gestion de Libros",
         "description": "Proyecto que lleva el registro de una bibloteca personal para organizar tu propia bibloteca.",
