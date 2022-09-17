@@ -4,7 +4,7 @@ import "./App.css";
 import { Header } from "./Components/Header/Header";
 import { Home } from "./Components/Home/Home";
 import { AboutMe } from "./Components/AboutMe/AboutMe";
-import { Portfolio } from "./Components/Portfolio/Portfolio";
+import { DoneProjects } from "./Components/DoneProjects/DoneProjects";
 import { Footer } from "./Components/Footer/Footer";
 import { Contact } from "./Components/Contact/Contact";
 
@@ -21,7 +21,7 @@ function App() {
 
         <AboutMe />
 
-        <Portfolio />
+        <DoneProjects />
 
         <Contact />
 

@@ -1,16 +1,16 @@
 import React from "react";
 import { useMyData } from "../../Hooks/useMyData";
 
-import PortfolioCSS from "./Portfolio.module.css";
+import DoneProjectsCSS from "./DoneProjects.module.css";
 import { Paginate } from "../Paginate/Paginate";
 import { usePaginate } from "../../Hooks/usePaginate";
 import loaderSVG from "../../Static/Spin-1s-200px.svg";
 import { Project } from "./Components/Project/Project";
 
 
-enum Proyect { PER_PAGE = 3 }
+enum Proyect { PER_PAGE = 6 }
 
-export const Portfolio: React.FC = () => {
+export const DoneProjects: React.FC = () => {
 
   /// HOOKS
   const { portfolio } = useMyData();
@@ -25,11 +25,11 @@ export const Portfolio: React.FC = () => {
 
     <section
       id="portfolio"
-      className={`${PortfolioCSS.myProjects} section-space`}
+      className={`${DoneProjectsCSS.myProjects} section-space`}
       data-scroll-spy
     >
-      <div className={`${PortfolioCSS.myProjectsContainer} centerContainer`}>
-        <h2 className={` ${PortfolioCSS.myProjectsContainer__titulo} section-title`}>{portfolio?.myWorks}</h2>
+      <div className={`${DoneProjectsCSS.myProjectsContainer} centerContainer`}>
+        <h2 className={` ${DoneProjectsCSS.myProjectsContainer__titulo} section-title`}>{portfolio?.myWorks}</h2>
 
         {
           loader ? (<img src={loaderSVG} alt="loader" className="loader" />)
@@ -40,7 +40,7 @@ export const Portfolio: React.FC = () => {
           )
         }
 
-        <div className={PortfolioCSS.containerPaginate}>
+        <div className={DoneProjectsCSS.containerPaginate}>
           <Paginate
             ChangePage={changePage}
             PageCount={pageCount}

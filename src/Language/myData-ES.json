@@ -50,20 +50,12 @@
         "alt": "icon JS EcmaScript6"
       },
       {
-        "title": "jQuery",
-        "alt": "icon jquery"
-      },
-      {
         "title": "ReactJS",
         "alt": "icon react"
       },
       {
-        "title": "Ionic 5",
-        "alt": "icon ionic"
-      },
-      {
-        "title": "Redux",
-        "alt": "icon redux"
+        "title": "Vue 3",
+        "alt": "icon vue js"
       },
       {
         "title": "Angular 12",
@@ -74,14 +66,21 @@
         "alt": "icon blazor"
       },
       {
-        "title": "Vue 3",
-        "alt": "icon vue js"
+        "title": "Ionic 5",
+        "alt": "icon ionic"
       },
       {
         "title": "Quasar v2",
         "alt": "icon quasar"
+      },
+      {
+        "title": "Redux",
+        "alt": "icon redux"
+      },
+      {
+        "title": "jQuery",
+        "alt": "icon jquery"
       }
-
     ],
 
     "back_Technologies": [

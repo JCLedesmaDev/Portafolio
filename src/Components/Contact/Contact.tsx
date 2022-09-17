@@ -4,7 +4,7 @@ import { useMyData } from "../../Hooks/useMyData";
 import { useForm } from "react-hook-form";
 import SocialsCSS from "./Socials.module.css";
 import FormCSS from "./Form.module.css";
-import PortfolioCSS from "../Portfolio/Portfolio.module.css";
+import DoneProjectsCSS from "../DoneProjects/DoneProjects.module.css";
 import { noneElement } from "../../Utils/noneElement";
 import Loader from "../../Static/Spin-1s-200px.svg";
 import { InputForm } from "./InputForm";
@@ -17,7 +17,7 @@ export const Contact: React.FC = () => {
   /// VARIABLES
   const { contact } = useMyData();
   const formInputs = contact?.formContactInputs;
-  const CssOpenModal = `${PortfolioCSS.portfolioModal} ${PortfolioCSS.openPortafolioModal}`;
+  const CssOpenModal = `${DoneProjectsCSS.portfolioModal} ${DoneProjectsCSS.openPortafolioModal}`;
 
   /// HOOKS
   const location = useLocation().hash;
