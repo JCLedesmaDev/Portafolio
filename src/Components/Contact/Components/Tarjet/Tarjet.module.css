@@ -1,0 +1,88 @@
+contact__cardTarget {
+    display: flex;
+    flex-direction: column;
+  
+    justify-content: space-around;
+    align-items: center;
+  
+    width: 100%;
+    height: 8rem;
+    margin: 1.5rem auto;
+  
+    transition: transform 0.5s ease-in-out;
+  }
+  .contact__cardTarget:hover {
+    transform: scale(1.05);
+  }
+  
+  .contact__cardTarget > i {
+    font-size: 2rem;
+    color: var(--color-principal);
+    margin-top: 0.5rem;
+    margin-bottom: -0.5rem;
+  }
+  .contact__cardTarget > small {
+    margin-top: -1rem;
+  }
+  
+  /* REDES SOCIALES */
+  .contact__cards > aside:last-child > div {
+    width: 100%;
+    display: flex;
+    flex-direction: row ;
+    align-items: center;
+    justify-content: center;
+  }
+  .contact__cards > aside:last-child > div > small > a {
+    margin: 0 0.75rem;
+  }
+  .contact__cards > aside:last-child > div > small > a > i {
+    font-size: 1.5rem;
+    margin: 0;
+    width: 1.75rem;
+    height: 1.75rem;
+    text-align: center;
+    line-height: 1.75rem;
+    border-radius: 6.25rem;
+    color: var(--color-blanco);
+  }
+  .contact__cardTarget > div > small > a > i[data-icon="github"] {
+    color: #000 !important;
+    font-size: 1.75rem;
+    transform: scale(1.2);
+  }
+  .contact__cardTarget > div > small > a > i[data-icon="linkedIn"] {
+    font-size: 1.25rem;
+    background: #0084b1;
+  }
+  .contact__cardTarget > div > small > a > i[data-icon="instagram"] {
+    background: #c13584;
+  }
+  
+  .contact__cards > aside:last-child > div > small > a:hover > i {
+    animation: icono 0.5s ease;
+  }
+  
+  @keyframes icono {
+    from {
+      transform: rotate3d(0, 0, 0, 0);
+    }
+    to {
+      /* // Le espeficiamos a que rote a sea en el eje Y X o Z */
+      transform: rotate3d(0, 1, 0, 360deg);
+    }
+  }
+  
+/* Media queries para tablet */
+@media screen and (min-width: 768px) {
+    .contact__cardTarget {
+      margin-bottom: 0;
+    }
+  }
+  
+  /* Media queries para escritorio */
+  @media screen and (min-width: 1024px) {
+    .contact__cardTarget:hover {
+      transform: scale(1.1);
+    }
+  }

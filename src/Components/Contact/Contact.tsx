@@ -1,23 +1,22 @@
 import React, { useState } from "react";
-import parse from "html-react-parser";
 import { useMyData } from "../../Hooks/useMyData";
 import { useForm } from "react-hook-form";
-import SocialsCSS from "./Socials.module.css";
-import FormCSS from "./Form.module.css";
-import DoneProjectsCSS from "../DoneProjects/DoneProjects.module.css";
+import SocialsCSS from "./Components/Socials.module.css";
+import ContactCSS from "./Contact.module.css";
 import { noneElement } from "../../Utils/noneElement";
 import Loader from "../../Static/Spin-1s-200px.svg";
-import { InputForm } from "./InputForm";
-import { TexTarea } from "./TexTareaForm";
+import { InputForm } from "./Components/InputForm";
+import { TexTarea } from "./Components/TexTareaForm";
 import { axiosMethod } from "../../Utils/axiosMethod";
 import { useLocation } from "react-use";
 import { ModalContainer } from "../ModalContainer/ModalContainer";
+import { Tarjet } from "./Components/Tarjet/Tarjet";
 
 export const Contact: React.FC = () => {
+
   /// VARIABLES
-  const { contact } = useMyData();
+  const { contact } = useMyData(); 
   const formInputs = contact?.formContactInputs;
-  const CssOpenModal = `${DoneProjectsCSS.portfolioModal} ${DoneProjectsCSS.openPortafolioModal}`;
 
   /// HOOKS
   const location = useLocation().hash;
@@ -62,7 +61,7 @@ export const Contact: React.FC = () => {
   return (
     <section
       id="contact"
-      className={` ${FormCSS.contact} section-space`}
+      className={` ${ContactCSS.contact} section-space`}
       data-scroll-spy
     >
       <div className="centerContainer">
@@ -71,28 +70,13 @@ export const Contact: React.FC = () => {
         {/* <!-- SOCIALES --> */}
         <article className={`${SocialsCSS.contact__cards} centerContainer`}>
           {contact?.modeContact?.map((contact, indexContact) => (
-            <aside
-              key={indexContact}
-              className={`${SocialsCSS.contact__cardTarget} box-shadow`}
-            >
-              <i className={contact?.icon} />
-              <h5>{contact?.title}</h5>
-              {indexContact !== 3 ? (
-                <small>{parse(contact.links[0])}</small>
-              ) : (
-                <div>
-                  {contact?.links.map((link, indexLink) => (
-                    <small key={indexLink}>{parse(link)}</small>
-                  ))}
-                </div>
-              )}
-            </aside>
+            <Tarjet Contact={contact} IndexContact={indexContact}/>
           ))}
         </article>
 
         {/* <!-- FORMULARIO --> */}
         <form
-          className={`${FormCSS.contact__form} box-shadow`}
+          className={`${ContactCSS.contact__form} box-shadow`}
           onSubmit={onSubmit}
         >
           {formInputs?.map((inputForm, index) => (
@@ -103,7 +87,7 @@ export const Contact: React.FC = () => {
                 <TexTarea form={inputForm} register={register} />
               )}
 
-              <p className={FormCSS.contact_messageError}>
+              <p className={ContactCSS.contact_messageError}>
                 {inputForm.messageError}
               </p>
             </div>
@@ -111,7 +95,7 @@ export const Contact: React.FC = () => {
 
           <div
             className={`${
-              FormCSS.contact__form__loader
+              ContactCSS.contact__form__loader
             } text-center ${noneElement(!loaderActive)}`}
           >
             <img src={Loader} alt="Enviando..." />
@@ -130,14 +114,12 @@ export const Contact: React.FC = () => {
         </form>
 
         {/* <!-- MODAL DEL FORMULARIO --> */}
-        <ModalContainer
-          validation={
+        <ModalContainer validation={
             location?.includes("#gracias") || location?.includes("#ups")
           }
         >
-
           <div>
-            <article className={FormCSS.modal__contactForm_response}>
+            <article className={ContactCSS.modal__contactForm_response}>
               <h3>
                 {location?.includes("#gracias") && contact?.modalContact}
                 {location?.includes("#ups") && contact?.modalContactError}
