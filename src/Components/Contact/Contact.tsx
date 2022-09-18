@@ -11,6 +11,10 @@ import { ModalContainer } from "../ModalContainer/ModalContainer";
 import { Tarjet } from "./Components/Tarjet/Tarjet";
 
 import ContactCSS from "./Contact.module.css";
+import FormFieldCSS from "./Components/FormField/FormField.module.css";
+import { ModalMessage } from "./Components/ModalMessage/ModalMessage";
+
+
 
 export const Contact: React.FC = () => {
 
@@ -84,18 +88,17 @@ export const Contact: React.FC = () => {
                 <TexTarea form={inputForm} register={register} />
               )}
 
-              <p className={ContactCSS.contact_messageError}>
+              <p className={FormFieldCSS.messageError}>
                 {inputForm.messageError}
               </p>
             </div>
           ))}
 
           <div className={`${
-              ContactCSS.contact__form__loader
+              ContactCSS.contactContainer__formLoader
             } text-center ${noneElement(!loaderActive)}`}
           ><img src={Loader} alt="Enviando..." /></div>
 
-          {/* Continuar CSS DE aca, poner clase al div */}
           <div id="form__boton"> 
             <input type="submit"
               className="button text-center "
@@ -110,18 +113,7 @@ export const Contact: React.FC = () => {
         <ModalContainer validation={
             location?.includes("#gracias") || location?.includes("#ups")
           }
-        >
-          <div>
-            <article className={ContactCSS.modal__contactForm_response}>
-              <h3>
-                {location?.includes("#gracias") && contact?.modalContact}
-                {location?.includes("#ups") && contact?.modalContactError}
-              </h3>
-
-              <i className="far fa-smile-wink"></i>
-            </article>
-          </div>
-
+        > <ModalMessage />
         </ModalContainer>
 
       </div>

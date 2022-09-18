@@ -29,7 +29,7 @@ export const expRegForm: any = {
 export const validateInput = (
   input: any,
   nameElement: string,
-  FormCSS: any
+  FormFieldCSS: any
 ) => {
   const $iconInput = document.querySelector(
     `#form__${nameElement} i`
@@ -42,26 +42,26 @@ export const validateInput = (
 
   if (expReg.exec(input.value)) {
     //Cambiamos el color del icono a VERDE
-    $iconInput.classList.remove(`${FormCSS.iconValidate_incorrect}`);
-    $iconInput.classList.add(`${FormCSS.iconValidate_correct}`);
+    $iconInput.classList.remove(`${FormFieldCSS.iconValidate_incorrect}`);
+    $iconInput.classList.add(`${FormFieldCSS.iconValidate_correct}`);
 
     //Cambiamos el icono de la X al icono valido
     $iconInput.classList.add("fa-check-circle");
     $iconInput.classList.remove("fa-times-circle");
 
     //Quitamos la clase para que no aparezca el mensaje de error
-    $formError.classList.remove(`${FormCSS.contact_messageErrorActive}`);
+    $formError.classList.remove(`${FormFieldCSS.messageErrorActive}`);
   } else {
     //Cambiamos el color del icono a incorrecto(rojo)
-    $iconInput.classList.add(`${FormCSS.iconValidate_incorrect}`);
-    $iconInput.classList.remove(`${FormCSS.iconValidate_correct}`);
+    $iconInput.classList.add(`${FormFieldCSS.iconValidate_incorrect}`);
+    $iconInput.classList.remove(`${FormFieldCSS.iconValidate_correct}`);
 
     //Cambiamos el icono de valido a la X
     $iconInput.classList.remove("fa-check-circle");
     $iconInput.classList.add("fa-times-circle");
 
     //Agregamos la clase para que aparezca el mensaje de error
-    $formError.classList.add(`${FormCSS.contact_messageErrorActive}`);
+    $formError.classList.add(`${FormFieldCSS.messageErrorActive}`);
   }
 
   if (input.value === "") {
@@ -70,6 +70,6 @@ export const validateInput = (
     $iconInput.classList.remove("fa-times-circle");
 
     //Quitamos la clase para que no aparezca el mensaje de error
-    $formError.classList.remove(`${FormCSS.contact_messageErrorActive}`);
+    $formError.classList.remove(`${FormFieldCSS.messageErrorActive}`);
   }
 };

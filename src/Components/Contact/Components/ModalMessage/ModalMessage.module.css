@@ -1,0 +1,15 @@
+/* CSS DEL MODAL MSG */
+
+.modalContainer {
+    padding: 1rem;
+    /* width: 25rem; */
+    text-align: center;
+    background-color: var(--color-blanco);
+    margin: auto;
+  }
+  .modalContainer i {
+    color: var(--color-principal);
+    margin-top: 2rem;
+    font-size: 4rem;
+  }
+  

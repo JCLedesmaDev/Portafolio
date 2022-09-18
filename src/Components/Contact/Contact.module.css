@@ -27,10 +27,12 @@
 
 
 
+
 @media screen and (min-width: 768px) {
   .contactContainer > .contactContainer__form {
     margin: 2rem 0.75rem;
   }
+  
   .contactContainer > .contactContainer__form:hover {
     transform: scale(1.03);
   }
@@ -52,7 +54,6 @@
     justify-content: space-between;
   }
 
-
   .contactContainer > .contactContainer__form {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
@@ -60,9 +61,9 @@
     margin: 2rem auto;
   }
 
-  .contactContainer > .contactContainer__form > div[id="form__comment"] {
+  .contactContainer__form > div[id="form__comment"] {
     grid-column: span 2;
-  } /* pasar */
+  }
   
   .contactContainer__form > div[id="form__boton"]  {
     grid-column: span 2;
@@ -70,49 +71,8 @@
     margin: auto;
   }
 
-  .contact__form__loader {
+  .contactContainer__form > .contactContainer__formLoader {
     grid-column: span 2;
   }
 
-
-}
-
-/* CSS DEL MODAL MSG */
-
-.modal__contactForm_response {
-  padding: 1rem;
-  /* width: 25rem; */
-  text-align: center;
-  background-color: var(--color-blanco);
-  margin: auto;
-}
-.modal__contactForm_response i {
-  color: var(--color-principal);
-  margin-top: 2rem;
-  font-size: 4rem;
-}
-
-/* Mensaje validacion */
-.contact_messageError {
-  font-size: 12px;
-  margin: 0;
-  margin-top: -0.5rem;
-  background-color: rgba(255, 0, 0, 0.102);
-  /* //cambiar a block con JS cuando haya error */
-  display: none;
-}
-.contact_messageErrorActive {
-  display: block;
-  animation: mensaje-error 1s 1 normal 0s ease-in-out;
-}
-
-@keyframes mensaje-error {
-  0% {
-    visibility: hidden;
-    opacity: 0;
-  }
-  100% {
-    visibility: visible;
-    opacity: 1;
-  }
 }

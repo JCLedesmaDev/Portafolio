@@ -7,7 +7,7 @@ export const Footer: React.FC = () => {
   const { footer } = useMyData();
 
   return (
-    <footer className={FooterCSS.footer}>
+    <footer className={FooterCSS.footerContainer}>
       {footer && (
         <small>
           {footer.sitie}

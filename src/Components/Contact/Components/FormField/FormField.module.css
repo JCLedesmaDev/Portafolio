@@ -84,3 +84,27 @@
   opacity: 1 !important ;
 }
 
+/* Mensaje validacion */
+.messageError {
+  font-size: 12px;
+  margin: 0;
+  margin-top: -0.5rem;
+  background-color: rgba(255, 0, 0, 0.102);
+  /* //cambiar a block con JS cuando haya error */
+  display: none;
+}
+.messageErrorActive {
+  display: block;
+  animation: mensaje-error 1s 1 normal 0s ease-in-out;
+}
+
+@keyframes mensaje-error {
+  0% {
+    visibility: hidden;
+    opacity: 0;
+  }
+  100% {
+    visibility: visible;
+    opacity: 1;
+  }
+}
