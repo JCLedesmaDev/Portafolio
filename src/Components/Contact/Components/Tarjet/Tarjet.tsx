@@ -1,5 +1,5 @@
 import parse from "html-react-parser";
-import SocialsCSS from "../../Components/Socials.module.css";
+import TarjetCSS from "./Tarjet.module.css";
 
 interface Props {
     Contact: any;
@@ -12,7 +12,7 @@ export const Tarjet: React.FC<Props> = ({Contact,IndexContact }) => {
   return (
     <aside
       key={IndexContact}
-      className={`${SocialsCSS.contact__cardTarget} box-shadow`}
+      className={`${TarjetCSS.tarjetContainer} box-shadow`}
     >
       <i className={Contact?.icon} />
       <h5>{Contact?.title}</h5>
@@ -20,7 +20,7 @@ export const Tarjet: React.FC<Props> = ({Contact,IndexContact }) => {
         IndexContact !== 3 ? (
           <small>{parse(Contact.links[0])}</small>
         ) : (
-          <div>
+          <div className={`${TarjetCSS.tarjetContainer__redSocial}`}>
             {Contact?.links.map((link : any, indexLink: any) => (
               <small key={indexLink}>{parse(link)}</small>
             ))}
