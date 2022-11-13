@@ -146,33 +146,75 @@
     "myWorks": "Proyectos realizados",
     "projects": [
       {
-        "title": "Sistema de Gestion de Libros",
-        "description": "Proyecto que lleva el registro de una bibloteca personal para organizar tu propia bibloteca.",
-        "createdWith": "Esta aplicacion fue creada utilizando: <br/> <b>- En el <i> Back-End</i> :</b> NodeJS, ExpressJS, MongoDB. <br/> <b>- En el <i>Front-End</i> :</b> HTML5, CSS3 / Bootstrap 4 y Vanilla JavaScript.",
+        "title": "Albumes y Figuritas",
+        "description": "Este proyecto fue desarrollado dentro del cursado de la Tecnicatura de Software en colaboracion con <a href='https://github.com/Vanemariel' target='_blank' rel='noopener'>Vanesa Herrera</a>. Nos permite realizar compras de Albumes junto a sus respectivas figuritas.",
+        "createdWith": "Esta aplicacion esta siendo creada utilizando: <br/> <b>- En el <i>Back-End</i> :</b> .NET 6, Entity Framework y SqlServer. <br/> <b>- En el <i>Front-End</i> :</b> ReactJS con sus respectivos usos de Hooks. <br/>",
         "datesModal": [
           { "title": "<b>CLIENTE:</b>", "content": " --- " },
-          { "title": "<b>FECHA:</b>", "content": "10/11/2020" },
-          { "title": "<b>TIPO:</b>", "content": "Sitio <i>Web Responsive</i>" },
+          { "title": "<b>FECHA:</b>", "content": "10/11/2022" },
+          {
+            "title": "<b>TIPO:</b>",
+            "content": "Sitio <i>Web</i>"
+          },
           {
             "title": "<b>REPOSITORIO:</b>",
-            "content": "<a href='https://github.com/JCLedesmaDev/Sistema-de-Gestion-de-Libros' target='_blank' rel='noopener'>Haz click aqui</a>"
+            "content": "<a href='https://github.com/Vanemariel/G7Album' target='_blank' rel='noopener'>Haz click aqui</a>"
           }
         ]
       },
       {
-        "title": "Sistema de Gestion de Proyectos con Stack M.E.R.N",
-        "description": "Proyecto que nos permite anotar las tareas pendientes a desarrollar, de cada proyecto en particular en el que estemos trabajando.",
-        "createdWith": "Esta aplicacion esta siendo creada utilizando: <br/> <b>- En el <i>Back-End</i> :</b> NodeJS, Express, MongoDB. <br/> <b>- En el <i>Front-End</i> :</b> ReactJS con sus respectivos Hooks tales como: useState, useEffect, useContext y useReducer; <br/>",
+        "title": "Sistema de Gestion de Productos",
+        "description": "Este proyecto fue desarrollado dentro del cursado de la Tecnicatura de Software en colaboracion con <a href='https://github.com/Vanemariel' target='_blank' rel='noopener'>Vanesa Herrera</a>. Nos permite gestionar Productos.",
+        "createdWith": "Esta aplicacion esta siendo creada utilizando: <br/> <b>- En el <i>Back-End</i> :</b> .NET 4.7.2 y SqlClient aplicando conocimientos sobre Store Procedure. <br/> <b>- En el <i>Front-End</i> :</b> Windows Form. <br/>",
         "datesModal": [
           { "title": "<b>CLIENTE:</b>", "content": " --- " },
-          { "title": "<b>FECHA:</b>", "content": "24/04/2021" },
+          { "title": "<b>FECHA:</b>", "content": "21/10/2022" },
+          {
+            "title": "<b>TIPO:</b>",
+            "content": "<i>Escritorio</i>"
+          },
+          {
+            "title": "<b>REPOSITORIO:</b>",
+            "content": "<a href='https://github.com/JCLedesmaDev/Productos-con-SQL-y-Capas' target='_blank' rel='noopener'>Haz click aqui</a>"
+          }
+        ]
+      },
+      {
+        "title": "Turnero de Peluqueria",
+        "description": "Este proyecto fue desarrollado dentro del cursado de la Tecnicatura de Software. Nos permite saber si hay un turno reservado.",
+        "createdWith": "Esta aplicacion esta siendo creada utilizando: <br/> <b>- En el <i>Back-End</i> :</b> .NET 6, Entity Framework, SQL Server. <br/> <b>- En el <i>Front-End</i> :</b> Blazor Web Assembly acompañada de la libreria 'Radzen Blazor Components', aplicando conocimientos tales como el manejo de estados por Actions <br/>",
+        "datesModal": [
+          { "title": "<b>CLIENTE:</b>", "content": " --- " },
+          { "title": "<b>FECHA:</b>", "content": "13/09/2022" },
           {
             "title": "<b>TIPO:</b>",
             "content": "Diseño <i>Web Responsive</i>"
           },
           {
             "title": "<b>REPOSITORIO:</b>",
-            "content": "<a href='https://github.com/JCLedesmaDev/Sistema-de-Gestion-de-Proyectos' target='_blank' rel='noopener'>Haz click aqui</a>"
+            "content": "<a href='https://github.com/JCLedesmaDev/Turnero-Peluqueria' target='_blank' rel='noopener'>Haz click aqui</a>"
+          }
+        ]
+      },
+      {
+        "title": "Sistema de Gestion Mis actividades",
+        "description": "Proyecto que nos permite registrar nuestras actividades dependiendo de su categoria",
+
+        "createdWith": "Esta aplicacion fue creada utilizando: <br> <b>- En el <i>Front-End</i> :</b> Ionic con React y TypeScript con sus respectivos Hooks tales como:  useEffect, useContext, useReducer y Hooks personalizados. <br/>",
+        "datesModal": [
+          { "title": "<b>CLIENTE:</b>", "content": " --- " },
+          { "title": "<b>FECHA:</b>", "content": "01/03/2022" },
+          {
+            "title": "<b>TIPO:</b>",
+            "content": "Aplicacion movil"
+          },
+          {
+            "title": "<b>REPOSITORIO:</b>",
+            "content": "<a href='https://github.com/JCLedesmaDev/Sistema-de-Gestion-de-Mis-actividades' target='_blank' rel='noopener'>Haz click aqui</a>"
+          },
+          {
+            "title": "<b>DESCARGAR APK:</b>",
+            "content": "<a href='https://drive.google.com/file/d/1V7vvkIhBCB36NC-2U6Dmt2yS5IScJEzH/view?usp=sharing' target='_blank' rel='noopener'>Haz click aqui</a>"
           }
         ]
       },
@@ -195,24 +237,33 @@
         ]
       },
       {
-        "title": "Sistema de Gestion Mis actividades",
-        "description": "Proyecto que nos permite registrar nuestras actividades dependiendo de su categoria",
-
-        "createdWith": "Esta aplicacion fue creada utilizando: <br> <b>- En el <i>Front-End</i> :</b> Ionic con React y TypeScript con sus respectivos Hooks tales como:  useEffect, useContext, useReducer y Hooks personalizados. <br/>",
+        "title": "Sistema de Gestion de Proyectos con Stack M.E.R.N",
+        "description": "Proyecto que nos permite anotar las tareas pendientes a desarrollar, de cada proyecto en particular en el que estemos trabajando.",
+        "createdWith": "Esta aplicacion esta siendo creada utilizando: <br/> <b>- En el <i>Back-End</i> :</b> NodeJS, Express, MongoDB. <br/> <b>- En el <i>Front-End</i> :</b> ReactJS con sus respectivos Hooks tales como: useState, useEffect, useContext y useReducer; <br/>",
         "datesModal": [
           { "title": "<b>CLIENTE:</b>", "content": " --- " },
-          { "title": "<b>FECHA:</b>", "content": "01/03/2021" },
+          { "title": "<b>FECHA:</b>", "content": "24/04/2021" },
           {
             "title": "<b>TIPO:</b>",
-            "content": "Aplicacion movil"
+            "content": "Diseño <i>Web Responsive</i>"
           },
           {
             "title": "<b>REPOSITORIO:</b>",
-            "content": "<a href='https://github.com/JCLedesmaDev/Sistema-de-Gestion-de-Mis-actividades' target='_blank' rel='noopener'>Haz click aqui</a>"
-          },
+            "content": "<a href='https://github.com/JCLedesmaDev/Sistema-de-Gestion-de-Proyectos' target='_blank' rel='noopener'>Haz click aqui</a>"
+          }
+        ]
+      },
+      {
+        "title": "Sistema de Gestion de Libros",
+        "description": "Proyecto que lleva el registro de una bibloteca personal para organizar tu propia bibloteca.",
+        "createdWith": "Esta aplicacion fue creada utilizando: <br/> <b>- En el <i> Back-End</i> :</b> NodeJS, ExpressJS, MongoDB. <br/> <b>- En el <i>Front-End</i> :</b> HTML5, CSS3 / Bootstrap 4 y Vanilla JavaScript.",
+        "datesModal": [
+          { "title": "<b>CLIENTE:</b>", "content": " --- " },
+          { "title": "<b>FECHA:</b>", "content": "10/11/2020" },
+          { "title": "<b>TIPO:</b>", "content": "Sitio <i>Web Responsive</i>" },
           {
-            "title": "<b>DESCARGAR APK:</b>",
-            "content": "<a href='https://drive.google.com/file/d/1V7vvkIhBCB36NC-2U6Dmt2yS5IScJEzH/view?usp=sharing' target='_blank' rel='noopener'>Haz click aqui</a>"
+            "title": "<b>REPOSITORIO:</b>",
+            "content": "<a href='https://github.com/JCLedesmaDev/Sistema-de-Gestion-de-Libros' target='_blank' rel='noopener'>Haz click aqui</a>"
           }
         ]
       }

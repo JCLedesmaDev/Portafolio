@@ -23,6 +23,28 @@ import activities3 from "../Static/mis-actividades/activities3.png";
 import activities4 from "../Static/mis-actividades/activities4.png";
 import activities5 from "../Static/mis-actividades/activities5.png";
 
+/* Turnero */
+import turnero1 from "../Static/turnero-peluqueria/turnero1.png"
+import turnero2 from "../Static/turnero-peluqueria/turnero2.png"
+import turnero3 from "../Static/turnero-peluqueria/turnero3.png"
+import turnero4 from "../Static/turnero-peluqueria/turnero4.png"
+import turnero5 from "../Static/turnero-peluqueria/turnero5.png"
+
+
+/* Productos */
+import productos1 from "../Static/control-productos/productos1.png"
+import productos2 from "../Static/control-productos/productos2.png"
+import productos3 from "../Static/control-productos/productos3.png"
+import productos4 from "../Static/control-productos/productos4.png"
+import productos5 from "../Static/control-productos/productos5.png"
+
+/* figuritas */
+import figuritas1 from "../Static/albumes/figuritas1.png"
+import figuritas2 from "../Static/albumes/figuritas2.png"
+import figuritas3 from "../Static/albumes/figuritas3.png"
+import figuritas4 from "../Static/albumes/figuritas4.png"
+import figuritas5 from "../Static/albumes/figuritas5.png"
+
 
 export const myProjects = [
   {
@@ -45,4 +67,19 @@ export const myProjects = [
     mainImage: activities1,
     imagesModal: [activities1, activities2, activities3, activities4, activities5],
   },
+  {
+    title: "Turnero de Peluqueria",
+    mainImage: turnero1,
+    imagesModal: [turnero1, turnero2, turnero3, turnero4, turnero5],
+  },
+  {
+    title: "Sistema de Gestion de Productos",
+    mainImage: productos1,
+    imagesModal: [productos1, productos2, productos3, productos4, productos5],
+  },
+  {
+    title: "Albumes y Figuritas",
+    mainImage: figuritas1,
+    imagesModal: [figuritas1, figuritas2, figuritas3, figuritas4, figuritas5],
+  }
 ];
