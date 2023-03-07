@@ -1,6 +1,5 @@
 {
   "lenguage": "ES",
-
   "header": {
     "myPortfolio": "<span>Mi </span>Portafolio",
     "home": "Inicio",
@@ -8,33 +7,32 @@
     "portfolio": "Portafolio",
     "contact": "Contacto"
   },
-
   "home": {
     "presentation": "Hola! Mi nombre es <br/> <span> Juan Cruz Ledesma </span> <br/> Y soy <span>Desarrollador Full-Stack.</span>",
     "knowMe": "Conoceme!"
   },
-
   "aboutMe": {
     "nameCompleted": "Juan Cruz Ledesma",
     "rol": "Desarrollador Web.",
     "aboutme": "Sobre mi:",
     "presentations": [
-      "Tengo 22 años y me considero una persona que sabe escuchar y entender rápidamente las necesidades de los clientes. <br/>  Me gusta mucho el diseño web, por lo que me preocupo en que se vean con una estética y un arte equilibrado acorde a lo que el cliente necesita.",
-      "Mi formación en el diseño de planos arquitectónicos me ayudó a entender la necesidad de tener una buena arquitectura, además de un buen diseño, lo que hace que este continuamente formándome en el Desarrollo <i> <b>Back-End</b> </i>, para lograr un código robusto, elegante y flexible. <br/> Me <b>entusiasma</b> aprender cosas nuevas, es por eso que estoy siempre en continua formación.",
-
-      " Actualmente me encuentro cursando la <b>Tecnicatura Superior en Desarrollo de Software</b> en el Instituto Técnico Superior Córdoba (I.T.S. Córdoba), con el objetivo de profundizar más en el mundo del <b>Software</b>.",
-      " Si bien mis conocimientos me permiten definirme como Desarrollador <i> <b>Front-End</b> </i>, tengo algunos conocimientos en el entorno de <b>NodeJS</b> y actualmente estoy enfocando mis esfuerzos en comprender cabalmente estos lenguajes para definirme como <b>Full-Stack</b>"
+      "Hola, soy Juan Cruz, me gusta que me llamen Juan, Juanchi o Juancho, tengo 22 años y soy una persona que se caracteriza por saber escuchar y entender rápidamente las necesidades de los clientes. Me apasiona el diseño web y me esfuerzo por crear sitios web que combinen una estética y un arte equilibrado que se adapte perfectamente a las necesidades de cada cliente.",
+      "Mi formación en el diseño de planos arquitectónicos me enseñó la importancia de tener una buena arquitectura y diseño en cualquier proyecto. Por eso, me mantengo en constante formación en el Desarrollo <i> <b>Back-End</b> </i> para lograr un código robusto, elegante y flexible. Me emociona aprender cosas nuevas y siempre estoy en busca de nuevas oportunidades para seguir creciendo en mi carrera.",
+      "Actualmente estoy cursando la <b>Tecnicatura Superior en Desarrollo de Software</b> en el Instituto Técnico Superior Córdoba (I.T.S. Córdoba) para profundizar mis conocimientos en el mundo del <b>Software</b>. Si bien me defino como Desarrollador <i> <b>Front-End</b> </i>, también tengo algunos conocimientos en el entorno de <b>NodeJS</b>. Actualmente, me estoy enfocando en comprender cabalmente estos lenguajes para definirme como <b>Full-Stack</b>."
     ],
     "downloadCV": "DESCARGA MI CV",
-    "CVLink": "https://drive.google.com/file/d/14COSVOf9dtuEBvC-bL2JYBcaa7HLL8E2/view?usp=sharing",
-
+    "CVLink": "https://drive.google.com/file/d/1Iwd0mwjammSLvsssjJbGikZGydgGll9-/view?usp=share_link",
     "mySkills": "Mis Habilidades:",
     "mySkillsPresentations": [
       "Considero que soy <b>detallista</b> (hablando del diseño), me importan mucho los detalles aunque estos sean mínimos y trato de que todo esté en armonía en cuanto a los colores y formas de los objetos.",
       "A su vez, también me considero <b>autocrítico</b> ya que siempre pienso que podría mejorar cierto detalle o aspecto. <br /> Por último, siempre <b>acepto</b> y tomo muy en cuenta cualquier crítica, sugerencia y/o tip sobre cómo hacer de cierta manera algún trabajo."
     ],
-
-    "skills_area": ["Front-End:", "Back-End:", "Otros:", "Proximamente:"],
+    "skills_area": [
+      "Front-End:",
+      "Back-End:",
+      "Otros:",
+      "Proximamente:"
+    ],
     "technology": "Tecnologias:",
     "front_Technologies": [
       {
@@ -82,7 +80,6 @@
         "alt": "icon jquery"
       }
     ],
-
     "back_Technologies": [
       {
         "title": "NodeJS",
@@ -103,14 +100,12 @@
       {
         "title": "EF Core",
         "alt": "icon entity framework core"
-      }
-      ,
+      },
       {
         "title": "Sql Server",
         "alt": "icon sql server"
       }
     ],
-
     "other_technology": [
       {
         "title": "TypeScript",
@@ -125,7 +120,6 @@
         "alt": "icon nvm"
       }
     ],
-
     "coming_soon": [
       {
         "title": "NextJS",
@@ -141,17 +135,41 @@
       }
     ]
   },
-
   "doneProjects": {
     "myWorks": "Proyectos realizados",
     "projects": [
       {
-        "title": "Albumes y Figuritas",
-        "description": "Este proyecto fue desarrollado dentro del cursado de la Tecnicatura de Software en colaboracion con <a href='https://github.com/Vanemariel' target='_blank' rel='noopener'>Vanesa Herrera</a>. Nos permite realizar compras de Albumes junto a sus respectivas figuritas.",
+        "title": "Coleccion de Albumes REMAKE",
+        "description": "Este proyecto fue desarrollado previamente dentro del cursado de la Tecnicatura de Software. Nos permite coleccionar albumes y comprar las figuras de los albumes coleccionados.",
+        "createdWith": "Esta aplicacion esta siendo creada utilizando: <br/> <b>- En el <i>Back-End</i> :</b> NodeJS, ExpressJS, TypeScript y MongoDB, implementando una <b>Arquitectura orientada a Microservicios.</b> <br/> <b>- En el <i>Front-End</i> :</b> ReactJS con sus respectivos Hooks y Custom Hooks, TypeScript, Zustand, Vite. <br/>",
+        "datesModal": [
+          {
+            "title": "<b>PERIODO:</b>",
+            "content": "05/12/2022 - Actualidad"
+          },
+          {
+            "title": "<b>TIPO:</b>",
+            "content": "Sitio <i>Web</i>"
+          },
+          {
+            "title": "<b>REPOSITORIO:</b>",
+            "content": "<a href='https://github.com/JCLedesmaDev/Coleccion-de-albumes' target='_blank' rel='noopener'>Haz click aqui</a>"
+          }
+        ]
+      },
+      {
+        "title": "Coleccion de Albumes",
+        "description": "Este proyecto fue desarrollado dentro del cursado de la Tecnicatura de Software en colaboracion con <b> Vanesa Herrera. Nos permite coleccionar albumes y comprar las figuras de los albumes coleccionados.",
         "createdWith": "Esta aplicacion esta siendo creada utilizando: <br/> <b>- En el <i>Back-End</i> :</b> .NET 6, Entity Framework y SqlServer. <br/> <b>- En el <i>Front-End</i> :</b> ReactJS con sus respectivos usos de Hooks. <br/>",
         "datesModal": [
-          { "title": "<b>CLIENTE:</b>", "content": " --- " },
-          { "title": "<b>FECHA:</b>", "content": "10/11/2022" },
+          {
+            "title": "<b>COLABORADORA:</b>",
+            "content": "<a href='https://github.com/Vanemariel' target='_blank' rel='noopener'> Github de Vanesa Herrera </a>"
+          },
+          {
+            "title": "<b>PERIODO:</b>",
+            "content": "05/09/2022 - 10/11/2022"
+          },
           {
             "title": "<b>TIPO:</b>",
             "content": "Sitio <i>Web</i>"
@@ -164,11 +182,17 @@
       },
       {
         "title": "Sistema de Gestion de Productos",
-        "description": "Este proyecto fue desarrollado dentro del cursado de la Tecnicatura de Software en colaboracion con <a href='https://github.com/Vanemariel' target='_blank' rel='noopener'>Vanesa Herrera</a>. Nos permite gestionar Productos.",
+        "description": "Este proyecto fue desarrollado dentro del cursado de la Tecnicatura de Software en colaboracion con Vanesa Herrera. Nos permite gestionar Productos.",
         "createdWith": "Esta aplicacion esta siendo creada utilizando: <br/> <b>- En el <i>Back-End</i> :</b> .NET 4.7.2 y SqlClient aplicando conocimientos sobre Store Procedure. <br/> <b>- En el <i>Front-End</i> :</b> Windows Form. <br/>",
         "datesModal": [
-          { "title": "<b>CLIENTE:</b>", "content": " --- " },
-          { "title": "<b>FECHA:</b>", "content": "21/10/2022" },
+          {
+            "title": "<b>COLABORADORA:</b>",
+            "content": "<a href='https://github.com/Vanemariel' target='_blank' rel='noopener'> Github de Vanesa Herrera </a>"
+          },
+          {
+            "title": "<b>PERIODO:</b>",
+            "content": "14/09/2022 - 21/10/2022"
+          },
           {
             "title": "<b>TIPO:</b>",
             "content": "<i>Escritorio</i>"
@@ -184,8 +208,10 @@
         "description": "Este proyecto fue desarrollado dentro del cursado de la Tecnicatura de Software. Nos permite saber si hay un turno reservado.",
         "createdWith": "Esta aplicacion esta siendo creada utilizando: <br/> <b>- En el <i>Back-End</i> :</b> .NET 6, Entity Framework, SQL Server. <br/> <b>- En el <i>Front-End</i> :</b> Blazor Web Assembly acompañada de la libreria 'Radzen Blazor Components', aplicando conocimientos tales como el manejo de estados por Actions <br/>",
         "datesModal": [
-          { "title": "<b>CLIENTE:</b>", "content": " --- " },
-          { "title": "<b>FECHA:</b>", "content": "13/09/2022" },
+          {
+            "title": "<b>PERIODO:</b>",
+            "content": "02/07/2022 - 13/09/2022"
+          },
           {
             "title": "<b>TIPO:</b>",
             "content": "Diseño <i>Web Responsive</i>"
@@ -199,11 +225,12 @@
       {
         "title": "Sistema de Gestion Mis actividades",
         "description": "Proyecto que nos permite registrar nuestras actividades dependiendo de su categoria",
-
         "createdWith": "Esta aplicacion fue creada utilizando: <br> <b>- En el <i>Front-End</i> :</b> Ionic con React y TypeScript con sus respectivos Hooks tales como:  useEffect, useContext, useReducer y Hooks personalizados. <br/>",
         "datesModal": [
-          { "title": "<b>CLIENTE:</b>", "content": " --- " },
-          { "title": "<b>FECHA:</b>", "content": "01/03/2022" },
+          {
+            "title": "<b>PERIODO:</b>",
+            "content": "16/01/2022 - 01/03/2022"
+          },
           {
             "title": "<b>TIPO:</b>",
             "content": "Aplicacion movil"
@@ -221,11 +248,12 @@
       {
         "title": "Pagina Web - Mi portafolio",
         "description": "Proyecto para la presentacion de mis conocimientos en el desarrollo web.",
-
         "createdWith": "Esta aplicacion fue creada utilizando: <br> <b>- En el <i>Front-End</i> :</b> React con TypeScript, Axios, Html-react-parser",
         "datesModal": [
-          { "title": "<b>CLIENTE:</b>", "content": " --- " },
-          { "title": "<b>FECHA:</b>", "content": "02/02/2022" },
+          {
+            "title": "<b>PERIODO:</b>",
+            "content": "12/12/2021 - 02/02/2022"
+          },
           {
             "title": "<b>TIPO:</b>",
             "content": "PWA ( <i>Progressive Web App</i> )"
@@ -241,8 +269,10 @@
         "description": "Proyecto que nos permite anotar las tareas pendientes a desarrollar, de cada proyecto en particular en el que estemos trabajando.",
         "createdWith": "Esta aplicacion esta siendo creada utilizando: <br/> <b>- En el <i>Back-End</i> :</b> NodeJS, Express, MongoDB. <br/> <b>- En el <i>Front-End</i> :</b> ReactJS con sus respectivos Hooks tales como: useState, useEffect, useContext y useReducer; <br/>",
         "datesModal": [
-          { "title": "<b>CLIENTE:</b>", "content": " --- " },
-          { "title": "<b>FECHA:</b>", "content": "24/04/2021" },
+          {
+            "title": "<b>PERIODO:</b>",
+            "content": "19/03/2021 - 24/04/2021"
+          },
           {
             "title": "<b>TIPO:</b>",
             "content": "Diseño <i>Web Responsive</i>"
@@ -258,9 +288,14 @@
         "description": "Proyecto que lleva el registro de una bibloteca personal para organizar tu propia bibloteca.",
         "createdWith": "Esta aplicacion fue creada utilizando: <br/> <b>- En el <i> Back-End</i> :</b> NodeJS, ExpressJS, MongoDB. <br/> <b>- En el <i>Front-End</i> :</b> HTML5, CSS3 / Bootstrap 4 y Vanilla JavaScript.",
         "datesModal": [
-          { "title": "<b>CLIENTE:</b>", "content": " --- " },
-          { "title": "<b>FECHA:</b>", "content": "10/11/2020" },
-          { "title": "<b>TIPO:</b>", "content": "Sitio <i>Web Responsive</i>" },
+          {
+            "title": "<b>PERIODO:</b>",
+            "content": "16/10/2020 - 10/11/2020"
+          },
+          {
+            "title": "<b>TIPO:</b>",
+            "content": "Sitio <i>Web Responsive</i>"
+          },
           {
             "title": "<b>REPOSITORIO:</b>",
             "content": "<a href='https://github.com/JCLedesmaDev/Sistema-de-Gestion-de-Libros' target='_blank' rel='noopener'>Haz click aqui</a>"
@@ -270,7 +305,6 @@
     ],
     "clickMe": "Haz click para saber mas..."
   },
-
   "contact": {
     "interested": "¿Interesado?",
     "modeContact": [
@@ -284,7 +318,9 @@
       {
         "icon": "fas fa-phone",
         "title": "TELEFONO",
-        "links": ["<a href='tel:3512371503'>(+54) 351-2371503</a>"]
+        "links": [
+          "<a href='tel:3512371503'>(+54) 351-2371503</a>"
+        ]
       },
       {
         "icon": "fas fa-envelope",
@@ -332,7 +368,6 @@
     "modalContact": "¡Muchas gracias por su consulta!",
     "modalContactError": "Uupss.. Ha ocurrido un error, intentelo mas tarde."
   },
-
   "footer": {
     "sitie": "Sitio diseñado por ",
     "linkedIn": "<a href='https://www.linkedin.com/in/juan-cruz-ledesma/' target='_blank' rel='noopene'> Juan Cruz Ledesma </a>",

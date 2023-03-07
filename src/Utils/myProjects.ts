@@ -78,7 +78,12 @@ export const myProjects = [
     imagesModal: [productos1, productos2, productos3, productos4, productos5],
   },
   {
-    title: "Albumes y Figuritas",
+    title: "Coleccion de Albumes",
+    mainImage: figuritas1,
+    imagesModal: [figuritas1, figuritas2, figuritas3, figuritas4, figuritas5],
+  },
+  {
+    title: "Coleccion de Albumes REMAKE",
     mainImage: figuritas1,
     imagesModal: [figuritas1, figuritas2, figuritas3, figuritas4, figuritas5],
   }
