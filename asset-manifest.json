@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/Portafolio/static/css/main.bf29a127.css",
-    "main.js": "/Portafolio/static/js/main.97244383.js",
+    "main.css": "/Portafolio/static/css/main.532c168b.css",
+    "main.js": "/Portafolio/static/js/main.ffc4d26f.js",
     "static/js/377.61b9fc02.chunk.js": "/Portafolio/static/js/377.61b9fc02.chunk.js",
     "static/media/figuritas3.png": "/Portafolio/static/media/figuritas3.6e6e0089a0cd5f7f9b9e.png",
     "static/media/figuritas2.png": "/Portafolio/static/media/figuritas2.3592a84dd5b5f8fefb37.png",
@@ -21,6 +21,7 @@
     "static/media/productos2.png": "/Portafolio/static/media/productos2.602b45d0d21aedaf304e.png",
     "static/media/turnero4.png": "/Portafolio/static/media/turnero4.d7cfa0a61b1053477581.png",
     "static/media/productos3.png": "/Portafolio/static/media/productos3.901040c9b739c8cd6cf6.png",
+    "static/media/zustand.png": "/Portafolio/static/media/zustand.b714d056132d5d87e2de.png",
     "service-worker.js": "/Portafolio/service-worker.js",
     "static/media/node.png": "/Portafolio/static/media/node.d4622bbe22616a90d064.png",
     "static/media/productos1.png": "/Portafolio/static/media/productos1.7599b5471a95bc7838b6.png",
@@ -32,32 +33,31 @@
     "static/media/crud-libros-4.png": "/Portafolio/static/media/crud-libros-4.f407cd9c123eb4a6f16c.png",
     "static/media/activities1.png": "/Portafolio/static/media/activities1.a3ca4362bf9370863898.png",
     "static/media/turnero1.png": "/Portafolio/static/media/turnero1.8b681d72c6e4893bd2f7.png",
-    "static/media/ionic.svg": "/Portafolio/static/media/ionic.4d3a42648c013b77197164df459a5e2b.svg",
+    "static/media/ionic.svg": "/Portafolio/static/media/ionic.02a2a01b80acb87e715e06ee2d1f0ec3.svg",
     "static/media/mi-portafolio-2.png": "/Portafolio/static/media/mi-portafolio-2.e8d49afc025174a8a8d3.png",
     "static/media/mi-portafolio-5.png": "/Portafolio/static/media/mi-portafolio-5.f21bb3d423197445425d.png",
     "static/media/activities3.png": "/Portafolio/static/media/activities3.4bfcf82f2656f4685b0c.png",
     "static/media/react-native.png": "/Portafolio/static/media/react-native.e11824049ac61c177cf1.png",
     "static/media/mongodb.svg": "/Portafolio/static/media/mongodb.b508609b24c1a2bc58576411df58bb4b.svg",
     "static/media/mysql.svg": "/Portafolio/static/media/mysql.4e6fc76860c30ade009df8b119c7eaa5.svg",
-    "static/media/Spin-1s-200px.svg": "/Portafolio/static/media/Spin-1s-200px.40c760a91e242f0977ba74e3cbf98260.svg",
+    "static/media/Spin-1s-200px.svg": "/Portafolio/static/media/Spin-1s-200px.926112413872c4468a0f3079abcb4dab.svg",
     "static/media/jquery.svg": "/Portafolio/static/media/jquery.fcc480227fd31fecc887db807010bf1d.svg",
     "static/media/react.svg": "/Portafolio/static/media/react.90239cd53430c74bff75f9ba641c4ee9.svg",
     "index.html": "/Portafolio/index.html",
     "static/media/js.svg": "/Portafolio/static/media/js.4e09fbe4a281d8b49871e4335784767d.svg",
-    "static/media/typescript.svg": "/Portafolio/static/media/typescript.72bdf2a86ee868f2e9523b808e57c852.svg",
+    "static/media/typescript.svg": "/Portafolio/static/media/typescript.c1b05e95d4293f835e58ab40a2a1e52d.svg",
     "static/media/blazor.svg": "/Portafolio/static/media/blazor.80bf5d470dd7029921e8dc567c31c249.svg",
     "static/media/nextjs.svg": "/Portafolio/static/media/nextjs.08366f9f1f3ad02be389e07c0c2e131f.svg",
-    "static/media/redux.svg": "/Portafolio/static/media/redux.0a4a6ca2be44339bedb69de15f66d243.svg",
     "static/media/css.svg": "/Portafolio/static/media/css.8cc445df0bb929bc639a6fd799022d50.svg",
     "static/media/html.svg": "/Portafolio/static/media/html.cfea90bb17d04c931c944dff7505fa88.svg",
     "static/media/angular.svg": "/Portafolio/static/media/angular.28ae4f3c6c193d04113e4767a73b86bc.svg",
     "static/media/vue.svg": "/Portafolio/static/media/vue.f04dfe30a8ad8eb5c4e01aaf1163cb53.svg",
-    "main.bf29a127.css.map": "/Portafolio/static/css/main.bf29a127.css.map",
-    "main.97244383.js.map": "/Portafolio/static/js/main.97244383.js.map",
+    "main.532c168b.css.map": "/Portafolio/static/css/main.532c168b.css.map",
+    "main.ffc4d26f.js.map": "/Portafolio/static/js/main.ffc4d26f.js.map",
     "377.61b9fc02.chunk.js.map": "/Portafolio/static/js/377.61b9fc02.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.bf29a127.css",
-    "static/js/main.97244383.js"
+    "static/css/main.532c168b.css",
+    "static/js/main.ffc4d26f.js"
   ]
 }
