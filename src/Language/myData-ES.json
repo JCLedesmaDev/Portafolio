@@ -139,13 +139,13 @@
     "myWorks": "Proyectos realizados",
     "projects": [
       {
-        "title": "Coleccion de Albumes REMAKE",
+        "title": "Album Virtual REMAKE",
         "description": "Este proyecto fue desarrollado previamente dentro del cursado de la Tecnicatura de Software. Nos permite coleccionar albumes y comprar las figuras de los albumes coleccionados.",
-        "createdWith": "Esta aplicacion esta siendo creada utilizando: <br/> <b>- En el <i>Back-End</i> :</b> NodeJS, ExpressJS, TypeScript y MongoDB, implementando una <b>Arquitectura orientada a Microservicios.</b> <br/> <b>- En el <i>Front-End</i> :</b> ReactJS con sus respectivos Hooks y Custom Hooks, TypeScript, Zustand, Vite. <br/>",
+        "createdWith": "Esta aplicacion esta siendo creada utilizando: <br/> <b>- En el <i>Back-End</i> :</b> NodeJS, ExpressJS, TypeScript y MongoDB, implementando una <b>Arquitectura orientada a Microservicios.</b> <br/> <b>- En el <i>Front-End</i> :</b> ReactJS con sus respectivos Hooks y Custom Hooks, TypeScript, Zustand y Vite <b> implementando una arquitectura orientada al Clean Architecture.</b> <br/>",
         "datesModal": [
           {
             "title": "<b>PERIODO:</b>",
-            "content": "05/12/2022 - Actualidad"
+            "content": "05/12/2022 - 02/04/2023"
           },
           {
             "title": "<b>TIPO:</b>",
@@ -153,12 +153,12 @@
           },
           {
             "title": "<b>REPOSITORIO:</b>",
-            "content": "<a href='https://github.com/JCLedesmaDev/Coleccion-de-albumes' target='_blank' rel='noopener'>Haz click aqui</a>"
+            "content": "<a href='https://github.com/JCLedesmaDev/Album-Virtual' target='_blank' rel='noopener'>Haz click aqui</a>"
           }
         ]
       },
       {
-        "title": "Coleccion de Albumes",
+        "title": "Album Virtual",
         "description": "Este proyecto fue desarrollado dentro del cursado de la Tecnicatura de Software en colaboracion con <b> Vanesa Herrera. Nos permite coleccionar albumes y comprar las figuras de los albumes coleccionados.",
         "createdWith": "Esta aplicacion esta siendo creada utilizando: <br/> <b>- En el <i>Back-End</i> :</b> .NET 6, Entity Framework y SqlServer. <br/> <b>- En el <i>Front-End</i> :</b> ReactJS con sus respectivos usos de Hooks. <br/>",
         "datesModal": [
