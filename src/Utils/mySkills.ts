@@ -4,7 +4,7 @@ import html from "../Static/skills/front/html.svg";
 import ionic from "../Static/skills/front/ionic.svg";
 import js from "../Static/skills/front/js.svg";
 import react from "../Static/skills/front/react.svg";
-import redux from "../Static/skills/front/redux.svg";
+import zustand from "../Static/skills/front/zustand.png";
 import angular from "../Static/skills/front/angular.svg";
 import blazor from "../Static/skills/front/blazor.svg";
 import vue from "../Static/skills/front/vue.svg";
@@ -37,7 +37,7 @@ export const skills: any = {
   HTML5: { css: "", icon: html },
   JavaScript: { css: "", icon: js },
   ReactJS: { css: "", icon: react },
-  Redux: { css: "", icon: redux },
+  Zustand: { css: "", icon: zustand },
   "Angular 12": { css: "", icon: angular },
   Blazor: { css: "", icon: blazor },
   "Vue 3": { css: "", icon: vue },
