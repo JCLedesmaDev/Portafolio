@@ -142,7 +142,7 @@
 }
 .modalContainer__info > .slidesContainer__info::-webkit-scrollbar-track {
   background: #aaa;
-  margin: .75rem;
+  margin-top: 3rem;
 }
 .modalContainer__info > .slidesContainer__info::-webkit-scrollbar-thumb {
   background-color: #666;
