@@ -133,7 +133,22 @@
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
+  overflow-y: scroll;
 }
+.modalContainer__info > .slidesContainer__info::-webkit-scrollbar {
+  width: 0.25rem;
+  border-radius: 1rem;
+  -webkit-appearance: none;
+}
+.modalContainer__info > .slidesContainer__info::-webkit-scrollbar-track {
+  background: #aaa;
+  margin: .75rem;
+}
+.modalContainer__info > .slidesContainer__info::-webkit-scrollbar-thumb {
+  background-color: #666;
+  border-radius: 1.25rem;
+}
+
 
 .slidesContainer__info > h3 {
   border-bottom: 3px solid var(--color-principal);
@@ -146,7 +161,7 @@
 
 .slidesContainer__info > p {
   margin-top: 0;
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.25rem;
   font-size: 0.95rem;
 }
 

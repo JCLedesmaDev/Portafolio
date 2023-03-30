@@ -81,10 +81,5 @@ export const myProjects = [
     title: "Album Virtual",
     mainImage: figuritas1,
     imagesModal: [figuritas1, figuritas2, figuritas3, figuritas4, figuritas5],
-  },
-  {
-    title: "Album Virtual REMAKE",
-    mainImage: figuritas1,
-    imagesModal: [figuritas1, figuritas2, figuritas3, figuritas4, figuritas5],
   }
 ];

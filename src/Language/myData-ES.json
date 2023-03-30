@@ -139,7 +139,7 @@
     "myWorks": "Proyectos realizados",
     "projects": [
       {
-        "title": "Album Virtual REMAKE",
+        "title": "Album Virtual",
         "description": "Este proyecto fue desarrollado previamente dentro del cursado de la Tecnicatura de Software. Nos permite coleccionar albumes y comprar las figuras de los albumes coleccionados.",
         "createdWith": "Esta aplicacion esta siendo creada utilizando: <br/> <b>- En el <i>Back-End</i> :</b> NodeJS, ExpressJS, TypeScript y MongoDB, implementando una <b>Arquitectura orientada a Microservicios.</b> <br/> <b>- En el <i>Front-End</i> :</b> ReactJS con sus respectivos Hooks y Custom Hooks, TypeScript, Zustand y Vite <b> implementando una arquitectura orientada al Clean Architecture.</b> <br/>",
         "datesModal": [
@@ -152,31 +152,12 @@
             "content": "Sitio <i>Web</i>"
           },
           {
+            "title": "<b>ENLACE:</b>",
+            "content": "<a href='https://album-virtual.netlify.app/' target='_blank' rel='noopener'>Haz click aqui</a>"
+          },
+          {
             "title": "<b>REPOSITORIO:</b>",
             "content": "<a href='https://github.com/JCLedesmaDev/Album-Virtual' target='_blank' rel='noopener'>Haz click aqui</a>"
-          }
-        ]
-      },
-      {
-        "title": "Album Virtual",
-        "description": "Este proyecto fue desarrollado dentro del cursado de la Tecnicatura de Software en colaboracion con <b> Vanesa Herrera. Nos permite coleccionar albumes y comprar las figuras de los albumes coleccionados.",
-        "createdWith": "Esta aplicacion esta siendo creada utilizando: <br/> <b>- En el <i>Back-End</i> :</b> .NET 6, Entity Framework y SqlServer. <br/> <b>- En el <i>Front-End</i> :</b> ReactJS con sus respectivos usos de Hooks. <br/>",
-        "datesModal": [
-          {
-            "title": "<b>COLABORADORA:</b>",
-            "content": "<a href='https://github.com/Vanemariel' target='_blank' rel='noopener'> Github de Vanesa Herrera </a>"
-          },
-          {
-            "title": "<b>PERIODO:</b>",
-            "content": "05/09/2022 - 10/11/2022"
-          },
-          {
-            "title": "<b>TIPO:</b>",
-            "content": "Sitio <i>Web</i>"
-          },
-          {
-            "title": "<b>REPOSITORIO:</b>",
-            "content": "<a href='https://github.com/Vanemariel/G7Album' target='_blank' rel='noopener'>Haz click aqui</a>"
           }
         ]
       },
