@@ -1,0 +1,3 @@
+De esta manera, podemos ampliar el alcance del Request, para poder crear objetos sin restrcciones como seria hacerlo
+con javascript comun, x ejem.:
+req.locals.result

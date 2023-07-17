@@ -1,0 +1,20 @@
+{
+    "info": {
+      "type": "success",
+      "msg": "Ha iniciado sesion correctamente!",
+      "data": {
+        "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzY2MxYmZhNzg4ODQ1NWI4ZmZhYzYyMyIsInJvbGVzIjpbeyJpZCI6IjYzYzVkNDAwZmUxYmU1YWVhNDZmZGFkOSIsIm5hbWUiOiJBZG1pbiJ9XSwiaWF0IjoxNjc0NTI0NjQ2LCJleHAiOjE2NzQ1MjgyNDZ9.SUVpurX4Xjuqd2jD02efhooU3yi-c5xTIsatuKWtwUE",
+        "user": {
+          "id": "63cc1bfa7888455b8ffac623",
+          "fullName": "Administrador",
+          "email": "admin@gmail.com",
+          "roles": [
+            {
+              "id": "63c5d400fe1be5aea46fdad9",
+              "name": "Admin"
+            }
+          ]
+        }
+      }
+    }
+  }

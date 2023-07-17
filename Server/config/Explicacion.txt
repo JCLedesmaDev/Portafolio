@@ -1,0 +1,35 @@
+
+Explicacion de el modulo "Config":
+
+   Para hacer esto, debemos hacer los siguientes pasos:
+   * Definir dentro del archivo ".env", una variable llamada "NODE_ENV" o "NODE_CONFIG_ENV", especificando el entorno de ejecucion.
+   
+   * Crear dentro de la carpeta "config" podemos crear un archivo cualquiera con el nombre del entorno que ejecutaremos.
+   Por ejemplo: Si creamos un archivo llamado "asd.js", le definimos sus parametros y en el .env escribimos "NODE_ENV=asd", nos ejecutara ese archivo en especifico con sus parametros.
+   Sin embargo, los archivos mas comunes son:
+      - default.js: Aca definiremos todos los parametros por defecto y se utilizaran en caso de que dicho parametro no se encuentren definidos en el archivo del respectivo entorno en ejecucion (Es decir, que si estamos en produccion y dentro del archivo "production.js", no se encuentra definido X parametro, tomara automaticamente el que tiene "default.js") 
+      - development.js: Definiremos todos los parametros para cuando estemos en desarrollo
+      - production.js: Definiremos todos los parametros para cuando estemos en produccion
+
+   * Para poder utilizar algun parametro de nuestro archivo de configuracion, podemos usarlo escribiendo por ejemplo: 
+   config.get('server.port')
+   El cual corresponde a la config de:
+      module.exports = {
+         server: {
+            port: 1800,
+         },
+      }
+
+Explicacion de node-config:
+
+   Permite asignarle valores provenientes de nuestro ".ENV" a los parametros de nuestros archivos de configuracion, para hacer esto, deberemos tener en cuenta lo siguiente:
+   - Crear un archivo llamado "custom-environment-variables.js"
+   - Dentro del este archivo, definir la misma estructura de parametros que en los archivos restantes (de los otros entornos) pero con la diferencia, que el valor del parametro, debera hacer referencia al nombre de la variable de entorno que esta en el ".ENV"
+   Por ejemplo:
+   module.exports = {
+      server: {
+         port: 'PORT' // Dentro del .Env, debemos tener una variable llamada PORT=3000
+      }
+   }
+   
+   Debemos tener en cuenta la siguiente consideracion, en caso de que ejecutemos algun ambiente de trabajo y cuyo parametro se encuentre tambien dentro del "custom-environment-variables.js" (por ejemplo el puerto), la prioridad de valor la tendra el que provenga del ".env" en vez del ambiente en cuestion.

@@ -1,0 +1,42 @@
+### Aclaracion: 
+Debemos tener instalado TypeScript de manera global para poder iniciar un proyecto con TypeScript
+Si surge un error, posiblemente ver este articulo: 
+https://www.cdmon.com/es/blog/la-ejecucion-de-scripts-esta-deshabilitada-en-este-sistema-te-contamos-como-actuar
+
+=============================================================
+
+### Anotaciones del proyecto:
+
+1) Al empezar el proyecto con "npm init", debemos indicarle a NodeJS que tenemos un proyecto con TypeScript escribiendo: "tsc -init"
+
+2) Una vez inicializado el proyecto, hacemos los siguientes pasos:
+   * Crear carpeta llamada 'dist' y 'src'
+   * En el archivo 'tsconfig.json' especificamos que cuando querramos compilar todo el proyecto BE, se nos almacene en la carpeta "dist" que creamos recientemente. Para esto, agregaremos dentro de "compilerOptions" la sig linea: "outDir": "./dist"
+
+3) Librerias a utilizar: 
+   * typescript
+   * express | @types/express
+   * cors | @types/cors - (Permite el acceso a las peticiones HTTP hacia nuestro BE)
+   * dotenv - (Permite el uso de las variables de entorno)
+   * mongoose - (ORM de MongoDB)
+   * nodemon - (utilidad que monitorea los cambios en el código fuente que se está desarrollando y automáticamente reinicia el servidor)
+   * mongoose-delete | @types/mongoose-delete - (Este paquete nos permite indicarle a nuestros modelos (colecciones) que hagan uso de estrategias de "Soft Delete - borrado logico, permitiendonos persistir los registros eliminados
+   * ts-node | @types/node - (nos permite ejecutar Typescript en un proyecto de Nodejs)
+   * bcrypt | @types/bcrypt - (Permite hashear las claves y guardalas en la BD)
+   * mongoose-paginate-v2 - (Para paginar todos los registro de una coleccion de mongoose)   
+   * config | @types/config - (Nos permite definir un conjunto de parámetros predeterminados y extenderlos para diferentes entornos de implementación (desarrollo, control de calidad, preparación, producción, etc.).)
+   * node-config: Permite pasarle valores a nuestros parametros del "Config" por medio de las variables de entorno del .ENV 
+   * rimraf: Eliminados de carpetas por comando
+   * morgan | @types/mogan - ()   
+   * express-validators (Middleware que permite validar los datos provenientes del Request)
+   * jsonwebtokens | @types/jsonwebtokens 
+
+4) Configuraciones del package.json:
+   Dentro del package, debemos especificar unas cuantas cosas:
+   - El archivo principal de nuestro proyecto: El cual sera el "app.ts"
+   - Los scripts de ejecucion: Copiaremos el siguiente obj.json
+     "scripts": {
+         "dev": "nodemon --watch './**/*.ts' --exec ts-node app.ts",
+         "start": "node ./dist/app.js",
+         "build": "rimraf ./dist && tsc -p ."
+      },

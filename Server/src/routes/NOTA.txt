@@ -1,0 +1,8 @@
+
+tiene su archivo de :
+- index.js (el manejo de las rutas en particular)
+- controller.js (el manejo de payloads y datos que utilizara la logica en cuestion, aca va todo lo relacionado al req.body, etc)
+- logic.js (logica de negocio - Business Layer ) 
+- dal.js / dao.js (consumo a la BD - Data Access Layer / Data Access Object )
+- service.js (en caso de q sea una api externa)
+- xxx.cache.js (en caso de que haya algo con la cache)
