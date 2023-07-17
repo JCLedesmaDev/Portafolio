@@ -1,20 +1,15 @@
-import Albumes from './collections/Albumes'
-import PurchasedFigures from './collections/PurchasedFigures'
-import Figurites from './collections/Figurites'
-import AlbumCollections from './collections/AlbumCollections'
-import Users from './collections/Users'
-import PurchasedAlbumes from './collections/PurchasedAlbumes'
-import Roles from './collections/Roles'
+
 import RegistersDb from './collections/RegistersBD'
+import Projects from './collections/Projects';
+import Technologies from './collections/Technologies';
+import Colaborators from './collections/Colaborators';
+import Users from './collections/Users';
 
 const collections = {
     Users,
-    AlbumCollections,
-    Albumes,
-    Figurites,
-    PurchasedAlbumes,
-    PurchasedFigures,
-    Roles,
+    Projects,
+    Technologies,
+    Colaborators,
     RegistersDb
 };
 
