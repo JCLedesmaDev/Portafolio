@@ -9,7 +9,7 @@ import { eventHandler } from './middlewares/eventHandler';
 import { notFoundRouterHandler } from './middlewares/notFoundRouteHandler';
 import { createMocksDateHandler } from './utils/createMocksDate';
 
- function startServer(connectionServer: string) {
+function startServer(connectionServer: string) {
 
     const app: Express = express();
 

@@ -1,12 +1,14 @@
 module.exports = {
     jwt_secret: 'JWT_SECRET',
-    password_admin: 'PASSWORD_ADMIN',
     connectionBD: 'CONNECTION_DB',
     node_env: 'NODE_ENV',
-
+    
     server: {
         port: 'PORT',
         public_url: 'PUBLIC_URL'
     },
-
+    
+    email_admin: 'EMAIL_ADMIN',
+    userName_admin: 'USERNAME_ADMIN',
+    password_admin: 'PASSWORD_ADMIN',
 }
