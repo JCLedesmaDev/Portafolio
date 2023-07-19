@@ -4,7 +4,7 @@ import { ILoginDto } from "./dto/ILogin.dto"
 import bcrypt from "../../utils/bcryptPassword"
 import responseMessage from "../../utils/responseMessage"
 import mapper from './mapper'
-import { IRegisterDto } from "./dto/IRegister.dto"
+
 import { tryCatchWrapper } from "../../utils/tryCatchWrapper"
 import { IAuth } from "../../interface/IAuth"
 
@@ -31,28 +31,4 @@ const loginUser = tryCatchWrapper(async (payload: ILoginDto) => {
 })
 
 
-const registerUser = tryCatchWrapper(async (payload: IRegisterDto) => {
-
-    const user = await externalDb.getUserByField('email', payload.email);
-
-    if (user !== null) {
-        throw new ApplicationError({ message: 'Este email, ya ha sido utilizado. Intentelo con otro.' });
-    }
-
-    const passwordHash = await bcrypt.encrypt(payload.password)
-
-    await externalDb.createUser({
-        email: payload.email,
-        fullName: payload.fullName,
-        password: passwordHash
-    })
-
-    return responseMessage.success<any>({
-        message: 'Se ha registrado correctamente!'
-    })
-})
-
-export default {
-    loginUser,
-    registerUser
-}
+export default { loginUser }

@@ -9,6 +9,5 @@ module.exports = {
     },
     
     email_admin: 'EMAIL_ADMIN',
-    userName_admin: 'USERNAME_ADMIN',
     password_admin: 'PASSWORD_ADMIN',
 }

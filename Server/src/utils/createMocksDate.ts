@@ -21,7 +21,6 @@ const createUserAdmin = async () => {
     if (userAdmin === null) {
         await collections.Users.create({
             email: config.get("email_admin"),
-            fullName: config.get("userName_admin"),
             password: await bcrypt.encrypt(config.get("password_admin")),
         })
     }

@@ -1,7 +1,6 @@
 import { IUserSchema } from "../../models/collections/Users";
 import collections from "../../models/index.collections"
 import { ApplicationError } from "../../utils/applicationError";
-import { IRegisterDto } from "./dto/IRegister.dto";
 
 /**
  * Obtener usuario por determinado campo
@@ -12,34 +11,18 @@ import { IRegisterDto } from "./dto/IRegister.dto";
 const getUserByField = async (field: string, value: string): Promise<IUserSchema | null> => {
     try {
         const parameters = { [field]: value }
-        return await collections.Users.findOne(parameters).populate({ path: 'roles' });
+        return await collections.Users.findOne(parameters).populate([
+            { strictPopulate: false, path: 'Technologies' },
+            { // Hacemos populate de los proyectos que tiene el usuario
+                strictPopulate: false, path: 'Projects', populate: {
+                    // hacemos populate de los colaboradores de los proyectos del usuario.
+                    strictPopulate: false, path: 'Colaborators'
+                }
+            }
+        ]);
     } catch (error) {
         throw new ApplicationError({ message: 'Ha ocurrido un error al obtener el usuario', source: error });
     }
 }
 
-/**
- * Crear un Usuario en la coleccion
- * @param payload Datos del futuro usuario.
- */
-const createUser = async (payload: IRegisterDto): Promise<void> => {
-    try {
-        const rolUser = await collections.Roles.findOne({ name: 'User' })
-        
-        const parameters = {
-            email: payload.email,
-            fullName: payload.fullName,
-            password: payload.password,
-            roles: [rolUser?._id] // Rol: User
-        }
-
-        await collections.Users.create(parameters)
-    } catch (error) {
-        throw new ApplicationError({ message: 'Ha ocurrido un error al crear un usuario', source: error });
-    }
-}
-
-export default {
-    getUserByField,
-    createUser
-}
+export default { getUserByField }
