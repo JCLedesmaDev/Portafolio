@@ -12,6 +12,15 @@
     "strict": true, /* Enable all strict type-checking options. */
     "skipLibCheck": true, /* Skip type checking all .d.ts files. */
     "moduleResolution": "node",
+  
+    // Manejo de alias junto a module-alias
+    "baseUrl": "./src",
+    "paths": {
+      "@interface/*": ["interface/*"],
+      "@middlewares/*": ["middlewares/*"],
+      "@models/*": ["models/*"],
+      "@utils/*": ["utils/*"],
+    }
   },
   "lib": ["es2015"],
   "exclude": [

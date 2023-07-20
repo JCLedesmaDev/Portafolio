@@ -1,4 +1,4 @@
-import collections from "../models/index.collections"
+import collections from "@models/index.collections"
 import { ApplicationError } from "./applicationError";
 import bcrypt from './bcryptPassword'
 import config from 'config'
@@ -16,8 +16,10 @@ const createMocksDateHandler = async () => {
 export { createMocksDateHandler }
 
 const createUserAdmin = async () => {
-    const userAdmin = await collections.Users.findOne(config.get("email_admin"))
-
+    const userAdmin = await collections.Users.findOne({
+        email: config.get("email_admin")
+    })
+    
     if (userAdmin === null) {
         await collections.Users.create({
             email: config.get("email_admin"),

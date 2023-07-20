@@ -21,6 +21,7 @@ API CRUD en NodeJS con manejo de Roles implementando una arquitectura orientada 
  * [Morgan](https://www.npmjs.com/package/morgan) | [@types/mogan](https://www.npmjs.com/package/@types/morgan) - Loguea en consola, las peticiones HTTP Request.  
  * [Express-validators](https://express-validator.github.io/docs/) - Middleware que permite validar los datos provenientes del Request.
  * [Jsonwebtokens](https://www.npmjs.com/package/jsonwebtoken) | [@types/jsonwebtokens](https://www.npmjs.com/package/@types/jsonwebtoken).
+ * [Module-alias](https://www.npmjs.com/package/module-alias) - Permite acotar las url de los modulos a importar.
 
 
 ## Requerimientos:

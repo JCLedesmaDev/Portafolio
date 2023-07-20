@@ -1,15 +1,15 @@
-import externalDb from "./dal"
-import { ApplicationError } from "../../utils/applicationError"
-import { ILoginDto } from "./dto/ILogin.dto"
-import bcrypt from "../../utils/bcryptPassword"
-import responseMessage from "../../utils/responseMessage"
+import bcrypt from "@utils/bcryptPassword"
+import responseMessage from "@utils/responseMessage"
+import { tryCatchWrapper } from "@utils/tryCatchWrapper"
+import { ApplicationError } from "@utils/applicationError"
 import mapper from './mapper'
+import externalDb from "./dal"
+import { ILoginDtoRequest } from "./dto/ILogin.dto.request"
+import { ILoginDtoResponse } from "./dto/ILogin.dto.response"
 
-import { tryCatchWrapper } from "../../utils/tryCatchWrapper"
-import { IAuth } from "../../interface/IAuth"
 
 
-const loginUser = tryCatchWrapper(async (payload: ILoginDto) => {
+const loginUser = tryCatchWrapper(async (payload: ILoginDtoRequest) => {
 
     const user = await externalDb.getUserByField('email', payload.email);
 
@@ -23,9 +23,9 @@ const loginUser = tryCatchWrapper(async (payload: ILoginDto) => {
         throw new ApplicationError({ message: 'Contraseña incorrecta. Intentelo nuevamente' })
     }
 
-    const userMapper: IAuth = await mapper.singleUserAuth(user)
+    const userMapper: ILoginDtoResponse = await mapper.singleUserAuth(user)
 
-    return responseMessage.success<IAuth>({
+    return responseMessage.success<ILoginDtoResponse>({
         message: 'Ha iniciado sesion correctamente!', data: userMapper
     })
 })

@@ -1,9 +1,7 @@
 import jwt from 'jsonwebtoken'
-import { IRolSchema } from '../models/collections/Roles'
-import { IUserSchema } from '../models/collections/Users'
-import mapper from '../routes/users/mapper'
 import config from 'config'
 import { ApplicationError } from './applicationError'
+import { IUserSchema } from '@models/ICollections'
 
 /**
  * A partir de los datos del usuario, crea un token que expira en 1h 
@@ -16,7 +14,6 @@ const tokenSign = (resource: IUserSchema): string => {
            que prodremos ver al desencriptarlo */
         {
             id: resource._id,
-            roles: mapper.multipleRoles(resource.roles as IRolSchema[])
         },
         // Pasamos la clave secreta
         config.get('jwt_secret') as string,

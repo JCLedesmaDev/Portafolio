@@ -15,7 +15,7 @@ if (!config.get('server.port')) {
 
 dbConnect()
     .then(() => {
-        const connectionServer = process.env.NODE_ENV === "production"
+        const connectionServer = config.get('node_env') === "production"
             ? config.get('server.public_url') as string
             : `${config.get('server.public_url')}${config.get('server.port')}`
 

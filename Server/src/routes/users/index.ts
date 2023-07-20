@@ -1,9 +1,9 @@
 import express from "express";
 import { loginUser } from './controller'
-import { validatorLogin } from './validators/login'
+import { validatorLoginRequest } from './validators/Login.request'
 
 const router = express.Router();
 
-router.post('/login', validatorLogin, loginUser)
+router.post('/login', validatorLoginRequest, loginUser)
 
 export default router 

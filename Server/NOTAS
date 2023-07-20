@@ -30,6 +30,7 @@ https://www.cdmon.com/es/blog/la-ejecucion-de-scripts-esta-deshabilitada-en-este
    * morgan | @types/mogan - ()   
    * express-validators (Middleware que permite validar los datos provenientes del Request)
    * jsonwebtokens | @types/jsonwebtokens 
+   * module-alias - Con el fin de acotar las url de los modulos a importar. 
 
 4) Configuraciones del package.json:
    Dentro del package, debemos especificar unas cuantas cosas:
@@ -40,3 +41,21 @@ https://www.cdmon.com/es/blog/la-ejecucion-de-scripts-esta-deshabilitada-en-este
          "start": "node ./dist/app.js",
          "build": "rimraf ./dist && tsc -p ."
       },
+
+5) Acotar las url de los modulos a utilizar.
+   Debemos agregar en nuestro "tsconfig.json" dentro de "compilerOptions" los paths que utilizaremos para que TypeScript los reconozca.
+   Por ejemplo:
+   "baseUrl": "./src",
+   "paths": {
+      "@interface/*": ["interface/*"],
+      "@middlewares/*": ["middlewares/*"],
+      "@models/*": ["models/*"],
+      "@utils/*": ["utils/*"],
+   }
+   Tambien hay que instalar la libreria "module-alias" y dentro del package, mencionar dichos alias, por ejemplo:
+   "_moduleAliases": {
+      "@modules": "dist/modules",
+      "@services": "dist/services"
+   }
+   Y por ultimo, agregar dentro del server.ts la siguiente linea:
+   import 'module-alias/register';

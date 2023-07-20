@@ -1,6 +1,6 @@
-import { IUserSchema } from "../../models/collections/Users";
-import collections from "../../models/index.collections"
-import { ApplicationError } from "../../utils/applicationError";
+import { IUserSchema } from "@models/ICollections";
+import collections from "@models/index.collections"
+import { ApplicationError } from "@utils/applicationError";
 
 /**
  * Obtener usuario por determinado campo

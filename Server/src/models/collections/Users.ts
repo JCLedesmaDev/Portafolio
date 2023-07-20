@@ -1,31 +1,17 @@
-import { model, Schema, Document, Types, ObjectId } from 'mongoose';
-import mongooseDelete, { SoftDeleteInterface, SoftDeleteModel } from 'mongoose-delete';
-import { IProjectSchema } from './Projects';
-import { ITechnologySchema } from './Technologies';
-
-
-export interface IUserSchema extends Document, SoftDeleteInterface {
-    fullName: string;
-    seniority: string;
-    aboutMe: string;
-    mySkills: string;
-    email: string;
-    password: string;
-    projectList: ObjectId[] | IProjectSchema[];
-    techologyList: ObjectId[] | ITechnologySchema[];
-    curriculumVitae: string;
-}
+import { IUserSchema } from '@models/ICollections';
+import { model, Schema, Types } from 'mongoose';
+import mongooseDelete, { SoftDeleteModel } from 'mongoose-delete';
 
 const UserSchema = new Schema<IUserSchema>({
-    fullName: { type: String, required: true },
-    seniority: { type: String, required: true },
-    aboutMe: { type: String, required: true },
-    mySkills: { type: String, required: true },
+    fullName: { type: String, required: false },
+    seniority: { type: String, required: false },
+    aboutMe: { type: String, required: false },
+    mySkills: { type: String, required: false },
     email: { type: String, required: true, unique: true },
     password: { type: String, required: true },
-    projectList: [{ type: Types.ObjectId, ref: "Projects" }],
-    techologyList: [{ type: Types.ObjectId, ref: "Technologies" }],
-    curriculumVitae: { type: String, required: true },
+    projectList: {type: [{ type: Types.ObjectId, ref: "Projects" }], required: false, default: []},
+    techologyList: { type: [{ type: Types.ObjectId, ref: "Technologies" }], required: false, default: []},
+    curriculumVitae: { type: String, required: false },
 }, {
     timestamps: true, // Nos crea un campo mas con la fecha de creacion y actualizacion del registro
     versionKey: false // Desactivamos la version del dato dentro de mongoose  

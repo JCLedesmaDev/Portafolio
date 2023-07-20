@@ -1,4 +1,5 @@
 import express, { Express } from 'express';
+import 'module-alias/register';
 import cors from 'cors';
 import logger from 'morgan'
 import config from 'config'

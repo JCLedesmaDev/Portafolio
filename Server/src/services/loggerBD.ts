@@ -1,5 +1,5 @@
-import collections from "../models/index.collections"
-import { ApplicationError } from "../utils/applicationError";
+import collections from "@models/index.collections"
+import { ApplicationError } from "@utils/applicationError";
 
 interface ILogger {
     usuarioId: string;

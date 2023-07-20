@@ -1,17 +1,12 @@
-import { model, Schema, Document, PaginateModel, ObjectId, Types } from 'mongoose';
-import mongooseDelete, { SoftDeleteInterface, SoftDeleteModel } from 'mongoose-delete';
+import { ITechnologySchema } from '@models/ICollections';
+import { model, Schema, PaginateModel, Types } from 'mongoose';
+import mongooseDelete, { SoftDeleteModel } from 'mongoose-delete';
 import mongoosePaginate from 'mongoose-paginate-v2'
-import { ICategorySchema } from './Categories';
 
-
-export interface ITechnologySchema extends Document, SoftDeleteInterface {
-    name: string;
-    category: ObjectId | ICategorySchema;
-}
 
 const TechnologySchema = new Schema<ITechnologySchema>({
     name: { type: String, required: true },
-    category: { type: Types.ObjectId, ref: 'Categories' },
+    category: { type: Types.ObjectId, ref: 'Categories', required: true },
 }, {
     timestamps: true, // Nos crea un campo mas con la fecha de creacion y actualizacion del registro
     versionKey: false // Desactivamos la version del dato dentro de mongoose  
