@@ -14,10 +14,17 @@ const getUserByField = async (field: string, value: string): Promise<IUserSchema
         return await collections.Users.findOne(parameters).populate([
             { strictPopulate: false, path: 'Technologies' },
             { // Hacemos populate de los proyectos que tiene el usuario
-                strictPopulate: false, path: 'Projects', populate: {
-                    // hacemos populate de los colaboradores de los proyectos del usuario.
-                    strictPopulate: false, path: 'Colaborators'
-                }
+                strictPopulate: false, path: 'Projects', populate: [
+                    {
+                        // hacemos populate de los colaboradores de los proyectos del usuario.
+                        strictPopulate: false, path: 'Colaborators'
+                    },
+                    {
+                        // hacemos populate al usuario creador de los proyectos.
+                        strictPopulate: false, path: 'Users'
+                    },
+
+                ]
             }
         ]);
     } catch (error) {
