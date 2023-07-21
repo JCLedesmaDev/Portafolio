@@ -1,5 +1,5 @@
 import { NextFunction, Request, Response } from 'express'
-import { ApplicationError } from '../utils/applicationError'
+import { ApplicationError } from '@utils/applicationError'
 
 
 const notFoundRouterHandler = async (req: Request, res: Response, next: NextFunction) => {

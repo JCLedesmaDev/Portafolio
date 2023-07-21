@@ -41,9 +41,12 @@
     "ts-node": "^10.9.1"
   },
   "_moduleAliases": {
+    "@utils": "./src/utils",
+    "@models": "./src/models",
+    "@mappers": "./src/mappers",
+    "@services": "./src/services",
     "@interface": "./src/interface",
     "@middlewares": "./src/middlewares",
-    "@models": "./src/models",
-    "@utils": "./src/utils"
+    "@src": "./src"
   }
 }

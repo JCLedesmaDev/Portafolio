@@ -16,10 +16,13 @@
     // Manejo de alias junto a module-alias
     "baseUrl": "./src",
     "paths": {
+      "@utils/*": ["utils/*"],
+      "@models/*": ["models/*"],
+      "@mappers/*": ["mappers/*"],
+      "@services/*": ["services/*"],
       "@interface/*": ["interface/*"],
       "@middlewares/*": ["middlewares/*"],
-      "@models/*": ["models/*"],
-      "@utils/*": ["utils/*"],
+      "@src/*":["*"],
     }
   },
   "lib": ["es2015"],

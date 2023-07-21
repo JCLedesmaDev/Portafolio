@@ -1,7 +1,7 @@
 import { Request, Response, NextFunction } from 'express'
-import responseMessage from '../utils/responseMessage'
-import logger from '../services/loggerBD'
-import { ApplicationError } from '../utils/applicationError'
+import logger from '@services/loggerBD'
+import responseMessage from '@utils/responseMessage'
+import { ApplicationError } from '@utils/applicationError'
 
 const errorHandler = async (err: ApplicationError, req: Request, res: Response, next: NextFunction) => {
     const requestInfo = {
