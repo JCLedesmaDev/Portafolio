@@ -9,14 +9,10 @@ import mappers from "./index.mappers";
  * @param resource Recursos a utilizar en el mapper
  * @returns Nuevo objeto con los datos a eleccion
  */
-const authUser = (resource: IUserSchema): ILoginDtoResponse => {
+export const authUser = (resource: IUserSchema): ILoginDtoResponse => {
     const mapper: ILoginDtoResponse = {
         token: jwt.tokenSign(resource),
-        user: mappers.singleUser(resource)
+        user: mappers.user(resource)
     }
     return mapper
 };
-
-export default authUser ;
-
-

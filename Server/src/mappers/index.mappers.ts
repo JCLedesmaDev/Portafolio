@@ -1,10 +1,10 @@
-import authUser from "./auth.mapper"
-import multipleProjects from "./project.mapper"
-import multipleTechnologies from "./technology.mapper"
-import singleUser from "./user.mapper"
+import { authUser } from "./auth.mapper"
+import { multipleProjects } from "./project.mapper"
+import { multipleTechnologies } from "./technology.mapper"
+import { user } from "./user.mapper"
 
 const mappers = {
-    singleUser,
+    user,
     authUser,
     multipleProjects,
     multipleTechnologies

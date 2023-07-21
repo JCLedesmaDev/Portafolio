@@ -1,5 +1,7 @@
 Cambiar el cors origin a solo el front, en vez de a todos
 Hacer crud de Proyectos y Tecnologias
-Hacer usuario por defecto
+
 Investigar de enviar emails desde el back
-Hacer mock de categorias de tecnologias
+
+
+VER TEMA DE IMAGENES EN EL MODELS DE PROYECTO Y TECNOLOGIAS (HACER OTRO MODELS)

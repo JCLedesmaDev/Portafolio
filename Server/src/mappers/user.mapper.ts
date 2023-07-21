@@ -7,7 +7,7 @@ import mappers from "./index.mappers";
  * @param resource Recursos a utilizar en el mapper
  * @returns Nuevo objeto con los datos a eleccion
  */
-const singleUser = (resource: IUserSchema): IUser => {
+export const user = (resource: IUserSchema): IUser => {
     const mapper: IUser = {
         id: resource._id,
         fullName: resource.fullName,
@@ -22,6 +22,5 @@ const singleUser = (resource: IUserSchema): IUser => {
     return mapper
 };
 
-export default singleUser;
 
 

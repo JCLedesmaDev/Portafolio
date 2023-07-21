@@ -1,8 +1,14 @@
-import { IProjectSchema } from "@models/ICollections";
+import { IColaboratorSchema, IProjectSchema, IUserSchema } from "@models/ICollections";
 import { IProject } from "@interface/IProject";
-import { IUser } from "@interface/IUser";
+import { IColaborator } from "@interface/IColaborator";
 
-const multipleProjects = (resource: IProjectSchema[]): IProject[] => {
+
+/**
+ * Mappea los datos de muchos proyecto 
+ * @param resource Recursos a utilizar en el mapper
+ * @returns Nuevo objeto con los datos a eleccion
+ */
+export const multipleProjects = (resource: IProjectSchema[]): IProject[] => {
     return resource.map(project => singleProject(project))
 }
 
@@ -22,13 +28,20 @@ const singleProject = (resource: IProjectSchema): IProject => {
         projectLink: resource.projectLink,
         repositoryLink: resource.repositoryLink,
         typeProject: resource.typeProject,
-        user: resource.user as IUser,
-        colaborators: [],
-        images: []
+        idUser: (resource.user as IUserSchema).id,
+        images: resource.images,
+        colaborators: multipleColaborators(resource.colaborators as IColaboratorSchema[])
     }
     return mapper
 };
 
-export default multipleProjects;
-
-
+const multipleColaborators = (resource: IColaboratorSchema[]): IColaborator[] => {
+    return resource.map((colaborator: IColaboratorSchema) => {
+        const mapper: IColaborator = {
+            id: colaborator.id,
+            name: colaborator.name,
+            repositoryLink: colaborator.repositoryLink
+        }   
+        return mapper
+    })
+}

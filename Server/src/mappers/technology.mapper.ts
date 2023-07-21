@@ -1,7 +1,7 @@
 import { ITechnology } from "@interface/ITechnology";
 import { ITechnologySchema } from "@models/ICollections";
 
-const multipleTechnologies = (resource: ITechnologySchema[]): ITechnology[] => {
+export const multipleTechnologies = (resource: ITechnologySchema[]): ITechnology[] => {
     return resource.map(project => singleTechnology(project))
 }
 
@@ -18,6 +18,5 @@ const singleTechnology = (resource: ITechnologySchema): ITechnology => {
     return mapper
 };
 
-export default multipleTechnologies ;
 
 

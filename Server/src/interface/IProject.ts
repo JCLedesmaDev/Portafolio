@@ -1,6 +1,5 @@
 import { IBase } from "./common/IBase";
 import { IColaborator } from "./IColaborator";
-import { IUser } from "./IUser";
 
 export interface IProject extends IBase {
     name: string;
@@ -13,5 +12,5 @@ export interface IProject extends IBase {
     repositoryLink: string;
     colaborators: IColaborator[];
     images: string[],
-    user: IUser
+    idUser: string
 }

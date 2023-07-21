@@ -22,8 +22,7 @@ const getUserByField = async (field: string, value: string): Promise<IUserSchema
                     {
                         // hacemos populate al usuario creador de los proyectos.
                         strictPopulate: false, path: 'Users'
-                    },
-
+                    }
                 ]
             }
         ]);
