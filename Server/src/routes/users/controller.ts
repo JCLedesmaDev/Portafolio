@@ -23,7 +23,7 @@ const updateUser = controllerWrapper(async (req: Request) => {
     //Almacenamos en "payload", los datos que cumplieron con el Validators y evita captar datos extras sin contemplar
     const payload = matchedData(req) as IUpdateUserRequest
     payload.idUser = req.locals.usrId
-
+    // https://github.com/leifermendez/curso-node-udemy/blob/master/controllers/storage.js
 
     req.locals.info = payload // Se utiliza en el eventHandler
     return await logic.updateUser(payload)
