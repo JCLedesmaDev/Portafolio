@@ -35,6 +35,11 @@ const loginUser = tryCatchWrapper(async (payload: ILoginDtoRequest) => {
         message: 'Ha iniciado sesion correctamente!', data: response
     })
 })
+// app.post("/upload", upload.single("myFile"), (req, res) => {
+//     const file = req.file.filename;
+//     console.log(file)
+//     res.send({ data: "OK", url: `http://localhost:3000/${file}` });
+//   });
 
 const getUser = tryCatchWrapper(async () => {
     const user = await externalDb.getUserByField('email', config.get("email_admin"));

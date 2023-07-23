@@ -22,6 +22,7 @@ API CRUD en NodeJS con manejo de Roles implementando una arquitectura orientada 
  * [Express-validators](https://express-validator.github.io/docs/) - Middleware que permite validar los datos provenientes del Request.
  * [Jsonwebtokens](https://www.npmjs.com/package/jsonwebtoken) | [@types/jsonwebtokens](https://www.npmjs.com/package/@types/jsonwebtoken).
  * [Module-alias](https://www.npmjs.com/package/module-alias) - Permite acotar las url de los modulos a importar.
+ * [Multer](https://www.npmjs.com/package/multer) - Para el manejo de archivos desde nodejs. | [@types/multer](https://www.npmjs.com/package/@types/multer)
 
 
 ## Requerimientos:

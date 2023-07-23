@@ -11,7 +11,7 @@ const controllerWrapper = (callback: any) => {
 
         req.locals.finished = true
         res.json(data)
-        next()
+        return next()
     }
 }
 

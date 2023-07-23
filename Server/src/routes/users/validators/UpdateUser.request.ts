@@ -25,23 +25,19 @@ export const validatorUpdateUser = [
         .trim() // Elimina los espacios del comienzo y final del texto
         .notEmpty(), // No puede venir vacio
 
-    check("email", "Este campo es requerido")
-        .exists({ checkFalsy: true }) // Los campos con valores falsos (por ejemplo, "", 0, falso, nulo) tampoco existirán'),
-        .trim() // Elimina los espacios del comienzo y final del texto
-        .notEmpty(), // No puede venir vacio
-
-    check("password", "Este campo es requerido")
-        .exists({ checkFalsy: true }) // Los campos con valores falsos (por ejemplo, "", 0, falso, nulo) tampoco existirán'),
-        .trim() // Elimina los espacios del comienzo y final del texto
-        .notEmpty(), // No puede venir vacio
-
-    // VER
     check("imageProfile", "Este campo es requerido")
-        .exists({ checkFalsy: true }) // Los campos con valores falsos (por ejemplo, "", 0, falso, nulo) tampoco existirán'),
-        .trim() // Elimina los espacios del comienzo y final del texto
-        .notEmpty(), // No puede venir vacio
+        .custom((value, { req }) => {
+            console.log("🚀 ~ file: UpdateUser.request.ts:30 ~ .custom ~ value:", value)
+            // let flag = false
 
-    // VER
+            // const file = req?.file?.originalname.split(".").pop();
+            // if (req.file !== undefined && (file === 'png' || file === 'jpeg')) {
+            //     flag = true
+            // }
+            // return flag
+        })
+        .withMessage('Debe enviar una imagen de formato .png o .jpeg para el perfil.'),
+
     check("curriculumVitae", "Este campo es requerido")
         .exists({ checkFalsy: true }) // Los campos con valores falsos (por ejemplo, "", 0, falso, nulo) tampoco existirán'),
         .trim() // Elimina los espacios del comienzo y final del texto

@@ -31,6 +31,7 @@ https://www.cdmon.com/es/blog/la-ejecucion-de-scripts-esta-deshabilitada-en-este
    * express-validators (Middleware que permite validar los datos provenientes del Request)
    * jsonwebtokens | @types/jsonwebtokens 
    * module-alias - Con el fin de acotar las url de los modulos a importar. 
+   * multer - Para el manejo de archivos desde nodejs.
 
 4) Configuraciones del package.json:
    Dentro del package, debemos especificar unas cuantas cosas:

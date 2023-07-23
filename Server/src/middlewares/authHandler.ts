@@ -18,7 +18,7 @@ const authHandler = (req: Request = request, res: Response = response, next: Nex
         
         return next();
     } catch (error) {
-        next(error)
+        return next(error)
     }
 }
 

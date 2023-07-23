@@ -4,7 +4,6 @@ export interface IUpdateUserRequest {
     seniority: string;
     aboutMe: string;
     mySkills: string;
-    email: string;
-    imageProfile: string; // ver
-    curriculumVitae: string; // ver
+    imageProfile: string;
+    curriculumVitae: string; 
 }

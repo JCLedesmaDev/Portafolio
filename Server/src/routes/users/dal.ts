@@ -33,7 +33,6 @@ const updateUser = async (payload: IUpdateUserRequest) => {
             seniority: payload.seniority,
             aboutMe: payload.aboutMe,
             mySkills: payload.mySkills,
-            email: payload.email,
             imageProfile: payload.imageProfile,
             curriculumVitae: payload.curriculumVitae
         } as IUserSchema)

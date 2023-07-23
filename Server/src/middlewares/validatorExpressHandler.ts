@@ -8,13 +8,13 @@ const validateResults = (req: Request, res: Response, next: NextFunction) => {
         // Valida los datos que se estan enviando y si no cumple con las condiciones
         // el .throw() forza que se vaya todo al catch
         validationResult(req).throw()
-        next()
+        return next()
     } catch (error) {
         const errors = validationResult(req);
         const extractedErrors: any[] = []
         errors.array({ onlyFirstError: true })
             .map(err => extractedErrors.push({ [err.param]: err.msg }));
-            
+
         return res.json(responseMessage.error<any>({
             message: 'Error en datos enviados', data: extractedErrors
         }))
