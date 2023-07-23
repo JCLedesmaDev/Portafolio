@@ -1,6 +1,7 @@
 import { IUserSchema } from "@models/ICollections";
 import collections from "@models/index.collections"
 import { ApplicationError } from "@utils/applicationError";
+import { IUpdateUserRequest } from "./dto/IUpdateUser.request";
 
 /**
  * Obtener usuario por determinado campo
@@ -14,12 +15,10 @@ const getUserByField = async (field: string, value: string): Promise<IUserSchema
         return await collections.Users.findOne(parameters).populate([
             { strictPopulate: false, path: 'Technologies' },
             { // Hacemos populate de los proyectos que tiene el usuario
-                strictPopulate: false, path: 'Projects', populate: [
-                    {
-                        // hacemos populate de los colaboradores de los proyectos del usuario.
-                        strictPopulate: false, path: 'Colaborators'
-                    }
-                ]
+                strictPopulate: false, path: 'Projects', populate: {
+                    // hacemos populate de los colaboradores de los proyectos del usuario.
+                    strictPopulate: false, path: 'Colaborators'
+                }
             }
         ]);
     } catch (error) {
@@ -27,4 +26,20 @@ const getUserByField = async (field: string, value: string): Promise<IUserSchema
     }
 }
 
-export default { getUserByField }
+const updateUser = async (payload: IUpdateUserRequest) => {
+    try {
+        return await collections.Users.findByIdAndUpdate(payload.idUser, {
+            fullName: payload.fullName,
+            seniority: payload.seniority,
+            aboutMe: payload.aboutMe,
+            mySkills: payload.mySkills,
+            email: payload.email,
+            imageProfile: payload.imageProfile,
+            curriculumVitae: payload.curriculumVitae
+        } as IUserSchema)
+    } catch (error) {
+        throw new ApplicationError({ message: 'Ha ocurrido un error al actualziar este album', source: error })
+    }
+}
+
+export default { getUserByField, updateUser }

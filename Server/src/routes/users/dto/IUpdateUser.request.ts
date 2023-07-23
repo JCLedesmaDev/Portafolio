@@ -1,4 +1,5 @@
 export interface IUpdateUserRequest {
+    idUser: string;
     fullName: string;
     seniority: string;
     aboutMe: string;

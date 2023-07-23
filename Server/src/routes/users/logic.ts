@@ -54,13 +54,16 @@ const getUser = tryCatchWrapper(async () => {
 
 const updateUser = tryCatchWrapper(async (payload: IUpdateUserRequest) => {
 
-    const response: any = {
-        // token: jwt.tokenSign(user),
-        // user: mappers.user(user)
+    const user = await externalDb.getUserByField('_id', payload.idUser);
+
+    if (user === null) {
+        throw new ApplicationError({ message: 'Usuario inexistente. Intentelo nuevamente' });
     }
 
+    await externalDb.updateUser(payload)
+
     return responseMessage.success<any>({
-        message: 'Se edito correctamente!', data: response
+        message: 'Se edito correctamente!', 
     })
 })
 
