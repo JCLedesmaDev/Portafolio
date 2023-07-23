@@ -13,5 +13,8 @@ const loginUser = controllerWrapper(async (req: Request) => {
     return await logic.loginUser(payload)
 })
 
+const getUser = controllerWrapper(async (req: Request) => (
+    await logic.getUser()
+))
 
-export { loginUser }
+export { loginUser, getUser }

@@ -28,7 +28,6 @@ const singleProject = (resource: IProjectSchema): IProject => {
         projectLink: resource.projectLink,
         repositoryLink: resource.repositoryLink,
         typeProject: resource.typeProject,
-        idUser: (resource.user as IUserSchema).id,
         images: resource.images,
         colaborators: multipleColaborators(resource.colaborators as IColaboratorSchema[])
     }

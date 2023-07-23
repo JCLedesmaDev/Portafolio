@@ -1,3 +1,5 @@
+import config from 'config'
+import jwt from "@utils/jwt";
 import bcrypt from "@utils/bcryptPassword"
 import mappers from "@mappers/index.mappers"
 import responseMessage from "@utils/responseMessage"
@@ -6,6 +8,7 @@ import { ApplicationError } from "@utils/applicationError"
 import externalDb from "./dal"
 import { ILoginDtoRequest } from "./dto/ILogin.dto.request"
 import { ILoginDtoResponse } from "./dto/ILogin.dto.response"
+import { IGetUserResponse } from './dto/IGetUser.response';
 
 
 const loginUser = tryCatchWrapper(async (payload: ILoginDtoRequest) => {
@@ -22,12 +25,31 @@ const loginUser = tryCatchWrapper(async (payload: ILoginDtoRequest) => {
         throw new ApplicationError({ message: 'Contraseña incorrecta. Intentelo nuevamente' })
     }
 
-    const userMapper: ILoginDtoResponse = mappers.authUser(user)
+    const response: ILoginDtoResponse = {
+        token: jwt.tokenSign(user),
+        user: mappers.user(user)
+    }
 
     return responseMessage.success<ILoginDtoResponse>({
-        message: 'Ha iniciado sesion correctamente!', data: userMapper
+        message: 'Ha iniciado sesion correctamente!', data: response
+    })
+})
+
+const getUser = tryCatchWrapper(async () => {
+    const user = await externalDb.getUserByField('email', config.get("email_admin"));
+
+    if (user === null) {
+        throw new ApplicationError({ message: 'Usuario no encontrado.' });
+    }
+
+    const response: IGetUserResponse = {
+        user: mappers.user(user)
+    }
+
+    return responseMessage.success<IGetUserResponse>({
+        data: response
     })
 })
 
 
-export default { loginUser }
+export default { loginUser, getUser }

@@ -11,6 +11,5 @@ export interface IProject extends IBase {
     projectLink: string;
     repositoryLink: string;
     colaborators: IColaborator[];
-    images: string[],
-    idUser: string
+    images: string[]
 }

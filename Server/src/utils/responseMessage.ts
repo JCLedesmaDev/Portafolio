@@ -16,24 +16,6 @@ export interface IResponse<typeData> {
 }
 
 
-/**
- * Funcion que crea el DTO para el front
- * @param infoResponse Objeto que contiene props: "message"; "data"; "typeResponse"
- * @params typeData: Se pasa por parametro el tipo de dato que sera "data"
- * @returns Objeto generico de respuesta.
- */
-const response = <typeData>(infoResponse: IRequestMethod<typeData>): IResponse<typeData> => {
-    const { data, message, typeResponse } = infoResponse
-    return {
-        info: {
-            type: typeResponse,
-            msg: message,
-            ...(data && {
-                data: data as typeData
-            })
-        },
-    }
-}
 
 /**
  * Mensaje de respuesta de peticion 200.
@@ -55,6 +37,27 @@ const success = <typeData>(info: IResquestType<typeData>): IResponse<typeData> =
 const error = <typeData>(info: IResquestType<typeData>): IResponse<typeData> => {
     const { data, message } = info
     return response<typeData>({ typeResponse: 'error', message, data })
+}
+
+/**
+ * Funcion que crea el DTO para el front
+ * @param infoResponse Objeto que contiene props: "message"; "data"; "typeResponse"
+ * @params typeData: Se pasa por parametro el tipo de dato que sera "data"
+ * @returns Objeto generico de respuesta.
+ */
+const response = <typeData>(infoResponse: IRequestMethod<typeData>): IResponse<typeData> => {
+    const { data, message, typeResponse } = infoResponse
+    return {
+        info: {
+            type: typeResponse,
+            ...(message && {
+                msg: message
+            }),
+            ...(data && {
+                data: data as typeData
+            })
+        },
+    }
 }
 
 export default {

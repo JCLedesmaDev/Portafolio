@@ -1,5 +1,7 @@
 import { ITechnology } from "@interface/ITechnology";
-import { ITechnologySchema } from "@models/ICollections";
+import { ICategorySchema, ITechnologySchema } from "@models/ICollections";
+import { singleCategory } from "./category.mapper";
+import mappers from "./index.mappers";
 
 export const multipleTechnologies = (resource: ITechnologySchema[]): ITechnology[] => {
     return resource.map(project => singleTechnology(project))
@@ -13,6 +15,8 @@ export const multipleTechnologies = (resource: ITechnologySchema[]): ITechnology
 const singleTechnology = (resource: ITechnologySchema): ITechnology => {
     const mapper: ITechnology = {
         id: resource._id,
+        category: mappers.singleCategory(resource.category as ICategorySchema),
+        name: resource.name
 
     }
     return mapper
