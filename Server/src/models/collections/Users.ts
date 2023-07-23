@@ -4,6 +4,7 @@ import mongooseDelete, { SoftDeleteModel } from 'mongoose-delete';
 
 const UserSchema = new Schema<IUserSchema>({
     fullName: { type: String, required: false },
+    imageProfile: {type: String, required: true},
     seniority: { type: String, required: false },
     aboutMe: { type: String, required: false },
     mySkills: { type: String, required: false },

@@ -9,6 +9,7 @@ import externalDb from "./dal"
 import { ILoginDtoRequest } from "./dto/ILogin.dto.request"
 import { ILoginDtoResponse } from "./dto/ILogin.dto.response"
 import { IGetUserResponse } from './dto/IGetUser.response';
+import { IUpdateUserRequest } from './dto/IUpdateUser.request';
 
 
 const loginUser = tryCatchWrapper(async (payload: ILoginDtoRequest) => {
@@ -51,5 +52,16 @@ const getUser = tryCatchWrapper(async () => {
     })
 })
 
+const updateUser = tryCatchWrapper(async (payload: IUpdateUserRequest) => {
 
-export default { loginUser, getUser }
+    const response: any = {
+        // token: jwt.tokenSign(user),
+        // user: mappers.user(user)
+    }
+
+    return responseMessage.success<any>({
+        message: 'Se edito correctamente!', data: response
+    })
+})
+
+export default { loginUser, getUser, updateUser }

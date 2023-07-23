@@ -10,12 +10,13 @@ import mappers from "./index.mappers";
 export const user = (resource: IUserSchema): IUser => {
     const mapper: IUser = {
         id: resource._id,
-        fullName: resource.fullName,
         email: resource.email,
         aboutMe: resource.aboutMe,
-        curriculumVitae: resource.curriculumVitae,
         mySkills: resource.mySkills,
+        fullName: resource.fullName,
         seniority: resource.seniority,
+        imageProfile: resource.imageProfile,
+        curriculumVitae: resource.curriculumVitae,
         projectList: mappers.multipleProjects(resource.projectList as IProjectSchema[]),
         techologyList: mappers.multipleTechnologies(resource.techologyList as ITechnologySchema[])
     }

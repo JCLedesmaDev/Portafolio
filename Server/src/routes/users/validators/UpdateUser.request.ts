@@ -1,30 +1,48 @@
-import { check, param } from 'express-validator'
-import { validateResults } from '../../../middlewares/validatorExpressHandler'
+import { check } from 'express-validator'
 import { Request, Response, NextFunction } from "express";
-
+import { validateResults } from '@middlewares/validatorExpressHandler'
 
 
 export const validatorUpdateUser = [
 
-    param('id', "Este campo es requerido")
-        .exists({ checkFalsy: true }) // Los campos con valores falsos (por ejemplo, "", 0, falso, nulo) tampoco existirán'),
-        .trim() // Elimina los espacios del comienzo y final del texto
-        .notEmpty(), // No puede venir vacio,
-
-    check("idCollection", "Este campo es requerido")
+    check("fullName", "Este campo es requerido")
         .exists({ checkFalsy: true }) // Los campos con valores falsos (por ejemplo, "", 0, falso, nulo) tampoco existirán'),
         .trim() // Elimina los espacios del comienzo y final del texto
         .notEmpty(), // No puede venir vacio
 
-    check("title", "Este campo es requerido")
+    check("seniority", "Este campo es requerido")
         .exists({ checkFalsy: true }) // Los campos con valores falsos (por ejemplo, "", 0, falso, nulo) tampoco existirán'),
         .trim() // Elimina los espacios del comienzo y final del texto
-        .notEmpty() // No puede venir vacio
-        .isLength({ min: 3, max: 15 })
-        .withMessage('El campo debe tener entre 3 a 15 caracteres'),
+        .notEmpty(), // No puede venir vacio
 
+    check("aboutMe", "Este campo es requerido")
+        .exists({ checkFalsy: true }) // Los campos con valores falsos (por ejemplo, "", 0, falso, nulo) tampoco existirán'),
+        .trim() // Elimina los espacios del comienzo y final del texto
+        .notEmpty(), // No puede venir vacio
 
-    check("image", "Este campo es requerido")
+    check("mySkills", "Este campo es requerido")
+        .exists({ checkFalsy: true }) // Los campos con valores falsos (por ejemplo, "", 0, falso, nulo) tampoco existirán'),
+        .trim() // Elimina los espacios del comienzo y final del texto
+        .notEmpty(), // No puede venir vacio
+
+    check("email", "Este campo es requerido")
+        .exists({ checkFalsy: true }) // Los campos con valores falsos (por ejemplo, "", 0, falso, nulo) tampoco existirán'),
+        .trim() // Elimina los espacios del comienzo y final del texto
+        .notEmpty(), // No puede venir vacio
+
+    check("password", "Este campo es requerido")
+        .exists({ checkFalsy: true }) // Los campos con valores falsos (por ejemplo, "", 0, falso, nulo) tampoco existirán'),
+        .trim() // Elimina los espacios del comienzo y final del texto
+        .notEmpty(), // No puede venir vacio
+
+    // VER
+    check("imageProfile", "Este campo es requerido")
+        .exists({ checkFalsy: true }) // Los campos con valores falsos (por ejemplo, "", 0, falso, nulo) tampoco existirán'),
+        .trim() // Elimina los espacios del comienzo y final del texto
+        .notEmpty(), // No puede venir vacio
+
+    // VER
+    check("curriculumVitae", "Este campo es requerido")
         .exists({ checkFalsy: true }) // Los campos con valores falsos (por ejemplo, "", 0, falso, nulo) tampoco existirán'),
         .trim() // Elimina los espacios del comienzo y final del texto
         .notEmpty(), // No puede venir vacio

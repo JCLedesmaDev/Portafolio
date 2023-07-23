@@ -10,5 +10,6 @@ export interface IUser extends IBase {
     email: string;
     projectList: IProject[];
     techologyList: ITechnology[];
-    curriculumVitae: string;
+    imageProfile: string; // ver
+    curriculumVitae: string; // ver
 }
