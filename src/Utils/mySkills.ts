@@ -5,11 +5,9 @@ import ionic from "../Static/skills/front/ionic.svg";
 import js from "../Static/skills/front/js.svg";
 import react from "../Static/skills/front/react.svg";
 import zustand from "../Static/skills/front/zustand.png";
-import angular from "../Static/skills/front/angular.svg";
 import blazor from "../Static/skills/front/blazor.svg";
 import vue from "../Static/skills/front/vue.svg";
 import quasar from "../Static/skills/front/quasar.png";
-import jquery from "../Static/skills/front/jquery.svg";
 
 // Back-End
 import mongodb from "../Static/skills/back/mongodb.svg";
@@ -38,11 +36,9 @@ export const skills: any = {
   JavaScript: { css: "", icon: js },
   ReactJS: { css: "", icon: react },
   Zustand: { css: "", icon: zustand },
-  "Angular 12": { css: "", icon: angular },
   Blazor: { css: "", icon: blazor },
   "Vue 3": { css: "", icon: vue },
   "Quasar v2": { css: "", icon: quasar },
-  jQuery: { css: "", icon: jquery },
   
   // Back-End
   ExpressJS: { css: "#ddd" },

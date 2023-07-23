@@ -56,10 +56,6 @@
         "alt": "icon vue js"
       },
       {
-        "title": "Angular 12",
-        "alt": "icon angular"
-      },
-      {
         "title": "Blazor",
         "alt": "icon blazor"
       },
@@ -74,10 +70,6 @@
       {
         "title": "Zustand",
         "alt": "icon Zustand"
-      },
-      {
-        "title": "jQuery",
-        "alt": "icon jquery"
       }
     ],
     "back_Technologies": [
