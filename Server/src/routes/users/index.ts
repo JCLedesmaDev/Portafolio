@@ -13,8 +13,8 @@ router.get('/getUser', getUser)
 
 // router.post('/updateUser', authHandler, fileMulterHandler(['imageProfile']), validatorUpdateUser, updateUser)
 
-// router.post('/updateUser', fileMulterHandler(['imageProfile']), validatorUpdateUser, updateUser)
-router.post('/updateUser', multerUpload.fields([{name: 'imageProfile'}]), updateUser)
+router.post('/updateUser', fileMulterHandler(['imageProfile', 'lala']), validatorUpdateUser, updateUser)
+// router.post('/updateUser', multerUpload.fields([{name: 'imageProfile'}, {name: 'lala'}]), updateUser)
 
 
 export default router  

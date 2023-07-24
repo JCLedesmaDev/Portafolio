@@ -5,14 +5,7 @@ import responseMessage from '@utils/responseMessage';
 
 
 const storage = multer.diskStorage({
-    filename: (
-        req: Request,
-        file: Express.Multer.File,
-        callback: (error: Error | null, filename: string) => void
-    ) => {
-        console.log("🚀 ~ file: fileMulterHandler.ts:13 ~ req:", req)
-        callback(null, `${Date.now()}-${file.originalname}`); //TODO 123123213232-pepito.pdf
-    },
+
     destination: (
         req: Request,
         file: Express.Multer.File,
@@ -28,6 +21,14 @@ const storage = multer.diskStorage({
 
         callback(null, `${__dirname}/../../public`);
     },
+    filename: (
+        req: Request,
+        file: Express.Multer.File,
+        callback: (error: Error | null, filename: string) => void
+    ) => {
+        console.log("🚀 ~ file: fileMulterHandler.ts:13 ~ req:", req)
+        callback(null, `${Date.now()}-${file.originalname}`); //TODO 123123213232-pepito.pdf
+    }
 });
 
 export const multerUpload = multer({ storage: storage });
@@ -47,9 +48,9 @@ export const fileMulterHandler = (nameAttrs: string[]) => {
                     throw new ApplicationError({ message: 'Ocurrio un error desconocido al cargar el archivo' })
                 }
 
-                if (req.file !== undefined) {
-                    nameAttrs.forEach(nameAttr => (req.body[nameAttr] = req.file?.originalname))
-                }
+                // if (req.file !== undefined) {
+                //     nameAttrs.forEach(nameAttr => (req.body[nameAttr] = req.file?.originalname))
+                // }
             })
             console.log("🚀 ~ file: fileMulterHandler.ts:48 ~ upload ~ req:", req)
             return next();
