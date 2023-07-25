@@ -48,3 +48,15 @@ export const validatorUpdateUser = [
 
     (req: Request, res: Response, next: NextFunction) => validateResults(req, res, next)
 ]
+
+// Ejemplo de si puese un arreglo de base64
+// const images = [
+//     { name: 'image1.png', data: 'base64-encoded-data-1' },
+//     { name: 'image2.jpg', data: 'base64-encoded-data-2' },
+//     // Agrega más imágenes al arreglo si es necesario
+//   ];
+
+//   body('images').exists().isArray().withMessage('No se han proporcionado imágenes válidas.'),
+//   // Validar cada imagen en el arreglo
+//   body('images.*.name').isString().withMessage('El nombre de la imagen debe ser una cadena de texto.'),
+//   body('images.*.data').custom(isBase64).withMessage('El contenido de la imagen no está en formato base64.'),
