@@ -10,6 +10,7 @@ router.post('/login', validatorLoginRequest, loginUser)
 
 router.get('/getUser', getUser)
 
-router.post('/updateUser', authHandler, validatorUpdateUser, updateUser)
+// router.post('/updateUser', authHandler, validatorUpdateUser, updateUser)
+router.post('/updateUser', validatorUpdateUser, updateUser)
 
 export default router  

@@ -16,6 +16,7 @@ function startServer(connectionServer: string) {
 
     app.use(logger(config.get('logger')))
     app.use(express.json()) //--> Comprende mensajes JSON
+    app.use(express.static('./public')) // -> Acceso publico a archivos subidos con Multer
     app.use(cors({ origin: '*' }));
 
     app.listen(config.get('server.port'), async () => {
