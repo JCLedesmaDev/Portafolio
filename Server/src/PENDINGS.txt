@@ -4,4 +4,3 @@ Hacer crud de Proyectos y Tecnologias
 Investigar de enviar emails desde el back
 
 
-VER TEMA DE IMAGENES EN EL MODELS DE PROYECTO Y TECNOLOGIAS (HACER OTRO MODELS)
