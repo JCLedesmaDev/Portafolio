@@ -4,5 +4,5 @@ Hacer crud de Proyectos y Tecnologias
 Investigar de enviar emails desde el back
 
 
-Problemas al enviar img en base64 por request muuy largos
-
+Falta validar en el Validator de UpdateUser el tipo de formato 
+por medio de un custom() 

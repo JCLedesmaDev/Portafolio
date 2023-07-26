@@ -3,7 +3,46 @@ import { Request, Response, NextFunction } from "express";
 import { ApplicationError } from '@utils/applicationError'
 import responseMessage from '@utils/responseMessage';
 
+interface INameFields {
+    name: string;
+    maxCount: number;
+}
 
+export const fileMulterHandler = (nameFields: INameFields[]) => {
+    return async (req: Request, res: Response, next: NextFunction) => {
+        try {
+            const upload = configureMulterStorage().fields(nameFields)
+
+            await new Promise((resolve, reject) => {
+                upload(req, res, (error: any) => {
+                    if (error instanceof multer.MulterError) {
+                        reject(new ApplicationError({
+                            message: `Ocurrio un error, se recibieron archivos inesperados. Intentelo nuevamente`
+                        }))
+                    } else if (error) {
+                        reject(new ApplicationError({
+                            message: 'Ocurrio un error desconocido al cargar el archivo'
+                        }))
+                    }
+                    resolve(undefined);
+                });
+            });
+
+            nameFields.forEach((field: INameFields) => {
+                const filter = req.files[field.name].filter((file: any) => {
+                    return file.fieldname === field.name
+                })
+                req.body[field.name] = filter
+            })
+
+            return next();
+        } catch (error: any) {
+            return res.json(responseMessage.error<any>({
+                message: error.message
+            }))
+        }
+    }
+}
 
 // Configuración de multer para almacenar los archivos en la carpeta "public"
 const configureMulterStorage = () => {
@@ -23,50 +62,4 @@ const configureMulterStorage = () => {
     });
     // return multer({ storage: storage }).any()
     return multer({ storage: storage })
-}
-
-
-interface INameFields {
-    name: string;
-    maxCount: number;
-}
-
-export const fileMulterHandler = (nameFields: INameFields[]) => {
-    return async (req: Request, res: Response, next: NextFunction) => {
-        try {
-            const upload = configureMulterStorage().fields(nameFields)
-
-            await new Promise((resolve, reject) => {
-                upload(req, res, (error: any) => {
-                    if (error instanceof multer.MulterError) {
-                        reject(new ApplicationError({
-                            message: `Ocurrio un error al procesar los archivos. Intentelo nuevamente`
-                        }))
-                    } else if (error) {
-                        reject(new ApplicationError({
-                            message: 'Ocurrio un error desconocido al cargar el archivo'
-                        }))
-                    }
-                    resolve(undefined);
-                });
-            });
-
-            nameFields.forEach((field: INameFields) => {
-                // VER no funciona correctamente
-                req.files[field.name].forEach((file:any) =>{
-                    let files = []
-                    if (file.fieldname === field.name) {
-                        files.push(file)
-                    }
-                    req.body[field.name] = files
-                })
-            })
-
-            return next();
-        } catch (error: any) {
-            return res.json(responseMessage.error<any>({
-                message: error.message
-            }))
-        }
-    }
 }
