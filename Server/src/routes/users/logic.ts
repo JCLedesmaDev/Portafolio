@@ -11,7 +11,6 @@ import { ILoginDtoResponse } from "./dto/ILogin.dto.response"
 import { IGetUserResponse } from './dto/IGetUser.response';
 import { IUpdateUserRequest } from './dto/IUpdateUser.request';
 
-
 const loginUser = tryCatchWrapper(async (payload: ILoginDtoRequest) => {
 
     const user = await externalDb.getUserByField('email', payload.email);
@@ -59,6 +58,7 @@ const getUser = tryCatchWrapper(async () => {
 
 const updateUser = tryCatchWrapper(async (payload: IUpdateUserRequest) => {
 
+
     const user = await externalDb.getUserByField('_id', payload.idUser);
 
     if (user === null) {
@@ -68,8 +68,11 @@ const updateUser = tryCatchWrapper(async (payload: IUpdateUserRequest) => {
     await externalDb.updateUser(payload)
 
     return responseMessage.success<any>({
-        message: 'Se edito correctamente!', 
+        message: 'Se edito correctamente!',
     })
 })
+
+
+
 
 export default { loginUser, getUser, updateUser }
