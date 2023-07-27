@@ -29,12 +29,13 @@ export const fileMulterHandler = (nameFields: INameFields[]) => {
             });
 
             nameFields.forEach((field: INameFields) => {
-                const filter = req.files[field.name].filter((file: any) => {
+                let files = []
+                files = req.files[field.name]?.filter((file: any) => {
                     return file.fieldname === field.name
                 })
-                req.body[field.name] = filter
+                req.body[field.name] = files
             })
-
+            
             return next();
         } catch (error: any) {
             return res.json(responseMessage.error<any>({
@@ -56,7 +57,8 @@ const configureMulterStorage = () => {
             req: Request, file: Express.Multer.File, callback: (error: Error | null, filename: string) => void
         ) => {
             setTimeout(() => {
-                callback(null, `${Date.now()}-${file.originalname}`); //TODO 123123213232-pepito.pdf
+                const fileName = file.originalname.replace(/\s/g, '_')
+                callback(null, `${Date.now()}-${fileName}`); //TODO 123123213232-pepito_el_mejor.pdf
             }, 10)
         }
     });

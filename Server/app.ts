@@ -8,17 +8,9 @@ import dbConnect from "./src/database/mongo";
 import server from "./src/server"
 import config from 'config'
 
-if (!config.get('server.port')) {
-    console.log(`Error to get ports`);
-    process.exit(1);
-}
-
 dbConnect()
     .then(() => {
-        const connectionServer = config.get('node_env') === "production"
-            ? config.get('server.public_url') as string
-            : `${config.get('server.public_url')}${config.get('server.port')}`
-
+        const connectionServer = config.get('server.public_url') as string
         server.startServer(connectionServer)
     })
     .catch((err: Error) => {

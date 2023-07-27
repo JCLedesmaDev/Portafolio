@@ -2,7 +2,3 @@ Cambiar el cors origin a solo el front, en vez de a todos
 Hacer crud de Proyectos y Tecnologias
 
 Investigar de enviar emails desde el back
-
-
-Falta validar en el Validator de UpdateUser el tipo de formato 
-por medio de un custom() 

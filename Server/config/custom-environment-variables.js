@@ -4,8 +4,8 @@ module.exports = {
     node_env: 'NODE_ENV',
     
     server: {
-        port: 'PORT',
-        public_url: 'PUBLIC_URL'
+        public_url: 'PUBLIC_URL',
+        port: 'PORT'
     },
     
     email_admin: 'EMAIL_ADMIN',

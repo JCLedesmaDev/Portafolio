@@ -10,6 +10,7 @@ import { ILoginDtoRequest } from "./dto/ILogin.dto.request"
 import { ILoginDtoResponse } from "./dto/ILogin.dto.response"
 import { IGetUserResponse } from './dto/IGetUser.response';
 import { IUpdateUserRequest } from './dto/IUpdateUser.request';
+import { deleteFile } from '@utils/deleteFile';
 
 const loginUser = tryCatchWrapper(async (payload: ILoginDtoRequest) => {
 
@@ -34,11 +35,6 @@ const loginUser = tryCatchWrapper(async (payload: ILoginDtoRequest) => {
         message: 'Ha iniciado sesion correctamente!', data: response
     })
 })
-// app.post("/upload", upload.single("myFile"), (req, res) => {
-//     const file = req.file.filename;
-//     console.log(file)
-//     res.send({ data: "OK", url: `http://localhost:3000/${file}` });
-//   });
 
 const getUser = tryCatchWrapper(async () => {
     const user = await externalDb.getUserByField('email', config.get("email_admin"));
@@ -58,11 +54,15 @@ const getUser = tryCatchWrapper(async () => {
 
 const updateUser = tryCatchWrapper(async (payload: IUpdateUserRequest) => {
 
-
     const user = await externalDb.getUserByField('_id', payload.idUser);
 
     if (user === null) {
         throw new ApplicationError({ message: 'Usuario inexistente. Intentelo nuevamente' });
+    }
+
+    if (payload.imageProfile && user.imageProfile !== '') {
+        const pathImage = user.imageProfile.split(`${config.get('server.public_url')}/`)[1]
+        deleteFile(pathImage)
     }
 
     await externalDb.updateUser(payload)

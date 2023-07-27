@@ -54,7 +54,7 @@ NODE_ENV=development || production
 
 ## Puerto de SV
 PORT=99999
-PUBLIC_URL=http://localhost....
+PUBLIC_URL=http://localhost:....
 
 ## Clave super secreta
 JWT_SECRET=claveSuperSecreta

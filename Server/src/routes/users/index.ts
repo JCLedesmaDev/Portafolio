@@ -14,7 +14,7 @@ router.get('/getUser', getUser)
 // router.post('/updateUser', authHandler, validatorUpdateUser, updateUser)
 
 router.post('/updateUser', fileMulterHandler([
-    {name:'imageProfile', maxCount: 1},
+    {name:'imageProfile', maxCount: 1}
 ]), validatorUpdateUser, updateUser)
 
 export default router  

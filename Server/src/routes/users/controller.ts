@@ -25,8 +25,7 @@ const updateUser = controllerWrapper(async (req: Request) => {
     payload.idUser = req.locals.usrId
 
     req.locals.info = payload // Se utiliza en el eventHandler
-    // return await logic.updateUser(payload)
-    return true
+    return await logic.updateUser(payload)
 })
 
 export { loginUser, getUser, updateUser }

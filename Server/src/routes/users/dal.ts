@@ -2,6 +2,7 @@ import { IUserSchema } from "@models/ICollections";
 import collections from "@models/index.collections"
 import { ApplicationError } from "@utils/applicationError";
 import { IUpdateUserRequest } from "./dto/IUpdateUser.request";
+import config from 'config'
 
 /**
  * Obtener usuario por determinado campo
@@ -33,7 +34,9 @@ const updateUser = async (payload: IUpdateUserRequest) => {
             seniority: payload.seniority,
             aboutMe: payload.aboutMe,
             mySkills: payload.mySkills,
-            imageProfile: payload.imageProfile,
+            ...(payload.imageProfile && {
+                imageProfile: `${config.get('server.public_url')}/${payload.imageProfile[0].filename}`,
+            }),
             curriculumVitae: payload.curriculumVitae
         } as IUserSchema)
     } catch (error) {
