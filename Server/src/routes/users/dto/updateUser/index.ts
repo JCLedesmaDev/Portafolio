@@ -9,3 +9,7 @@ export interface IUpdateUserRequest {
     imageProfile: IFileRequest[];
     curriculumVitae: string; 
 }
+
+export interface IUpdateUserResponse {
+    message: string;
+}

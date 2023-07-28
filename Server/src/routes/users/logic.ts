@@ -2,15 +2,14 @@ import config from 'config'
 import jwt from "@utils/jwt";
 import bcrypt from "@utils/bcryptPassword"
 import mappers from "@mappers/index.mappers"
+import { deleteFile } from '@utils/deleteFile';
 import responseMessage from "@utils/responseMessage"
 import { tryCatchWrapper } from "@utils/tryCatchWrapper"
 import { ApplicationError } from "@utils/applicationError"
+import { IUpdateUserRequest, IUpdateUserResponse } from './dto/updateUser';
+import { ILoginDtoRequest, ILoginDtoResponse } from './dto/login';
+import { IGetUserResponse } from './dto/getUser';
 import externalDb from "./dal"
-import { ILoginDtoRequest } from "./dto/ILogin.dto.request"
-import { ILoginDtoResponse } from "./dto/ILogin.dto.response"
-import { IGetUserResponse } from './dto/IGetUser.response';
-import { IUpdateUserRequest } from './dto/IUpdateUser.request';
-import { deleteFile } from '@utils/deleteFile';
 
 const loginUser = tryCatchWrapper(async (payload: ILoginDtoRequest) => {
 
@@ -67,7 +66,7 @@ const updateUser = tryCatchWrapper(async (payload: IUpdateUserRequest) => {
 
     await externalDb.updateUser(payload)
 
-    return responseMessage.success<any>({
+    return responseMessage.success<IUpdateUserResponse>({
         message: 'Se edito correctamente!',
     })
 })

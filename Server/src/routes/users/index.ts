@@ -7,14 +7,12 @@ import { fileMulterHandler } from "@middlewares/fileMulterHandler";
 
 const router = express.Router();
 
-router.post('/login', validatorLoginRequest, loginUser)
+router.post('/login', validatorLoginRequest, loginUser);
 
-router.get('/getUser', getUser)
+router.get('/getUser', getUser);
 
-// router.post('/updateUser', authHandler, validatorUpdateUser, updateUser)
-
-router.post('/updateUser', fileMulterHandler([
+router.post('/updateUser', authHandler, fileMulterHandler([
     {name:'imageProfile', maxCount: 1}
-]), validatorUpdateUser, updateUser)
+]), validatorUpdateUser, updateUser);
 
-export default router  
+export default router;

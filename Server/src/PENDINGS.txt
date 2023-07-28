@@ -2,3 +2,5 @@ Cambiar el cors origin a solo el front, en vez de a todos
 Hacer crud de Proyectos y Tecnologias
 
 Investigar de enviar emails desde el back
+Flashear la de hacer el push notification cuando me envien un email
+
