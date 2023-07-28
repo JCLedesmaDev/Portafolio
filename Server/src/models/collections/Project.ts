@@ -14,8 +14,8 @@ const ProjectSchema = new Schema<IProjectSchema>({
     projectLink: { type: String, required: false },
     repositoryLink: { type: String, required: true },
     images: { type: [{ type: String }], default: [], required: true },
-    colaborators: { type: [{ type: Types.ObjectId, ref: 'Colaborators' }], required: false, default: [] },
-    user: { type: Types.ObjectId, ref: 'Users', required: true }
+    colaboratorsList: { type: [{ type: Types.ObjectId, ref: 'Colaborator' }], required: false, default: [] },
+    user: { type: Types.ObjectId, ref: 'User', required: true }
 }, {
     timestamps: true, // Nos crea un campo mas con la fecha de creacion y actualizacion del registro
     versionKey: false // Desactivamos la version del dato dentro de mongoose  
@@ -28,4 +28,4 @@ ProjectSchema.plugin(mongooseDelete, { overrideMethods: 'all' })
 // Le indicamos a nuestro modelo, que va a poder paginar
 ProjectSchema.plugin(mongoosePaginate)
 
-export default model<IProjectSchema, SoftDeleteModel<IProjectSchema> & PaginateModel<IProjectSchema>>('Projects', ProjectSchema);
+export default model<IProjectSchema, SoftDeleteModel<IProjectSchema> & PaginateModel<IProjectSchema>>('Project', ProjectSchema);

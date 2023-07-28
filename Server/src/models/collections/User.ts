@@ -7,12 +7,12 @@ const UserSchema = new Schema<IUserSchema>({
     imageProfile: {type: String, required: false},
     seniority: { type: String, required: false },
     aboutMe: { type: String, required: false },
-    mySkills: { type: String, required: false },
     email: { type: String, required: true, unique: true },
     password: { type: String, required: true },
-    projectList: {type: [{ type: Types.ObjectId, ref: "Projects" }], required: false, default: []},
-    techologyList: { type: [{ type: Types.ObjectId, ref: "Technologies" }], required: false, default: []},
+    projectsList: {type: [{ type: Types.ObjectId, ref: "Project" }], required: false, default: []},
     curriculumVitae: { type: String, required: false },
+    mySoftSkills: { type: String, required: false },
+    skillsList: { type: [{ type: Types.ObjectId, ref: "Skill" }], required: false, default: []},
 }, {
     timestamps: true, // Nos crea un campo mas con la fecha de creacion y actualizacion del registro
     versionKey: false // Desactivamos la version del dato dentro de mongoose  
@@ -23,4 +23,4 @@ const UserSchema = new Schema<IUserSchema>({
 UserSchema.plugin(mongooseDelete, { overrideMethods: 'all' })
 
 
-export default model<IUserSchema, SoftDeleteModel<IUserSchema>>('Users', UserSchema);
+export default model<IUserSchema, SoftDeleteModel<IUserSchema>>('User', UserSchema);

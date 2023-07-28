@@ -6,12 +6,12 @@ export interface IUserSchema extends Document, SoftDeleteInterface {
     seniority: string;
     imageProfile: string;
     aboutMe: string;
-    mySkills: string;
     email: string;
     password: string;
-    projectList: ObjectId[] | IProjectSchema[];
-    techologyList: ObjectId[] | ITechnologySchema[];
+    projectsList: ObjectId[] | IProjectSchema[];
     curriculumVitae: string;
+    mySoftSkills: string;
+    skillsList: ObjectId[] | ISkillSchema[];
 }
 
 export interface IProjectSchema extends Document, SoftDeleteInterface {
@@ -23,23 +23,25 @@ export interface IProjectSchema extends Document, SoftDeleteInterface {
     typeProject: string;
     projectLink: string;
     repositoryLink: string;
-    colaborators: ObjectId[] | IColaboratorSchema[];
+    colaboratorsList: ObjectId[] | IColaboratorSchema[];
     images: string[],
     user: ObjectId | IUserSchema
 }
-
 export interface IColaboratorSchema extends Document, SoftDeleteInterface {
     name: string;
     repositoryLink: string;
 }
 
+export interface ISkillSchema extends Document, SoftDeleteInterface {
+    techologysList: ObjectId | ITechnologySchema[];
+    category: ObjectId | ICategorySchema;
+    user: ObjectId | IUserSchema;
+}
 export interface ITechnologySchema extends Document, SoftDeleteInterface {
     name: string;
     image: string;
     category: ObjectId | ICategorySchema;
-    user: ObjectId | IUserSchema;
 }
-
 export interface ICategorySchema extends Document, SoftDeleteInterface {
     name: string;
 }

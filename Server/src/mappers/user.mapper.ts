@@ -18,7 +18,7 @@ export const user = (resource: IUserSchema): IUser => {
         imageProfile: resource.imageProfile,
         curriculumVitae: resource.curriculumVitae,
         projectList: mappers.multipleProjects(resource.projectList as IProjectSchema[]),
-        techologyList: mappers.multipleTechnologies(resource.techologyList as ITechnologySchema[])
+        skills: mappers.multipleSkills(resource.techologyList as ITechnologySchema[])
     }
     return mapper
 };

@@ -14,4 +14,4 @@ const ColaboratorSchema = new Schema<IColaboratorSchema>({
  le que brinda mongoose, por los que nos brinda mongooseDelete */
 ColaboratorSchema.plugin(mongooseDelete, { overrideMethods: 'all' })
 
-export default model<IColaboratorSchema, SoftDeleteModel<IColaboratorSchema>>('Colaborators', ColaboratorSchema);
+export default model<IColaboratorSchema, SoftDeleteModel<IColaboratorSchema>>('Colaborator', ColaboratorSchema);

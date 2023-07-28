@@ -2,7 +2,6 @@ import { tryCatchWrapper } from "@utils/tryCatchWrapper"
 import externalDb from './dal'
 import { IGetTechnologiesRequest, IGetTechnologiesResponse } from "./dto/getTechnologies.dto"
 import { paginationMapper } from "@utils/paginationMapper"
-import { ITechnology } from "@interface/ITechnology"
 import mappers from "@mappers/index.mappers"
 import responseMessage from "@utils/responseMessage"
 import { ICreateTechnologyRequest } from "./dto/createTechnology.dto"

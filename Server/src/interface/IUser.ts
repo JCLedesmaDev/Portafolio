@@ -1,15 +1,15 @@
 import { IBase } from "./common/IBase";
 import { IProject } from "./IProject";
-import { ITechnology } from "./ITechnology";
+import { ISkill } from "./ISkill";
 
 export interface IUser extends IBase {
     fullName: string;
+    imageProfile: string;
     seniority: string;
     aboutMe: string;
-    mySkills: string;
     email: string;
-    projectList: IProject[];
-    techologyList: ITechnology[];
-    imageProfile: string; // ver
-    curriculumVitae: string; // ver
+    projectsList: IProject[];
+    curriculumVitae: string;
+    mySoftSkills: string;
+    skillsList: ISkill[];
 }

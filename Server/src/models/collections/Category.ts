@@ -13,4 +13,4 @@ const CategorySchema = new Schema<ICategorySchema>({
  le que brinda mongoose, por los que nos brinda mongooseDelete */
 CategorySchema.plugin(mongooseDelete, { overrideMethods: 'all' })
 
-export default model<ICategorySchema, SoftDeleteModel<ICategorySchema>>('Categories', CategorySchema);
+export default model<ICategorySchema, SoftDeleteModel<ICategorySchema>>('Category', CategorySchema);

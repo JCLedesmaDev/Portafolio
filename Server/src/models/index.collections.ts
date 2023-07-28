@@ -1,16 +1,18 @@
 
-import RegistersDb from './collections/RegistersBD'
-import Projects from './collections/Projects';
-import Technologies from './collections/Technologies';
-import Users from './collections/Users';
-import Categories from './collections/Categories';
+import RegisterDb from './collections/RegisterBD'
+import Project from './collections/Project';
+import Technology from './collections/Technology';
+import User from './collections/User';
+import Category from './collections/Category';
+import Skill from './collections/Skill';
 
 const collections = {
-    Users,
-    Projects,
-    Technologies,
-    RegistersDb,
-    Categories
+    User,
+    Project,
+    RegisterDb,
+    Skill,
+    Technology,
+    Category
 };
 
 export default collections;

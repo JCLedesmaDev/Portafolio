@@ -20,4 +20,4 @@ const RegisterDbSchema = new Schema<IRegisterBDSchema>({
     versionKey: false // Desactivamos la version del dato dentro de mongoose  
 })
 
-export default model<IRegisterBDSchema>('RegistersDb', RegisterDbSchema);
+export default model<IRegisterBDSchema>('RegisterDb', RegisterDbSchema);
