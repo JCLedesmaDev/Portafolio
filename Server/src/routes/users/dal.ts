@@ -1,8 +1,8 @@
 import { IUserSchema } from "@models/ICollections";
 import collections from "@models/index.collections"
 import { ApplicationError } from "@utils/applicationError";
-import { IUpdateUserRequest } from "./dto/IUpdateUser.request";
 import config from 'config'
+import { IUpdateUserRequest } from "./dto/updateUser";
 
 /**
  * Obtener usuario por determinado campo

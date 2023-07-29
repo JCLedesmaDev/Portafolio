@@ -1,9 +1,9 @@
 import { Request } from "express";
 import { matchedData } from 'express-validator'
 import { controllerWrapper } from "@utils/controllerWrapper";
-import { ILoginDtoRequest } from "./dto/ILogin.dto.request";
 import logic from './logic'
-import { IUpdateUserRequest } from "./dto/IUpdateUser.request";
+import { ILoginDtoRequest } from "./dto/login";
+import { IUpdateUserRequest } from "./dto/updateUser";
 
 
 const loginUser = controllerWrapper(async (req: Request) => {
@@ -14,9 +14,9 @@ const loginUser = controllerWrapper(async (req: Request) => {
     return await logic.loginUser(payload)
 })
 
-const getUser = controllerWrapper(async (req: Request) => (
-    await logic.getUser()
-))
+const getUser = controllerWrapper(async (req: Request) => {
+    return await logic.getUser()
+})
 
 const updateUser = controllerWrapper(async (req: Request) => {
 

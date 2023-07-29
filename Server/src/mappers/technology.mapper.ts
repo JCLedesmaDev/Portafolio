@@ -1,6 +1,5 @@
 import { ITechnology } from "@interface/ITechnology";
 import { ICategorySchema, ITechnologySchema } from "@models/ICollections";
-import { singleCategory } from "./category.mapper";
 import mappers from "./index.mappers";
 
 export const multipleTechnologies = (resource: ITechnologySchema[]): ITechnology[] => {

@@ -19,6 +19,6 @@ declare namespace Express {
       finished: boolean;
     };
 
-    files: any
+    files: any;
   }
 }

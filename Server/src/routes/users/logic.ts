@@ -6,7 +6,7 @@ import { deleteFile } from '@utils/deleteFile';
 import responseMessage from "@utils/responseMessage"
 import { tryCatchWrapper } from "@utils/tryCatchWrapper"
 import { ApplicationError } from "@utils/applicationError"
-import { IUpdateUserRequest, IUpdateUserResponse } from './dto/updateUser';
+import { IUpdateUserRequest } from './dto/updateUser';
 import { ILoginDtoRequest, ILoginDtoResponse } from './dto/login';
 import { IGetUserResponse } from './dto/getUser';
 import externalDb from "./dal"
@@ -66,7 +66,7 @@ const updateUser = tryCatchWrapper(async (payload: IUpdateUserRequest) => {
 
     await externalDb.updateUser(payload)
 
-    return responseMessage.success<IUpdateUserResponse>({
+    return responseMessage.success({
         message: 'Se edito correctamente!',
     })
 })
