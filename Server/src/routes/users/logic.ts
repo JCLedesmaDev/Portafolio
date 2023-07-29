@@ -6,10 +6,10 @@ import { deleteFile } from '@utils/deleteFile';
 import responseMessage from "@utils/responseMessage"
 import { tryCatchWrapper } from "@utils/tryCatchWrapper"
 import { ApplicationError } from "@utils/applicationError"
-import { IUpdateUserRequest } from './dto/updateUser';
-import { ILoginDtoRequest, ILoginDtoResponse } from './dto/login';
-import { IGetUserResponse } from './dto/getUser';
 import externalDb from "./dal"
+import { ILoginDtoRequest, ILoginDtoResponse } from './dto/login.dto';
+import { IGetUserResponse } from './dto/getUser.dto';
+import { IUpdateUserRequest } from './dto/updateUser.dto';
 
 const loginUser = tryCatchWrapper(async (payload: ILoginDtoRequest) => {
 

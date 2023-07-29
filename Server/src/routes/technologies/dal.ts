@@ -1,5 +1,5 @@
 import collections from "@models/index.collections"
-import { IGetTechnologiesRequest } from "./dto/getTechnologies"
+import { IGetTechnologiesRequest } from "./dto/getTechnologies.dto"
 import { ApplicationError } from "@utils/applicationError";
 import { ITechnologySchema } from "@models/ICollections";
 import { FilterQuery, PaginateOptions, PaginateResult } from "mongoose";

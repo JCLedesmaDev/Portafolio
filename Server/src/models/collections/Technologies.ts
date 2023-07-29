@@ -6,6 +6,7 @@ import mongoosePaginate from 'mongoose-paginate-v2'
 
 const TechnologySchema = new Schema<ITechnologySchema>({
     name: { type: String, required: true },
+    image: { type: String, required: true }, 
     category: { type: Types.ObjectId, ref: 'Categories', required: true },
 }, {
     timestamps: true, // Nos crea un campo mas con la fecha de creacion y actualizacion del registro

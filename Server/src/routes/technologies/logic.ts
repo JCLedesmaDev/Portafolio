@@ -1,6 +1,6 @@
 import { tryCatchWrapper } from "@utils/tryCatchWrapper"
 import externalDb from './dal'
-import { IGetTechnologiesRequest, IGetTechnologiesResponse } from "./dto/getTechnologies"
+import { IGetTechnologiesRequest, IGetTechnologiesResponse } from "./dto/getTechnologies.dto"
 import { paginationMapper } from "@utils/paginationMapper"
 import { ITechnology } from "@interface/ITechnology"
 import mappers from "@mappers/index.mappers"
@@ -22,7 +22,18 @@ const getTechnologies = tryCatchWrapper(async (payload: IGetTechnologiesRequest)
     })
 })
 
+const createTechnology = tryCatchWrapper(async (payload: any) => {
 
+})
+const updateTechnology = tryCatchWrapper(async (payload: any) => {
+
+})
+const deleteTechnology = tryCatchWrapper(async (payload: any) => {
+
+})
 export default {
-    getTechnologies
+    getTechnologies,
+    createTechnology,
+    updateTechnology,
+    deleteTechnology
 }

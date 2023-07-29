@@ -2,8 +2,8 @@ import { Request } from "express";
 import { matchedData } from 'express-validator'
 import { controllerWrapper } from "@utils/controllerWrapper";
 import logic from './logic'
-import { ILoginDtoRequest } from "./dto/login";
-import { IUpdateUserRequest } from "./dto/updateUser";
+import { ILoginDtoRequest } from "./dto/login.dto";
+import { IUpdateUserRequest } from "./dto/updateUser.dto";
 
 
 const loginUser = controllerWrapper(async (req: Request) => {

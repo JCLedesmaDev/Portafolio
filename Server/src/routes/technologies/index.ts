@@ -4,9 +4,9 @@ import {
     createTechnology, deleteTechnology,
     getTechnologies, updateTechnology
 } from "./controller";
-import { validatorCreateTechnology } from "./validators/CreateTechnology.request";
-import { validatorDeleteTechnology } from "./validators/DeleteTechnology.request";
-import { validatorUpdateTechnology } from "./validators/UpdateTechnology.request";
+import { validatorCreateTechnology } from "./validators/createTechnology.validator";
+import { validatorDeleteTechnology } from "./validators/deleteTechnology.validator";
+import { validatorUpdateTechnology } from "./validators/updateTechnology.validator";
 
 const router = express.Router();
 
@@ -14,8 +14,8 @@ router.use(authHandler)
 
 router.get('/getTechnologies', getTechnologies);
 router.post('/createTechnology', validatorCreateTechnology, createTechnology);
-router.put('/updateTechnology/:id', validatorUpdateTechnology, updateTechnology);
-router.delete('/deleteTechnology/:id', validatorDeleteTechnology, deleteTechnology);
+router.put('/updateTechnology/:idTechnology', validatorUpdateTechnology, updateTechnology);
+router.delete('/deleteTechnology/:idTechnology', validatorDeleteTechnology, deleteTechnology);
 
 
 export default router;

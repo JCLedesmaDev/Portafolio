@@ -35,6 +35,7 @@ export interface IColaboratorSchema extends Document, SoftDeleteInterface {
 
 export interface ITechnologySchema extends Document, SoftDeleteInterface {
     name: string;
+    image: string;
     category: ObjectId | ICategorySchema;
 }
 

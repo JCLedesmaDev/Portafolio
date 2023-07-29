@@ -1,8 +1,8 @@
 import express from "express";
 import { authHandler } from "@middlewares/authHandler";
 import { loginUser, getUser, updateUser } from './controller'
-import { validatorLoginRequest } from './validators/Login.request'
-import { validatorUpdateUser } from "./validators/UpdateUser.request";
+import { validatorLoginRequest } from './validators/login.validator'
+import { validatorUpdateUser } from "./validators/updateUser.validator";
 import { fileMulterHandler } from "@middlewares/fileMulterHandler";
 
 const router = express.Router();
