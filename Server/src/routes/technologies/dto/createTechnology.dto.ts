@@ -1,7 +1,9 @@
+import { IFileRequest } from "@interface/IFileRequest";
+
 export interface ICreateTechnologyRequest {
     usrId: string;
     name: string;
-    image: string;
+    image: IFileRequest[];
     idCategory: string;
 }
 

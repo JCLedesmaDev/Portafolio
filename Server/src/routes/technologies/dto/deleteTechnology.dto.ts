@@ -1,5 +1,5 @@
 export interface IDeleteTechnologyRequest {
-    usrId: string;
     idTechnology: string;
+    usrId: string;
 }
 

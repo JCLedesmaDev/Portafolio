@@ -4,18 +4,28 @@ import {
     createTechnology, deleteTechnology,
     getTechnologies, updateTechnology
 } from "./controller";
-import { validatorCreateTechnology } from "./validators/createTechnology.validator";
-import { validatorDeleteTechnology } from "./validators/deleteTechnology.validator";
-import { validatorUpdateTechnology } from "./validators/updateTechnology.validator";
+import { validatorCreateTechnologyRequest } from "./validators/createTechnology.validator";
+import { validatorDeleteTechnologyRequest } from "./validators/deleteTechnology.validator";
+import { validatorUpdateTechnologyRequest } from "./validators/updateTechnology.validator";
+import { fileMulterHandler } from "@middlewares/fileMulterHandler";
 
 const router = express.Router();
 
 router.use(authHandler)
 
 router.get('/getTechnologies', getTechnologies);
-router.post('/createTechnology', validatorCreateTechnology, createTechnology);
-router.put('/updateTechnology/:idTechnology', validatorUpdateTechnology, updateTechnology);
-router.delete('/deleteTechnology/:idTechnology', validatorDeleteTechnology, deleteTechnology);
+
+router.post('/createTechnology', fileMulterHandler([
+    { name: 'image', maxCount: 1 }
+]), validatorCreateTechnologyRequest, createTechnology);
+
+router.put('/updateTechnology/:idTechnology', fileMulterHandler([
+    { name: 'image', maxCount: 1 }
+]), validatorUpdateTechnologyRequest, updateTechnology);
+
+router.delete('/deleteTechnology/:idTechnology',
+    validatorDeleteTechnologyRequest, deleteTechnology
+);
 
 
 export default router;

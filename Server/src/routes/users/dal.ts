@@ -10,10 +10,11 @@ import { IUpdateUserRequest } from "./dto/updateUser.dto";
  * @param value Valor del campo en cuestion
  * @returns Usuario encontrado o null
  */
-const getUserByField = async (field: string, value: string): Promise<IUserSchema | null> => {
+const getUserByField = async (
+    objFind: any
+): Promise<IUserSchema | null> => {
     try {
-        const parameters = { [field]: value }
-        return await collections.Users.findOne(parameters).populate([
+        return await collections.Users.findOne(objFind).populate([
             { strictPopulate: false, path: 'Technologies' },
             { // Hacemos populate de los proyectos que tiene el usuario
                 strictPopulate: false, path: 'Projects', populate: {
@@ -23,24 +24,35 @@ const getUserByField = async (field: string, value: string): Promise<IUserSchema
             }
         ]);
     } catch (error) {
-        throw new ApplicationError({ message: 'Ha ocurrido un error al obtener el usuario', source: error });
+        throw new ApplicationError({
+            message: 'Ha ocurrido un error al obtener el usuario',
+            source: error
+        });
     }
 }
 
-const updateUser = async (payload: IUpdateUserRequest) => {
+const updateUser = async (
+    payload: IUpdateUserRequest
+): Promise<IUserSchema | null> => {
     try {
-        return await collections.Users.findByIdAndUpdate(payload.idUser, {
-            fullName: payload.fullName,
-            seniority: payload.seniority,
-            aboutMe: payload.aboutMe,
-            mySkills: payload.mySkills,
-            ...(payload.imageProfile && {
-                imageProfile: `${config.get('server.public_url')}/${payload.imageProfile[0].filename}`,
-            }),
-            curriculumVitae: payload.curriculumVitae
-        } as IUserSchema)
+        return await collections.Users.findByIdAndUpdate(
+            payload.idUser,
+            {
+                fullName: payload.fullName,
+                seniority: payload.seniority,
+                aboutMe: payload.aboutMe,
+                mySkills: payload.mySkills,
+                ...(payload.imageProfile && {
+                    imageProfile: `${config.get('server.public_url')}/${payload.imageProfile[0].filename}`,
+                }),
+                curriculumVitae: payload.curriculumVitae
+            }
+        )
     } catch (error) {
-        throw new ApplicationError({ message: 'Ha ocurrido un error al actualziar este album', source: error })
+        throw new ApplicationError({
+            message: 'Ha ocurrido un error al actualziar este album',
+            source: error
+        })
     }
 }
 

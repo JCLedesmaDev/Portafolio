@@ -25,7 +25,6 @@ const createTechnology = controllerWrapper(async (req: Request) => {
 
 const updateTechnology = controllerWrapper(async (req: Request) => {
     const payload = matchedData(req) as IUpdateTechnologyRequest;
-    payload.usrId = req.locals.usrId
 
     req.locals.info = payload;
     return await logic.updateTechnology(payload)

@@ -1,7 +1,8 @@
+import { IFileRequest } from "@interface/IFileRequest";
+
 export interface IUpdateTechnologyRequest {
-    usrId: string;
     name: string;
-    image: string;
+    image: IFileRequest[];
     idCategory: string;
     idTechnology: string;
 }

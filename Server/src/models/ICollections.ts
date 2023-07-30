@@ -37,6 +37,7 @@ export interface ITechnologySchema extends Document, SoftDeleteInterface {
     name: string;
     image: string;
     category: ObjectId | ICategorySchema;
+    user: ObjectId | IUserSchema;
 }
 
 export interface ICategorySchema extends Document, SoftDeleteInterface {

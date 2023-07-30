@@ -3,7 +3,7 @@ import { Request, Response, NextFunction } from "express";
 import { validateResults } from '@middlewares/validatorExpressHandler'
 
 
-export const validatorUpdateUser = [
+export const validatorUpdateUserRequest = [
 
     body("fullName", "Este campo es requerido")
         .exists({ checkFalsy: true }) // Los campos con valores falsos (por ejemplo, "", 0, falso, nulo) tampoco existirán'),
