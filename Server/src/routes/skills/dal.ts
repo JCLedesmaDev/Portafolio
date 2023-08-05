@@ -13,7 +13,9 @@ const getSkills = async (
     payload: IGetTechnologiesRequest
 ): Promise<ISkill[]> => {
     try {
-        return await collections.Skill.find({user: new Types.ObjectId(payload.usrId)}).populate([
+        return await collections.Skill.find({
+            user: new Types.ObjectId(payload.usrId)
+        }).populate([
             { strictPopulate: false, path: 'Technology' },
             { strictPopulate: false, path: 'Category' }
         ])
