@@ -14,12 +14,12 @@ const getUserByField = async (
     objFind: any
 ): Promise<IUserSchema | null> => {
     try {
-        return await collections.Users.findOne(objFind).populate([
-            { strictPopulate: false, path: 'Technologies' },
+        return await collections.User.findOne(objFind).populate([
+            { strictPopulate: false, path: 'Skill' },
             { // Hacemos populate de los proyectos que tiene el usuario
-                strictPopulate: false, path: 'Projects', populate: {
+                strictPopulate: false, path: 'Project', populate: {
                     // hacemos populate de los colaboradores de los proyectos del usuario.
-                    strictPopulate: false, path: 'Colaborators'
+                    strictPopulate: false, path: 'Colaborator'
                 }
             }
         ]);
@@ -35,13 +35,13 @@ const updateUser = async (
     payload: IUpdateUserRequest
 ): Promise<IUserSchema | null> => {
     try {
-        return await collections.Users.findByIdAndUpdate(
+        return await collections.User.findByIdAndUpdate(
             payload.idUser,
             {
                 fullName: payload.fullName,
                 seniority: payload.seniority,
                 aboutMe: payload.aboutMe,
-                mySkills: payload.mySkills,
+                mySoftSkills: payload.mySoftSkills,
                 ...(payload.imageProfile && {
                     imageProfile: `${config.get('server.public_url')}/${payload.imageProfile[0].filename}`,
                 }),

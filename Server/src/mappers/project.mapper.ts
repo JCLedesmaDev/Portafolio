@@ -29,7 +29,7 @@ const singleProject = (resource: IProjectSchema): IProject => {
         repositoryLink: resource.repositoryLink,
         typeProject: resource.typeProject,
         images: resource.images,
-        colaborators: multipleColaborators(resource.colaborators as IColaboratorSchema[])
+        colaboratorsList: multipleColaborators(resource.colaboratorsList as IColaboratorSchema[])
     }
     return mapper
 };

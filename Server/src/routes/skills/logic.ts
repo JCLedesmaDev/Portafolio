@@ -9,13 +9,16 @@ import { IUpdateTechnologyRequest } from "./dto/updateTechnology.dto"
 import { IDeleteTechnologyRequest } from "./dto/deleteTechnology.dto"
 import { ApplicationError } from "@utils/applicationError"
 import { deleteFile } from "@utils/deleteFile"
+import { ITechnology } from "@interface/ITechnology"
 
 
-const getTechnologies = tryCatchWrapper(async (
+const getSkills = tryCatchWrapper(async (
     payload: IGetTechnologiesRequest
 ) => {
 
-    const listTechnologies = await externalDb.getTechnologies(payload)
+    const listTechnologies = await externalDb.getSkills(payload)
+
+
 
     const listTechnologiesMapper: IGetTechnologiesResponse = paginationMapper<
         ITechnology[]
@@ -24,6 +27,7 @@ const getTechnologies = tryCatchWrapper(async (
         callBackMapper: mappers.multipleTechnologies
     })
 
+    
     return responseMessage.success<IGetTechnologiesResponse>({
         data: listTechnologiesMapper,
     })
@@ -109,7 +113,7 @@ const deleteTechnology = tryCatchWrapper(async (payload: IDeleteTechnologyReques
 })
 
 export default {
-    getTechnologies,
+    getSkills,
     createTechnology,
     updateTechnology,
     deleteTechnology

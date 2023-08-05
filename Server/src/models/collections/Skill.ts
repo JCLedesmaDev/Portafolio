@@ -1,7 +1,6 @@
 import { ISkillSchema } from '@models/ICollections';
-import { model, Schema, PaginateModel, Types } from 'mongoose';
+import { model, Schema, Types } from 'mongoose';
 import mongooseDelete, { SoftDeleteModel } from 'mongoose-delete';
-import mongoosePaginate from 'mongoose-paginate-v2'
 
 
 const SkillSchema = new Schema<ISkillSchema>({
@@ -17,7 +16,5 @@ const SkillSchema = new Schema<ISkillSchema>({
  le que brinda mongoose, por los que nos brinda mongooseDelete */
  SkillSchema.plugin(mongooseDelete, { overrideMethods: 'all' })
 
-// Le indicamos a nuestro modelo, que va a poder paginar
-SkillSchema.plugin(mongoosePaginate)
 
-export default model<ISkillSchema, SoftDeleteModel<ISkillSchema> & PaginateModel<ISkillSchema>>('Skill', SkillSchema);
+export default model<ISkillSchema, SoftDeleteModel<ISkillSchema>>('Skill', SkillSchema);

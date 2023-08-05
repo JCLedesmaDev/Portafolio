@@ -2,7 +2,7 @@ import express from "express";
 import { authHandler } from "@middlewares/authHandler";
 import {
     createTechnology, deleteTechnology,
-    getTechnologies, updateTechnology
+    getSkills, updateTechnology
 } from "./controller";
 import { validatorCreateTechnologyRequest } from "./validators/createTechnology.validator";
 import { validatorDeleteTechnologyRequest } from "./validators/deleteTechnology.validator";
@@ -13,7 +13,7 @@ const router = express.Router();
 
 router.use(authHandler)
 
-router.get('/getTechnologies', getTechnologies);
+router.get('/getSkills', getSkills);
 
 router.post('/createTechnology', fileMulterHandler([
     { name: 'image', maxCount: 1 }

@@ -5,7 +5,7 @@ export interface IUpdateUserRequest {
     fullName: string;
     seniority: string;
     aboutMe: string;
-    mySkills: string;
+    mySoftSkills: string;
     imageProfile: IFileRequest[];
     curriculumVitae: string; 
 }

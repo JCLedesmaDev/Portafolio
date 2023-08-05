@@ -1,5 +1,5 @@
 import { IUser } from "@interface/IUser";
-import { IProjectSchema, ITechnologySchema, IUserSchema } from "@models/ICollections";
+import { IProjectSchema, ISkillSchema, IUserSchema } from "@models/ICollections";
 import mappers from "./index.mappers";
 
 /**
@@ -10,15 +10,15 @@ import mappers from "./index.mappers";
 export const user = (resource: IUserSchema): IUser => {
     const mapper: IUser = {
         id: resource._id,
-        email: resource.email,
-        aboutMe: resource.aboutMe,
-        mySkills: resource.mySkills,
         fullName: resource.fullName,
-        seniority: resource.seniority,
         imageProfile: resource.imageProfile,
+        seniority: resource.seniority,
+        aboutMe: resource.aboutMe,
+        email: resource.email,
         curriculumVitae: resource.curriculumVitae,
-        projectList: mappers.multipleProjects(resource.projectList as IProjectSchema[]),
-        skills: mappers.multipleSkills(resource.techologyList as ITechnologySchema[])
+        mySoftSkills: resource.mySoftSkills,
+        projectsList: mappers.multipleProjects(resource.projectsList as IProjectSchema[]),
+        skillsList: mappers.multipleSkills(resource.skillsList as ISkillSchema[])
     }
     return mapper
 };

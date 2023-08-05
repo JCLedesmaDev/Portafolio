@@ -1,10 +1,6 @@
 import { ICategory } from "@interface/ICategory";
 import { ICategorySchema } from "@models/ICollections";
 
-export const multipleCategories = (resource: ICategorySchema[]): ICategory[] => {
-    return resource.map(category => singleCategory(category))
-}
-
 /**
  * Mappea los datos de un proyecto 
  * @param resource Recursos a utilizar en el mapper
