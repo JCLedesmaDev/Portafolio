@@ -1,6 +1,5 @@
 import { tryCatchWrapper } from "@utils/tryCatchWrapper"
 import externalDb from './dal'
-import { IGetTechnologiesRequest, IGetTechnologiesResponse } from "./dto/getTechnologies.dto"
 import { paginationMapper } from "@utils/paginationMapper"
 import mappers from "@mappers/index.mappers"
 import responseMessage from "@utils/responseMessage"
@@ -9,28 +8,25 @@ import { IUpdateTechnologyRequest } from "./dto/updateTechnology.dto"
 import { IDeleteTechnologyRequest } from "./dto/deleteTechnology.dto"
 import { ApplicationError } from "@utils/applicationError"
 import { deleteFile } from "@utils/deleteFile"
-import { ITechnology } from "@interface/ITechnology"
+import { ISkillSchema } from "@models/ICollections"
+import { IGetSkillsRequest, IGetSkillsResponse } from "./dto/getSkills.dto"
+import { ISkill } from "@interface/ISkill"
 
 
-const getSkills = tryCatchWrapper(async (
-    payload: IGetTechnologiesRequest
-) => {
+const getSkills = tryCatchWrapper(async (payload: IGetSkillsRequest) => {
 
-    const listTechnologies = await externalDb.getSkills(payload)
+    // const listSkills = await externalDb.getSkills(payload)
+
+    // const listSkillsMapper: IGetSkillsResponse = paginationMapper<ISkill[]>({
+    //     resource: listSkills,
+    //     callBackMapper: mappers.multipleSkills
+    // })
 
 
-
-    const listTechnologiesMapper: IGetTechnologiesResponse = paginationMapper<
-        ITechnology[]
-    >({
-        resource: listTechnologies,
-        callBackMapper: mappers.multipleTechnologies
-    })
-
-    
-    return responseMessage.success<IGetTechnologiesResponse>({
-        data: listTechnologiesMapper,
-    })
+    // return responseMessage.success<IGetSkillsResponse>({
+    //     data: listSkillsMapper,
+    // })
+    return "asd" as any
 })
 
 const createTechnology = tryCatchWrapper(async (payload: ICreateTechnologyRequest) => {
@@ -111,6 +107,8 @@ const deleteTechnology = tryCatchWrapper(async (payload: IDeleteTechnologyReques
         message: 'Se elimino correctamente!',
     })
 })
+
+/// Faltaria CRUD de categorias
 
 export default {
     getSkills,

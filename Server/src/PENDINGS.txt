@@ -5,3 +5,7 @@ Flashear la de hacer el push notification cuando me envien un email
 
 -> Ver tema mappers y revisar routers hechos
 Hacer crud de Proyectos y Tecnologias
+
+
+⏰ Estoy con el metodo "createTechnology" y hacer luego "getSkills" en donde debo tener un arreglo de las skills
+y dentro de las tecnologias, debe estar paginado.

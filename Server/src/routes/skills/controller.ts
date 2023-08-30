@@ -2,13 +2,13 @@ import logic from './logic'
 import { Request } from "express"
 import { matchedData } from "express-validator"
 import { controllerWrapper } from "@utils/controllerWrapper"
-import { IGetTechnologiesRequest } from "./dto/getTechnologies.dto";
+import { IGetSkillsRequest } from "./dto/getSkills.dto";
 import { ICreateTechnologyRequest } from "./dto/createTechnology.dto";
 import { IDeleteTechnologyRequest } from "./dto/deleteTechnology.dto";
 import { IUpdateTechnologyRequest } from "./dto/updateTechnology.dto";
 
 const getSkills = controllerWrapper(async (req: Request) => {
-    const payload = matchedData(req) as IGetTechnologiesRequest;
+    const payload = matchedData(req) as IGetSkillsRequest;
     payload.usrId = req.locals.usrId
 
     req.locals.info = payload; 

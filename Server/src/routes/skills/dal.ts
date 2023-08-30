@@ -1,56 +1,67 @@
 import collections from "@models/index.collections"
-import { IGetTechnologiesRequest } from "./dto/getTechnologies.dto"
+import { IGetTechnologiesRequest } from "./dto/getSkills.dto"
 import { ApplicationError } from "@utils/applicationError";
-import { ICategorySchema, ITechnologySchema } from "@models/ICollections";
+import { ICategorySchema, ISkillSchema, ITechnologySchema } from "@models/ICollections";
 import { FilterQuery, PaginateOptions, PaginateResult, Types } from "mongoose";
 import { ICreateTechnologyRequest } from "./dto/createTechnology.dto";
 import config from 'config'
 import { IUpdateTechnologyRequest } from "./dto/updateTechnology.dto";
 import { IDeleteTechnologyRequest } from "./dto/deleteTechnology.dto";
-import { ISkill } from "@interface/ISkill";
 
 const getSkills = async (
     payload: IGetTechnologiesRequest
-): Promise<ISkill[]> => {
-    try {
-        return await collections.Skill.find({
-            user: new Types.ObjectId(payload.usrId)
-        }).populate([
-            { strictPopulate: false, path: 'Technology' },
-            { strictPopulate: false, path: 'Category' }
-        ])
-    } catch (error) {
-        throw new ApplicationError({
-            message: 'Ocurrio un error al obtener las tecnologias', source: error
-        });
-    }
+): Promise<ISkillSchema[] | null> => {
+    // try {
+    //     return await collections.Skill.find({
+    //         user: new Types.ObjectId(payload.usrId)
+    //     }).populate([
+    //         { strictPopulate: false, path: 'Technology' },
+    //         { strictPopulate: false, path: 'Category' }
+    //     ])
+    // } catch (error) {
+    //     throw new ApplicationError({
+    //         message: 'Ocurrio un error al obtener las tecnologias', source: error
+    //     });
+    // }
+    return "asd" as any
 }
 
 const createTechnology = async (
     payload: ICreateTechnologyRequest
 ): Promise<ITechnologySchema> => {
-    // try {
-    //     const newTechnology = await collections.Technology.create({
-    //         name: payload.name,
-    //         image: `${config.get('server.public_url')}/${payload.image[0].filename}`,
-    //         category: new Types.ObjectId(payload.idCategory),
-    //         user: new Types.ObjectId(payload.usrId)
-    //     })
+    try {
+        /* 
+            -> Verificar si el usuario tiene un registro de Skills con
+                la categoria de la tecnologia que quiere crear.
+            -> Caso de no tener, crear registro de ISkilSchema
+            -> Crear registro de nueva tecnologia
+            -> Insertar idTecnologia dentro del technologysList de ISkillSchema
+             
+        
+        */
 
-    //     await collections.User.findByIdAndUpdate(
-    //         payload.usrId,
-    //         {
-    //             // $push: { techologyList: new Types.ObjectId(newTechnology._id) }
-    //         }
-    //     )
+        // const newTechnology = await collections.Technology.create({
+        //     name: payload.name,
+        //     image: `${config.get('server.public_url')}/${payload.image[0].filename}`,
+        //     category: new Types.ObjectId(payload.idCategory),
+        //     user: new Types.ObjectId(payload.usrId)
+        // })
 
-    //     return newTechnology
-    // } catch (error) {
-    //     throw new ApplicationError({
-    //         message: 'Ha ocurrido un error al crear una tecnologia',
-    //         source: error
-    //     })
-    // }
+        // await collections.User.findByIdAndUpdate(
+        //     payload.usrId,
+        //     {
+        //         $push: { techologyList: new Types.ObjectId(newTechnology._id) }
+        //     }
+        // )
+
+        // return newTechnology
+        return "asd" as any
+    } catch (error) {
+        throw new ApplicationError({
+            message: 'Ha ocurrido un error al crear una tecnologia',
+            source: error
+        })
+    }
 }
 
 const updateTechnology = async (
@@ -127,3 +138,25 @@ export default {
     findTechnologyByFields,
     findCategoryByFields
 }
+
+
+// const getTechnologies = async (
+//     payload: IGetTechnologiesRequest
+// ): Promise<PaginateResult<ITechnologySchema>> => {
+//     try {
+//         const query: FilterQuery<ITechnologySchema> = {
+//             _id: payload.usrId
+//         }
+//         const options: PaginateOptions = {
+//             page: payload.page,
+//             limit: 6,
+//             populate: { strictPopulate: false, path: 'Categories' }
+//         }
+
+//         return await collections.Technologies.paginate(query, options)
+//     } catch (error) {
+//         throw new ApplicationError({
+//             message: 'Ocurrio un error al obtener las tecnologias', source: error
+//         });
+//     }
+// }

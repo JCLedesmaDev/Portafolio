@@ -10,9 +10,7 @@ import { IUpdateUserRequest } from "./dto/updateUser.dto";
  * @param value Valor del campo en cuestion
  * @returns Usuario encontrado o null
  */
-const getUserByField = async (
-    objFind: any
-): Promise<IUserSchema | null> => {
+const getUserByField = async (objFind: any): Promise<IUserSchema | null> => {
     try {
         return await collections.User.findOne(objFind).populate([
             { strictPopulate: false, path: 'Skill' },
@@ -31,9 +29,7 @@ const getUserByField = async (
     }
 }
 
-const updateUser = async (
-    payload: IUpdateUserRequest
-): Promise<IUserSchema | null> => {
+const updateUser = async (payload: IUpdateUserRequest): Promise<IUserSchema | null> => {
     try {
         return await collections.User.findByIdAndUpdate(
             payload.idUser,
