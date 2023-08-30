@@ -36,7 +36,7 @@ const createTechnology = async (
             -> Caso de no tener, crear registro de ISkilSchema
             -> Crear registro de nueva tecnologia
             -> Insertar idTecnologia dentro del technologysList de ISkillSchema
-             
+
         
         */
 
@@ -106,28 +106,28 @@ const deleteTechnology = async (
 const findTechnologyByFields = async (
     objFind: any
 ): Promise<ITechnologySchema | null> => {
-    // try {
-    //     return await collections.Technologies.findOne(objFind)
-    // } catch (error) {
-    //     throw new ApplicationError({
-    //         message: 'Ha ocurrido un error al obtener la tecnologia',
-    //         source: error
-    //     });
-    // }
+    try {
+        return await collections.Technology.findOne(objFind)
+    } catch (error) {
+        throw new ApplicationError({
+            message: 'Ha ocurrido un error al obtener la tecnologia',
+            source: error
+        });
+    }
 }
 
 
 const findCategoryByFields = async (
     objFind: any
 ): Promise<ICategorySchema | null> => {
-    // try {
-    //     return await collections.Categories.findOne(objFind)
-    // } catch (error) {
-    //     throw new ApplicationError({
-    //         message: 'Ha ocurrido un error al obtener la categoria',
-    //         source: error
-    //     });
-    // }
+    try {
+        return await collections.Category.findOne(objFind)
+    } catch (error) {
+        throw new ApplicationError({
+            message: 'Ha ocurrido un error al obtener la categoria',
+            source: error
+        });
+    }
 }
 
 export default {
