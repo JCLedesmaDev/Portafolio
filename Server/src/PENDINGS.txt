@@ -9,3 +9,10 @@ Hacer crud de Proyectos y Tecnologias
 
 ⏰ Estoy con el metodo "createTechnology" y hacer luego "getSkills" en donde debo tener un arreglo de las skills
 y dentro de las tecnologias, debe estar paginado.
+
+
+Al finalizar proyecto: Ver en los logics que todo lo relacionado a otros servicios 
+    esten en su respectivos servicios y llamarlos desde ahi.
+    Por ejem: Tengo en skills una consulta de usuario, pues en vez de tenerlo 
+    dentro del bloque de skills, llamar al externalDb de User para traer esos datos.
+    
