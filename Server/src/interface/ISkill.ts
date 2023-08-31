@@ -4,7 +4,7 @@ import { ITechnology } from "./ITechnology";
 
 export interface ISkill extends IBase {
     category: ICategory;
-    techologysList: ITechnology[];
+    technologysList: ITechnology[];
 }
 
 

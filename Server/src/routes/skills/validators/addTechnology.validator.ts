@@ -2,7 +2,7 @@ import { validateResults } from "@middlewares/validatorExpressHandler";
 import { Request, Response, NextFunction } from "express";
 import { body } from "express-validator";
 
-export const validatorCreateTechnologyRequest = [
+export const validatorAddTechnologyRequest = [
     body('name')
         .exists({ checkFalsy: true }) // Los campos con valores falsos (por ejemplo, "", 0, falso, nulo) tampoco existirán'),
         .trim() // Elimina los espacios del comienzo y final del texto

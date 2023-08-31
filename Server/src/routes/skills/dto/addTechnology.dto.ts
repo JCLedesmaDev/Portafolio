@@ -1,6 +1,6 @@
 import { IFileRequest } from "@interface/IFileRequest";
 
-export interface ICreateTechnologyRequest {
+export interface IAddTechnologyRequest {
     usrId: string;
     name: string;
     image: IFileRequest[];

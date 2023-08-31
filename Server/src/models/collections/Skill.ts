@@ -4,7 +4,7 @@ import mongooseDelete, { SoftDeleteModel } from 'mongoose-delete';
 
 
 const SkillSchema = new Schema<ISkillSchema>({
-    techologysList: { type: [{ type: Types.ObjectId, ref: 'Technology' }], required: false, default: [] },
+    technologysList: { type: [{ type: Types.ObjectId, ref: 'Technology' }], required: false, default: [] },
     category: { type: Types.ObjectId, ref: 'Category', required: true },
     user: { type: Types.ObjectId, ref: 'User', required: true },
 }, {

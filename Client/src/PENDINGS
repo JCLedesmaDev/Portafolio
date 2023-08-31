@@ -10,3 +10,9 @@
 
 ⏰ Deployar proyectos realizados.
 ⏰ Agregar nuevos proyectos.
+
+
+Hacer que si el response del http:
+ -> Trae un data, retorne el data
+ -> Si no trae data, verifique el type de response y si es success,
+      devuelva un true y si es un error, devuelva un false

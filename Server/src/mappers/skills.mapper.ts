@@ -16,7 +16,7 @@ const singleSkill = (resource: ISkillSchema): ISkill => {
     const mapper: ISkill = {
         id: resource._id,
         category: mappers.singleCategory(resource.category as ICategorySchema),
-        techologysList: mappers.multipleTechnologies(resource.techologysList as ITechnologySchema[])
+        technologysList: mappers.multipleTechnologies(resource.technologysList as ITechnologySchema[])
     }
     return mapper
 };

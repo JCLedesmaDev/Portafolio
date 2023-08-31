@@ -33,7 +33,7 @@ export interface IColaboratorSchema extends Document, SoftDeleteInterface {
 }
 
 export interface ISkillSchema extends Document, SoftDeleteInterface {
-    techologysList: ObjectId | ITechnologySchema[];
+    technologysList: ObjectId | ITechnologySchema[];
     category: ObjectId | ICategorySchema;
     user: ObjectId | IUserSchema;
 }

@@ -1,10 +1,9 @@
 import express from "express";
 import { authHandler } from "@middlewares/authHandler";
-import {
-    createTechnology, deleteTechnology,
-    getSkills, updateTechnology
+import { getSkills,
+    addTechnology,updateTechnology, deleteTechnology
 } from "./controller";
-import { validatorCreateTechnologyRequest } from "./validators/createTechnology.validator";
+import { validatorAddTechnologyRequest } from "./validators/addTechnology.validator";
 import { validatorDeleteTechnologyRequest } from "./validators/deleteTechnology.validator";
 import { validatorUpdateTechnologyRequest } from "./validators/updateTechnology.validator";
 import { fileMulterHandler } from "@middlewares/fileMulterHandler";
@@ -15,9 +14,9 @@ router.use(authHandler)
 
 router.get('/getSkills', getSkills);
 
-router.post('/createTechnology', fileMulterHandler([
+router.post('/addTechnology', fileMulterHandler([
     { name: 'image', maxCount: 1 }
-]), validatorCreateTechnologyRequest, createTechnology);
+]), validatorAddTechnologyRequest, addTechnology);
 
 router.put('/updateTechnology/:idTechnology', fileMulterHandler([
     { name: 'image', maxCount: 1 }
