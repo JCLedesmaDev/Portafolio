@@ -53,7 +53,7 @@ const updateUser = async (payload: IUpdateUserRequest): Promise<IUserSchema | nu
     }
 }
 
-const addSkillToUser = async (usrId: string, newSkillId: string): Promise<void> => {
+const addRefSkillToUser = async (usrId: string, newSkillId: string): Promise<void> => {
     try {
         await collections.User.findByIdAndUpdate(usrId, {
             $push: { skillsList: new Types.ObjectId(newSkillId) }
@@ -66,7 +66,7 @@ const addSkillToUser = async (usrId: string, newSkillId: string): Promise<void> 
     }
 }
 
-const deleteSkillToUser = async (idSkill: string, usrId: string): Promise<void> => {
+const deleteRefSkillToUser = async (idSkill: string, usrId: string): Promise<void> => {
     try {
         await collections.User.findByIdAndUpdate(usrId, {
             $pull: { skillsList: new Types.ObjectId(idSkill) }
@@ -82,6 +82,6 @@ const deleteSkillToUser = async (idSkill: string, usrId: string): Promise<void> 
 export default { 
     getUserByField, 
     updateUser,
-    addSkillToUser,
-    deleteSkillToUser
+    addRefSkillToUser,
+    deleteRefSkillToUser
  }

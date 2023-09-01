@@ -1,6 +1,6 @@
 import { tryCatchWrapper } from "@utils/tryCatchWrapper"
 import externalDb from './dal'
-import externalDbUser from '@src/routes/users/dal'
+import externalDbUser from "@src/routes/users/dal"
 import mappers from "@mappers/index.mappers"
 import responseMessage from "@utils/responseMessage"
 import { IAddTechnologyRequest, IAddTechnologyResponse } from "./dto/addTechnology.dto"
@@ -35,7 +35,7 @@ const addTechnology = tryCatchWrapper(async (payload: IAddTechnologyRequest) => 
 
     if (skillUser === null) {
         skillUser = await externalDb.addNewSkill(payload)
-        await externalDbUser.addSkillToUser(payload.usrId, skillUser._id)
+        externalDbUser.addRefSkillToUser(payload.usrId, skillUser._id)
     }
 
     const findTechnology = await externalDb.findTechnologyByFields({
@@ -127,7 +127,7 @@ const deleteTechnology = tryCatchWrapper(async (payload: IDeleteTechnologyReques
 
     if (technologyDelete) deleteFile(findTechnology.image)
 
-    await externalDb.deleteTechnologyToSkillToUser({
+    externalDb.deleteTechnologyToSkillToUser({
         category: payload.idCategory,
         user: payload.usrId
     }, payload.idTechnology)
@@ -137,8 +137,8 @@ const deleteTechnology = tryCatchWrapper(async (payload: IDeleteTechnologyReques
     skillsUser?.forEach(async (skill: ISkillSchema) => {
         const technologyList = skill?.technologysList as ITechnologySchema[]
         if (technologyList?.length === 0) {
-            await externalDbUser.deleteSkillToUser(skill._id, payload.usrId)
-            await externalDb.deleteSkill(skill._id, payload.usrId)
+            await externalDbUser.deleteRefSkillToUser(skill._id, payload.usrId)
+            externalDb.deleteSkill(skill._id)
         }
     })
 

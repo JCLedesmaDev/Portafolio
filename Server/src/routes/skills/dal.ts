@@ -37,11 +37,8 @@ const addNewSkill = async (payload: IAddTechnologyRequest): Promise<ISkillSchema
     }
 }
 
-const deleteSkill = async (idSkill: string, usrId: string): Promise<boolean> => {
+const deleteSkill = async (idSkill: string): Promise<boolean> => {
     try {
-        // await collections.User.findByIdAndUpdate(usrId, {
-        //     $pull: { skillsList: new Types.ObjectId(idSkill) }
-        // })
         const newSkill = await collections.Skill.deleteById(idSkill)
         return newSkill.deletedCount === 1
     } catch (error) {
@@ -175,25 +172,3 @@ export default {
     // categoty
     findCategoryByFields
 }
-
-
-// const getTechnologies = async (
-//     payload: IGetTechnologiesRequest
-// ): Promise<PaginateResult<ITechnologySchema>> => {
-//     try {
-//         const query: FilterQuery<ITechnologySchema> = {
-//             _id: payload.usrId
-//         }
-//         const options: PaginateOptions = {
-//             page: payload.page,
-//             limit: 6,
-//             populate: { strictPopulate: false, path: 'Categories' }
-//         }
-
-//         return await collections.Technologies.paginate(query, options)
-//     } catch (error) {
-//         throw new ApplicationError({
-//             message: 'Ocurrio un error al obtener las tecnologias', source: error
-//         });
-//     }
-// }

@@ -6,11 +6,11 @@ import { user } from "./user.mapper"
 
 const mappers = {
     user,
-    multipleProjects,
-    multipleTechnologies,
     singleTechnology,
     singleCategory,
-    multipleSkills
+    multipleSkills,
+    multipleTechnologies,
+    multipleProjects,
 }
 
 export default mappers
