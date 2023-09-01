@@ -7,7 +7,6 @@ const router = express.Router();
 
 router.use('/users', UsersRoutes)
 router.use('/skills', SkillsRoutes)
-
 router.use('/project', ProjectsRoutes)
 
 export default router;
