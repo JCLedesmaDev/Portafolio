@@ -42,9 +42,27 @@ export const validatorAddProjectRequest = [
         .notEmpty(), // No puede venir vacio
 
     body('projectLink', "Este campo es requerido")
+        .optional()
         .exists({ checkFalsy: true }) // Los campos con valores falsos (por ejemplo, "", 0, falso, nulo) tampoco existirán'),
         .trim() // Elimina los espacios del comienzo y final del texto
         .notEmpty(), // No puede venir vacio
+
+    // body('colaborators.name', "Este campo es requerido")
+    //     .exists({ checkFalsy: true }) // Los campos con valores falsos (por ejemplo, "", 0, falso, nulo) tampoco existirán'),
+    //     .trim() // Elimina los espacios del comienzo y final del texto
+    //     .notEmpty(), // No puede venir vacio
+
+    // body('colaborators.repositoryLink', "Este campo es requerido")
+    //     .exists({ checkFalsy: true }) // Los campos con valores falsos (por ejemplo, "", 0, falso, nulo) tampoco existirán'),
+    //     .trim() // Elimina los espacios del comienzo y final del texto
+    //     .notEmpty(), // No puede venir vacio
+
+    // body("colaboratorsList")
+    //     .custom((value) => [
+    //         let flag = false;
+    //         if (condition) {
+    //         }
+    //     ]),
 
     body("images")
         .optional()
