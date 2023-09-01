@@ -10,7 +10,7 @@ export const multipleTechnologies = (resource: ITechnologySchema[]): ITechnology
     return resource.map(project => singleTechnology(project))
 }
 
-const singleTechnology = (resource: ITechnologySchema): ITechnology => {
+export const singleTechnology = (resource: ITechnologySchema): ITechnology => {
     const mapper: ITechnology = {
         id: resource._id,
         image: resource.image,

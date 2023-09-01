@@ -1,8 +1,7 @@
 import collections from "@models/index.collections"
-import { IGetSkillsRequest } from "./dto/getSkills.dto"
 import { ApplicationError } from "@utils/applicationError";
 import { ICategorySchema, ISkillSchema, ITechnologySchema } from "@models/ICollections";
-import { FilterQuery, PaginateOptions, PaginateResult, Types } from "mongoose";
+import { Types } from "mongoose";
 import { IAddTechnologyRequest } from "./dto/addTechnology.dto";
 import config from 'config'
 import { IUpdateTechnologyRequest } from "./dto/updateTechnology.dto";
@@ -22,38 +21,37 @@ const getSkills = async (usrId: string): Promise<ISkillSchema[]> => {
         });
     }
 }
-const addSkillToUser = async (payload: IAddTechnologyRequest): Promise<ISkillSchema> => {
+
+const addNewSkill = async (payload: IAddTechnologyRequest): Promise<ISkillSchema> => {
     try {
-        const newSkill = await collections.Skill.create({
+        return await collections.Skill.create({
             technologysList: [],
             category: new Types.ObjectId(payload.idCategory),
             user: new Types.ObjectId(payload.usrId)
         })
-        collections.User.findByIdAndUpdate(payload.usrId, {
-            $push: { skillsList: new Types.ObjectId(newSkill._id) }
-        })
-        return newSkill
     } catch (error) {
         throw new ApplicationError({
-            message: 'Ha ocurrido un error al crear la habilidad.',
+            message: 'Ha ocurrido un error al agregar.',
             source: error
         })
     }
 }
-const deleteSkillToUser = async (idSkill: string, usrId: string): Promise<boolean> => {
+
+const deleteSkill = async (idSkill: string, usrId: string): Promise<boolean> => {
     try {
-        await collections.User.findByIdAndUpdate(usrId, {
-            $pull: { skillsList: new Types.ObjectId(idSkill) }
-        })
+        // await collections.User.findByIdAndUpdate(usrId, {
+        //     $pull: { skillsList: new Types.ObjectId(idSkill) }
+        // })
         const newSkill = await collections.Skill.deleteById(idSkill)
         return newSkill.deletedCount === 1
     } catch (error) {
         throw new ApplicationError({
-            message: 'Ha ocurrido un error al eliminar la habilidad.',
+            message: 'Ha ocurrido un error al eliminar.',
             source: error
         })
     }
 }
+
 const addTechnologyToSkillToUser = async (objFind: any, idTechnology: string) => {
     try {
         await collections.Skill.findOneAndUpdate(objFind, {
@@ -66,6 +64,7 @@ const addTechnologyToSkillToUser = async (objFind: any, idTechnology: string) =>
         })
     }
 }
+
 const deleteTechnologyToSkillToUser = async (objFind: any, idTechnology: string) => {
     try {
         await collections.Skill.findOneAndUpdate(objFind, {
@@ -78,6 +77,7 @@ const deleteTechnologyToSkillToUser = async (objFind: any, idTechnology: string)
         })
     }
 }
+
 const findSkillFromUserByFields = async (objFind: any): Promise<ISkillSchema | null> => {
     try {
         return await collections.Skill.findOne(objFind)
@@ -160,8 +160,8 @@ const findCategoryByFields = async (objFind: any): Promise<ICategorySchema | nul
 export default {
     // skills
     getSkills,
-    addSkillToUser,
-    deleteSkillToUser,
+    addNewSkill,
+    deleteSkill,
     addTechnologyToSkillToUser,
     deleteTechnologyToSkillToUser,
     findSkillFromUserByFields,

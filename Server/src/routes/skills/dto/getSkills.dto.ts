@@ -1,10 +1,9 @@
 import { ISkill } from "@interface/ISkill";
-import { IFilterPagination, IPagination } from "@interface/pagination";
 
-export interface IGetSkillsRequest extends IFilterPagination {
+export interface IGetSkillsRequest {
     usrId: string;
 }
 
-export interface IGetSkillsResponse extends IPagination { 
-   docs: ISkill;
+export interface IGetSkillsResponse {
+    listSkills: ISkill[];
 }

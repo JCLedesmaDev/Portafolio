@@ -1,32 +1,28 @@
 import { tryCatchWrapper } from "@utils/tryCatchWrapper"
 import externalDb from './dal'
-import { paginationMapper } from "@utils/paginationMapper"
+import externalDbUser from '@src/routes/users/dal'
 import mappers from "@mappers/index.mappers"
 import responseMessage from "@utils/responseMessage"
-import { IAddTechnologyRequest } from "./dto/addTechnology.dto"
-import { IUpdateTechnologyRequest } from "./dto/updateTechnology.dto"
+import { IAddTechnologyRequest, IAddTechnologyResponse } from "./dto/addTechnology.dto"
+import { IUpdateTechnologyRequest, IUpdateTechnologyResponse } from "./dto/updateTechnology.dto"
 import { IDeleteTechnologyRequest } from "./dto/deleteTechnology.dto"
 import { ApplicationError } from "@utils/applicationError"
 import { deleteFile } from "@utils/deleteFile"
 import { ISkillSchema, ITechnologySchema } from "@models/ICollections"
 import { IGetSkillsRequest, IGetSkillsResponse } from "./dto/getSkills.dto"
-import { ISkill } from "@interface/ISkill"
 
 
 const getSkills = tryCatchWrapper(async (payload: IGetSkillsRequest) => {
 
-//     // const listSkills = await externalDb.getSkills(payload)
+    const listSkills = await externalDb.getSkills(payload.usrId)
 
-//     // const listSkillsMapper: IGetSkillsResponse = paginationMapper<ISkill[]>({
-//     //     resource: listSkills,
-//     //     callBackMapper: mappers.multipleSkills
-//     // })
+    const response: IGetSkillsResponse = {
+        listSkills: mappers.multipleSkills(listSkills)
+    }
 
-
-//     // return responseMessage.success<IGetSkillsResponse>({
-//     //     data: listSkillsMapper,
-//     // })
-//     return "asd" as any
+    return responseMessage.success<IGetSkillsResponse>({
+        data: response,
+    })
 })
 
 const addTechnology = tryCatchWrapper(async (payload: IAddTechnologyRequest) => {
@@ -37,7 +33,10 @@ const addTechnology = tryCatchWrapper(async (payload: IAddTechnologyRequest) => 
         category: payload.idCategory
     })
 
-    if (skillUser === null) skillUser = await externalDb.addSkillToUser(payload)
+    if (skillUser === null) {
+        skillUser = await externalDb.addNewSkill(payload)
+        await externalDbUser.addSkillToUser(payload.usrId, skillUser._id)
+    }
 
     const findTechnology = await externalDb.findTechnologyByFields({
         name: payload.name
@@ -66,9 +65,14 @@ const addTechnology = tryCatchWrapper(async (payload: IAddTechnologyRequest) => 
         user: payload.usrId
     }, newTechnology._id);
 
-    return responseMessage.success({
+
+    const response: IAddTechnologyResponse = {
+        technology: mappers.singleTechnology(newTechnology)
+    }
+
+    return responseMessage.success<IAddTechnologyResponse>({
         message: 'Ha creado una tecnologia exitosamente!',
-        data: newTechnology
+        data: response
     })
 })
 
@@ -98,9 +102,13 @@ const updateTechnology = tryCatchWrapper(async (payload: IUpdateTechnologyReques
         deleteFile(findTechnology.image)
     }
 
-    return responseMessage.success({
+    const response: IAddTechnologyResponse = {
+        technology: mappers.singleTechnology(technologyUpdate as ITechnologySchema)
+    }
+
+    return responseMessage.success<IUpdateTechnologyResponse>({
         message: 'Se edito correctamente!',
-        data: technologyUpdate
+        data: response
     })
 })
 
@@ -123,13 +131,14 @@ const deleteTechnology = tryCatchWrapper(async (payload: IDeleteTechnologyReques
         category: payload.idCategory,
         user: payload.usrId
     }, payload.idTechnology)
-    
+
     const skillsUser = await externalDb.getSkills(payload.usrId)
 
     skillsUser?.forEach(async (skill: ISkillSchema) => {
-        const technologyList = skill?.technologysList as ITechnologySchema[] 
+        const technologyList = skill?.technologysList as ITechnologySchema[]
         if (technologyList?.length === 0) {
-            await externalDb.deleteSkillToUser(skill._id, payload.usrId)
+            await externalDbUser.deleteSkillToUser(skill._id, payload.usrId)
+            await externalDb.deleteSkill(skill._id, payload.usrId)
         }
     })
 
@@ -138,7 +147,6 @@ const deleteTechnology = tryCatchWrapper(async (payload: IDeleteTechnologyReques
     })
 })
 
-/// Faltaria CRUD de categorias
 
 export default {
     getSkills,

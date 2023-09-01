@@ -1,4 +1,5 @@
 import { IFileRequest } from "@interface/IFileRequest";
+import { ITechnology } from "@interface/ITechnology";
 
 export interface IAddTechnologyRequest {
     usrId: string;
@@ -7,3 +8,6 @@ export interface IAddTechnologyRequest {
     idCategory: string;
 }
 
+export interface IAddTechnologyResponse {
+    technology: ITechnology
+}

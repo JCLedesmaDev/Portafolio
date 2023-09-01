@@ -2,6 +2,7 @@ import { IUserSchema } from "@models/ICollections";
 import collections from "@models/index.collections"
 import { ApplicationError } from "@utils/applicationError";
 import config from 'config'
+import { Types } from "mongoose";
 import { IUpdateUserRequest } from "./dto/updateUser.dto";
 
 /**
@@ -52,4 +53,35 @@ const updateUser = async (payload: IUpdateUserRequest): Promise<IUserSchema | nu
     }
 }
 
-export default { getUserByField, updateUser }
+const addSkillToUser = async (usrId: string, newSkillId: string): Promise<void> => {
+    try {
+        await collections.User.findByIdAndUpdate(usrId, {
+            $push: { skillsList: new Types.ObjectId(newSkillId) }
+        })
+    } catch (error) {
+        throw new ApplicationError({
+            message: 'Ha ocurrido un error al agregar la skill al usuario.',
+            source: error
+        })
+    }
+}
+
+const deleteSkillToUser = async (idSkill: string, usrId: string): Promise<void> => {
+    try {
+        await collections.User.findByIdAndUpdate(usrId, {
+            $pull: { skillsList: new Types.ObjectId(idSkill) }
+        })
+    } catch (error) {
+        throw new ApplicationError({
+            message: 'Ha ocurrido un error al eliminar la skill al usuario.',
+            source: error
+        })
+    }
+}
+
+export default { 
+    getUserByField, 
+    updateUser,
+    addSkillToUser,
+    deleteSkillToUser
+ }

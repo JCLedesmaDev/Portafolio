@@ -1,4 +1,5 @@
 import { IFileRequest } from "@interface/IFileRequest";
+import { ITechnology } from "@interface/ITechnology";
 
 export interface IUpdateTechnologyRequest {
     name: string;
@@ -7,3 +8,7 @@ export interface IUpdateTechnologyRequest {
     idTechnology: string;
 }
 
+
+export interface IUpdateTechnologyResponse {
+    technology: ITechnology
+}
