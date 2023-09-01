@@ -11,7 +11,7 @@ router.use(authHandler)
 // router.get('/getSkills', getSkills);
 
 router.post('/addProject', fileMulterHandler([
-    { name: 'image', maxCount: 5 }
+    { name: 'images', maxCount: 5 }
 ]), validatorAddProjectRequest, addProject);
 
 // router.put('/updateTechnology/:idTechnology', fileMulterHandler([

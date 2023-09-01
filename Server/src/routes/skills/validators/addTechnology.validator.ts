@@ -3,7 +3,7 @@ import { Request, Response, NextFunction } from "express";
 import { body } from "express-validator";
 
 export const validatorAddTechnologyRequest = [
-    body('name')
+    body('name', "Este campo es requerido")
         .exists({ checkFalsy: true }) // Los campos con valores falsos (por ejemplo, "", 0, falso, nulo) tampoco existirán'),
         .trim() // Elimina los espacios del comienzo y final del texto
         .notEmpty(), // No puede venir vacio
@@ -16,12 +16,12 @@ export const validatorAddTechnologyRequest = [
             if (file === 'png' || file === 'jpeg' || file === 'jpg') flag = true
             return flag
         })
-        .withMessage('Debe enviar UNA imagen de formato .png o .jpeg.'),
+        .withMessage('Debe enviar UNA imagen de formato .png o .jpeg o jpg.'),
 
-    body('idCategory')
+    body('idCategory', "Este campo es requerido")
         .exists({ checkFalsy: true }) // Los campos con valores falsos (por ejemplo, "", 0, falso, nulo) tampoco existirán'),
         .trim() // Elimina los espacios del comienzo y final del texto
-        .notEmpty(), // No puede venir vacio
+        .notEmpty(),
 
     (req: Request, res: Response, next: NextFunction) => validateResults(req, res, next)
 ]
