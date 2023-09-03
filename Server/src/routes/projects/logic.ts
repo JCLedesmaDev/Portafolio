@@ -81,7 +81,7 @@ const updateProject = tryCatchWrapper(async (payload: IUpdateProjectRequest) => 
         project: mappers.singleProject(projectUpdate as IProjectSchema)
     }
 
-    return responseMessage.success<IAddProjectResponse>({
+    return responseMessage.success<IUpdateProjectResponse>({
         message: 'Se edito exitosamente!',
         data: response
     })
