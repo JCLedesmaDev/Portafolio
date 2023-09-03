@@ -9,21 +9,7 @@ import { IDeleteTechnologyRequest } from "./dto/deleteTechnology.dto"
 import { ApplicationError } from "@utils/applicationError"
 import { deleteFile } from "@utils/deleteFile"
 import { ISkillSchema, ITechnologySchema } from "@models/ICollections"
-import { IGetSkillsRequest, IGetSkillsResponse } from "./dto/getSkills.dto"
 
-
-const getSkills = tryCatchWrapper(async (payload: IGetSkillsRequest) => {
-
-    const listSkills = await externalDb.getSkills(payload.usrId)
-
-    const response: IGetSkillsResponse = {
-        listSkills: mappers.multipleSkills(listSkills)
-    }
-
-    return responseMessage.success<IGetSkillsResponse>({
-        data: response,
-    })
-})
 
 const addTechnology = tryCatchWrapper(async (payload: IAddTechnologyRequest) => {
 
@@ -77,6 +63,7 @@ const addTechnology = tryCatchWrapper(async (payload: IAddTechnologyRequest) => 
 })
 
 const updateTechnology = tryCatchWrapper(async (payload: IUpdateTechnologyRequest) => {
+   
     const findTechnology = await externalDb.findTechnologyByFields({
         name: payload.name
     })
@@ -149,7 +136,6 @@ const deleteTechnology = tryCatchWrapper(async (payload: IDeleteTechnologyReques
 
 
 export default {
-    getSkills,
     addTechnology,
     updateTechnology,
     deleteTechnology

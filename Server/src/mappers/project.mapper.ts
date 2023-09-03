@@ -17,7 +17,7 @@ export const multipleProjects = (resource: IProjectSchema[]): IProject[] => {
  * @param resource Recursos a utilizar en el mapper
  * @returns Nuevo objeto con los datos a eleccion
  */
-const singleProject = (resource: IProjectSchema): IProject => {
+export const singleProject = (resource: IProjectSchema): IProject => {
     const mapper: IProject = {
         id: resource._id,
         description: resource.description,

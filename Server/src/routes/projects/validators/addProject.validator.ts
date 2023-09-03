@@ -4,6 +4,7 @@ import { Request, Response, NextFunction } from "express";
 import { body } from "express-validator";
 
 export const validatorAddProjectRequest = [
+
     body('name', "Este campo es requerido")
         .exists({ checkFalsy: true }) // Los campos con valores falsos (por ejemplo, "", 0, falso, nulo) tampoco existirán'),
         .trim() // Elimina los espacios del comienzo y final del texto
@@ -47,22 +48,20 @@ export const validatorAddProjectRequest = [
         .trim() // Elimina los espacios del comienzo y final del texto
         .notEmpty(), // No puede venir vacio
 
-    // body('colaborators.name', "Este campo es requerido")
-    //     .exists({ checkFalsy: true }) // Los campos con valores falsos (por ejemplo, "", 0, falso, nulo) tampoco existirán'),
-    //     .trim() // Elimina los espacios del comienzo y final del texto
-    //     .notEmpty(), // No puede venir vacio
+    body('colaboratorsList')
+        .optional()
+        .isArray()
+        .withMessage('Este campo no tiene el formato correcto.'),
 
-    // body('colaborators.repositoryLink', "Este campo es requerido")
-    //     .exists({ checkFalsy: true }) // Los campos con valores falsos (por ejemplo, "", 0, falso, nulo) tampoco existirán'),
-    //     .trim() // Elimina los espacios del comienzo y final del texto
-    //     .notEmpty(), // No puede venir vacio
+    body('colaboratorsList.*.name', "Este campo es requerido")
+        .exists({ checkFalsy: true }) // Los campos con valores falsos (por ejemplo, "", 0, falso, nulo) tampoco existirán'),
+        .trim() // Elimina los espacios del comienzo y final del texto
+        .notEmpty(), // No puede venir vacio
 
-    // body("colaboratorsList")
-    //     .custom((value) => [
-    //         let flag = false;
-    //         if (condition) {
-    //         }
-    //     ]),
+    body('colaboratorsList.*.repositoryLink', "Este campo es requerido")
+        .exists({ checkFalsy: true }) // Los campos con valores falsos (por ejemplo, "", 0, falso, nulo) tampoco existirán'),
+        .trim() // Elimina los espacios del comienzo y final del texto
+        .notEmpty(), // No puede venir vacio
 
     body("images")
         .optional()

@@ -1,7 +1,6 @@
 import express from "express";
 import { authHandler } from "@middlewares/authHandler";
-import { getSkills,
-    addTechnology,updateTechnology, deleteTechnology
+import { addTechnology,updateTechnology, deleteTechnology
 } from "./controller";
 import { validatorAddTechnologyRequest } from "./validators/addTechnology.validator";
 import { validatorDeleteTechnologyRequest } from "./validators/deleteTechnology.validator";
@@ -12,7 +11,6 @@ const router = express.Router();
 
 router.use(authHandler)
 
-router.get('/getSkills', getSkills);
 
 router.post('/addTechnology', fileMulterHandler([
     { name: 'image', maxCount: 1 }

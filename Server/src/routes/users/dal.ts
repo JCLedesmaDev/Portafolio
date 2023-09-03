@@ -53,6 +53,31 @@ const updateUser = async (payload: IUpdateUserRequest): Promise<IUserSchema | nu
     }
 }
 
+const addRefProjectToUser = async (idProject: string, usrId: string): Promise<void> => {
+    try {
+        await collections.User.findByIdAndUpdate(usrId, {
+            $push: { projectsList: new Types.ObjectId(idProject) }
+        })
+    } catch (error) {
+        throw new ApplicationError({
+            message: 'Ha ocurrido un error al agregar el proyecto al usuario.',
+            source: error
+        })
+    }
+}
+
+const deleteRefProjectToUser = async (idProject: string, usrId: string): Promise<void> => {
+    try {
+        await collections.User.findByIdAndUpdate(usrId, {
+            $pull: { projectsList: new Types.ObjectId(idProject) }
+        })
+    } catch (error) {
+        throw new ApplicationError({
+            message: 'Ha ocurrido un error al eliminar el proyecto del usuario.',
+            source: error
+        })
+    }
+}
 const addRefSkillToUser = async (usrId: string, newSkillId: string): Promise<void> => {
     try {
         await collections.User.findByIdAndUpdate(usrId, {
@@ -79,9 +104,12 @@ const deleteRefSkillToUser = async (idSkill: string, usrId: string): Promise<voi
     }
 }
 
+
 export default { 
     getUserByField, 
     updateUser,
     addRefSkillToUser,
-    deleteRefSkillToUser
+    deleteRefSkillToUser,
+    addRefProjectToUser,
+    deleteRefProjectToUser
  }

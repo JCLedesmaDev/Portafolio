@@ -2,18 +2,10 @@ import logic from './logic'
 import { Request } from "express"
 import { matchedData } from "express-validator"
 import { controllerWrapper } from "@utils/controllerWrapper"
-import { IGetSkillsRequest } from "./dto/getSkills.dto";
 import { IAddTechnologyRequest } from "./dto/addTechnology.dto";
 import { IDeleteTechnologyRequest } from "./dto/deleteTechnology.dto";
 import { IUpdateTechnologyRequest } from "./dto/updateTechnology.dto";
 
-const getSkills = controllerWrapper(async (req: Request) => {
-    const payload = matchedData(req) as IGetSkillsRequest;
-    payload.usrId = req.locals.usrId
-
-    req.locals.info = payload; 
-    return await logic.getSkills(payload)
-});
 
 const addTechnology = controllerWrapper(async (req: Request) => {
     const payload = matchedData(req) as IAddTechnologyRequest;
@@ -39,10 +31,7 @@ const deleteTechnology = controllerWrapper(async (req: Request) => {
 });
 
 export {
-    getSkills,
     addTechnology,
     updateTechnology,
     deleteTechnology
 }
-
-

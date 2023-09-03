@@ -1,6 +1,6 @@
 import express from "express";
-import { authHandler } from "@middlewares/authHandler";
 import { addProject } from "./controller";
+import { authHandler } from "@middlewares/authHandler";
 import { fileMulterHandler } from "@middlewares/fileMulterHandler";
 import { validatorAddProjectRequest } from "./validators/addProject.validator";
 
@@ -14,9 +14,9 @@ router.post('/addProject', fileMulterHandler([
     { name: 'images', maxCount: 5 }
 ]), validatorAddProjectRequest, addProject);
 
-// router.put('/updateTechnology/:idTechnology', fileMulterHandler([
-//     { name: 'image', maxCount: 1 }
-// ]), validatorUpdateTechnologyRequest, updateTechnology);
+// router.put('/updateTechnology/:idProject', fileMulterHandler([
+//     { name: 'image', maxCount: 5 }
+// ]), validatorUpdateProjectRequest, updateProject);
 
 // router.delete('/deleteTechnology/:idTechnology',
 //     validatorDeleteTechnologyRequest, deleteTechnology
