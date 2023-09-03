@@ -3,6 +3,9 @@ import collections from "@models/index.collections";
 import { ApplicationError } from "@utils/applicationError";
 import { IAddProjectRequest } from "./dto/addProject.dto";
 import { Types } from "mongoose";
+import config from 'config'
+import { IUpdateProjectRequest } from "./dto/updateProject.dto.";
+
 
 const findProjectByField = async (objFind: any): Promise<IProjectSchema | null> => {
     try {
@@ -27,7 +30,9 @@ const addNewProject = async (payload: IAddProjectRequest): Promise<IProjectSchem
             typeProject: payload.typeProject,
             projectLink: payload.projectLink,
             repositoryLink: payload.repositoryLink,
-            // images: payload.images, // Manipular el arreglo de string imagens en logic.js
+            images: payload.images.map(img => (
+                `${config.get('server.public_url')}/${img.filename}`
+            )),
             colaboratorsList: payload.colaboratorsList,
             user: new Types.ObjectId(payload.usrId),
         })
@@ -51,8 +56,7 @@ const deleteProject = async (idProject: string): Promise<boolean> => {
     }
 }
 
-// const updateProject = async (payload: IUpdateProjectRequest): Promise<IProjectSchema | null> => {
-const updateProject = async (payload: any): Promise<IProjectSchema | null> => {
+const updateProject = async (payload: IUpdateProjectRequest): Promise<IProjectSchema | null> => {
     try {
         return await collections.Project.findByIdAndUpdate(
             payload.idProject,
@@ -65,7 +69,11 @@ const updateProject = async (payload: any): Promise<IProjectSchema | null> => {
                 typeProject: payload.typeProject,
                 projectLink: payload.projectLink,
                 repositoryLink: payload.repositoryLink,
-                // images: payload.images, // Manipular el arreglo de string imagens en logic.js
+                ...(payload.images.length > 0 && {
+                    images: payload.images.map(img => (
+                        `${config.get('server.public_url')}/${img.filename}`
+                    )),
+                }),
                 colaboratorsList: payload.colaboratorsList,
                 user: new Types.ObjectId(payload.usrId),
             }

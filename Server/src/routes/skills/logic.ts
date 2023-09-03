@@ -112,12 +112,13 @@ const deleteTechnology = tryCatchWrapper(async (payload: IDeleteTechnologyReques
 
     const technologyDelete = await externalDb.deleteTechnology(payload);
 
-    if (technologyDelete) deleteFile(findTechnology.image)
-
-    externalDb.deleteTechnologyToSkillToUser({
-        category: payload.idCategory,
-        user: payload.usrId
-    }, payload.idTechnology)
+    if (technologyDelete) {
+        deleteFile(findTechnology.image)
+        externalDb.deleteTechnologyToSkillToUser({
+            category: payload.idCategory,
+            user: payload.usrId
+        }, payload.idTechnology)
+    }
 
     const skillsUser = await externalDb.getSkills(payload.usrId)
 

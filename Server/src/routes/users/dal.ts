@@ -65,7 +65,6 @@ const addRefProjectToUser = async (idProject: string, usrId: string): Promise<vo
         })
     }
 }
-
 const deleteRefProjectToUser = async (idProject: string, usrId: string): Promise<void> => {
     try {
         await collections.User.findByIdAndUpdate(usrId, {
@@ -78,6 +77,7 @@ const deleteRefProjectToUser = async (idProject: string, usrId: string): Promise
         })
     }
 }
+
 const addRefSkillToUser = async (usrId: string, newSkillId: string): Promise<void> => {
     try {
         await collections.User.findByIdAndUpdate(usrId, {
@@ -90,7 +90,6 @@ const addRefSkillToUser = async (usrId: string, newSkillId: string): Promise<voi
         })
     }
 }
-
 const deleteRefSkillToUser = async (idSkill: string, usrId: string): Promise<void> => {
     try {
         await collections.User.findByIdAndUpdate(usrId, {
