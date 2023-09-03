@@ -7,7 +7,14 @@ import { IUpdateCategoryRequest } from "./dto/updateCategory.dto.";
 
 
 const getAll = async () : Promise<ICategorySchema[]> => {
-    return await collections.Category.find({})
+    try {
+        return await collections.Category.find({})
+    } catch (error) {
+        throw new ApplicationError({
+            message: 'Ha ocurrido un error al obtener las categorias',
+            source: error
+        });
+    }
 }
 
 const findCategoryByField = async (objFind: any): Promise<ICategorySchema | null> => {

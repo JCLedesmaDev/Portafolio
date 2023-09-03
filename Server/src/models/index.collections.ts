@@ -1,5 +1,5 @@
 
-import RegisterDb from './collections/RegisterBD'
+import RegisterDb from './collections/RegisterDb'
 import Project from './collections/Project';
 import Technology from './collections/Technology';
 import User from './collections/User';

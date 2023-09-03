@@ -1,6 +1,6 @@
 
 import { NextFunction, Request, Response } from 'express'
-import logger from '@services/loggerBD'
+import logger from '@services/loggerDb'
 
 const eventHandler = async (req: Request, res: Response, next: NextFunction) => {
 

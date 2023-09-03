@@ -45,3 +45,11 @@ export interface ITechnologySchema extends Document, SoftDeleteInterface {
 export interface ICategorySchema extends Document, SoftDeleteInterface {
     name: string;
 }
+
+export interface IRegisterDbSchema extends Document {
+    type: string;
+    user: ObjectId | IUserSchema;
+    date: Date;
+    request: object;
+    response: object;
+}

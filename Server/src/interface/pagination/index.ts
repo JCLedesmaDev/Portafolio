@@ -1,6 +1,6 @@
 export interface IFilterPagination {
     page: number;
-    text?: string;
+    filterText?: string;
 }
 
 export interface IPagination {

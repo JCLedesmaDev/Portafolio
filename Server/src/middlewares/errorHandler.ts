@@ -1,5 +1,5 @@
 import { Request, Response, NextFunction } from 'express'
-import logger from '@services/loggerBD'
+import logger from '@services/loggerDb'
 import responseMessage from '@utils/responseMessage'
 import { ApplicationError } from '@utils/applicationError'
 

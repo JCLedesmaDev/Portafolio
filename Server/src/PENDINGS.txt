@@ -2,13 +2,3 @@
 ⏰ Cambiar el cors origin a solo el front, en vez de a todos
 ⏰ Investigar de enviar emails desde el back
 ⏰ Flashear la de hacer el push notification cuando me envien un email
-
-
-Quede en la creacion de un proyecto
-
-
-⏰ Al finalizar proyecto: Ver en los logics que todo lo relacionado a otros servicios 
-    esten en su respectivos servicios y llamarlos desde ahi.
-    Por ejem: Tengo en skills una consulta de usuario, pues en vez de tenerlo 
-    dentro del bloque de skills, llamar al externalDb de User para traer esos datos.
-    
