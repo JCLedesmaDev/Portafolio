@@ -1,7 +1,6 @@
 import { IProjectSchema } from '@models/ICollections';
-import { model, Schema, Types, PaginateModel } from 'mongoose';
+import { model, Schema, Types } from 'mongoose';
 import mongooseDelete, { SoftDeleteModel } from 'mongoose-delete';
-import mongoosePaginate from 'mongoose-paginate-v2'
 
 
 const ProjectSchema = new Schema<IProjectSchema>({
@@ -25,7 +24,4 @@ const ProjectSchema = new Schema<IProjectSchema>({
  le que brinda mongoose, por los que nos brinda mongooseDelete */
 ProjectSchema.plugin(mongooseDelete, { overrideMethods: 'all' })
 
-// Le indicamos a nuestro modelo, que va a poder paginar
-ProjectSchema.plugin(mongoosePaginate)
-
-export default model<IProjectSchema, SoftDeleteModel<IProjectSchema> & PaginateModel<IProjectSchema>>('Project', ProjectSchema);
+export default model<IProjectSchema, SoftDeleteModel<IProjectSchema>>('Project', ProjectSchema);

@@ -1,7 +1,6 @@
 import { ITechnologySchema } from '@models/ICollections';
-import { model, Schema, PaginateModel, Types } from 'mongoose';
+import { model, Schema, Types } from 'mongoose';
 import mongooseDelete, { SoftDeleteModel } from 'mongoose-delete';
-import mongoosePaginate from 'mongoose-paginate-v2'
 
 
 const TechnologySchema = new Schema<ITechnologySchema>({
@@ -17,7 +16,6 @@ const TechnologySchema = new Schema<ITechnologySchema>({
  le que brinda mongoose, por los que nos brinda mongooseDelete */
 TechnologySchema.plugin(mongooseDelete, { overrideMethods: 'all' })
 
-// Le indicamos a nuestro modelo, que va a poder paginar
-TechnologySchema.plugin(mongoosePaginate)
 
-export default model<ITechnologySchema, SoftDeleteModel<ITechnologySchema> & PaginateModel<ITechnologySchema>>('Technology', TechnologySchema);
+
+export default model<ITechnologySchema, SoftDeleteModel<ITechnologySchema>>('Technology', TechnologySchema);
