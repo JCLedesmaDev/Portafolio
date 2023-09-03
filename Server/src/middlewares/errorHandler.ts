@@ -20,7 +20,7 @@ const errorHandler = async (err: ApplicationError, req: Request, res: Response, 
         console.log("🚀 ---------------------------------------------------")
 
         if (err.source) { // Solo mandara registro a la BD, cuando sea un error proveniente de la asincronia
-            await logger.insertLoggerDB({
+            await logger.insertLoggerDb({
                 usuarioId: req.locals.usrId as string,
                 tipo: 'Error',
                 request: requestInfo,
@@ -41,7 +41,7 @@ const errorHandler = async (err: ApplicationError, req: Request, res: Response, 
         res.status(500).json(responseMessage.error<any>({
             message: 'Ocurrio un error interno. En breve estara resuelto'
         }))
-        return await logger.insertLoggerDB({
+        return await logger.insertLoggerDb({
             usuarioId: req.locals.usrId as string,  
             tipo: 'Error',
             request: requestInfo,

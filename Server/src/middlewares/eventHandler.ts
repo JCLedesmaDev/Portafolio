@@ -11,7 +11,7 @@ const eventHandler = async (req: Request, res: Response, next: NextFunction) => 
         url: req.url
     }
 
-    await logger.insertLoggerDB({
+    await logger.insertLoggerDb({
         usuarioId: req.locals.usrId as string, 
         tipo: 'Evento',
         request: requestInfo,
