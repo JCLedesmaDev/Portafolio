@@ -1,4 +1,5 @@
 👍 Estoy con el metodo "createTechnology" y hacer luego "getSkills" en donde debo tener un arreglo de las skills y dentro de las tecnologias,
 ⏰ Cambiar el cors origin a solo el front, en vez de a todos
-⏰ Investigar de enviar emails desde el back
-⏰ Flashear la de hacer el push notification cuando me envien un email
+
+⏰ Hacer que cuando nos envie un email, nos llegue directamente un mensaje al WP.
+
