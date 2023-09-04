@@ -2,7 +2,7 @@
 
 # API CRUD con NodeJS + ExpressJS + TypeScript y MongoDB. 
 
-API CRUD en NodeJS con manejo de Roles implementando una arquitectura orientada a Microservicios desarrollada con TypeScript, utilizando ExpressJS como framework y Mongoose como ODM de MongoDB.
+APIs CRUD en NodeJS implementando una arquitectura orientada a Microservicios desarrollada con TypeScript, utilizando ExpressJS como framework y Mongoose como ODM de MongoDB.
 
 ## Dependencias utilizadas:
  * [TypeScript](https://www.npmjs.com/package/typescript).

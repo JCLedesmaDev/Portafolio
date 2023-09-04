@@ -11,7 +11,6 @@ router.use('/users', UsersRoutes)
 router.use('/skills', SkillsRoutes)
 router.use('/project', ProjectsRoutes)
 router.use('/category', CategoryRoutes)
-
 router.use('/loggerDb', LoggerDbRoutes)
 
 export default router;
