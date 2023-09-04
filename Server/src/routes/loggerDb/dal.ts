@@ -22,7 +22,10 @@ const getAllLogerDb = async (opts: IFilterPagination): Promise<PaginateResult<IR
         }
         return await collections.RegisterDb.paginate(query, options)
     } catch (error) {
-        throw new ApplicationError({ message: 'Ha ocurrido un error al obtener el listado de registros', source: error })
+        throw new ApplicationError({ 
+            message: 'Ha ocurrido un error al obtener el listado de registros', 
+            source: error 
+        })
     }
 }
 

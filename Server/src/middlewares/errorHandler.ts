@@ -19,10 +19,11 @@ const errorHandler = async (err: ApplicationError, req: Request, res: Response, 
         console.log("🚀 ~ file: errorHandler.ts:8 ~ errorHandler ~ err", err)
         console.log("🚀 ---------------------------------------------------")
 
-        if (err.source) { // Solo mandara registro a la BD, cuando sea un error proveniente de la asincronia
+        if (err.source) { 
+            // Solo mandara registro a la BD, cuando sea un error proveniente de la asincronia
             await logger.insertLoggerDb({
-                usuarioId: req.locals.usrId as string,
-                tipo: 'Error',
+                usrId: req.locals.usrId as string,
+                type: 'Error',
                 request: requestInfo,
                 response: responseInfo
             })
@@ -38,12 +39,12 @@ const errorHandler = async (err: ApplicationError, req: Request, res: Response, 
                 stack: error.stack
             }
         }
-        res.status(500).json(responseMessage.error<any>({
+        res.status(500).json(responseMessage.error({
             message: 'Ocurrio un error interno. En breve estara resuelto'
         }))
         return await logger.insertLoggerDb({
-            usuarioId: req.locals.usrId as string,  
-            tipo: 'Error',
+            usrId: req.locals.usrId as string,  
+            type: 'Error',
             request: requestInfo,
             response: errorInfo
         })

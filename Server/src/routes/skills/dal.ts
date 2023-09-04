@@ -137,7 +137,10 @@ const deleteTechnology = async (payload: IDeleteTechnologyRequest): Promise<bool
         const techDelete = await collections.Technology.deleteById(payload.idTechnology)
         return techDelete.deletedCount === 1
     } catch (error) {
-        throw new ApplicationError({ message: 'Ha ocurrido un error al eliminar este album', source: error })
+        throw new ApplicationError({
+            message: 'Ha ocurrido un error al eliminar este album',
+            source: error
+        })
     }
 }
 
