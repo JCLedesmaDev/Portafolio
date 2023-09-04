@@ -1,4 +1,5 @@
 import { multipleCategories, singleCategory } from "./category.mapper"
+import { pagination } from "./pagination.mapper"
 import { multipleProjects, singleProject } from "./project.mapper"
 import { multipleRegisterDb } from "./registerDb.mapper"
 import { multipleSkills } from "./skills.mapper"
@@ -7,6 +8,7 @@ import { user } from "./user.mapper"
 
 const mappers = {
     user,
+    pagination,
     singleTechnology,
     singleCategory,
     singleProject,

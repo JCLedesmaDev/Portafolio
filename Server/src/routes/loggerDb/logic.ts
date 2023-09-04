@@ -4,7 +4,6 @@ import { tryCatchWrapper } from "@utils/tryCatchWrapper";
 import externalDb from './dal'
 import { IFilterPagination } from "@interface/pagination";
 import { IRegisterDb } from "@interface/IRegisterDb";
-import { paginationMapper } from "@utils/paginationMapper";
 import { IGetAllLogerDbResponse } from "./dto/getAllLoggerDb.dto";
 
 
@@ -12,7 +11,7 @@ const getAllLogerDb = tryCatchWrapper(async (payload: IFilterPagination) => {
 
     const listRegisterDb = await externalDb.getAllLogerDb(payload)
 
-    const listRegisterDbMapper: IGetAllLogerDbResponse = paginationMapper<IRegisterDb[]>({
+    const listRegisterDbMapper: IGetAllLogerDbResponse = mappers.pagination<IRegisterDb[]>({
         resource: listRegisterDb,
         callBackMapper: mappers.multipleRegisterDb
     })

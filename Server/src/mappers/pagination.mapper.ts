@@ -18,9 +18,7 @@ interface IPagination {
  * @param callBackMapper Funcion que realice el mappeo de los docs.
  * @returns {IPaginationResult<TypeDto>} Un objeto del mapeo de la paginacion.
  */
-const paginationMapper = <TypeDto>(
-    dataPagination: IPagination
-): IPaginationResult<TypeDto> => {
+export const pagination = <TypeDto>(dataPagination: IPagination): IPaginationResult<TypeDto> => {
 
     const { resource, callBackMapper } = dataPagination
 
@@ -32,4 +30,3 @@ const paginationMapper = <TypeDto>(
     return mapper
 }
 
-export { paginationMapper }
