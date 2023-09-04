@@ -4,7 +4,6 @@ import { IProject } from "@interface/IProject";
 
 export interface IAddProjectRequest {
     usrId: string;
-    /// 
     name: string;
     description: string;
     details: string;

@@ -1,13 +1,10 @@
 
-interface IResquestType<TypeData> {
+interface IRequestMessage<TypeData> {
     message?: string;
     data?: TypeData
 }
-interface IRequestMethod<TypeData> extends IResquestType<TypeData> {
-    typeResponse: string
-}
 
-export interface IResponse<typeData> {
+interface IResponseMessage<typeData> {
     info: {
         type: string;
         msg?: string;
@@ -15,16 +12,15 @@ export interface IResponse<typeData> {
     }
 }
 
-
-
 /**
  * Mensaje de respuesta de peticion 200.
  * @param info Objeto que contiene props: "message"; "data";
  * @params typeData: Se pasa por parametro el tipo de dato que sera "data"
  * @returns Objeto generico de respuesta.
  */
-const success = <typeData>(info: IResquestType<typeData>): IResponse<typeData> => {
+const success = <typeData>(info: IRequestMessage<typeData>): IResponseMessage<typeData> => {
     const { data, message } = info
+    
     return response<typeData>({ typeResponse: 'success', message, data })
 }
 
@@ -34,28 +30,26 @@ const success = <typeData>(info: IResquestType<typeData>): IResponse<typeData> =
  * @params typeData: Se pasa por parametro el tipo de dato que sera "data"
  * @returns Objeto generico de respuesta.
  */
-const error = <typeData>(info: IResquestType<typeData>): IResponse<typeData> => {
+const error = <typeData>(info: IRequestMessage<typeData>): IResponseMessage<typeData> => {
     const { data, message } = info
+
     return response<typeData>({ typeResponse: 'error', message, data })
 }
 
-/**
- * Funcion que crea el DTO para el front
- * @param infoResponse Objeto que contiene props: "message"; "data"; "typeResponse"
- * @params typeData: Se pasa por parametro el tipo de dato que sera "data"
- * @returns Objeto generico de respuesta.
- */
-const response = <typeData>(infoResponse: IRequestMethod<typeData>): IResponse<typeData> => {
+
+/////////////////////////////
+interface IRequestMethod<TypeData> extends IRequestMessage<TypeData> {
+    typeResponse: string
+}
+
+const response = <typeData>(infoResponse: IRequestMethod<typeData>): IResponseMessage<typeData> => {
     const { data, message, typeResponse } = infoResponse
+    
     return {
         info: {
             type: typeResponse,
-            ...(message && {
-                msg: message
-            }),
-            ...(data && {
-                data: data as typeData
-            })
+            ...(message && { msg: message }),
+            ...(data && { data: data as typeData })
         },
     }
 }
