@@ -1,18 +1,18 @@
 import express from "express";
 import { authHandler } from "@middlewares/authHandler";
-import { loginUser, getUser, updateUser } from './controller'
+import controller from './controller'
 import { validatorLoginRequest } from './validators/login.validator'
 import { validatorUpdateUserRequest } from "./validators/updateUser.validator";
 import { fileMulterHandler } from "@middlewares/fileMulterHandler";
 
 const router = express.Router();
 
-router.post('/login', validatorLoginRequest, loginUser);
+router.post('/login', validatorLoginRequest, controller.loginUser);
 
-router.get('/getUser', getUser);
+router.get('/getUser', controller.getUser);
 
 router.post('/updateUser', authHandler, fileMulterHandler([
     { name: 'imageProfile', maxCount: 1 }
-]), validatorUpdateUserRequest, updateUser);
+]), validatorUpdateUserRequest, controller.updateUser);
 
 export default router;

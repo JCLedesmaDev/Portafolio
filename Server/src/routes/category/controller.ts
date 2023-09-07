@@ -35,7 +35,7 @@ const deleteCategory = controllerWrapper(async (req: Request) => {
 });
 
 
-export {
+export default {
     getAll,
     addCategory,
     updateCategory,

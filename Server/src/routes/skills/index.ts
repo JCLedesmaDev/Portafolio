@@ -1,7 +1,6 @@
 import express from "express";
 import { authHandler } from "@middlewares/authHandler";
-import { addTechnology,updateTechnology, deleteTechnology
-} from "./controller";
+import controller from "./controller";
 import { validatorAddTechnologyRequest } from "./validators/addTechnology.validator";
 import { validatorDeleteTechnologyRequest } from "./validators/deleteTechnology.validator";
 import { validatorUpdateTechnologyRequest } from "./validators/updateTechnology.validator";
@@ -14,14 +13,14 @@ router.use(authHandler)
 
 router.post('/addTechnology', fileMulterHandler([
     { name: 'image', maxCount: 1 }
-]), validatorAddTechnologyRequest, addTechnology);
+]), validatorAddTechnologyRequest, controller.addTechnology);
 
 router.put('/updateTechnology/:idTechnology', fileMulterHandler([
     { name: 'image', maxCount: 1 }
-]), validatorUpdateTechnologyRequest, updateTechnology);
+]), validatorUpdateTechnologyRequest, controller.updateTechnology);
 
 router.delete('/deleteTechnology/:idTechnology',
-    validatorDeleteTechnologyRequest, deleteTechnology
+    validatorDeleteTechnologyRequest, controller.deleteTechnology
 );
 
 

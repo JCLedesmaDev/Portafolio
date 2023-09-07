@@ -31,7 +31,7 @@ const deleteProject = controllerWrapper(async (req: Request) => {
 });
 
 
-export {
+export default {
     addProject,
     updateProject,
     deleteProject

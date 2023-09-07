@@ -14,6 +14,6 @@ const getAllLogerDb = controllerWrapper(async (req: Request) => {
     return await logic.getAllLogerDb(payload)
 });
 
-export {
+export default {
     getAllLogerDb
 }

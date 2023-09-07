@@ -1,11 +1,11 @@
 import express from "express";
-import { getAllLogerDb } from './controller'
+import controller from './controller'
 import { authHandler } from "@middlewares/authHandler";
 
 const router = express.Router();
 
 router.use(authHandler)
 
-router.get('/getAllLogerDb', getAllLogerDb);
+router.get('/getAllLogerDb', controller.getAllLogerDb);
 
 export default router;

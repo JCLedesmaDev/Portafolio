@@ -28,4 +28,4 @@ const updateUser = controllerWrapper(async (req: Request) => {
     return await logic.updateUser(payload)
 })
 
-export { loginUser, getUser, updateUser }
+export default { loginUser, getUser, updateUser }

@@ -30,7 +30,7 @@ const deleteTechnology = controllerWrapper(async (req: Request) => {
     return await logic.deleteTechnology(payload)
 });
 
-export {
+export default {
     addTechnology,
     updateTechnology,
     deleteTechnology
