@@ -1,7 +1,4 @@
-import { IColaborator } from "@interface/IColaborator";
-import { IFileRequest } from "@interface/IFileRequest";
-import { IProject } from "@interface/IProject";
-
+import { IColaborator, IFileRequest, IProject } from "@interface/index.interfaces";
 export interface IUpdateProjectRequest {
     usrId: string;
     /// 

@@ -1,4 +1,4 @@
-import { IFileRequest } from "@interface/IFileRequest";
+import { IFileRequest } from "@interface/index.interfaces";
 
 export interface IUpdateUserRequest {
     idUser: string;

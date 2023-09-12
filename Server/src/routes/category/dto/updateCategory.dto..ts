@@ -1,5 +1,5 @@
 
-import { ICategory } from "@interface/ICategory";
+import { ICategory } from "@interface/index.interfaces";
 
 export interface IUpdateCategoryRequest {
     usrId: string;

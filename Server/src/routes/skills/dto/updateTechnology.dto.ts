@@ -1,6 +1,4 @@
-import { IFileRequest } from "@interface/IFileRequest";
-import { ITechnology } from "@interface/ITechnology";
-
+import { IFileRequest, ITechnology } from "@interface/index.interfaces";
 export interface IUpdateTechnologyRequest {
     name: string;
     image: IFileRequest[];

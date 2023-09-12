@@ -2,8 +2,7 @@ import mappers from "@mappers/index.mappers";
 import responseMessage from "@utils/responseMessage";
 import { tryCatchWrapper } from "@utils/tryCatchWrapper";
 import externalDb from './dal'
-import { IFilterPagination } from "@interface/pagination";
-import { IRegisterDb } from "@interface/IRegisterDb";
+import { IFilterPagination, IRegisterDb } from "@interface/index.interfaces";
 import { IGetAllLogerDbResponse } from "./dto/getAllLoggerDb.dto";
 
 

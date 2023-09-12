@@ -1,6 +1,5 @@
 import { IColaboratorSchema, IProjectSchema, IUserSchema } from "@models/ICollections";
-import { IProject } from "@interface/IProject";
-import { IColaborator } from "@interface/IColaborator";
+import { IProject, IColaborator } from "@interface/index.interfaces";
 
 
 /**

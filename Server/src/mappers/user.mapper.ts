@@ -1,4 +1,4 @@
-import { IUser } from "@interface/IUser";
+import { IUser } from "@interface/index.interfaces";
 import { IProjectSchema, ISkillSchema, IUserSchema } from "@models/ICollections";
 import mappers from "./index.mappers";
 

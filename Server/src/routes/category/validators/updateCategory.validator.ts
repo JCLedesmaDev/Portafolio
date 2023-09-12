@@ -1,4 +1,3 @@
-import { IFileRequest } from "@interface/IFileRequest";
 import { validateResults } from "@middlewares/validatorExpressHandler";
 import { Request, Response, NextFunction } from "express";
 import { body, param } from "express-validator";

@@ -1,4 +1,4 @@
-import { ITechnology } from "@interface/ITechnology";
+import { ITechnology } from "@interface/index.interfaces";
 import { ITechnologySchema } from "@models/ICollections";
 
 /**

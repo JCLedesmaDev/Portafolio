@@ -1,4 +1,4 @@
-import { ICategory } from "@interface/ICategory";
+import { ICategory } from "@interface/index.interfaces";
 import { ICategorySchema } from "@models/ICollections";
 
 

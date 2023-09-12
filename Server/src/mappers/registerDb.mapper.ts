@@ -1,4 +1,4 @@
-import { IRegisterDb } from "@interface/IRegisterDb";
+import { IRegisterDb } from "@interface/index.interfaces";
 import { IRegisterDbSchema, IUserSchema } from "@models/ICollections";
 import mappers from "./index.mappers";
 

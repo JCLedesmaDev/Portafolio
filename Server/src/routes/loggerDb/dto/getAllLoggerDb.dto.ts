@@ -1,5 +1,4 @@
-import { IRegisterDb } from "@interface/IRegisterDb";
-import { IPagination } from "@interface/pagination";
+import { IRegisterDb, IPagination } from "@interface/index.interfaces";
 
 export interface IGetAllLogerDbResponse extends IPagination  {
     docs: IRegisterDb[];

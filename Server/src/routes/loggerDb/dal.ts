@@ -1,4 +1,4 @@
-import { IFilterPagination } from "@interface/pagination";
+import { IFilterPagination } from "@interface/index.interfaces";
 import { IRegisterDbSchema } from "@models/ICollections"
 import collections from "@models/index.collections";
 import { ApplicationError } from "@utils/applicationError";
