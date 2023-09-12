@@ -27,11 +27,7 @@ export const useFormCustom = <TypeFormData extends Object>(
     const imageInput = files != null && files[0];
 
     setForm({
-      ...form,
-      // [name]: value,
-
-      // En caso de cargar imagenes tb
-      [name]: imageInput ? imageInput : value,
+      ...form, [name]: imageInput ? imageInput : value,
     });
   };
 

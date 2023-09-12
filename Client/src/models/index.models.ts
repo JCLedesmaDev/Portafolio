@@ -1,0 +1,1 @@
+export type { IUserModels } from './IUser.models'
