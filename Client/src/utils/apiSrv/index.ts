@@ -1,6 +1,6 @@
 // import axios from 'redaxios'
 import axios, { AxiosInstance, RawAxiosRequestHeaders, InternalAxiosRequestConfig, AxiosResponse, AxiosError } from 'axios'
-import appStore from '../../pages/appStore';
+// import appStore from '../../pages/appStore';
 import magnamentStorage from '../magnamentStorage';
 import { ICallBackendOptions } from './interface/ICallBackendOptions';
 import { ICallSrvRequest } from './interface/ICallSrvRequest';
@@ -144,10 +144,10 @@ export const apiSrv = {
     },
 }
 
-const settingsSpinnerModal = (spinner: boolean = false, status: boolean = false, message: string = '') => {
-    appStore.getState().actions.setSpinnerModal({
-        showSpinner: spinner,
-        showStatus: status,
-        message: message
-    })
-}
+// const settingsSpinnerModal = (spinner: boolean = false, status: boolean = false, message: string = '') => {
+//     appStore.getState().actions.setSpinnerModal({
+//         showSpinner: spinner,
+//         showStatus: status,
+//         message: message
+//     })
+// }
