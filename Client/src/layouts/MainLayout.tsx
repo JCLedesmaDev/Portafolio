@@ -1,6 +1,5 @@
-import { useEffect } from "react"
-import { Outlet, useNavigate, useNavigation, useParams } from "react-router-dom"
-import { Navigate } from "../components/Navigate"
+import { Outlet, useNavigation } from "react-router-dom"
+// import { Navigate } from "../components/Navigate"
 import { SpinnerModal } from "../components/SpinnerModal"
 import appStore from "../pages/appStore"
 
@@ -8,15 +7,11 @@ import appStore from "../pages/appStore"
 export const MainLayout: React.FC = () => {
 
     const navigation = useNavigation()
-    const navigate = useNavigate()
-    /* Devuelve el estado de la navegacion actual
-        - idle, submitting, loading
-    */
-    // useParams()
+
 
     return (
         <>
-            <Navigate />
+            {/* <Navigate /> */}
 
             <main>
                 {navigation.state === 'loading' && (
@@ -25,8 +20,8 @@ export const MainLayout: React.FC = () => {
                 {/* Gracais al Outlet aqui se plasmaran todos los childrens de router/index.tsx */}
                 <Outlet />
             </main>
+
             <SpinnerModal />
-            {/* <footer>Foooter</footer> */}
         </>
     )
 }
