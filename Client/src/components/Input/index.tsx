@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from "react";
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import React, { useEffect } from "react";
 import { IInputs } from "./IInputs";
 import styleCSS from "./index.module.css";
 
@@ -97,6 +98,7 @@ export const Input: React.FC<Props> = (props) => {
     verifyisValueBlank(value);
 
     //console.log("LALALA", props)
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [value]);
 
   return (

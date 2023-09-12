@@ -1,0 +1,74 @@
+.mainAuthentication {
+    background-image: url(https://img.freepik.com/vector-gratis/fondo-colores-calidos-frios_23-2148462275.jpg?w=2000);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+    background-position: center;
+    /* background: radial-gradient(circle at top left, #161231, #161231); */
+
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+}
+
+.containerPage {
+    width: 100%;
+    margin: auto;
+    max-width: 50rem;
+    position: relative;
+}
+
+/* Contenedor fondo azul text */
+.containerPage__Background {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 100%;
+    padding: 2.25rem 1.5rem;
+    text-align: center;
+    backdrop-filter: blur(0.75rem);
+    /*background: rgba(0, 128, 255, 0.5);*/
+    background: #78ef458a;
+}
+
+.containerPage__Auth {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    max-width: 23rem;
+    height: 100%;
+    position: relative;
+    top: -12rem;
+    transition: left 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+
+}
+
+.containerPage__Auth--loginActive {
+    left: 1.5rem;
+}
+
+.containerPage__Auth--registerActive {
+    left: 25.65rem;
+}
+
+
+@media screen and (max-width: 450px) {
+
+    .containerPage {
+        max-width: 22rem;
+    }
+
+    .containerPage__Background {
+        height: 18.75rem;
+        flex-direction: column;
+        align-items: center;
+        margin: auto;
+    }
+
+    .containerPage__Auth {
+        top: -5rem;
+        left: 0rem;
+        margin: auto;
+    }
+}

@@ -1,14 +1,13 @@
 // import axios from 'redaxios'
 import axios, { AxiosInstance, RawAxiosRequestHeaders, InternalAxiosRequestConfig, AxiosResponse, AxiosError } from 'axios'
-import storeSpinner from '../../pages/appStore';
-import magnamentStorage from '../magnamentStorage';
+import storeSpinner, { ISpinnerModels } from '../../components/SpinnerModal/store';
+import { magnamentStorage } from '../magnamentStorage';
 import { ICallBackendOptions } from './interface/ICallBackendOptions';
 import { ICallSrvRequest } from './interface/ICallSrvRequest';
 import { ICallSrvError } from './interface/ICallSrvError';
 import { ICallSrvResponse } from './interface/ICallSrvResponse';
 import { IConfigInit } from './interface/IConfigInit';
 import { IHeaders } from './interface/IHeaders';
-import { ISpinnerModels } from '../../components/SpinnerModal/store';
 
 let srv: AxiosInstance
 // const headersList: IHeaders = getStorage('Headers') || {}

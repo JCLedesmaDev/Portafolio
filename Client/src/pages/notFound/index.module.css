@@ -1,0 +1,40 @@
+.container {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  background-color: #fff;
+  height: 100vh;
+}
+
+.container img {
+  animation: imgIncrease 4s infinite normal 0s ease-in-out;
+}
+
+.title{
+  color: #000 ;
+  font-size: 2rem;
+
+  background: rgb(85, 85, 199);
+  text-decoration: none;
+  padding: .5rem;
+  border-radius: 1rem;
+  margin-top: 3rem;
+}
+.title:hover{
+  color: #000;
+}
+
+@keyframes imgIncrease {
+  0% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(1.1);
+  }
+
+  100% {
+    transform: scale(1);
+  }
+}

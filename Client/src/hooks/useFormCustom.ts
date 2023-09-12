@@ -9,6 +9,7 @@ export interface IResponseUseForm<TypeData> {
 }
 
 //Custom Hook Generico Tipado
+// eslint-disable-next-line @typescript-eslint/ban-types
 export const useFormCustom = <TypeFormData extends Object>(
   initialState: TypeFormData
 ): IResponseUseForm<TypeFormData> => {
@@ -18,6 +19,7 @@ export const useFormCustom = <TypeFormData extends Object>(
   */
   const [form, setForm] = useState<TypeFormData>(initialState);
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const handleChange = ({ target }: ChangeEvent<HTMLInputElement | HTMLSelectElement> | any) => {
     const { name, value, files } = target;
 

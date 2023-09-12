@@ -1,6 +1,8 @@
 import { createBrowserRouter } from "react-router-dom";
 import { RoutePrivate } from '../components/RoutePrivate';
 import { MainLayout } from "../layouts/MainLayout";
+import { Auth } from "../pages/auth";
+import { NotFound } from "../pages/notFound";
 
 const router = createBrowserRouter([
     {
@@ -10,7 +12,7 @@ const router = createBrowserRouter([
           <MainLayout />
         </RoutePrivate >
       ),
-      // errorElement: <NotFound />,
+      errorElement: <NotFound />,
       children: [
         // {
         //   path: 'administration',
@@ -31,8 +33,8 @@ const router = createBrowserRouter([
       ]
     },
     {
-      path: '/authUser',
-      element: <AuthUser />
+      path: '/auth',
+      element: <Auth />
     }
   ])
   
