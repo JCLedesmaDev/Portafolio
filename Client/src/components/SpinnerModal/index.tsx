@@ -1,11 +1,11 @@
 import { useEffect } from "react";
 import ReactDOM from "react-dom";
-import { useAppStore } from "../../pages/appStore";
+import { useStoreSpinner } from './store'
 import css from "./index.module.css";
 
 export const SpinnerModal: React.FC = () => {
 
-  const appStore = useAppStore()
+  const appStore = useStoreSpinner()
 
   /// VARIABLES
   const styleOpenModalStatus = `${css.containerModal} ${css["containerModal--openModal"]}`;
@@ -14,19 +14,18 @@ export const SpinnerModal: React.FC = () => {
   useEffect(() => {
     const $body = document.querySelector("body") as HTMLBodyElement;
 
-    if (appStore.state.spinnerModal.showStatus || appStore.state.spinnerModal.showSpinner) {
+    if (appStore.state.status || appStore.state.showSpinner) {
       $body.style.overflowY = "hidden";
     } else {
       $body.style.overflowY = "scroll";
     }
-  }, [appStore.state.spinnerModal.showStatus, appStore.state.spinnerModal.showSpinner])
+  }, [appStore.state.status, appStore.state.showSpinner])
 
 
-  if (appStore.state.spinnerModal.showSpinner) {
+  if (appStore.state.showSpinner) {
     return ReactDOM.createPortal(
       <div className={`
-        ${appStore.state.spinnerModal.showSpinner
-          ? css.backgroundSpinner : css.CloseLoader} 
+        ${appStore.state.showSpinner ? css.backgroundSpinner : css.CloseLoader} 
       `}>
 
         <div className={css.containerSpinner}>
@@ -53,12 +52,10 @@ export const SpinnerModal: React.FC = () => {
 
   return ReactDOM.createPortal(
     <article className={`
-      ${appStore.state.spinnerModal.showStatus
-        ? styleOpenModalStatus : styleCloseModalStatus}
-        `}>
+      ${appStore.state.status ? styleOpenModalStatus : styleCloseModalStatus}`}>
       <div>
         <article className={css.contentModal}>
-          <p>{`${appStore.state.spinnerModal.message}`}</p>
+          <p>{`${appStore.state.message}`}</p>
           <i className="far fa-smile-wink" />
         </article>
       </div>

@@ -1,40 +1,45 @@
 import { create, } from "zustand";
 import { shallow } from "zustand/shallow";
 import produce from 'immer'
-import { ISpinnerModels } from "../../models/ISpinner.models";
 
 
+export interface ISpinnerModels {
+    status: boolean;
+    showSpinner: boolean;
+    message: string;
+}
 
 interface IStore {
-    readonly state: {
-        spinnerModal: ISpinnerModels;
-        showPopup: boolean;
+    state: {
+        status: boolean;
+        showSpinner: boolean;
+        message: string;
     },
     actions: {
         setSpinnerModal: (newObjStatus: ISpinnerModels) => void;
-        setShowPopup: (newStatus: boolean) => void;
     }
 }
 
 const storeSpinner = create<IStore>((set) => ({
     state: {
-        spinnerModal: {} as ISpinnerModels,
-        showPopup: false
+        showSpinner: false,
+        status: false,
+        message: ''
     },
     actions: {
         setSpinnerModal: (newObjStatus: ISpinnerModels) => {
             set(produce((store: IStore) => {
-                store.state.spinnerModal = { ...store.state.spinnerModal, ...newObjStatus }
-            }))
-        },
-        setShowPopup: (newStatus: boolean) => {
-            set(produce((store: IStore) => {
-                store.state.showPopup = newStatus
+                store.state = {
+                    ...store.state,
+                    ...newObjStatus
+                }
             }))
         },
     }
 }))
 
 
-export const useAppStore = () => ({ ...storeSpinner((state) => (state), shallow) })
+export const useStoreSpinner = () => ({
+    ...storeSpinner((state) => (state), shallow)
+})
 export default storeSpinner

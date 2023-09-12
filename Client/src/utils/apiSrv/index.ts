@@ -1,6 +1,6 @@
 // import axios from 'redaxios'
 import axios, { AxiosInstance, RawAxiosRequestHeaders, InternalAxiosRequestConfig, AxiosResponse, AxiosError } from 'axios'
-// import appStore from '../../pages/appStore';
+import storeSpinner from '../../pages/appStore';
 import magnamentStorage from '../magnamentStorage';
 import { ICallBackendOptions } from './interface/ICallBackendOptions';
 import { ICallSrvRequest } from './interface/ICallSrvRequest';
@@ -8,6 +8,7 @@ import { ICallSrvError } from './interface/ICallSrvError';
 import { ICallSrvResponse } from './interface/ICallSrvResponse';
 import { IConfigInit } from './interface/IConfigInit';
 import { IHeaders } from './interface/IHeaders';
+import { ISpinnerModels } from '../../components/SpinnerModal/store';
 
 let srv: AxiosInstance
 // const headersList: IHeaders = getStorage('Headers') || {}
@@ -87,7 +88,7 @@ export const apiSrv = {
         preCallback: () => Promise<ICallSrvResponse<TypeDataResponse>>,
         options: ICallBackendOptions
     ): Promise<ICallSrvResponse<TypeDataResponse>> => {
-        
+
         type responseCb = ICallSrvResponse<TypeDataResponse>
 
         let res = {} as responseCb
@@ -134,7 +135,7 @@ export const apiSrv = {
             if (method === "PUT") res = await (await srv.put(path, data)).data
             if (method === "DELETE") res = await (await srv.delete(path)).data
         } catch (error: unknown) {
-            
+
             const err = error as ICallSrvError<string>
             err.data.info
                 ? res = err.data as responseCb
@@ -144,10 +145,10 @@ export const apiSrv = {
     },
 }
 
-// const settingsSpinnerModal = (spinner: boolean = false, status: boolean = false, message: string = '') => {
-//     appStore.getState().actions.setSpinnerModal({
-//         showSpinner: spinner,
-//         showStatus: status,
-//         message: message
-//     })
-// }
+const settingsSpinnerModal = (spinner = false, status = false, message = '') => {
+    storeSpinner.getState().actions.setSpinnerModal({
+        showSpinner: spinner,
+        status,
+        message
+    } as ISpinnerModels)
+}
