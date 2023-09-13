@@ -20,13 +20,17 @@
     "noEmit": true,
     "noImplicitAny": true,
     "jsx": "react-jsx",
-  },
-  "include": [
-    "src"
-  ],
-  "references": [
-    {
-      "path": "./tsconfig.node.json"
-    }
-  ]
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["src/*"]
+    },
+    "include": [
+      "src"
+    ],
+    "references": [
+      {
+        "path": "./tsconfig.node.json"
+      }
+    ]
+  }
 }

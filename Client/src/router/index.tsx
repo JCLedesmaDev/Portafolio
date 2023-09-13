@@ -1,8 +1,8 @@
 import { createBrowserRouter } from "react-router-dom";
-import { RoutePrivate } from '../components/RoutePrivate';
-import { MainLayout } from "../layouts/MainLayout";
-import { Auth } from "../pages/auth";
-import { NotFound } from "../pages/notFound";
+import { RoutePrivate } from 'src/components/RoutePrivate';
+import { MainLayout } from "src/layouts/MainLayout";
+import { Auth } from "src/pages/auth";
+import { NotFound } from "src/pages/notFound";
 
 const router = createBrowserRouter([
     {

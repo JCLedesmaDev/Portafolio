@@ -3,31 +3,31 @@ import { shallow } from "zustand/shallow";
 import produce from 'immer'
 
 
-export interface ISpinnerModels {
+export interface ISpinnerPopup {
     status: boolean;
-    showSpinner: boolean;
+    show: boolean;
     message: string;
 }
 
 interface IStore {
     state: {
         status: boolean;
-        showSpinner: boolean;
+        show: boolean;
         message: string;
     },
     actions: {
-        setSpinnerModal: (newObjStatus: ISpinnerModels) => void;
+        setSpinnerPopup: (newObjStatus: ISpinnerPopup) => void;
     }
 }
 
 const storeSpinner = create<IStore>((set) => ({
     state: {
-        showSpinner: false,
+        show: false,
         status: false,
         message: ''
     },
     actions: {
-        setSpinnerModal: (newObjStatus: ISpinnerModels) => {
+        setSpinnerPopup: (newObjStatus: ISpinnerPopup) => {
             set(produce((store: IStore) => {
                 store.state = {
                     ...store.state,

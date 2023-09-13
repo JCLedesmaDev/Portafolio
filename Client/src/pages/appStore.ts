@@ -1,9 +1,9 @@
 import produce from "immer";
 import { create } from "zustand";
 import { shallow } from "zustand/shallow";
-import { IUserModels } from "../models/index.models";
-import { magnamentStorage } from "../utils";
-
+import { IUserModels } from "@/models/index.models";
+import { magnamentStorage } from "@/utils/index.utils";
+// import  {} from ""
 
 // export interface IFilterSearch {
 //     page: number;
@@ -26,7 +26,7 @@ interface IStore {
 
 const appStore = create<IStore>((set) => ({
     state: {
-        user: magnamentStorage.get<IUserModels>("User") ?? {} as IUserModels,
+        user: magnamentStorage.get<IUserModels>("user") ?? {} as IUserModels,
     },
     actions: {
         setUser: (user: IUserModels) => {

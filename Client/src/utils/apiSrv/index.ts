@@ -1,16 +1,18 @@
-// import axios from 'redaxios'
 import axios, { AxiosInstance, RawAxiosRequestHeaders, InternalAxiosRequestConfig, AxiosResponse, AxiosError } from 'axios'
-import storeSpinner, { ISpinnerModels } from '../../components/SpinnerModal/store';
-import { magnamentStorage } from '../magnamentStorage';
-import { ICallBackendOptions } from './interface/ICallBackendOptions';
-import { ICallSrvRequest } from './interface/ICallSrvRequest';
-import { ICallSrvError } from './interface/ICallSrvError';
-import { ICallSrvResponse } from './interface/ICallSrvResponse';
-import { IConfigInit } from './interface/IConfigInit';
-import { IHeaders } from './interface/IHeaders';
+import {
+    ICallSrvRequest,
+    ICallSrvError,
+    ICallSrvResponse,
+    IConfigInit,
+    IHeaders, ICallBackendOptions
+} from './interface/index.interfaces';
+import { magnamentStorage } from '@/utils/index.utils';
 
-let srv: AxiosInstance
-// const headersList: IHeaders = getStorage('Headers') || {}
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+let showPopupSpinnerFn = (spinner: boolean, status: boolean, message: string) => {
+    console.log('No se ha cargado nada.')
+}
+let srv: AxiosInstance;
 
 export const apiSrv = {
 
@@ -34,7 +36,7 @@ export const apiSrv = {
         srv.interceptors.request.use(
             (request: InternalAxiosRequestConfig) => {
                 /// Setear los headers que actualice por aca....
-                const headersList = magnamentStorage.get<IHeaders>('Headers')
+                const headersList = magnamentStorage.get<IHeaders>('headers')
                 type headersKeyType = keyof typeof headersList; // No lo entendi, pero anda XD.
 
                 for (const headerKey in headersList) {
@@ -54,10 +56,10 @@ export const apiSrv = {
             (error: AxiosError) => {
                 // console.log('Error ApiSrv!!!! :' + error)
                 if (error.response?.status === 401) { // Hice que el 401 sea especifico de token
-                    magnamentStorage.remove("User");
-                    magnamentStorage.remove('Headers')
+                    magnamentStorage.remove("user");
+                    magnamentStorage.remove('headers')
 
-                    window.location.href = `${window.location.origin}/authUser`;
+                    window.location.href = `${window.location.origin}/auth`;
                 }
                 return Promise.reject(error.response);
             }
@@ -65,7 +67,7 @@ export const apiSrv = {
     },
 
     setHeaders: (headers: IHeaders) => {
-        let headersList = magnamentStorage.get<IHeaders>('Headers')
+        let headersList = magnamentStorage.get<IHeaders>('headers')
         type headersKeyType = keyof typeof headersList; // No lo entendi, pero anda XD.
 
         for (const headerKey in headers) {
@@ -74,7 +76,7 @@ export const apiSrv = {
                 headersList = { ...headersList, [headerKey]: headerValue }
             }
         }
-        magnamentStorage.set<IHeaders>('Headers', headersList)
+        magnamentStorage.set<IHeaders>('headers', headersList)
     },
 
     /**
@@ -93,22 +95,22 @@ export const apiSrv = {
         let res = {} as responseCb
 
         try {
-            if (options.loader) settingsSpinnerModal(true, false, '')
+            if (options.loader) showPopupSpinnerFn(true, false, '')
 
             res = await preCallback() as responseCb
 
             if (res.info.type === 'error') throw new Error(res.info.msg)
 
             if (options.status && res.info.msg) {
-                settingsSpinnerModal(false, options.status, res.info.msg as string)
+                showPopupSpinnerFn(false, options.status, res.info.msg as string)
             }
         } catch (error: unknown) {
             const err = error as Error
-            settingsSpinnerModal(false, true, err.message)
+            showPopupSpinnerFn(false, true, err.message)
         } finally {
             const time = options.status ? 3000 : 0
             setTimeout(() => {
-                settingsSpinnerModal(false, false, '')
+                showPopupSpinnerFn(false, false, '')
             }, time);
         }
         return res
@@ -142,12 +144,12 @@ export const apiSrv = {
         }
         return res
     },
+
+
+    setShowPopupSpinnerAlertFn: (callbackFn: (
+        spinner?: boolean, status?: boolean, message?: string) => void
+    ) => {
+        showPopupSpinnerFn = callbackFn
+    }
 }
 
-const settingsSpinnerModal = (spinner = false, status = false, message = '') => {
-    storeSpinner.getState().actions.setSpinnerModal({
-        showSpinner: spinner,
-        status,
-        message
-    } as ISpinnerModels)
-}

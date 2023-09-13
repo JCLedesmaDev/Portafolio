@@ -1,9 +1,10 @@
 import './App.css'
 import { useLayoutEffect } from 'react'
 import { RouterProvider } from 'react-router-dom'
-import router from './router'
-import { apiSrv } from './utils/apiSrv'
-import { IConfigInit } from './utils/apiSrv/interface/IConfigInit'
+
+import router from '@/router/index'
+import { apiSrv, IConfigInit } from '@/utils/index.utils'
+import { showPopupSpinnerAlert } from '@/components/SpinnerPopup';
 
 export default function App() {
 
@@ -16,7 +17,9 @@ export default function App() {
       },
       url: process.env.VITE_URL_API as string // Poner la variable de entorno
     }
+    
     apiSrv.init(pl)
+    apiSrv.setShowPopupSpinnerAlertFn(showPopupSpinnerAlert)
   } 
 
   useLayoutEffect(() => {
