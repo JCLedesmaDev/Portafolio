@@ -58,6 +58,7 @@ export const apiSrv = {
                 if (error.response?.status === 401) { // Hice que el 401 sea especifico de token
                     magnamentStorage.remove("user");
                     magnamentStorage.remove('headers')
+                    delete srv.defaults.headers.common.Authorization
 
                     window.location.href = `${window.location.origin}/auth`;
                 }
