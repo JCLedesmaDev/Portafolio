@@ -1,7 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 // import { Link } from "react-router-dom"
-// import notFoundCSS from "./index.module.css"
-// import notFoundImg from "@/assets/Error-404.png";
 
 import { useEffect } from "react";
 import './index.css'
@@ -75,14 +73,8 @@ export const NotFound: React.FC = () => {
         drawVisor();
         animate();
     }, [])
+    
     return (
-        // <div className={`containerPageAlbum ${notFoundCSS.container}`}>
-        //     <div>
-        //         <img src={notFoundImg} alt="asd" />
-        //     </div>
-
-        //     <Link className={`${notFoundCSS.title}`} to="/">Regresar al inicio</Link>
-        // </div>
         <>
             <div className="moon"></div>
             <div className="moon__crater moon__crater1"></div>

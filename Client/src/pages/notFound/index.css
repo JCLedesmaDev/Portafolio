@@ -1,50 +1,9 @@
-/* .container {
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
-  align-items: center;
-  background-color: #fff;
-  height: 100vh;
-}
-
-.container img {
-  animation: imgIncrease 4s infinite normal 0s ease-in-out;
-}
-
-.title{
-  color: #000 ;
-  font-size: 2rem;
-
-  background: rgb(85, 85, 199);
-  text-decoration: none;
-  padding: .5rem;
-  border-radius: 1rem;
-  margin-top: 3rem;
-}
-.title:hover{
-  color: #000;
-}
-
-@keyframes imgIncrease {
-  0% {
-    transform: scale(1);
-  }
-
-  50% {
-    transform: scale(1.1);
-  }
-
-  100% {
-    transform: scale(1);
-  }
-} */
-
-
+/* Estilos para pantallas grandes (por defecto) */
 html,
 body {
   height: 100%;
   width: 100%;
-  margin: 0px;
+  margin: 0;
   background: linear-gradient(90deg, rgba(47,54,64,1) 23%, rgba(24,27,32,1) 100%);
 }
 
@@ -419,4 +378,77 @@ body {
   border-top-left-radius: 8em;
   border-top-right-radius: 8em;
   border-bottom: 4px solid #e67e22;
+}
+
+/* Estilos para pantallas medianas */
+@media screen and (max-width: 768px) {
+  .moon {
+    /* Ajusta los estilos para la Luna en pantallas medianas */
+    width: 600px;
+    height: 600px;
+    top: -50px;
+    left: -150px;
+  }
+  .error {
+    left: 30%; /* Ajusta la posición horizontal */
+    transform: translateX(-50%) translateY(-60%); /* Ajusta la posición vertical */
+  }
+  
+  .astronaut {
+    width: 150px; /* Ajusta el ancho */
+    height: 240px; /* Ajusta la altura */
+    left: 75%; /* Ajusta la posición horizontal */
+  }
+
+  /* Añade más ajustes para otros elementos si es necesario */
+}
+
+/* Estilos para pantallas pequeñas (como dispositivos móviles) */
+@media screen and (max-width: 480px) {
+  html,
+  body {
+    /* Ajusta el fondo y otros estilos generales para pantallas pequeñas */
+    background: linear-gradient(90deg, rgba(47,54,64,1) 23%, rgba(24,27,32,1) 100%);
+  }
+
+  .moon {
+    /* Ajusta los estilos para la Luna en pantallas pequeñas */
+    width: 300px;
+    height: 300px;
+    top: -30px;
+    left: -75px;
+  }
+
+  .error {
+    left: 30%; /* Ajusta la posición horizontal */
+    top: 50%; /* Ajusta la posición vertical */
+    transform: translateX(-50%) translateY(-50%); /* Ajusta la posición vertical */
+    text-align: center; /* Centra el texto */
+  }
+
+  .error__title {
+    font-size: 6em; /* Ajusta el tamaño del título */
+  }
+
+  .error__subtitle {
+    font-size: 1.5em; /* Ajusta el tamaño del subtítulo */
+  }
+
+  .error__description {
+    opacity: 0.7; /* Ajusta la opacidad de la descripción */
+  }
+
+  .error__button {
+    min-width: 5em; /* Ajusta el ancho mínimo del botón */
+    margin-top: 2em; /* Ajusta el margen superior del botón */
+    font-size: 0.5em; /* Ajusta el tamaño de fuente del botón */
+  }
+
+  .astronaut {
+    width: 120px; /* Ajusta el ancho */
+    height: 192px; /* Ajusta la altura */
+    left: 75%; /* Ajusta la posición horizontal */
+    transform: translate(-50%, -50%) rotate(20deg) scale(0.8); /* Ajusta la escala y la rotación */
+  }
+  /* Añade más ajustes para otros elementos si es necesario */
 }
