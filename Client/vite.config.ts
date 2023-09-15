@@ -1,6 +1,6 @@
 import { defineConfig, loadEnv } from 'vite'
 import react from '@vitejs/plugin-react'
-import path from "path";
+import path from 'path'
 
 // https://vitejs.dev/config/
 
@@ -18,7 +18,7 @@ export default ({ mode }: { mode: string }) => {
     define: { "process.env": { ...process.env, ...env, } },
     resolve: {
       alias: {
-        "@": path.resolve(__dirname, 'src/*'),
+        "@": path.resolve(__dirname, 'src'),
       }
     }
   });
