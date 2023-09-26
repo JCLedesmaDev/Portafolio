@@ -7,8 +7,9 @@ interface IRoutePrivate {
     redirectTo?: string;
 }
 
-export const RoutePrivate: React.FC<IRoutePrivate> = ({ children, redirectTo = "/auth" }) => {
+export const RoutePrivate: React.FC<IRoutePrivate> = ({ children, redirectTo = "/" }) => {
     const jwt = magnamentStorage.get<IUserModels>("user")?.tokenAuth;
+
     if (jwt == undefined) {
         return <Navigate to={redirectTo} />
     }

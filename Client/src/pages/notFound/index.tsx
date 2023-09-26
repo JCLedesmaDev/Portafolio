@@ -1,13 +1,30 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 // import { Link } from "react-router-dom"
 
+// import useScreenSize from "@/hooks/useScreenSize";
 import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import './index.css'
 
 export const NotFound: React.FC = () => {
 
+    const navigate = useNavigate()
+
+    const goToHome = () => {
+        navigate('/')
+    }
+
     useEffect(() => {
-        function drawVisor() {
+        const cordCanvas = document.getElementById('cord') as HTMLCanvasElement;
+        const ctx = cordCanvas.getContext('2d') as CanvasRenderingContext2D;
+        let y1 = 160;
+        let y2 = 100;
+        let y3 = 100;
+        let y1Forward = true;
+        let y2Forward = false;
+        let y3Forward = true;
+
+        const drawVisor = () => {
             const canvas = document.getElementById('visor') as HTMLCanvasElement;
             const ctx = canvas.getContext('2d') as CanvasRenderingContext2D;
 
@@ -29,18 +46,7 @@ export const NotFound: React.FC = () => {
             ctx.stroke();
         }
 
-        const cordCanvas = document.getElementById('cord') as HTMLCanvasElement;
-        const ctx = cordCanvas.getContext('2d') as CanvasRenderingContext2D;
-
-        let y1 = 160;
-        let y2 = 100;
-        let y3 = 100;
-
-        let y1Forward = true;
-        let y2Forward = false;
-        let y3Forward = true;
-
-        function animate() {
+        const animate = () => {
             requestAnimationFrame(animate);
             ctx.clearRect(0, 0, innerWidth, innerHeight);
 
@@ -52,17 +58,11 @@ export const NotFound: React.FC = () => {
             ctx.lineWidth = 8;
             ctx.stroke();
 
-
             if (y1 === 100) y1Forward = true;
-
             if (y1 === 300) y1Forward = false;
-
             if (y2 === 100) y2Forward = true;
-
             if (y2 === 310) y2Forward = false;
-
             if (y3 === 100) y3Forward = true;
-
             if (y3 === 317) y3Forward = false;
 
             y1Forward ? y1 += 1 : y1 -= 1;
@@ -73,9 +73,9 @@ export const NotFound: React.FC = () => {
         drawVisor();
         animate();
     }, [])
-    
+
     return (
-        <>
+        <div className="contentNotFound">
             <div className="moon"></div>
             <div className="moon__crater moon__crater1"></div>
             <div className="moon__crater moon__crater2"></div>
@@ -90,9 +90,8 @@ export const NotFound: React.FC = () => {
             <div className="error">
                 <div className="error__title">404</div>
                 <div className="error__subtitle">Hmmm...</div>
-                <div className="error__description">It looks like one of the  developers fell asleep</div>
-                <button className="error__button error__button--active">LOGIN</button>
-                <button className="error__button">CONTACT</button>
+                <div className="error__description">No se encontro esta pagina :(</div>
+                <button className="error__button error__button--active" onClick={goToHome}>Regresar al inicio</button>
             </div>
 
             <div className="astronaut">
@@ -113,15 +112,15 @@ export const NotFound: React.FC = () => {
                 <div className="astronaut__wrist-right"></div>
 
                 <div className="astronaut__cord">
-                    <canvas id="cord" height="500px" width="500px"></canvas>
+                    <canvas id="cord" className="astronaut__cord__canvas" height="300px" width="300px"></canvas>
                 </div>
 
                 <div className="astronaut__head">
-                    <canvas id="visor" width="60px" height="60px"></canvas>
+                    <canvas id="visor" className="astronaut__head__canvas" width="60px" height="60px"></canvas>
                     <div className="astronaut__head-visor-flare1"></div>
                     <div className="astronaut__head-visor-flare2"></div>
                 </div>
             </div>
-        </>
+        </div>
     )
 }

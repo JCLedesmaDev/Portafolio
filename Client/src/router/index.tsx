@@ -1,29 +1,32 @@
 import { createBrowserRouter } from "react-router-dom";
 import { RoutePrivate } from '@/components/RoutePrivate';
 import { MainLayout } from "@/layouts/MainLayout";
-// import { Auth } from "@/pages/auth";
 import { NotFound } from "@/pages/notFound";
+import { Auth } from "@/pages/auth";
 
 const router = createBrowserRouter([
   {
     path: '/',
-    element: (
-      <RoutePrivate>
-        <MainLayout />
-      </RoutePrivate >
-    ),
+    element: (<MainLayout />),
     errorElement: <NotFound />,
     children: [
-      // {
-      //   path: 'administration',
-      //   element: (<Administration />),
-      // },
       {
-        index: true, // Definimos que dentro de los componentes hijos, este es el principal
-        // element: (<NotFound />),
+        index: true, // Definimos que dentro de los componentes hijos, este es el principal     
         element: (
-          <p> ASD</p>
+          <p>PRINCIPAL</p>
         ),
+      },
+      {
+        path: 'administration',
+        element: (
+          <RoutePrivate redirectTo="/">
+            <p>adminsitracion</p>
+          </RoutePrivate>
+        )
+      },
+      {
+        path: 'auth',
+        element: <Auth />
       },
       // {
       //   path: 'figurites',
@@ -34,11 +37,7 @@ const router = createBrowserRouter([
       //   element: (<PurchasedAlbumes />),
       // }
     ]
-  },
-  // {
-  //   path: '/auth',
-  //   element: <Auth />
-  // },
+  }
 ])
 
 export default router

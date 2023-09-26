@@ -1,0 +1,17 @@
+/* Dentro del useEffect, podes poner un return y se ejecutara cuando el componente 
+deje de mostrarse en pantallas.
+Por ejem:*/
+useEffect(() => {
+    alert('Se ejecuto')
+    return () => {
+        alert('Se cerro')
+    }
+},[])
+
+
+
+/* Dentro del useState, podemos captar el valor anterior de un state 
+al querer setear un nuevo valor 
+Por ejem: */
+const [state, setState] = useState(100)
+setState((oldVal) => oldVal + 10) // oldVal, valdria 100
