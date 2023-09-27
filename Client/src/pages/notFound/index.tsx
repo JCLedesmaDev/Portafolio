@@ -75,7 +75,7 @@ export const NotFound: React.FC = () => {
     }, [])
 
     return (
-        <div className="contentNotFound">
+        <main className="contentNotFound">
             <div className="moon"></div>
             <div className="moon__crater moon__crater1"></div>
             <div className="moon__crater moon__crater2"></div>
@@ -121,6 +121,6 @@ export const NotFound: React.FC = () => {
                     <div className="astronaut__head-visor-flare2"></div>
                 </div>
             </div>
-        </div>
+        </main>
     )
 }

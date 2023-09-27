@@ -6,6 +6,7 @@ export const MainLayout: React.FC = () => {
 
     return (
         <main>
+            AAA
             {navigation.state === 'loading' && (
                 <h1>Cargando pagina... Espere</h1>
             )}

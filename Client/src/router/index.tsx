@@ -24,10 +24,6 @@ const router = createBrowserRouter([
           </RoutePrivate>
         )
       },
-      {
-        path: 'auth',
-        element: <Auth />
-      },
       // {
       //   path: 'figurites',
       //   element: (<Figurites />),
@@ -37,7 +33,11 @@ const router = createBrowserRouter([
       //   element: (<PurchasedAlbumes />),
       // }
     ]
-  }
+  },
+  {
+    path: '/auth',
+    element: <Auth />
+  },
 ])
 
 export default router

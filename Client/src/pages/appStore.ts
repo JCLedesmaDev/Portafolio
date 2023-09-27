@@ -1,5 +1,5 @@
 import produce from "immer";
-import { create } from "zustand";
+import { createWithEqualityFn } from "zustand/traditional";
 import { shallow } from "zustand/shallow";
 import { IUserModels } from "@/models/index.models";
 import { magnamentStorage } from "@/utils/index.utils";
@@ -24,7 +24,7 @@ interface IStore {
     }
 }
 
-const appStore = create<IStore>((set) => ({
+const appStore = createWithEqualityFn<IStore>((set) => ({
     state: {
         user: magnamentStorage.get<IUserModels>("user") ?? {} as IUserModels,
     },
@@ -36,8 +36,8 @@ const appStore = create<IStore>((set) => ({
             }))
         }
     }
-}))
+}), shallow)
 
 
-export const useAppStore = () => ({ ...appStore((state) => (state), shallow) })
+export const useAppStore = () => ({ ...appStore((state) => (state)) })
 export default appStore
