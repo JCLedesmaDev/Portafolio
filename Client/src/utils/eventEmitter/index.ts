@@ -2,7 +2,8 @@
 import { IEmitToSubscribers, ISubscribe, IUnsubscribe } from "./interface";
 
 class EventEmitter {
-    events: any;
+
+    private events: any;
 
     constructor() {
         this.events = {}
@@ -49,7 +50,7 @@ class EventEmitter {
         }
     }
 
-    emitToSubscribers({ subscribedEventName, ...args }: IEmitToSubscribers) {
+    emitToSubscribers({ subscribedEventName, args }: IEmitToSubscribers) {
         if (!(subscribedEventName in this.events)) {
             return
         }

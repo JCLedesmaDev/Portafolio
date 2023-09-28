@@ -12,9 +12,7 @@ export interface IResponseUseForm<TypeData> {
 
 
 // eslint-disable-next-line @typescript-eslint/ban-types
-export const useFormCustom = <TypeFormData extends Object>(
-  initialState: TypeFormData
-): IResponseUseForm<TypeFormData> => {
+export const useFormCustom = <TypeFormData>(initialState: TypeFormData) => {
 
   /* *Agregar en el ts.config lo sig: "noImplicitAny": false,  */
   const [form, setForm] = useState<TypeFormData>(initialState);
@@ -30,11 +28,13 @@ export const useFormCustom = <TypeFormData extends Object>(
 
   const resetForm = () => setForm(initialState);
 
-  return {
+  const data: IResponseUseForm<TypeFormData> = {
     ...form,
     form,
     handleChange,
     resetForm,
     setForm
   };
+
+  return data
 };
