@@ -1,33 +1,29 @@
-import { Input } from "./components/Input"
-import { useUpdateInput } from "./components/Input/hooks/useUpdateInput"
-import { IInputProps } from "./components/Input/interface/Input.interface"
+import { InputV2, IInputPropsV2 } from "@/components/index.components"
+import { useSubscribeEvent } from "@/hooks/index.hooks"
 import "./index.css"
-// import { evtEmitter } from "@/utils/index.utils"
 
 // import useAuthUserStore from "./store";
 
 export const Auth: React.FC = () => {
 
     // const store = useAuthUserStore()
-    const data = useUpdateInput('updateInput')
+    const data = useSubscribeEvent({ subscribeEventName: 'updateInput' })
     /// METODOS
 
     console.log("🚀 ~ file: index.tsx:18 ~ data:", data)
 
-    const forms: IInputProps[] = [
+    const forms: IInputPropsV2[] = [
         {
             attrInput: {
                 name: 'email',
                 placeholder: 'Ingrese usuario',
                 required: true,
                 type: 'email',
-                autoComplete: 'false'
+                autoComplete: 'off'
             },
             expReg: /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/i,
             errorMessage: "El correo solo puede contener letras, numeros, puntos, guiones y guion bajo.",
-            data: {
-                value: undefined,
-            }
+            data: { value: undefined }
         },
         {
             attrInput: {
@@ -35,13 +31,11 @@ export const Auth: React.FC = () => {
                 placeholder: "Contraseña: ",
                 type: "password",
                 name: "password",
-                autoComplete: 'false'
+                autoComplete: 'off'
             },
             expReg: /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9]).{8,}$/,
             errorMessage: "La contraseña debe contener al menos: 1 letra mayuscula, 1 letra minuscula y 1 numero.",
-            data: {
-                value: undefined,
-            }
+            data: { value: undefined }
         }
     ]
 
@@ -49,9 +43,9 @@ export const Auth: React.FC = () => {
     return (
         <div className="container">
 
-            <Input props={forms[0]} />
+            <InputV2 props={forms[0]} subscribedEventName='updateInput' />
 
-            <Input props={forms[1]} />
+            <InputV2 props={forms[1]} subscribedEventName='updateInput' />
 
             <div id="containerForm">
                 <img className="logo" src="http://www.cfdesigner.com/codepen/rocket-page-logo.png" />

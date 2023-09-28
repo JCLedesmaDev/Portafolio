@@ -2,20 +2,23 @@
 import { evtEmitter } from "@/utils/index.utils";
 import { useEffect, useState } from "react";
 
-export const useUpdateInput = (nameEvt: string) => {
 
+export const useSubscribeEvent = ({ subscribeEventName }: any) => {
+    
     const [data, setData] = useState({})
-
+    
     useEffect(() => {
+        console.log("🚀 CUSTOM HOOK useSubscribeEvent:", subscribeEventName)
         // Registrar un oyente para el evento personalizado cuando el componente se monta
-        evtEmitter.on(nameEvt, (info: any) => {
-            setData((prevData) => ({
-                ...prevData, ...info
-            }))
+        const evt = evtEmitter.subscribe({
+            subscribeEventName: subscribeEventName,
+            fnResponseWhenEmitEvent: (info: any) => {
+                setData((prevData) => ({ ...prevData, ...info }))
+            }
         });
 
         // Eliminar el oyente cuando el componente se desmonta
-        return () => { evtEmitter.removeListener(nameEvt); };
+        return () => { evt.unsubscribe() };
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 

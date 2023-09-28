@@ -2,6 +2,7 @@
 // import { Link } from "react-router-dom"
 
 // import useScreenSize from "@/hooks/useScreenSize";
+// import { useSubscribeEvent } from "@/hooks/useSubscribeEvent";
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import './index.css'
@@ -9,7 +10,8 @@ import './index.css'
 export const NotFound: React.FC = () => {
 
     const navigate = useNavigate()
-
+    // const data = useSubscribeEvent({ subscribeEventName: 'updateInput' })
+    
     const goToHome = () => {
         navigate('/')
     }
