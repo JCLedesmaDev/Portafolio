@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import ReactPaginate from 'react-paginate';
 import PaginateCSS from "./index.module.css"
 

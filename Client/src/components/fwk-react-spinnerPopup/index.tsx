@@ -1,13 +1,12 @@
 import { useEffect } from "react";
 import ReactDOM from "react-dom";
-import { useStoreSpinner } from './store'
 import css from "./index.module.css";
-import storeSpinner, { ISpinnerPopup } from "./store";
+import useStoreSpinner, { ISpinnerPopup } from "./store";
 
 
 // eslint-disable-next-line react-refresh/only-export-components
 export const showPopupSpinnerAlert = (spinner = false, status = false, message = '') => {
-  storeSpinner.getState().actions.setSpinnerPopup({
+  useStoreSpinner.getState().actions.setSpinnerPopup({
     show: spinner,
     status,
     message

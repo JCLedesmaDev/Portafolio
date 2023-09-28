@@ -1,4 +1,4 @@
-import { create, } from "zustand";
+import { createWithEqualityFn } from "zustand/traditional";
 import { shallow } from "zustand/shallow";
 import produce from 'immer'
 
@@ -20,7 +20,7 @@ interface IStore {
     }
 }
 
-const storeSpinner = create<IStore>((set) => ({
+const storeSpinner = createWithEqualityFn<IStore>((set) => ({
     state: {
         show: false,
         status: false,
@@ -36,10 +36,8 @@ const storeSpinner = create<IStore>((set) => ({
             }))
         },
     }
-}))
+}), shallow)
 
 
-export const useStoreSpinner = () => ({
-    ...storeSpinner((state) => (state), shallow)
-})
+export const useStoreSpinner = () => ({    ...storeSpinner((state) => (state))})
 export default storeSpinner

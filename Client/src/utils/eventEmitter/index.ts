@@ -53,8 +53,8 @@ class EventEmitter {
         if (!(subscribedEventName in this.events)) {
             return
         }
-        this.events[subscribedEventName].forEach((listener: any) => {
-            listener(args)
+        this.events[subscribedEventName].forEach((fnResponseWhenEmitEvent: any) => {
+            fnResponseWhenEmitEvent(args)
         })
     }
 

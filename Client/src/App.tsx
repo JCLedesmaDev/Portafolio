@@ -4,7 +4,7 @@ import { RouterProvider } from 'react-router-dom'
 
 import router from '@/router/index'
 import { apiSrv, IConfigInit } from '@/utils/index.utils'
-import { showPopupSpinnerAlert } from '@/components/SpinnerPopup';
+import { showPopupSpinnerAlert } from '@/components/index.components';
 
 export default function App() {
 
