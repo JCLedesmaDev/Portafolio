@@ -1,5 +1,6 @@
 .contact__form__inputs {
   position: relative;
+  width: 409px;
 }
 .contact__form__inputs > input[type="text"],
 .contact__form__inputs > input[type="password"],
@@ -56,6 +57,8 @@
   display: none;
 }
 .contact_messageErrorActive {
+  width: 409px;
+  color: #fff;
   display: block;
   animation: mensaje-error 1s 1 normal 0s ease-in-out;
 }

@@ -1,25 +1,15 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import React, { useEffect } from "react";
-import { IInputs } from "./IInputs";
+import React from "react";
+import { IInputProps } from "./interface/input.interface";
 import styleCSS from "./index.module.css";
 
 interface Props {
-  handleChange: any;
-  inputProps: IInputs;
-  value: string | any;
-  errorMessage: string;
-  pattern: RegExp;
-  key?: number;
+  props: IInputProps
 }
 
-export const Input: React.FC<Props> = (props) => {
-  const {
-    inputProps,
-    handleChange,
-    value,
-    errorMessage,
-    pattern,
-  } = props;
+export const Input: React.FC<Props> = ({ props }) => {
+
+  const { attrInput, data, errorMessage, expReg, handleChange } = props;
 
   /* Para utilizar este componente, hace falta utilizar Font Awesome,
       <link
@@ -28,98 +18,44 @@ export const Input: React.FC<Props> = (props) => {
       integrity="sha384-vp86vTRFVJgpjF9jiIGPEEqYqlDwgyBgEF109VFjmqGmIY/Y4HV4d3Gp2irVfcrp"
       crossorigin="anonymous"
     />*/
-  const IconFormClass = `${styleCSS.contact__form__iconValidate} fas fa-times-circle`;
+  const iconFormClass = `
+    ${styleCSS.contact__form__iconValidate}
+    ${!expReg.exec(data.value) ? styleCSS.iconValidate_incorrect : styleCSS.iconValidate_correct}
+    ${!expReg.exec(data.value) ? 'fas fa-times-circle' : 'fas fa-check-circle'}    
+  `;
+
+  const messageErrorClass = `
+    ${styleCSS.contact_messageError} 
+    ${!expReg.exec(data.value) ? styleCSS.contact_messageErrorActive : ''}
+  `
 
   /// METODOS
-  const validateInput = () => {
 
-    const $iconInput = document.querySelector(
-      `#form__${inputProps["name"]} i`
-    ) as HTMLElement;
-    const $formError = document.querySelector(
-      `#form__${inputProps["name"]} p`
-    ) as HTMLElement;
+  const verifyisValueBlank = () => {
+    if (data.value !== "") return
 
-    if (pattern.exec(value)) {
-      //Cambiamos el color del icono a VERDE
-      $iconInput.classList.remove(
-        `${styleCSS.iconValidate_incorrect}`
-      );
-      $iconInput.classList.add(`${styleCSS.iconValidate_correct}`);
+    const $iconInput = document.querySelector(`#form__${attrInput["name"]} i`) as HTMLElement;
+    const $formError = document.querySelector(`#form__${attrInput["name"]} p`) as HTMLElement;
 
-      //Cambiamos el icono de la X al icono valido
-      $iconInput.classList.add("fa-check-circle");
-      $iconInput.classList.remove("fa-times-circle");
+    //Quitamos el icono en cuestion
+    $iconInput.classList.remove("fa-check-circle");
+    $iconInput.classList.remove("fa-times-circle");
 
-      //Quitamos la clase para que no aparezca el mensaje de error
-      $formError.classList.remove(
-        `${styleCSS.contact_messageErrorActive}`
-      );
-
-    } else {
-      //Cambiamos el color del icono a incorrecto(rojo)
-      $iconInput.classList.add(`${styleCSS.iconValidate_incorrect}`);
-      $iconInput.classList.remove(`${styleCSS.iconValidate_correct}`);
-
-      //Cambiamos el icono de valido a la X
-      $iconInput.classList.remove("fa-check-circle");
-      $iconInput.classList.add("fa-times-circle");
-
-      //Agregamos la clase para que aparezca el mensaje de error
-      $formError.classList.add(
-        `${styleCSS.contact_messageErrorActive}`
-      );
-    }
-    
-    verifyisValueBlank(value);
+    //Quitamos la clase para que no aparezca el mensaje de error
+    $formError.classList.remove(`${styleCSS.contact_messageErrorActive}`);
   };
-
-  const verifyisValueBlank = (value: any) => {
-    const $iconInput = document.querySelector(
-      `#form__${inputProps["name"]} i`
-    ) as HTMLElement;
-    const $formError = document.querySelector(
-      `#form__${inputProps["name"]} p`
-    ) as HTMLElement;
-
-    if (value === "") {
-      //Quitamos el icono en cuestion
-      $iconInput.classList.remove("fa-check-circle");
-      $iconInput.classList.remove("fa-times-circle");
-
-      //Quitamos la clase para que no aparezca el mensaje de error
-      $formError.classList.remove(
-        `${styleCSS.contact_messageErrorActive}`
-      );
-    }
-  };
-
-  useEffect(() => {
-    verifyisValueBlank(value);
-
-    //console.log("LALALA", props)
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [value]);
 
   return (
-    <div id={`form__${inputProps["name"]}`}>
+    <div id={`form__${attrInput["name"]}`}>
       {
         <div className={styleCSS.contact__form__inputs}>
-          <input
-            name={inputProps["name"]}
-            placeholder={inputProps.placeholder}
-            type={inputProps.type}
-            value={value}
-            onChange={handleChange}
-            onKeyUp={validateInput}
-            required
-            autoComplete="off"
+          <input value={data.value} onChange={handleChange}
+            onKeyUp={verifyisValueBlank} {...attrInput}
           />
-          <i className={IconFormClass} />
+          <i className={iconFormClass} />
         </div>
       }
-
-      <p className={styleCSS.contact_messageError}>{errorMessage}</p>
+      <p className={messageErrorClass}>{errorMessage}</p>
     </div>
   );
 };

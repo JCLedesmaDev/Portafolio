@@ -1,5 +1,6 @@
+import { IInputPropsV1, InputV1 } from "@/components/fwk-react-inputs"
 import { InputV2, IInputPropsV2 } from "@/components/index.components"
-import { useSubscribeEvent } from "@/hooks/index.hooks"
+import { useFormCustom } from "@/hooks/index.hooks"
 import "./index.css"
 
 // import useAuthUserStore from "./store";
@@ -7,35 +8,76 @@ import "./index.css"
 export const Auth: React.FC = () => {
 
     // const store = useAuthUserStore()
-    const data = useSubscribeEvent({ subscribeEventName: 'updateInput' })
+    // const data = useSubscribeEvent({ subscribeEventName: 'updateInput' })
     /// METODOS
 
-    console.log("🚀 ~ file: index.tsx:18 ~ data:", data)
+    // console.log("🚀 ~ file: index.tsx:18 ~ data:", data)
+
 
     const forms: IInputPropsV2[] = [
         {
             attrInput: {
                 name: 'email',
                 placeholder: 'Ingrese usuario',
-                required: true,
                 type: 'email',
+                required: true,
                 autoComplete: 'off'
             },
             expReg: /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/i,
             errorMessage: "El correo solo puede contener letras, numeros, puntos, guiones y guion bajo.",
-            data: { value: undefined }
+            data: { value: '' }
         },
         {
             attrInput: {
-                required: true,
                 placeholder: "Contraseña: ",
                 type: "password",
                 name: "password",
+                required: true,
                 autoComplete: 'off'
             },
             expReg: /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9]).{8,}$/,
             errorMessage: "La contraseña debe contener al menos: 1 letra mayuscula, 1 letra minuscula y 1 numero.",
-            data: { value: undefined }
+            data: { value: '' }
+        }
+    ]
+
+    /////////////////////////////////////////
+
+    type TypeForm = {
+        email: string;
+        password: string;
+    }
+    const { form, handleChange } = useFormCustom<TypeForm>({
+        email: '', password: ''
+    })
+    console.log("🚀 ~ file: index.tsx:47 ~ form:", form)
+
+    const forms2: IInputPropsV1[] = [
+        {
+            attrInput: {
+                name: 'email',
+                placeholder: 'Ingrese usuario',
+                type: 'email',
+                required: true,
+                autoComplete: 'off'
+            },
+            expReg: /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/i,
+            errorMessage: "El correo solo puede contener letras, numeros, puntos, guiones y guion bajo.",
+            data: { value: form['email'] },
+            handleChange: handleChange
+        },
+        {
+            attrInput: {
+                placeholder: "Contraseña: ",
+                type: "password",
+                name: "password",
+                required: true,
+                autoComplete: 'off'
+            },
+            expReg: /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9]).{8,}$/,
+            errorMessage: "La contraseña debe contener al menos: 1 letra mayuscula, 1 letra minuscula y 1 numero.",
+            data: { value: form['password'] },
+            handleChange: handleChange
         }
     ]
 
@@ -43,9 +85,11 @@ export const Auth: React.FC = () => {
     return (
         <div className="container">
 
-            <InputV2 props={forms[0]} subscribedEventName='updateInput' />
+            <InputV2 props={forms[0]} subscribedEventName="updateInput" />
+            <InputV2 props={forms[1]} subscribedEventName="updateInput" />
 
-            <InputV2 props={forms[1]} subscribedEventName='updateInput' />
+            <InputV1 props={forms2[0]} />
+            <InputV1 props={forms2[1]} />
 
             <div id="containerForm">
                 <img className="logo" src="http://www.cfdesigner.com/codepen/rocket-page-logo.png" />
@@ -62,7 +106,7 @@ export const Auth: React.FC = () => {
                             <input type="text" name="username" placeholder="Username" />
                         </div>
                         <div className="field">
-                            <label htmlFor="password">
+                            <label htmlFor="passworASDAS">
                                 <svg className="icon">
                                     <use xmlnsXlink="http://www.w3.org/1999/xlink" xlinkHref="#lock"></use>
                                 </svg>

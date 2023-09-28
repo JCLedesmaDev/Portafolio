@@ -23,8 +23,10 @@ export const useFormCustom = <TypeFormData>(initialState: TypeFormData) => {
     // En caso de cargar imagenes tb
     const imageInput = files != null && files[0];
 
-    setForm({ ...form, [name]: imageInput ?? value });
-  };
+    setForm((prevForm) => ({
+      ...prevForm, [name]: imageInput ? imageInput : value
+    }))
+  }
 
   const resetForm = () => setForm(initialState);
 

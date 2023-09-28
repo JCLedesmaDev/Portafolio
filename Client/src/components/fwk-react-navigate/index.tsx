@@ -2,7 +2,7 @@
 // import Nav from 'react-bootstrap/Nav';
 // import Navbar from 'react-bootstrap/Navbar';
 // import NavDropdown from 'react-bootstrap/NavDropdown';
-import 'bootstrap/dist/css/bootstrap.min.css';
+// import 'bootstrap/dist/css/bootstrap.min.css';
 // import { useLocation, useNavigate } from 'react-router-dom';
 import { useLocation } from 'react-router-dom';
 // import NavigateModuleCSS from './index.module.css'

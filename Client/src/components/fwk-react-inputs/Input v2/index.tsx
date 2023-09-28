@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import React, { useEffect } from "react";
+import React, { useState } from "react";
 import styleCSS from "./index.module.css";
 import { evtEmitter } from "@/utils/index.utils"
 import { IInputProps, IData } from "./interface/Input.interface";
@@ -13,7 +13,7 @@ interface Props {
 export const Input: React.FC<Props> = ({ props, subscribedEventName }) => {
 
   const { attrInput, errorMessage, expReg, data } = props;
-  const local: IData = JSON.parse(JSON.stringify(data))
+  const [local, setLocal] = useState<IData>(JSON.parse(JSON.stringify(data)))
 
   /* Para utilizar este componente, hace falta utilizar Font Awesome,
       <link
@@ -22,53 +22,57 @@ export const Input: React.FC<Props> = ({ props, subscribedEventName }) => {
       integrity="sha384-vp86vTRFVJgpjF9jiIGPEEqYqlDwgyBgEF109VFjmqGmIY/Y4HV4d3Gp2irVfcrp"
       crossorigin="anonymous"
     />*/
+
   const iconFormClass = `
-    ${!local.dirty ? styleCSS.iconValidate_incorrect : styleCSS.iconValidate_correct}
-    ${!local.dirty ? 'fas fa-times-circle' : 'fas fa-check-circle'}    
-  `; // ver de invertir con la validacion
+    ${styleCSS.contact__form__iconValidate}
+    ${local.error ? styleCSS.iconValidate_incorrect : styleCSS.iconValidate_correct}
+    ${local.error ? 'fas fa-times-circle' : 'fas fa-check-circle'}    
+  `;
 
   const messageErrorClass = `
     ${styleCSS.contact_messageError} 
-    ${!local.dirty ? styleCSS.contact_messageErrorActive : ''}
+    ${local.error ? styleCSS.contact_messageErrorActive : ''}
   `
 
   /// METODOS
-
   const update = (evt: any) => {
-    local.value = evt.target.value || undefined
-    local.dirty = local.value !== data.value
-    local.error = expReg.exec(local.value) === null
 
-    if (local.value == "") verifyisValueBlank()
+    const updateLocal = {
+      value: evt.target.value,
+      dirty: local.value !== data.value,
+      error: expReg.exec(evt.target.value) === null
+    }
+
+    if (updateLocal.value === '') verifyisValueBlank()
 
     // A todos los oyentes de 'updateInput', van a recibir este arguemtno
     evtEmitter.emitToSubscribers({
-      subscribedEventName: subscribedEventName, 
-      args: { [attrInput.name]: local }
+      subscribedEventName: subscribedEventName,
+      args: { [attrInput.name]: updateLocal }
     })
+
+    setLocal(updateLocal)
   };
 
 
   const verifyisValueBlank = () => {
+
     const $iconInput = document.querySelector(`#form__${attrInput["name"]} i`) as HTMLElement;
-    const $formError = document.querySelector(`#form__${attrInput["name"]} p`) as HTMLElement;
     //Quitamos el icono en cuestion
     $iconInput.classList.remove("fa-check-circle");
     $iconInput.classList.remove("fa-times-circle");
 
     //Quitamos la clase para que no aparezca el mensaje de error
-    $formError.classList.remove(`${styleCSS.contact_messageErrorActive}`);
+    local.error = false
   }
-
-  useEffect(() => verifyisValueBlank, [])
 
   return (
     <div id={`form__${attrInput["name"]}`}>
       <div className={styleCSS.contact__form__inputs}>
         <input onKeyUp={update} {...attrInput} defaultValue={local.value} />
+        <i className={iconFormClass} />
       </div>
 
-      <i className={iconFormClass} />
       <p className={messageErrorClass}>{errorMessage}</p>
     </div>
   );
