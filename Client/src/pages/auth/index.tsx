@@ -62,9 +62,10 @@ export const Auth: React.FC = () => {
                     <section>
                         <div className="field">
                             <label htmlFor="username">
-                                <svg className="icon">
+
+                                <i className="icon fa-duotone fa-user"></i>                                {/* <svg className="icon">
                                     <use xmlnsXlink="http://www.w3.org/1999/xlink" xlinkHref="#user"></use>
-                                </svg>
+                                </svg> */}
                             </label>
                             <input type="text" name="username" placeholder="Username" />
                         </div>

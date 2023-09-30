@@ -33,17 +33,18 @@
   right: 0.4rem;
   bottom: 1rem;
   z-index: 100;
-  font-size: 16px;
-  padding: 0.5rem 0;
+
   opacity: 0;
-  color: none;
+  height: 1.5rem;
+  width: 2rem;
+  /* transform: scale(1); */
 }
 .iconValidate_correct {
-  color: #1ed12d;
+  fill: #1ed12d;
   opacity: 1 !important;
 }
 .iconValidate_incorrect {
-  color: #bb2929;
+  fill: #bb2929;
   opacity: 1 !important ;
 }
 /* Icono validacion */
