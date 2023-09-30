@@ -1,5 +1,5 @@
-export { InputV1, InputV2 } from './fwk-react-inputs/index'
-export type { IInputsV1, IDataV2, IInputPropsV2 } from './fwk-react-inputs/index'
+export { Input } from './fwk-react-inputs/index'
+export type { IInputProps, IInputData } from './fwk-react-inputs/interface/input.interface'
 
 export { Navigate as Navigate } from './fwk-react-navigate'
 export { Paginate as Paginate } from './fwk-react-paginate'

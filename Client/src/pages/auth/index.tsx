@@ -1,7 +1,7 @@
-import { IInputPropsV1, InputV1 } from "@/components/fwk-react-inputs"
-import { InputV2, IInputPropsV2 } from "@/components/index.components"
 import { useFormCustom } from "@/hooks/index.hooks"
 import "./index.css"
+import { IInputData, IInputProps } from "@/components/fwk-react-inputs/interface/input.interface"
+import { Input } from "@/components/index.components"
 
 // import useAuthUserStore from "./store";
 
@@ -11,48 +11,20 @@ export const Auth: React.FC = () => {
     // const data = useSubscribeEvent({ subscribeEventName: 'updateInput' })
     /// METODOS
 
-    // console.log("🚀 ~ file: index.tsx:18 ~ data:", data)
-
-
-    const forms: IInputPropsV2[] = [
-        {
-            attrInput: {
-                name: 'email',
-                placeholder: 'Ingrese usuario',
-                type: 'email',
-                required: true,
-                autoComplete: 'off'
-            },
-            expReg: /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/i,
-            errorMessage: "El correo solo puede contener letras, numeros, puntos, guiones y guion bajo.",
-            data: { value: '' }
-        },
-        {
-            attrInput: {
-                placeholder: "Contraseña: ",
-                type: "password",
-                name: "password",
-                required: true,
-                autoComplete: 'off'
-            },
-            expReg: /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9]).{8,}$/,
-            errorMessage: "La contraseña debe contener al menos: 1 letra mayuscula, 1 letra minuscula y 1 numero.",
-            data: { value: '' }
-        }
-    ]
 
     /////////////////////////////////////////
 
     type TypeForm = {
-        email: string;
-        password: string;
+        email: IInputData;
+        password: IInputData;
     }
     const { form, handleChange } = useFormCustom<TypeForm>({
-        email: '', password: ''
+        email: { value: '', dirty: false, error: false },
+        password: { value: '', dirty: false, error: false }
     })
     console.log("🚀 ~ file: index.tsx:47 ~ form:", form)
 
-    const forms2: IInputPropsV1[] = [
+    const forms2: IInputProps[] = [
         {
             attrInput: {
                 name: 'email',
@@ -63,7 +35,7 @@ export const Auth: React.FC = () => {
             },
             expReg: /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/i,
             errorMessage: "El correo solo puede contener letras, numeros, puntos, guiones y guion bajo.",
-            data: { value: form['email'] },
+            data: { value: form['email'].value },
             handleChange: handleChange
         },
         {
@@ -76,7 +48,7 @@ export const Auth: React.FC = () => {
             },
             expReg: /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9]).{8,}$/,
             errorMessage: "La contraseña debe contener al menos: 1 letra mayuscula, 1 letra minuscula y 1 numero.",
-            data: { value: form['password'] },
+            data: { value: form['password'].value },
             handleChange: handleChange
         }
     ]
@@ -85,11 +57,8 @@ export const Auth: React.FC = () => {
     return (
         <div className="container">
 
-            <InputV2 props={forms[0]} subscribedEventName="updateInput" />
-            <InputV2 props={forms[1]} subscribedEventName="updateInput" />
-
-            <InputV1 props={forms2[0]} />
-            <InputV1 props={forms2[1]} />
+            <Input props={forms2[0]} />
+            <Input props={forms2[1]} />
 
             <div id="containerForm">
                 <img className="logo" src="http://www.cfdesigner.com/codepen/rocket-page-logo.png" />

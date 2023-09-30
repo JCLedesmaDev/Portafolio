@@ -3,10 +3,10 @@ import { evtEmitter } from "@/utils/index.utils";
 import { useEffect, useState } from "react";
 
 
-export const useSubscribeEvent = ({ subscribeEventName }: any) => {
-    
+export const useSubscribeEvent = ({ subscribeEventName, closeSubscribe = false }: any) => {
+
     const [data, setData] = useState({})
-    
+
     useEffect(() => {
         console.log("🚀 CUSTOM HOOK useSubscribeEvent:", subscribeEventName)
         // Registrar un oyente para el evento personalizado cuando el componente se monta
@@ -18,7 +18,7 @@ export const useSubscribeEvent = ({ subscribeEventName }: any) => {
         });
 
         // Eliminar el oyente cuando el componente se desmonta
-        return () => { evt.unsubscribe() };
+        return () => { if (closeSubscribe) evt.unsubscribe() };
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 

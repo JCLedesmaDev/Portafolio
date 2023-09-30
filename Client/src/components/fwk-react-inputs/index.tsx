@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import React from "react";
-import { IInputProps } from "./interface/input.interface";
+import React, { useState } from "react";
+import { IInputData, IInputProps } from "./interface/input.interface";
 import styleCSS from "./index.module.css";
 
 interface Props {
@@ -10,6 +10,8 @@ interface Props {
 export const Input: React.FC<Props> = ({ props }) => {
 
   const { attrInput, data, errorMessage, expReg, handleChange } = props;
+  const [local, setLocal] = useState<IInputData>(JSON.parse(JSON.stringify(data)))
+  // Capaz que haya que eliminar este local
 
   /* Para utilizar este componente, hace falta utilizar Font Awesome,
       <link
@@ -20,36 +22,53 @@ export const Input: React.FC<Props> = ({ props }) => {
     />*/
   const iconFormClass = `
     ${styleCSS.contact__form__iconValidate}
-    ${!expReg.exec(data.value) ? styleCSS.iconValidate_incorrect : styleCSS.iconValidate_correct}
-    ${!expReg.exec(data.value) ? 'fas fa-times-circle' : 'fas fa-check-circle'}    
+    ${local.error ? styleCSS.iconValidate_incorrect : styleCSS.iconValidate_correct}
+    ${local.error ? 'fas fa-times-circle' : 'fas fa-check-circle'}    
   `;
 
   const messageErrorClass = `
     ${styleCSS.contact_messageError} 
-    ${!expReg.exec(data.value) ? styleCSS.contact_messageErrorActive : ''}
+    ${local.error ? styleCSS.contact_messageErrorActive : ''}
   `
 
   /// METODOS
+  const update = (evt: any) => {
+    const { name, value, files } = evt.target;
+
+    // // En caso de cargar imagenes tb
+    const imageInput = files != null && files[0];
+
+    const updateLocal = {
+      value: imageInput ? imageInput : value,
+      dirty: value !== local.value,
+      error: expReg.exec(value) === null
+    }
+
+    if (updateLocal.value === '') verifyisValueBlank()
+    
+    setLocal(updateLocal)
+    handleChange(name, updateLocal)
+  }
+
 
   const verifyisValueBlank = () => {
-    if (data.value !== "") return
+    if (local.value !== "") return // Quizas tenga que ir el target
 
     const $iconInput = document.querySelector(`#form__${attrInput["name"]} i`) as HTMLElement;
-    const $formError = document.querySelector(`#form__${attrInput["name"]} p`) as HTMLElement;
 
     //Quitamos el icono en cuestion
     $iconInput.classList.remove("fa-check-circle");
     $iconInput.classList.remove("fa-times-circle");
 
     //Quitamos la clase para que no aparezca el mensaje de error
-    $formError.classList.remove(`${styleCSS.contact_messageErrorActive}`);
+    local.error = false
   };
 
   return (
     <div id={`form__${attrInput["name"]}`}>
       {
         <div className={styleCSS.contact__form__inputs}>
-          <input value={data.value} onChange={handleChange}
+          <input value={local.value} onChange={update}
             onKeyUp={verifyisValueBlank} {...attrInput}
           />
           <i className={iconFormClass} />
