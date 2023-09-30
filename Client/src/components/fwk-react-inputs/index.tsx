@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import React, { useState } from "react";
-import { IInputData, IInputProps } from "./interface/input.interface";
+import React from "react";
+import { IInputProps } from "./interface/input.interface";
 import styleCSS from "./index.module.css";
 
 interface Props {
@@ -10,8 +10,7 @@ interface Props {
 export const Input: React.FC<Props> = ({ props }) => {
 
   const { attrInput, data, errorMessage, expReg, handleChange } = props;
-  const [local, setLocal] = useState<IInputData>(JSON.parse(JSON.stringify(data)))
-  // Capaz que haya que eliminar este local
+
 
   /* Para utilizar este componente, hace falta utilizar Font Awesome,
       <link
@@ -20,16 +19,6 @@ export const Input: React.FC<Props> = ({ props }) => {
       integrity="sha384-vp86vTRFVJgpjF9jiIGPEEqYqlDwgyBgEF109VFjmqGmIY/Y4HV4d3Gp2irVfcrp"
       crossorigin="anonymous"
     />*/
-  const iconFormClass = `
-    ${styleCSS.contact__form__iconValidate}
-    ${local.error ? styleCSS.iconValidate_incorrect : styleCSS.iconValidate_correct}
-    ${local.error ? 'fas fa-times-circle' : 'fas fa-check-circle'}    
-  `;
-
-  const messageErrorClass = `
-    ${styleCSS.contact_messageError} 
-    ${local.error ? styleCSS.contact_messageErrorActive : ''}
-  `
 
   /// METODOS
   const update = (evt: any) => {
@@ -40,86 +29,45 @@ export const Input: React.FC<Props> = ({ props }) => {
 
     const updateLocal = {
       value: imageInput ? imageInput : value,
-      dirty: value !== local.value,
+      dirty: value !== data.value,
       error: expReg.exec(value) === null
     }
 
-    if (updateLocal.value === '') verifyisValueBlank()
-    
-    setLocal(updateLocal)
     handleChange(name, updateLocal)
   }
 
+  const defineCSSIcon = () => {
+    let style = styleCSS.contact__form__iconValidate;
 
-  const verifyisValueBlank = () => {
-    if (local.value !== "") return // Quizas tenga que ir el target
+    if (data.value === '') return style;
 
-    const $iconInput = document.querySelector(`#form__${attrInput["name"]} i`) as HTMLElement;
+    if (expReg.exec(data.value)) {
+      style += ` ${styleCSS.iconValidate_correct} fas fa-check-circle`
+    } else {
+      style += ` ${styleCSS.iconValidate_incorrect} fas fa-times-circle`
+    }
+    return style
+  }
 
-    //Quitamos el icono en cuestion
-    $iconInput.classList.remove("fa-check-circle");
-    $iconInput.classList.remove("fa-times-circle");
+  const defineCSSMessage = () => {
+    let style = styleCSS.contact_messageError;
 
-    //Quitamos la clase para que no aparezca el mensaje de error
-    local.error = false
-  };
+    if (data.value === '') return style;
+
+    if (expReg.exec(data.value) === null) {
+      style += ` ${styleCSS.contact_messageErrorActive}`
+    }
+
+    return style
+  }
 
   return (
     <div id={`form__${attrInput["name"]}`}>
-      {
-        <div className={styleCSS.contact__form__inputs}>
-          <input value={local.value} onChange={update}
-            onKeyUp={verifyisValueBlank} {...attrInput}
-          />
-          <i className={iconFormClass} />
-        </div>
-      }
-      <p className={messageErrorClass}>{errorMessage}</p>
+      <div className={styleCSS.contact__form__inputs}>
+        <input defaultValue={data.value} onKeyUp={update} {...attrInput} />
+        <i className={defineCSSIcon()} />
+      </div>
+      <p className={defineCSSMessage()}>{errorMessage}</p>
     </div>
   );
 };
-
-/* Puntos necesarios para poder utilizar este Componente 
-
-  Necesitaremos pasarle
-  - Value: Un state para poder obtener el valor del input 
-  - handleChange: el setState del useState();
-  - expReg: Una expresion regular para que pueda validar 
-    lo que se escribe.
-  - errorMessage: Un mensaje de error para cuando estemos escribiendo
-    algo que no debamos.
-  - inputProps: Un objeto que contenga
-      * type=""
-      * placeholder=""
-      * name=""
-    Con sus respectivos valores dependiendo del Input.
-
-  La interface de esto seria:
-  export interface IFormInputs {
-    placeholder: string;
-    type: any;
-    name: string;
-    expReg: RegExp;
-    errorMessage: string;
-  }
-  
-  Por ejem.:
-
-  const [inputText, setInputText] = useState("")
-  const propsInput = {
-    placeholder: "Correo electronico: ",
-    type: "email",
-    name: "emailLogin",
-    expReg: /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/i,
-    errorMessage:
-      "El correo solo puede contener letras, numeros, puntos, guiones y guion bajo.",
-  },
-
-  <Input
-    inputProps={propsInput}
-    value={inputText}
-    handleChange={setInputText}
-    errorMessage={propsInput.errorMessage}
-    expReg={propsInput.expReg}
-  />
-*/

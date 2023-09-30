@@ -39,7 +39,7 @@ export const Auth: React.FC = () => {
                 type: "password",
                 name: "password",
                 required: true,
-                autoComplete: 'off'
+                autoComplete: "off"
             },
             expReg: /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9]).{8,}$/,
             errorMessage: "La contraseña debe contener al menos: 1 letra mayuscula, 1 letra minuscula y 1 numero.",

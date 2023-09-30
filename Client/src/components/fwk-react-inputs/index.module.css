@@ -22,7 +22,8 @@
 .contact__form__inputs > input[type="email"]::placeholder,
 .contact__form__inputs > input[type="password"]::placeholder,
 .contact__form__textarea > textarea::placeholder {
-  color: rgba(0, 128, 255, 0.5) !important;
+  /* color: rgba(0, 128, 255, 0.5) !important; */
+  color: #000 !important;
 }
 
 /* Icono validacion */
