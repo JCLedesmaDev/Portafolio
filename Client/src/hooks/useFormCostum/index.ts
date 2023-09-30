@@ -6,7 +6,6 @@ export interface IResponseUseForm<TypeData> {
   form: TypeData;
   handleChange: (nameField: string, data: any) => void;
   resetForm: () => void;
-  // setForm: (value: React.SetStateAction<TypeData>) => void;
 }
  
 

@@ -1,7 +1,8 @@
 import { useFormCustom } from "@/hooks/index.hooks"
 import "./index.css"
-import { IInputData, IInputProps } from "@/components/fwk-react-inputs/interface/input.interface"
 import { Input } from "@/components/index.components"
+import { IFormData } from "./interface/IFormData"
+import { IFormProps } from "./interface/IFormProps"
 
 // import useAuthUserStore from "./store";
 
@@ -9,23 +10,17 @@ export const Auth: React.FC = () => {
 
     // const store = useAuthUserStore()
     // const data = useSubscribeEvent({ subscribeEventName: 'updateInput' })
+
     /// METODOS
-
-
-    /////////////////////////////////////////
-
-    type TypeForm = {
-        email: IInputData;
-        password: IInputData;
-    }
-    const { form, handleChange } = useFormCustom<TypeForm>({
+    const { form, handleChange } = useFormCustom<IFormData>({
         email: { value: '', dirty: false, error: false },
         password: { value: '', dirty: false, error: false }
     })
     console.log("🚀 ~ file: index.tsx:47 ~ form:", form)
 
-    const forms2: IInputProps[] = [
-        {
+
+    const formsProps: IFormProps = {
+        email: {
             attrInput: {
                 name: 'email',
                 placeholder: 'Ingrese usuario',
@@ -38,7 +33,7 @@ export const Auth: React.FC = () => {
             data: { value: form['email'].value },
             handleChange: handleChange
         },
-        {
+        password: {
             attrInput: {
                 placeholder: "Contraseña: ",
                 type: "password",
@@ -51,14 +46,13 @@ export const Auth: React.FC = () => {
             data: { value: form['password'].value },
             handleChange: handleChange
         }
-    ]
-
+    }
 
     return (
         <div className="container">
 
-            <Input props={forms2[0]} />
-            <Input props={forms2[1]} />
+            <Input props={formsProps.email} />
+            <Input props={formsProps.password} />
 
             <div id="containerForm">
                 <img className="logo" src="http://www.cfdesigner.com/codepen/rocket-page-logo.png" />
