@@ -3,3 +3,10 @@
 
 ⏰ Hacer que cuando nos envie un email, nos llegue directamente un mensaje al WP.
 
+⏰ Cambiar logica de negocio con el token: 
+    En vez de crear el token y enviarlo al front para que despues me lo duelva a enviar. 
+    Hay que hacer que creamos el token, lo guardamos en la BD de Usuario y cada vez que 
+    enviemos un HTTP, buscar en la BD, el token del usuario (por medio del usrId) y 
+    verificar si esta vencido o NO para continuar. De esta manera, desligamos en el front
+    todo lo que son rutas privadas y el manejo del 'authorization'  
+    
