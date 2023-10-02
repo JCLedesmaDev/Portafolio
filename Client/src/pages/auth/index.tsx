@@ -3,6 +3,8 @@ import "./index.css"
 import { Input } from "@/components/index.components"
 import { IFormData } from "./interface/IFormData"
 import { IFormProps } from "./interface/IFormProps"
+import { UserSVG } from "@/components/fwk-react-inputs/svg/UserSVG"
+import { PasswordSVG } from "@/components/fwk-react-inputs/svg/PasswordSVG"
 
 // import useAuthUserStore from "./store";
 
@@ -62,18 +64,13 @@ export const Auth: React.FC = () => {
                     <section>
                         <div className="field">
                             <label htmlFor="username">
-
-                                <i className="icon fa-duotone fa-user"></i>                                {/* <svg className="icon">
-                                    <use xmlnsXlink="http://www.w3.org/1999/xlink" xlinkHref="#user"></use>
-                                </svg> */}
+                                <UserSVG className="icon" />
                             </label>
                             <input type="text" name="username" placeholder="Username" />
                         </div>
                         <div className="field">
                             <label htmlFor="passworASDAS">
-                                <svg className="icon">
-                                    <use xmlnsXlink="http://www.w3.org/1999/xlink" xlinkHref="#lock"></use>
-                                </svg>
+                                <PasswordSVG className="icon" />
                             </label>
                             <input type="password" name="password" placeholder="Password" />
                         </div>

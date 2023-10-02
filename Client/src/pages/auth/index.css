@@ -122,7 +122,9 @@ form input[type='submit'] {
 
 form input[type='password'],
 form input[type='text'] {
-    background-color: #3b4148;
+    /* background-color: #3b4148; */
+    background-color: #fff;
+    color: #000;
     border-radius: 0 4px 4px 0;
 }
 
@@ -130,7 +132,9 @@ form input[type='password']:focus,
 form input[type='password']:hover,
 form input[type='text']:focus,
 form input[type='text']:hover {
-    background-color: #434a52;
+    background-color: #fff;
+    color: #000;
+    /* background-color: #434a52; */
     outline: none;
 }
 

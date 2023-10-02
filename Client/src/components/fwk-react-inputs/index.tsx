@@ -2,7 +2,7 @@
 import React from "react";
 import { IInputProps } from "./interface/input.interface";
 import styleCSS from "./index.module.css";
-import { Check_circle } from "@/components/fwk-react-inputs/svg/check_circle";
+import { CheckCircleSVG } from "@/components/fwk-react-inputs/svg/CheckCircleSVG";
 
 interface Props {
   props: IInputProps
@@ -49,7 +49,7 @@ export const Input: React.FC<Props> = ({ props }) => {
     }
     return style
   }
-  https://fonts.google.com/icons?selected=Material+Symbols+Outlined:block:FILL@0;wght@400;GRAD@0;opsz@24&icon.platform=web&icon.query=close
+  // https://fonts.google.com/icons?selected=Material+Symbols+Outlined:block:FILL@0;wght@400;GRAD@0;opsz@24&icon.platform=web&icon.query=close
   const defineCSSMessage = () => {
     let style = styleCSS.contact_messageError;
 
@@ -67,7 +67,7 @@ export const Input: React.FC<Props> = ({ props }) => {
       <div className={styleCSS.contact__form__inputs}>
         <input defaultValue={data.value} onKeyUp={update} {...attrInput} />
         {/* <i className={defineCSSIcon()}>adsad</i> */}
-        <Check_circle className={defineCSSIcon()} />
+        <CheckCircleSVG className={defineCSSIcon()} />
         {/* <img className={defineCSSIcon()} src={iconCheckCicle}/> */}
       </div>
       <p className={defineCSSMessage()}>{errorMessage}</p>
