@@ -34,7 +34,11 @@ const loginUser = tryCatchWrapper(async (payload: ILoginDtoRequest) => {
     }
 
     const response: ILoginDtoResponse = {
-        token: jwt.tokenSign(user),
+        token: jwt.tokenSign({
+            _id: user._id, 
+            userAgent: payload.userAgent, 
+            remoteAddress: payload.remoteAddress,
+        }),
         user: mappers.user(user)
     }
 

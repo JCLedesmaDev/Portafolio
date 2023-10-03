@@ -11,17 +11,30 @@ const loginUser = controllerWrapper(async (req: Request, res: Response) => {
     //Almacenamos en "payload", los datos que cumplieron con el Validators y evita captar datos extras sin contemplar
     const payload = matchedData(req) as ILoginDtoRequest
 
+    // Es la IP de la computadora del CLiente de donde se realizo la peticion HTTP
+    payload.remoteAddress = req.socket.remoteAddress || ''
+    // Proporciona informacion del navegador de donde se envio la peticion.
+    payload.userAgent = req.headers["user-agent"] || ''
+
     req.locals.info = payload // Se utiliza en el eventHandler
+
     const data = await logic.loginUser(payload)
 
-    res.cookie('jwt', data.token, {
-        httpOnly: true, // No accesible desde JavaScript en el cliente
-        expires: new Date(Date.now() + Number(config.get('expire_jwt'))),
-        signed: true // Firma la cookie con una clave secreta.
-    })
-    // ('kwt', 'valorDeLaCookie', { httpOnly: true });
+    if (!data.error) {
+        res.cookie('jwt', data.info.data.token, {
+            httpOnly: true, // No accesible desde JavaScript en el cliente
+            expires: new Date(Date.now() + Number(config.get('expire_jwt'))),
+            signed: true, // Firma la cookie con una clave secreta.
+        })
 
-    return data.user
+        if (res.get('Set-Cookie')) {
+            console.log('La cookie se ha agregado correctamente.');
+        } else {
+            console.log('No se ha agregado ninguna cookie en la respuesta.');
+        }
+        delete data.info.data.token
+    }
+    return data
 })
 
 const getUser = controllerWrapper(async (req: Request) => {

@@ -8,12 +8,13 @@ import { IUserSchema } from '@models/ICollections'
  * @param resource Datos/recursos del usuario para almacenar en el token.
  * @returns Token
  */
-const tokenSign = (resource: IUserSchema): string => {
+const tokenSign = (resource: any): string => {
     const sign = jwt.sign(
-        /* Definimos el payload del token, es deecir, los datos que contendra el token y 
-           que prodremos ver al desencriptarlo */
+        /* Definimos los datos que contendra el token y ue prodremos ver al desencriptarlo */
         {
             id: resource._id,
+            userAgent: resource.userAgent,
+            remoteAddress: resource.remoteAddress,
         },
         // Pasamos la clave secreta
         config.get('jwt_secret') as string,
@@ -33,7 +34,10 @@ const verifyToken = (tokenJwt: string) => {
     try {
         return jwt.verify(tokenJwt, config.get('jwt_secret') as string)
     } catch (error) {
-        throw new ApplicationError({ message: 'Ocurrio un error de autenticacion.', source: error, status: 401 });
+        throw new ApplicationError({
+            message: 'Ocurrio un error de autenticacion.',
+            source: error, status: 401
+        });
     }
 }
 
