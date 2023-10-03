@@ -3,10 +3,23 @@
 
 ⏰ Hacer que cuando nos envie un email, nos llegue directamente un mensaje al WP.
 
+
 ⏰ Cambiar logica de negocio con el token: 
     En vez de crear el token y enviarlo al front para que despues me lo duelva a enviar. 
-    Hay que hacer que creamos el token, lo guardamos en la BD de Usuario y cada vez que 
-    enviemos un HTTP, buscar en la BD, el token del usuario (por medio del usrId) y 
-    verificar si esta vencido o NO para continuar. De esta manera, desligamos en el front
-    todo lo que son rutas privadas y el manejo del 'authorization'  
-    
+    Almacenarlo en las cookies e enviarselo al front, para que el front las reciba y luego 
+    nos la reenvien. Cada vez que recibimos un http, verificar este token de las cookies
+    - Tener en cuenta en los headers la validacion y en el handleAuth,
+    - Tener en cuenta en token: IdUsr y IP y navegador
+
+---> Ya hice que cuando te loguees, te envie el token por medio de las
+    cookies. Tambien lo introduje en el httpRequestHandler
+    Falta:
+    * Validar que la cookie no este expirado.
+    * Validar la IP y navegador
+    * Agregar en jwt, la IP y el navegador ademas del usrId
+
+
+
+⏰ Fijar y borrar que en las peticiones GET, se envie un id de usuario (ver en mappers)
+⏰ En cada metodo POST devolver el ID del nuevo registro
+ 

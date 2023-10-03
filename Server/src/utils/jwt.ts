@@ -19,7 +19,7 @@ const tokenSign = (resource: IUserSchema): string => {
         config.get('jwt_secret') as string,
 
         // Indicamos algunas especificaciones opcionales
-        { expiresIn: 60 * 10 } // 60 seg * 10 = 10min
+        { expiresIn: config.get('expire_jwt') as number } // 60 seg * 10 = 10min
     )
     return sign
 }

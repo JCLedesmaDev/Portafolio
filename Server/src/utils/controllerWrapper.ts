@@ -2,7 +2,7 @@ import { NextFunction, Request, Response } from "express";
 
 const controllerWrapper = (callback: any) => {
     return async (req: Request, res: Response, next: NextFunction) => {
-        const data: any = await callback(req)
+        const data: any = await callback(req, res)
 
         req.locals.result = data // Se utiliza en el eventHandler
 

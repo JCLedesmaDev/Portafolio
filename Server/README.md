@@ -23,7 +23,7 @@ APIs CRUD en NodeJS implementando una arquitectura orientada a Microservicios de
  * [Jsonwebtokens](https://www.npmjs.com/package/jsonwebtoken) | [@types/jsonwebtokens](https://www.npmjs.com/package/@types/jsonwebtoken).
  * [Module-alias](https://www.npmjs.com/package/module-alias) - Permite acotar las url de los modulos a importar.
  * [Multer](https://www.npmjs.com/package/multer) - Para el manejo de archivos desde nodejs. | [@types/multer](https://www.npmjs.com/package/@types/multer)
-
+ * [Cookie-Parser](https://www.npmjs.com/package/cookie-parser) - Permite el manejo de las cookies dentro del Servidor. | [@types/cookie-parser](https://www.npmjs.com/package/@types/cookie-parser)
 
 ## Requerimientos:
 Instalar el entorno de NodeJS en tu Sistema Operativo - https://nodejs.org/es/.
