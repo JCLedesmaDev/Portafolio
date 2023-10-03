@@ -1,7 +1,6 @@
 import jwt from 'jsonwebtoken'
 import config from 'config'
 import { ApplicationError } from './applicationError'
-import { IUserSchema } from '@models/ICollections'
 
 /**
  * A partir de los datos del usuario, crea un token que expira en 1h 
