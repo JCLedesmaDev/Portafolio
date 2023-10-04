@@ -1,8 +1,8 @@
-import { request, response, Request, Response, NextFunction } from 'express'
+import { Request, Response, NextFunction } from 'express'
 import { ApplicationError } from '@utils/applicationError'
 import jwt from '@utils/jwt'
 
-const authHandler = (req: Request = request, res: Response = response, next: NextFunction) => {
+const authHandler = (req: Request, res: Response, next: NextFunction) => {
     try {
         const usrToken = req.locals.usrToken
 
