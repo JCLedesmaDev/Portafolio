@@ -22,16 +22,14 @@ const loginUser = controllerWrapper(async (req: Request, res: Response) => {
 
     if (!data.error) {
         res.cookie('jwt', data.info.data.token, {
-            httpOnly: true, // No accesible desde JavaScript en el cliente
-            expires: new Date(Date.now() + Number(config.get('expire_jwt'))),
-            signed: true, // Firma la cookie con una clave secreta.
+            // No accesible desde JavaScript en el cliente
+            httpOnly: true, 
+            // Al pasar este tiempo, desaparece automaticamente en el navegador
+            expires: new Date(Date.now() + eval(config.get('expire_jwt'))), 
+            // Firma la cookie con una clave secreta.
+            signed: true, 
         })
 
-        if (res.get('Set-Cookie')) {
-            console.log('La cookie se ha agregado correctamente.');
-        } else {
-            console.log('No se ha agregado ninguna cookie en la respuesta.');
-        }
         delete data.info.data.token
     }
     return data

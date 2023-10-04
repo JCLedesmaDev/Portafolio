@@ -11,12 +11,6 @@
     - Tener en cuenta en los headers la validacion y en el handleAuth,
     - Tener en cuenta en token: IdUsr y IP y navegador
 
----> Ya hice que cuando te loguees, te envie el token por medio de las
-    cookies. Tambien lo introduje en el httpRequestHandler
-    Falta:
-    * Validar que la cookie no este expirado.
-    * Validar la IP y navegador
-    * Agregar en jwt, la IP y el navegador ademas del usrId
 
 
 

@@ -6,10 +6,7 @@ const httpRequestHandler = (req: Request, res: Response, next: NextFunction) => 
 
     const usrToken = (req.signedCookies['jwt']) ? req.signedCookies['jwt'].toString() : ''
     req.locals.usrToken = usrToken
-
-    // const usrId = (req.headers['userid']) ? req.headers['userid'].toString() : ''
-    // req.locals.usrId = usrId
-    
+   
     next()
 }
 export {

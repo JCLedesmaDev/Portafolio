@@ -19,7 +19,7 @@ const tokenSign = (resource: any): string => {
         config.get('jwt_secret') as string,
 
         // Indicamos algunas especificaciones opcionales
-        { expiresIn: config.get('expire_jwt') as number } // 60 seg * 10 = 10min
+        { expiresIn: eval(config.get('expire_jwt')) }
     )
     return sign
 }
@@ -34,7 +34,7 @@ const verifyToken = (tokenJwt: string) => {
         return jwt.verify(tokenJwt, config.get('jwt_secret') as string)
     } catch (error) {
         throw new ApplicationError({
-            message: 'Ocurrio un error de autenticacion.',
+            message: 'Ocurrio un error de autenticacion. Ingrese sesion nuevamente.',
             source: error, status: 401
         });
     }
