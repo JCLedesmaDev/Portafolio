@@ -8,7 +8,7 @@ const authHandler = (req: Request = request, res: Response = response, next: Nex
 
         if (!usrToken) {
             throw new ApplicationError({ 
-                message: 'No ha iniciado sesion!', 
+                message: 'Cookie ha expirado. Por favor, inicia sesión de nuevo.', 
                 status: 401 
             })
         }

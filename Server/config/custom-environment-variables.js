@@ -12,6 +12,7 @@ module.exports = {
     
     jwt_secret: 'JWT_SECRET',
     expire_jwt: 'EXPIRE_JWT',
-
+    
+    expire_cookie: 'EXPIRE_COOKIE',
     cookie_secret: 'COOKIE_SECRET'
 }

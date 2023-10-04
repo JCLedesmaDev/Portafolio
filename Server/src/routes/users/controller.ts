@@ -25,7 +25,7 @@ const loginUser = controllerWrapper(async (req: Request, res: Response) => {
             // No accesible desde JavaScript en el cliente
             httpOnly: true, 
             // Al pasar este tiempo, desaparece automaticamente en el navegador
-            expires: new Date(Date.now() + eval(config.get('expire_jwt'))), 
+            expires: new Date(Date.now() + eval(config.get('expire_cookie'))), 
             // Firma la cookie con una clave secreta.
             signed: true, 
         })

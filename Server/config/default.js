@@ -5,8 +5,9 @@ module.exports = {
     node_env: 'development',
 
     jwt_secret: 'claveSuperSecreta',
-    expire_jwt: 60, // 1 min
-
+    expire_jwt: '1000*60*5', // 1 min
+    
+    expire_cookie: '1000*60* 5', // 5 min
     cookie_secret: 'claveSuperSecreta'
 }
 
