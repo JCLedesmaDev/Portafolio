@@ -7,7 +7,7 @@ const httpRequestHandler = (req: Request, res: Response, next: NextFunction) => 
     const usrToken = (req.signedCookies['jwt']) ? req.signedCookies['jwt'].toString() : ''
     req.locals.usrToken = usrToken
    
-    next()
+    return next()
 }
 export {
     httpRequestHandler
