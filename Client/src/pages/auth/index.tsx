@@ -5,12 +5,13 @@ import { IFormData } from "./interface/IFormData"
 import { IFormProps } from "./interface/IFormProps"
 import { UserSVG } from "@/components/fwk-react-inputs/svg/UserSVG"
 import { PasswordSVG } from "@/components/fwk-react-inputs/svg/PasswordSVG"
+import { useEffect } from "react"
 
-// import useAuthUserStore from "./store";
+import useAuthUserStore from "./store";
 
 export const Auth: React.FC = () => {
 
-    // const store = useAuthUserStore()
+    const store = useAuthUserStore()
     // const data = useSubscribeEvent({ subscribeEventName: 'updateInput' })
 
     /// METODOS
@@ -49,6 +50,13 @@ export const Auth: React.FC = () => {
             handleChange: handleChange
         }
     }
+
+    useEffect(() => {
+        store.actions.login({
+            email: 'juanledesma6040@gmail.com',
+            password: 'holahola123'
+        })
+    }, [])
 
     return (
         <div className="container">

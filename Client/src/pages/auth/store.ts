@@ -1,10 +1,11 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { createWithEqualityFn } from "zustand/traditional";
 import { shallow } from "zustand/shallow";
 // import produce from 'immer'
 
 // import { userMapper } from "./mappers";
 // import { IUserModels } from "../../models/IUser.models";
-// import { apiSrv } from "../../utils/apiSrv";
+import { apiSrv } from "@/utils/index.utils";
 // import appStore from "../appStore";
 // import { ILoginDto } from "./interface/frontToBack/ILogin.dto";
 // import { IFormRegister, IRegisterDto } from "./interface/frontToBack/IRegister.dto";
@@ -19,6 +20,7 @@ interface IStore {
         // setLoginFormActive: (newState: boolean) => void;
         // setRegisterFormActive: (newState: boolean) => void;
         // changeStyleForm: () => void
+        login: (payload: any) => Promise<boolean>
         // login: (payload: ILoginDto) => Promise<boolean>
         // register: (payload: IRegisterDto) => Promise<boolean>
     }
@@ -53,29 +55,29 @@ const store = createWithEqualityFn<IStore>((set, get) => {
             //         store.state.styleForm = style
             //     }))
             // },
-            // login: async (payload: ILoginDto) => {
-            //     let flagIsLogin = false
+            login: async (payload: any) => {
+                let flagIsLogin = false
 
-            //     const res = await apiSrv.callBackend(async () => {
-            //         return await apiSrv.callSrv({
-            //             method: 'POST',
-            //             path: '/users/login',
-            //             data: payload
-            //         })
-            //     }, { loader: true })
+                const res = await apiSrv.callBackend(async () => {
+                    return await apiSrv.callSrv({
+                        method: 'POST',
+                        path: '/users/login',
+                        data: payload
+                    })
+                }, { loader: true })
 
-            //     if (res.info.type === 'error') return flagIsLogin
-            //     flagIsLogin = true
+                if (res.info.type === 'error') return flagIsLogin
+                flagIsLogin = true
 
-            //     const userAdapted: IUserModels = userMapper(res.info.data);
-            //     appStore.getState().actions.setUser(userAdapted)
+                // const userAdapted: IUserModels = userMapper(res.info.data);
+                // appStore.getState().actions.setUser(userAdapted)
 
-            //     apiSrv.setHeaders({
-            //         userid: userAdapted.id,
-            //         authorization: userAdapted.tokenAuth
-            //     })
-            //     return flagIsLogin
-            // },
+                // apiSrv.setHeaders({
+                //     userid: userAdapted.id,
+                //     authorization: userAdapted.tokenAuth
+                // })
+                return flagIsLogin
+            },
             // register: async (payload: IRegisterDto) => {
             //     let flagIsRegister = false
 

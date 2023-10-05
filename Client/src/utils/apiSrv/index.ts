@@ -1,4 +1,4 @@
-import axios, { AxiosInstance, RawAxiosRequestHeaders, InternalAxiosRequestConfig, AxiosResponse, AxiosError } from 'axios'
+import axios, { AxiosInstance, InternalAxiosRequestConfig, AxiosResponse, AxiosError } from 'axios'
 import {
     ICallSrvRequest,
     ICallSrvError,
@@ -22,16 +22,18 @@ export const apiSrv = {
      */
     init: (config: IConfigInit) => {
         apiSrv.setHeaders(config.info)
-        const headersDef: RawAxiosRequestHeaders = {
-            // 'Access-Control-Allow-Credentials':'true',
-            'Accept': 'application/json, text/plain, */*',
-            'Accept-Language': 'es-ES,es;q=0.9',
-            'Content-Type': 'application/json;charset=UTF-8',
-        }
-
+        
         srv = axios.create({
             baseURL: config.url,
-            headers: headersDef,
+            withCredentials: true,
+            
+            headers: {
+                'Accept': 'application/json, text/plain, */*',
+                'Accept-Language': 'es-ES,es;q=0.9',
+                'Content-Type': 'application/json;charset=UTF-8',
+                //
+                'Access-Control-Allow-Origin': 'http://localhost:8000'
+            }
         })
         srv.interceptors.request.use(
             (request: InternalAxiosRequestConfig) => {
@@ -52,7 +54,12 @@ export const apiSrv = {
             }
         )
         srv.interceptors.response.use(
-            (response: AxiosResponse) => response,
+            (response: AxiosResponse) => {
+                // https://bobbyhadz.com/blog/javascript-axios-set-cookies
+                // https://github.com/axios/axios/issues/876
+                console.log("🚀 ~ file: index.ts:56 ~ response:", response)
+                return response
+            },
             (error: AxiosError) => {
                 // console.log('Error ApiSrv!!!! :' + error)
                 if (error.response?.status === 401) { // Hice que el 401 sea especifico de token
