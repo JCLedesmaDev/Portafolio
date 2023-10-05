@@ -30,6 +30,12 @@ const loginUser = controllerWrapper(async (req: Request, res: Response) => {
             signed: true, 
         })
 
+        if (res.get('Set-Cookie')) {
+            console.log('La cookie se ha agregado correctamente.', res.get('Set-Cookie'));
+        } else {
+            console.log('No se ha agregado ninguna cookie en la respuesta.');
+        }
+
         delete data.info.data.token
     }
     return data

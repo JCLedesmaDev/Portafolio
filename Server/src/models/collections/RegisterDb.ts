@@ -7,7 +7,7 @@ const RegisterDbSchema = new Schema<IRegisterDbSchema>({
     date: { type: Date, required: true },
     request: { type: Object, required: true },
     response: { type: Object, required: true },
-    user: { type: Types.ObjectId, ref: 'User', required: true }
+    user: { type: Types.ObjectId, ref: 'User', required: false }
 }, {
     timestamps: true, // Nos crea un campo mas con la fecha de creacion y actualizacion del registro
     versionKey: false // Desactivamos la version del dato dentro de mongoose  

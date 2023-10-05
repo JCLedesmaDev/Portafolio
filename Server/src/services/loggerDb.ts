@@ -17,13 +17,17 @@ const insertLoggerDb = async (infoLooger: ILogger) => {
     try {
         const { usrId, type, request, response } = infoLooger
 
-        await collections.RegisterDb.create({
+        const registerData = {
             type: type,
             date: new Date(),
             request: request,
             response: response || {},
-            user: new Types.ObjectId(usrId) || '',
-        })
+            ...(usrId !== '' && {
+                user: new Types.ObjectId(usrId),
+            })
+        }
+
+        await collections.RegisterDb.create(registerData)
     } catch (error) {
         throw new ApplicationError({ 
             message: "Ocurrio un error al querer loggear la info.", 
