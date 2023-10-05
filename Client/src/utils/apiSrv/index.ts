@@ -26,13 +26,10 @@ export const apiSrv = {
         srv = axios.create({
             baseURL: config.url,
             withCredentials: true,
-            
             headers: {
                 'Accept': 'application/json, text/plain, */*',
                 'Accept-Language': 'es-ES,es;q=0.9',
                 'Content-Type': 'application/json;charset=UTF-8',
-                //
-                'Access-Control-Allow-Origin': 'http://localhost:8000'
             }
         })
         srv.interceptors.request.use(
