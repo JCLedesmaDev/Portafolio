@@ -9,8 +9,7 @@ const router = express.Router();
 
 router.post('/login', validatorLoginRequest, controller.loginUser);
 
-router.get('/getUser', authHandler, controller.getUser);
-// router.get('/getUser', controller.getUser);
+router.get('/getUser', controller.getUser);
 
 router.post('/updateUser', authHandler, fileMulterHandler([
     { name: 'imageProfile', maxCount: 1 }

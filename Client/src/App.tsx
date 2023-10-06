@@ -11,9 +11,7 @@ export default function App() {
   const initializate = () => {
     const pl: IConfigInit = {
       info: {
-        authorization: '',
         mockmode: 'false',
-        userid: ''
       },
       url: process.env.VITE_URL_API as string // Poner la variable de entorno
     }

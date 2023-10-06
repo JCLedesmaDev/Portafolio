@@ -55,6 +55,9 @@ export const Auth: React.FC = () => {
         store.actions.login({
             email: 'juanledesma6040@gmail.com',
             password: 'holahola123'
+        }).then(res => {
+            console.log("🚀 ~ file: index.tsx:59 ~ useEffect ~ res:", res)
+            store.actions.getUser().then(res => console.log(res))
         })
     }, [])
 

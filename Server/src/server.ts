@@ -23,7 +23,7 @@ function startServer(connectionServer: string) {
     app.use(cookieParser(config.get('cookie_secret'))) 
     
     app.use(cors({
-        origin: 'http://127.0.0.1:5173', // Permite todos los dominios
+        origin: 'http://localhost:5173', // Permite todos los dominios
         // origin: '*', // Permite todos los dominios
         methods: 'GET,PUT,POST,DELETE',
         credentials: true // Habilita el envío de cookies en las solicitudes CORS

@@ -23,26 +23,35 @@ const loginUser = controllerWrapper(async (req: Request, res: Response) => {
     if (!data.error) {
         res.cookie('jwt', data.info.data.token, {
             // No accesible desde JavaScript en el cliente
-            httpOnly: true, 
+            httpOnly: true,
             // Al pasar este tiempo, desaparece automaticamente en el navegador
-            expires: new Date(Date.now() + eval(config.get('expire_cookie'))), 
+            expires: new Date(Date.now() + eval(config.get('expire_cookie'))),
             // Firma la cookie con una clave secreta.
-            signed: true, 
+            signed: true,
+            sameSite: "strict"
         })
 
-        if (res.get('Set-Cookie')) {
-            console.log('La cookie se ha agregado correctamente.', res.get('Set-Cookie'));
-        } else {
-            console.log('No se ha agregado ninguna cookie en la respuesta.');
-        }
+        res.cookie('infoUsr', data.info.data.user.id, {
+            // No accesible desde JavaScript en el cliente
+            httpOnly: true,
+            // Al pasar este tiempo, desaparece automaticamente en el navegador
+            expires: new Date(Date.now() + eval(config.get('expire_cookie'))),
+            // Firma la cookie con una clave secreta.
+            signed: true,
+            sameSite: "strict"
+        })
 
+        delete data.info.data.user.id
         delete data.info.data.token
     }
     return data
 })
 
 const getUser = controllerWrapper(async (req: Request) => {
-    return await logic.getUser()
+    const data = await logic.getUser()
+    delete data.info.data.user.id
+    
+    return data
 })
 
 const updateUser = controllerWrapper(async (req: Request) => {

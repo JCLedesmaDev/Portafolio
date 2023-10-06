@@ -21,6 +21,7 @@ interface IStore {
         // setRegisterFormActive: (newState: boolean) => void;
         // changeStyleForm: () => void
         login: (payload: any) => Promise<boolean>
+        getUser: () => Promise<any>
         // login: (payload: ILoginDto) => Promise<boolean>
         // register: (payload: IRegisterDto) => Promise<boolean>
     }
@@ -71,12 +72,15 @@ const store = createWithEqualityFn<IStore>((set, get) => {
 
                 // const userAdapted: IUserModels = userMapper(res.info.data);
                 // appStore.getState().actions.setUser(userAdapted)
-
-                // apiSrv.setHeaders({
-                //     userid: userAdapted.id,
-                //     authorization: userAdapted.tokenAuth
-                // })
                 return flagIsLogin
+            },
+            getUser: async () => {
+                await apiSrv.callBackend(async () => {
+                    return await apiSrv.callSrv({
+                        method: 'GET',
+                        path: '/users/getUser'
+                    })
+                }, { loader: true })
             },
             // register: async (payload: IRegisterDto) => {
             //     let flagIsRegister = false
