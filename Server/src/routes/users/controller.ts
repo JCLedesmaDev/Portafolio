@@ -20,7 +20,7 @@ const loginUser = controllerWrapper(async (req: Request, res: Response) => {
 
     const data = await logic.loginUser(payload)
 
-    if (!data.error) {
+    if (data.info.type !== 'error') {
         res.cookie('jwt', data.info.data.token, {
             // No accesible desde JavaScript en el cliente
             httpOnly: true,
