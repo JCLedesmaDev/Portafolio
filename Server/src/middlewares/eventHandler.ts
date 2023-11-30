@@ -15,7 +15,7 @@ const eventHandler = async (req: Request, res: Response, next: NextFunction) => 
         usrId: req.locals.usrId as string, 
         type: 'Evento',
         request: requestInfo,
-        response: req.locals.result
+        response: res.locals.result
     })
 
     return next()
