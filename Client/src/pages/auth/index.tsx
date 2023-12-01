@@ -22,51 +22,50 @@ export const Auth: React.FC = () => {
     console.log("🚀 ~ file: index.tsx:47 ~ form:", form)
 
 
-    const formsProps: IFormProps = {
-        email: {
-            attrInput: {
-                name: 'email',
-                placeholder: 'Ingrese usuario',
-                type: 'email',
-                required: true,
-                autoComplete: 'off'
-            },
-            expReg: /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/i,
-            errorMessage: "El correo solo puede contener letras, numeros, puntos, guiones y guion bajo.",
-            data: { value: form['email'].value },
-            handleChange: handleChange
-        },
-        password: {
-            attrInput: {
-                placeholder: "Contraseña: ",
-                type: "password",
-                name: "password",
-                required: true,
-                autoComplete: "off"
-            },
-            expReg: /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9]).{8,}$/,
-            errorMessage: "La contraseña debe contener al menos: 1 letra mayuscula, 1 letra minuscula y 1 numero.",
-            data: { value: form['password'].value },
-            handleChange: handleChange
-        }
-    }
+    //const formsProps: IFormProps = {
+    //    email: {
+    //        attrInput: {
+    //            name: 'email',
+    //            placeholder: 'Ingrese usuario',
+    //            type: 'email',
+    //            required: true,
+    //            autoComplete: 'off'
+    //        },
+    //        expReg: /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/i,
+    //        errorMessage: "El correo solo puede contener letras, numeros, puntos, guiones y guion bajo.",
+    //        data: { value: form['email'].value },
+    //        handleChange: handleChange
+    //    },
+    //    password: {
+    //        attrInput: {
+    //            placeholder: "Contraseña: ",
+    //            type: "password",
+    //            name: "password",
+    //            required: true,
+    //            autoComplete: "off"
+    //        },
+    //        expReg: /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9]).{8,}$/,
+    //        errorMessage: "La contraseña debe contener al menos: 1 letra mayuscula, 1 letra minuscula y 1 numero.",
+    //        data: { value: form['password'].value },
+    //        handleChange: handleChange
+    //    }
+    //}
 
     useEffect(() => {
         store.actions.login({
             email: 'juanledesma6040@gmail.com',
             password: 'holahola123'
-        }).then(res => {
-            console.log("🚀 ~ file: index.tsx:59 ~ useEffect ~ res:", res)
+        }).then(() => {
             store.actions.getUser().then(res => console.log(res))
         })
     }, [])
 
     return (
         <div className="container">
-
-            <Input props={formsProps.email} />
-            <Input props={formsProps.password} />
-
+  
+            {/*<Input props={formsProps.email} />
+            <Input props={formsProps.password} />*/}
+   
             <div id="containerForm">
                 <img className="logo" src="http://www.cfdesigner.com/codepen/rocket-page-logo.png" />
                 <h1>Juan Cruz Ledesma</h1>

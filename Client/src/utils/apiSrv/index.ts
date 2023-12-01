@@ -12,7 +12,9 @@ import { magnamentStorage } from '@/utils/index.utils';
 let showPopupSpinnerFn = (spinner: boolean, status: boolean, message: string) => {
     console.log('No se ha cargado nada.')
 }
+
 let srv: AxiosInstance;
+let headersCfg: IHeaders
 
 export const apiSrv = {
 
@@ -22,10 +24,10 @@ export const apiSrv = {
      */
     init: (config: IConfigInit) => {
         apiSrv.setHeaders(config.info)
-        
+
         srv = axios.create({
             baseURL: config.url,
-            withCredentials:true,
+            withCredentials: true,
             headers: {
                 'Accept': 'application/json, text/plain, */*',
                 'Accept-Language': 'es-ES,es;q=0.9',
@@ -35,12 +37,11 @@ export const apiSrv = {
         srv.interceptors.request.use(
             (request: InternalAxiosRequestConfig) => {
                 /// Setear los headers que actualice por aca....
-                const headersList = magnamentStorage.get<IHeaders>('headers')
-                type headersKeyType = keyof typeof headersList; // No lo entendi, pero anda XD.
+                type headersKeyType = keyof typeof headersCfg; // No lo entendi, pero anda XD.
 
-                for (const headerKey in headersList) {
+                for (const headerKey in headersCfg) {
                     if (headerKey) {
-                        const value = headersList[headerKey as headersKeyType]
+                        const value = headersCfg[headerKey as headersKeyType]
                         request.headers.set(headerKey, value)
                     }
                 }
@@ -56,7 +57,7 @@ export const apiSrv = {
             },
             (error: AxiosError) => {
                 // Hice que el 401 sea especifico de token
-                if (error.response?.status === 401) { 
+                if (error.response?.status === 401) {
                     magnamentStorage.remove("user");
                     window.location.href = `${window.location.origin}/auth`;
                     // Hacer q aparezca un popup con el mensaje
@@ -67,16 +68,7 @@ export const apiSrv = {
     },
 
     setHeaders: (headers: IHeaders) => {
-        let headersList = magnamentStorage.get<IHeaders>('headers')
-        type headersKeyType = keyof typeof headersList; // No lo entendi, pero anda XD.
-
-        for (const headerKey in headers) {
-            const headerValue = headers[headerKey as headersKeyType]
-            if (headerValue) {
-                headersList = { ...headersList, [headerKey]: headerValue }
-            }
-        }
-        magnamentStorage.set<IHeaders>('headers', headersList)
+        headersCfg = headers
     },
 
     /**
@@ -85,7 +77,7 @@ export const apiSrv = {
      * @param options Declare if this function has loader or status
      * @returns Return data with these attributes: info: {type: string; msg: string; data: any}
      */
-    callBackend: async <TypeDataResponse>(
+    callBackend: async <TypeDataResponse> (
         preCallback: () => Promise<ICallSrvResponse<TypeDataResponse>>,
         options: ICallBackendOptions
     ): Promise<ICallSrvResponse<TypeDataResponse>> => {
@@ -116,7 +108,7 @@ export const apiSrv = {
         return res
     },
 
-    callSrv: async <TypeDataRequest, TypeDataResponse>(
+    callSrv: async <TypeDataRequest, TypeDataResponse> (
         optCallSrv: ICallSrvRequest<TypeDataRequest>
     ): Promise<ICallSrvResponse<TypeDataResponse>> => {
 
