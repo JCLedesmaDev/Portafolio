@@ -1,0 +1,56 @@
+{
+  "eslint.validate": [
+    "javascript",
+    "javascriptreact",
+    "typescript",
+    "vue"
+  ],
+  "editor.formatOnPaste": true,
+  "editor.formatOnSave": true,
+  "editor.codeActionsOnSave": {
+    "source.fixAll": true
+  },
+  "[javascript]": {
+    "editor.defaultFormatter": "vscode.typescript-language-features"
+  },
+  "javascript.format.insertSpaceBeforeFunctionParenthesis": true,
+  "javascript.format.placeOpenBraceOnNewLineForControlBlocks": false,
+  "javascript.format.placeOpenBraceOnNewLineForFunctions": false,
+  "typescript.format.insertSpaceBeforeFunctionParenthesis": true,
+  "typescript.format.placeOpenBraceOnNewLineForControlBlocks": false,
+  "typescript.format.placeOpenBraceOnNewLineForFunctions": false,
+  "[vue]": {
+    "editor.defaultFormatter": "Vue.volar"
+  },
+  "powermode.enabled": false,
+  //"editor.fontFamily": "'Ubuntu', monospace",
+  "editor.fontFamily": "'Comic Sans MS', regular",
+  "editor.fontSize": 14,
+  "terminal.integrated.fontFamily": "'Droid Sans Mono Dotted for Powerline', monospace",
+  "terminal.integrated.fontSize": 14,
+  "[html]": {
+    "editor.defaultFormatter": "vscode.html-language-features"
+  },
+  "[typescript]": {
+    "editor.defaultFormatter": "vscode.typescript-language-features"
+  },
+  "javascript.format.insertSpaceAfterConstructor": true,
+  "html.format.wrapLineLength": 0,
+  "editor.wordWrap": "on",
+  "diffEditor.wordWrap": "on",
+  "editor.wordWrapColumn": 100,
+  "eslint.alwaysShowStatus": true,
+  "eslint.format.enable": true,
+  "eslint.lintTask.enable": true,
+  "editor.comments.insertSpace": false,
+  "javascript.format.insertSpaceAfterOpeningAndBeforeClosingJsxExpressionBraces": false,
+  "javascript.format.insertSpaceAfterOpeningAndBeforeClosingNonemptyBrackets": false,
+  "javascript.format.insertSpaceAfterOpeningAndBeforeClosingNonemptyParenthesis": false,
+  "git.autofetch": true,
+  "typescript.preferences.quoteStyle": "single",
+  "javascript.preferences.quoteStyle": "single",
+  "editor.foldingMaximumRegions": 50000,
+  "editor.suggest.showReferences": false,
+  "html.hover.references": false,
+  "java.configuration.updateBuildConfiguration": "disabled"
+}
