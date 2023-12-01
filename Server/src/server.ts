@@ -11,17 +11,17 @@ import { eventHandler } from './middlewares/eventHandler';
 import { notFoundRouterHandler } from './middlewares/notFoundRouteHandler';
 import { createMocksDateHandler } from './utils/createMocksDate';
 
-function startServer(connectionServer: string) {
+function startServer (connectionServer: string) {
 
     const app: Express = express();
 
     app.use(logger(config.get('logger')))
     app.use(express.json()) //--> Comprende mensajes JSON
     app.use(express.static('public')) // -> Acceso publico a archivos subidos con Multer
-    
+
     // Configuración del middleware de manejo de cookies con su clave secreta para firmar cookies. 
-    app.use(cookieParser(config.get('cookie_secret'))) 
-    
+    app.use(cookieParser(config.get('cookie_secret')))
+
     app.use(cors({
         origin: 'http://localhost:5173', // Permite todos los dominios
         // origin: '*', // Permite todos los dominios
@@ -44,6 +44,4 @@ function startServer(connectionServer: string) {
 }
 
 
-export default {
-    startServer
-}
+export default { startServer }

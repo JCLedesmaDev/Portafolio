@@ -22,7 +22,7 @@ export class ApplicationError extends Error {
     Object.setPrototypeOf(this, new.target.prototype);
     this.name = this.constructor.name
     this.message = message || 'Ocurrio un error al querer hacer esta operacion'
-    this.status = status || 500
+    this.status = status || 400
     if (source) {
       this.source = {
         message: source.message ?? source,

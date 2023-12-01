@@ -20,7 +20,8 @@ const loginUser = controllerWrapper(async (req: Request, res: Response) => {
 
     const data = await logic.loginUser(payload)
 
-    if (data.info.type !== 'error') {
+    //if (data?.info?.type !== 'error') {
+    if (!data?.error) {
         res.cookie('jwt', data.info.data.token, {
             // No accesible desde JavaScript en el cliente
             httpOnly: true,
@@ -50,7 +51,7 @@ const loginUser = controllerWrapper(async (req: Request, res: Response) => {
 const getUser = controllerWrapper(async (req: Request) => {
     const data = await logic.getUser()
     delete data.info.data.user.id
-    
+
     return data
 })
 
