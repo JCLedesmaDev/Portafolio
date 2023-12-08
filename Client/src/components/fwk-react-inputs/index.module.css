@@ -2,10 +2,11 @@
   position: relative;
   width: 409px;
 }
-.contact__form__inputs > input[type="text"],
-.contact__form__inputs > input[type="password"],
-.contact__form__inputs > input[type="email"] {
-  width: 100% ;
+
+.contact__form__inputs>input[type="text"],
+.contact__form__inputs>input[type="password"],
+.contact__form__inputs>input[type="email"] {
+  width: 100%;
   padding: 0.5rem 0;
   padding-right: 1.5rem;
   margin: 0.75rem auto;
@@ -18,17 +19,17 @@
   border-bottom: 2px solid rgba(0, 0, 0, 0.4);
 }
 
-.contact__form__inputs > input[type="text"]::placeholder,
-.contact__form__inputs > input[type="email"]::placeholder,
-.contact__form__inputs > input[type="password"]::placeholder,
-.contact__form__textarea > textarea::placeholder {
+.contact__form__inputs>input[type="text"]::placeholder,
+.contact__form__inputs>input[type="email"]::placeholder,
+.contact__form__inputs>input[type="password"]::placeholder,
+.contact__form__textarea>textarea::placeholder {
   /* color: rgba(0, 128, 255, 0.5) !important; */
   color: #000 !important;
 }
 
 /* Icono validacion */
-.contact__form__inputs > .contact__form__iconValidate,
-.contact__form__textarea > .contact__form__iconValidate {
+.contact__form__inputs>.contact__form__iconValidate,
+.contact__form__textarea>.contact__form__iconValidate {
   position: absolute;
   right: 0.4rem;
   bottom: 1rem;
@@ -37,16 +38,19 @@
   opacity: 0;
   height: 1.5rem;
   width: 2rem;
-  /* transform: scale(1); */
+  transform: scale(1);
 }
+
 .iconValidate_correct {
   fill: #1ed12d;
   opacity: 1 !important;
 }
+
 .iconValidate_incorrect {
   fill: #bb2929;
-  opacity: 1 !important ;
+  opacity: 1 !important;
 }
+
 /* Icono validacion */
 
 /* Mensaje validacion */
@@ -58,22 +62,26 @@
   /* //cambiar a block con JS cuando haya error */
   display: none;
 }
+
 .contact_messageErrorActive {
   width: 409px;
   color: #fff;
   display: block;
   animation: mensaje-error 1s 1 normal 0s ease-in-out;
 }
+
 @keyframes mensaje-error {
   0% {
     visibility: hidden;
     opacity: 0;
   }
+
   100% {
     visibility: visible;
     opacity: 1;
   }
 }
+
 /* Mensaje validacion */
 
 /* OCASIIONAL */
@@ -89,7 +97,7 @@
 }
 
 /* Icono validacion */
-.inputFile_icon  {
+.inputFile_icon {
   position: absolute;
   right: 0.4rem;
   bottom: 1rem;

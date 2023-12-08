@@ -28,8 +28,7 @@ interface IStore {
 }
 
 const store = createWithEqualityFn<IStore>((set, get) => {
-    console.log("🚀 ~ file: store.ts:28 ~ store ~ get:", get)
-    console.log("🚀 ~ file: store.ts:28 ~ store ~ set:", set)
+
     return {
         state: {
             // loginFormActive: true,

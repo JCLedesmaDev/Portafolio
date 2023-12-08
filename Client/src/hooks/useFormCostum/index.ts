@@ -20,7 +20,7 @@ export interface IResponseUseForm<TypeData> {
  * @function handleChange - (nameField:string, data:any) - Metodo para actualizar los valores de tu form
  * @function resetForm - Metodo para resetar los campos de tu formulario al "initialState"
  */
-export const useFormCustom = <TypeFormData>(initialState: TypeFormData) => {
+export const useFormCustom = <TypeFormData> (initialState: TypeFormData) => {
 
   /* *Agregar en el ts.config lo sig: "noImplicitAny": false,  */
   const [form, setForm] = useState<TypeFormData>(initialState);

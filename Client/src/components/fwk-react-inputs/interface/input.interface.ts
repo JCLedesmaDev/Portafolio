@@ -7,6 +7,11 @@ export interface IInputData {
     messageError?: string;
 }
 
+export interface IInputRules {
+    fnCondition: (val: any) => any;
+    messageError: string
+}
+
 export interface IInputProps {
     placeholder: string;
     type: string;
@@ -17,5 +22,5 @@ export interface IInputProps {
     data: IInputData,
     autoComplete: string,
     handleChange: (nameField: string, data: any) => void,
-    rules: ((val: any) => any)[]
+    rules: IInputRules[]
 }

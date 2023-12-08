@@ -8,7 +8,7 @@ import { PasswordSVG } from "@/components/fwk-react-inputs//svg/PasswordSVG"
 import { useEffect } from "react"
 
 import useAuthUserStore from "./store";
-import { validator, validator_Email, validator_Passowrd } from './validators'
+import { validator_Email, validator_Passowrd } from './validators'
 
 export const Auth: React.FC = () => {
 
@@ -17,11 +17,9 @@ export const Auth: React.FC = () => {
 
     /// METODOS
     const { form, handleChange } = useFormCustom<IFormData>({
-        email: { value: '', dirty: false, error: false },
-        password: { value: '', dirty: false, error: false }
+        email: { value: undefined, dirty: false, error: false },
+        password: { value: undefined, dirty: false, error: false }
     })
-    console.log("🚀 ~ file: index.tsx:47 ~ form:", form)
-
 
     const formsProps: IFormProps = {
         email: {
@@ -31,9 +29,10 @@ export const Auth: React.FC = () => {
             name: 'email',
             required: true,
             autoComplete: 'off',
-            rules: [
-                (val: string) => validator(val, validator_Email, "El correo solo puede contener letras, numeros, puntos, guiones y guion bajo.")
-            ],
+            rules: [{
+                fnCondition: (val) => validator_Email.exec(val) === null,
+                messageError: 'El correo solo puede contener letras, numeros, puntos, guiones y guion bajo.'
+            }],
             handleChange: handleChange
         },
         password: {
@@ -43,20 +42,21 @@ export const Auth: React.FC = () => {
             name: 'password',
             required: true,
             autoComplete: 'off',
-            rules: [
-                (val: string) => validator(val, validator_Passowrd, "La contraseña debe contener al menos: 1 letra mayuscula, 1 letra minuscula y 1 numero.")
-            ],
+            rules: [{
+                fnCondition: (val) => validator_Passowrd.exec(val) === null,
+                messageError: 'La contraseña debe contener al menos: 1 letra mayuscula, 1 letra minuscula y 1 numero.'
+            }],
             handleChange: handleChange
         }
     }
 
     useEffect(() => {
-        store.actions.login({
-            email: 'juanledesma6040@gmail.com',
-            password: 'holahola123'
-        }).then(() => {
-            store.actions.getUser().then(res => console.log(res))
-        })
+        //store.actions.login({
+        //    email: 'juanledesma6040@gmail.com',
+        //    password: 'holahola123'
+        //}).then(() => {
+        //    store.actions.getUser().then(res => console.log(res))
+        //})
     }, [])
 
     return (
@@ -74,19 +74,19 @@ export const Auth: React.FC = () => {
                 <div className={css.container__Form}>
 
                     <div className={css.container__Form_field}>
-                        <label>
+                        {/*<label>
                             <UserSVG className={css.container__Form_fieldIcon} />
-                        </label>
+                        </label>*/}
                         {/*<input type="text" name="username" placeholder="Username" />*/}
                         <Input props={formsProps.email} />
                     </div>
 
                     <div className={css.container__Form_field}>
-                        <label>
+                        {/*<label>
                             <PasswordSVG className={css.container__Form_fieldIcon} />
-                        </label>
+                        </label>*/}
                         {/*<input type="password" name="password" placeholder="Password" />*/}
-                        <Input props={formsProps.password} />
+                        {/*<Input props={formsProps.password} />*/}
                     </div>
 
                     {/* TODO: QUITAR DISABLED AL COMPLETAR FORM */}
