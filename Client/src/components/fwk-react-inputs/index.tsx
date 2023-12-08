@@ -2,7 +2,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import { IInputProps, IInputData, IInputRules } from "./interface/input.interface";
 import css from "./index.module.css";
-import { CheckDoneSVG } from "@/components/fwk-react-inputs/svg/CheckDoneSVG";
 import { CheckCloseSVG } from './svg/CheckCloseSVG';
 
 interface Props { props: IInputProps }
@@ -84,17 +83,17 @@ export const Input: React.FC<Props> = ({ props }) => {
     handleChange(props.name, {
       value: origVal, dirty: false, error: false
     })
-    if (refInput.current) refInput.current.value = '' as any
+    if (refInput.current) refInput.current.value = ''
   }
 
-  const defineCSSIcon = () => {
-    let style = css.contact__form__iconValidate;
+  const defineCSSInput = () => {
+    let style = '';
 
     if (local.value === undefined) return style;
     if (local.error) {
-      style += ` ${css.iconValidate_incorrect}`
+      style = css['contact__form__inputs--incorrect']
     } else {
-      style += ` ${css.iconValidate_correct}`
+      style = css['contact__form__inputs--correct']
     }
     return style
   }
@@ -119,15 +118,17 @@ export const Input: React.FC<Props> = ({ props }) => {
 
     <div id={`form__${props.name}`}>
 
+
       <div className={css.contact__form__inputs}>
 
-        <input ref={refInput} defaultValue={local.value} onKeyUp={update} placeholder={props.placeholder} type={props.type} name={props.name} required={props.required} autoComplete={props.autoComplete} />
+        {/*{props.icon && (<label >  {props.icon} </label>)}*/}
 
-        {
-          local.error
-            ? (<CheckCloseSVG className={defineCSSIcon()} rollback={rollback} />)
-            : (<CheckDoneSVG className={defineCSSIcon()} />)
-        }
+        <input ref={refInput} defaultValue={local.value} onKeyUp={update} placeholder={props.placeholder} type={props.type} name={props.name} required={props.required} autoComplete={props.autoComplete} className={defineCSSInput()} />
+
+        {local.dirty && (
+          <CheckCloseSVG className={css.contact__form__iconValidate} rollback={rollback} />
+        )}
+
       </div>
 
       <p className={defineCSSMessage()}>{local.messageError}</p>

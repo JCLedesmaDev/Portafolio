@@ -29,6 +29,7 @@ export const Auth: React.FC = () => {
             name: 'email',
             required: true,
             autoComplete: 'off',
+            icon: <UserSVG className={css.container__Form_fieldIcon} />,
             rules: [{
                 fnCondition: (val) => validator_Email.exec(val) === null,
                 messageError: 'El correo solo puede contener letras, numeros, puntos, guiones y guion bajo.'
@@ -42,6 +43,7 @@ export const Auth: React.FC = () => {
             name: 'password',
             required: true,
             autoComplete: 'off',
+            icon: < PasswordSVG className={css.container__Form_fieldIcon} />,
             rules: [{
                 fnCondition: (val) => validator_Passowrd.exec(val) === null,
                 messageError: 'La contraseña debe contener al menos: 1 letra mayuscula, 1 letra minuscula y 1 numero.'
@@ -77,7 +79,6 @@ export const Auth: React.FC = () => {
                         {/*<label>
                             <UserSVG className={css.container__Form_fieldIcon} />
                         </label>*/}
-                        {/*<input type="text" name="username" placeholder="Username" />*/}
                         <Input props={formsProps.email} />
                     </div>
 
@@ -85,8 +86,7 @@ export const Auth: React.FC = () => {
                         {/*<label>
                             <PasswordSVG className={css.container__Form_fieldIcon} />
                         </label>*/}
-                        {/*<input type="password" name="password" placeholder="Password" />*/}
-                        {/*<Input props={formsProps.password} />*/}
+                        <Input props={formsProps.password} />
                     </div>
 
                     {/* TODO: QUITAR DISABLED AL COMPLETAR FORM */}

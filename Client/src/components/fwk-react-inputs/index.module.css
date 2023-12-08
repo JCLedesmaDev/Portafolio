@@ -19,12 +19,21 @@
   border-bottom: 2px solid rgba(0, 0, 0, 0.4);
 }
 
+.contact__form__inputs--correct {
+  background-color: #b2ffb9;
+}
+
+.contact__form__inputs--incorrect {
+  background-color: #f6c1c1;
+}
+
 .contact__form__inputs>input[type="text"]::placeholder,
 .contact__form__inputs>input[type="email"]::placeholder,
 .contact__form__inputs>input[type="password"]::placeholder,
 .contact__form__textarea>textarea::placeholder {
   /* color: rgba(0, 128, 255, 0.5) !important; */
   color: #000 !important;
+  padding-left: 1rem;
 }
 
 /* Icono validacion */
@@ -35,20 +44,9 @@
   bottom: 1rem;
   z-index: 100;
 
-  opacity: 0;
   height: 1.5rem;
   width: 2rem;
   transform: scale(1);
-}
-
-.iconValidate_correct {
-  fill: #1ed12d;
-  opacity: 1 !important;
-}
-
-.iconValidate_incorrect {
-  fill: #bb2929;
-  opacity: 1 !important;
 }
 
 /* Icono validacion */
