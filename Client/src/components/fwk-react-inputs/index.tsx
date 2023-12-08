@@ -10,7 +10,7 @@ interface Props {
 
 export const Input: React.FC<Props> = ({ props }) => {
 
-  const { attrInput, data, errorMessage, expReg, handleChange } = props;
+  const { attrInput, data, errorMessage, expReg, style, handleChange } = props;
 
 
   /* Para utilizar este componente, hace falta utilizar Font Awesome,

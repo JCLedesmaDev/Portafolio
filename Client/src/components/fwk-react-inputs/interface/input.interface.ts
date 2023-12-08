@@ -15,6 +15,7 @@ export interface IInputData {
 
 export interface IInputProps {
     data: IInputData;
+    style?: any;
     expReg: RegExp;
     errorMessage: string;
     attrInput: IAttrInput

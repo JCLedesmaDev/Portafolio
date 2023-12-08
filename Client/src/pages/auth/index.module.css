@@ -1,0 +1,105 @@
+.main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    background-color: #1C202A;
+    background-image: url(http://www.cfdesigner.com/codepen/rocket-page-bkg.png);
+    background-position: center;
+    background-size: cover;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 100%;
+    height: 100vh;
+    padding-top: 2rem;
+    letter-spacing: (0.5/16)+rem;
+    line-height: (24/16)+rem;
+    position: relative;
+    width: 100vw;
+}
+
+.container {
+    color: #fff;
+    text-align: center;
+    min-height: 525px;
+    width: 320px;
+}
+
+.container>h1 {
+    margin-bottom: 2rem;
+    font-size: (40/16)+rem;
+    font-weight: 700;
+    letter-spacing: (2/16)+rem;
+}
+
+.container__Form>.container__Form_field {
+    display: flex;
+    margin-bottom: 1rem;
+}
+
+.container__Form_field>input[type='password'],
+.container__Form_field>input[type='text'] {
+    border: none;
+    border-radius: 4px;
+    font: inherit;
+    padding: 1rem;
+    width: 100%;
+    background-color: #fff;
+    color: #000;
+    border-radius: 0 4px 4px 0;
+}
+
+.container__Form_field>input[type='password']:focus,
+.container__Form_field>input[type='password']:hover,
+.container__Form_field>input[type='text']:focus,
+.container__Form_field>input[type='text']:hover {
+    background-color: #fff;
+    color: #000;
+    /*background-color: #434a52;*/
+    outline: none;
+}
+
+.container__Form_field>label {
+    background-color: #363b41;
+    border-radius: 4px 0 0 4px;
+    padding: 1rem;
+}
+
+.container__Form_field>label>.container__Form_fieldIcon {
+    display: inline-block;
+    fill: #fff;
+    height: 1.5rem;
+    width: 2rem;
+    vertical-align: middle;
+}
+
+
+.container__Form>input[type='submit'] {
+    border: none;
+    border-radius: 4px;
+    color: #000;
+    font: inherit;
+    padding: 1rem;
+    width: 100%;
+    cursor: pointer;
+    font-weight: 600;
+    padding: 1rem;
+    padding: calc(1rem - 2px);
+    transition: all 0.2s ease;
+}
+
+.container__Form>input[type='submit']:focus,
+.container__Form>input[type='submit']:hover {
+    background: #F0382C;
+    outline: none;
+}
+
+
+
+.buttons .disabled {
+    background: none;
+    border: solid 2px #969696;
+    color: #969696;
+    /* //opacity: 0.5; */
+    pointer-events: none;
+}

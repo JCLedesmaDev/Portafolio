@@ -1,5 +1,5 @@
 import { useFormCustom } from "@/hooks/index.hooks"
-import "./index.css"
+import css from "./index.module.css"
 import { Input } from "@/components/index.components"
 import { IFormData } from "./interface/IFormData"
 import { IFormProps } from "./interface/IFormProps"
@@ -22,34 +22,34 @@ export const Auth: React.FC = () => {
     console.log("🚀 ~ file: index.tsx:47 ~ form:", form)
 
 
-    //const formsProps: IFormProps = {
-    //    email: {
-    //        attrInput: {
-    //            name: 'email',
-    //            placeholder: 'Ingrese usuario',
-    //            type: 'email',
-    //            required: true,
-    //            autoComplete: 'off'
-    //        },
-    //        expReg: /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/i,
-    //        errorMessage: "El correo solo puede contener letras, numeros, puntos, guiones y guion bajo.",
-    //        data: { value: form['email'].value },
-    //        handleChange: handleChange
-    //    },
-    //    password: {
-    //        attrInput: {
-    //            placeholder: "Contraseña: ",
-    //            type: "password",
-    //            name: "password",
-    //            required: true,
-    //            autoComplete: "off"
-    //        },
-    //        expReg: /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9]).{8,}$/,
-    //        errorMessage: "La contraseña debe contener al menos: 1 letra mayuscula, 1 letra minuscula y 1 numero.",
-    //        data: { value: form['password'].value },
-    //        handleChange: handleChange
-    //    }
-    //}
+    const formsProps: IFormProps = {
+        email: {
+            attrInput: {
+                name: 'email',
+                placeholder: 'Ingrese usuario',
+                type: 'email',
+                required: true,
+                autoComplete: 'off'
+            },
+            expReg: /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/i,
+            errorMessage: "El correo solo puede contener letras, numeros, puntos, guiones y guion bajo.",
+            data: { value: form['email'].value },
+            handleChange: handleChange
+        },
+        password: {
+            attrInput: {
+                placeholder: "Contraseña: ",
+                type: "password",
+                name: "password",
+                required: true,
+                autoComplete: "off"
+            },
+            expReg: /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9]).{8,}$/,
+            errorMessage: "La contraseña debe contener al menos: 1 letra mayuscula, 1 letra minuscula y 1 numero.",
+            data: { value: form['password'].value },
+            handleChange: handleChange
+        }
+    }
 
     useEffect(() => {
         store.actions.login({
@@ -61,36 +61,40 @@ export const Auth: React.FC = () => {
     }, [])
 
     return (
-        <div className="container">
-  
+        <main className={css.main}>
+
             {/*<Input props={formsProps.email} />
             <Input props={formsProps.password} />*/}
-   
-            <div id="containerForm">
+
+            <div className={css.container}>
+
                 <img className="logo" src="http://www.cfdesigner.com/codepen/rocket-page-logo.png" />
+
                 <h1>Juan Cruz Ledesma</h1>
 
-                <form id="login" method="#">
-                    <section>
-                        <div className="field">
-                            <label htmlFor="username">
-                                <UserSVG className="icon" />
-                            </label>
-                            <input type="text" name="username" placeholder="Username" />
-                        </div>
-                        <div className="field">
-                            <label htmlFor="passworASDAS">
-                                <PasswordSVG className="icon" />
-                            </label>
-                            <input type="password" name="password" placeholder="Password" />
-                        </div>
-                    </section>
-                    <ul className="buttons">
-                        {/* TODO: QUITAR DISABLED AL COMPLETAR FORM */}
-                        <input type="submit" value="Log In" className="primary" />
-                        {/* <input type="submit" value="Log In" className="primary disabled" /> */}
-                    </ul>
-                </form>
+                <div className={css.container__Form}>
+
+                    <div className={css.container__Form_field}>
+                        <label>
+                            <UserSVG className={css.container__Form_fieldIcon} />
+                        </label>
+                        {/*<input type="text" name="username" placeholder="Username" />*/}
+                        <Input props={formsProps.email} />
+                    </div>
+
+                    <div className={css.container__Form_field}>
+                        <label>
+                            <PasswordSVG className={css.container__Form_fieldIcon} />
+                        </label>
+                        {/*<input type="password" name="password" placeholder="Password" />*/}
+                        <Input props={formsProps.password} />
+                    </div>
+
+                    {/* TODO: QUITAR DISABLED AL COMPLETAR FORM */}
+                    <input type="submit" value="Iniciar sesion" />
+
+                </div>
+
             </div>
 
             <svg xmlns="http://www.w3.org/2000/svg" className="icons hidden">
@@ -103,6 +107,6 @@ export const Auth: React.FC = () => {
                 </symbol>
             </svg>
 
-        </div>
+        </main>
     )
 }
