@@ -1,23 +1,21 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
-interface IAttrInput {
+export interface IInputData {
+    value: any;
+    dirty?: boolean
+    error?: boolean,
+    messageError?: string;
+}
+
+export interface IInputProps {
     placeholder: string;
     type: string;
     name: string;
     required: boolean;
-    autoComplete?: string;
-}
-export interface IInputData {
-    value: any;
-    dirty?: boolean
-    error?: boolean
-}
-
-export interface IInputProps {
-    data: IInputData;
     style?: any;
-    expReg: RegExp;
-    errorMessage: string;
-    attrInput: IAttrInput
-    handleChange: (nameField: string, data: any) => void;
+    icon?: any;
+    data: IInputData,
+    autoComplete: string,
+    handleChange: (nameField: string, data: any) => void,
+    rules: ((val: any) => any)[]
 }

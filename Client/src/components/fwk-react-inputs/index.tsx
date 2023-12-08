@@ -1,16 +1,14 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import React from "react";
-import { IInputProps } from "./interface/input.interface";
+import React, { useEffect, useState } from "react";
+import { IInputProps, IInputData } from "./interface/input.interface";
 import styleCSS from "./index.module.css";
 import { CheckCircleSVG } from "@/components/fwk-react-inputs/svg/CheckCircleSVG";
 
-interface Props {
-  props: IInputProps
-}
+interface Props { props: IInputProps }
 
 export const Input: React.FC<Props> = ({ props }) => {
 
-  const { attrInput, data, errorMessage, expReg, style, handleChange } = props;
+  const { data, handleChange } = props;
 
 
   /* Para utilizar este componente, hace falta utilizar Font Awesome,
@@ -22,55 +20,87 @@ export const Input: React.FC<Props> = ({ props }) => {
     />*/
 
   /// METODOS
+
+
+  const defineCSSIcon = () => {
+    //let style = styleCSS.contact__form__iconValidate;
+
+    //if (data.value === '') return style;
+
+    //if (expReg.exec(data.value)) {
+    //  style += ` ${styleCSS.iconValidate_correct}`
+    //} else {
+    //  style += ` ${styleCSS.iconValidate_incorrect}`
+    //}
+    //return style
+    return ''
+  }
+  // https://fonts.google.com/icons?selected=Material+Symbols+Outlined:block:FILL@0;wght@400;GRAD@0;opsz@24&icon.platform=web&icon.query=close
+  const defineCSSMessage = () => {
+    //let style = styleCSS.contact_messageError;
+
+    //if (data.value === '') return style;
+
+    //if (expReg.exec(data.value) === null) {
+    //  style += ` ${styleCSS.contact_messageErrorActive}`
+    //}
+
+    //return style
+    return ''
+  }
+
+  /// REFACTOR
+  const [local, setLocal] = useState<IInputData>({
+    value: undefined,
+    dirty: false,
+    error: false,
+    messageError: ''
+  })
+
   const update = (evt: any) => {
-    const { name, value, files } = evt.target;
+    const { value, files } = evt.target;
 
     // // En caso de cargar imagenes tb
     const imageInput = files != null && files[0];
 
-    const updateLocal = {
+    setLocal((prevData) => ({
+      ...prevData,
       value: imageInput ? imageInput : value,
-      dirty: value !== data.value,
-      error: expReg.exec(value) === null
-    }
-
-    handleChange(name, updateLocal)
+      dirty: value !== data.value
+    }))
   }
 
-  const defineCSSIcon = () => {
-    let style = styleCSS.contact__form__iconValidate;
+  useEffect(() => {
+    for (const validate of props.rules) {
+      const resultValidate = validate(local.value)
 
-    if (data.value === '') return style;
+      if (typeof resultValidate === 'string') {
+        setLocal((prevData) => ({ ...prevData, error: true, messageError: resultValidate }))
+        handleChange(props.name, { value: local.value, dirty: local.dirty, error: true })
+        break;
+      }
 
-    if (expReg.exec(data.value)) {
-      style += ` ${styleCSS.iconValidate_correct}`
-    } else {
-      style += ` ${styleCSS.iconValidate_incorrect}`
+      setLocal((prevData) => ({ ...prevData, error: false, messageError: '' }))
+      handleChange(props.name, { value: local.value, dirty: local.dirty, error: false })
     }
-    return style
-  }
-  // https://fonts.google.com/icons?selected=Material+Symbols+Outlined:block:FILL@0;wght@400;GRAD@0;opsz@24&icon.platform=web&icon.query=close
-  const defineCSSMessage = () => {
-    let style = styleCSS.contact_messageError;
-
-    if (data.value === '') return style;
-
-    if (expReg.exec(data.value) === null) {
-      style += ` ${styleCSS.contact_messageErrorActive}`
-    }
-
-    return style
-  }
+  }, [local.value])
 
   return (
-    <div id={`form__${attrInput["name"]}`}>
+
+    <div id={`form__${props.name}`}>
+
       <div className={styleCSS.contact__form__inputs}>
-        <input defaultValue={data.value} onKeyUp={update} {...attrInput} />
+
+        <input defaultValue={data.value} onKeyUp={update} placeholder={props.placeholder} type={props.type} name={props.name} required={props.required} autoComplete={props.autoComplete} />
         {/* <i className={defineCSSIcon()}>adsad</i> */}
+
         <CheckCircleSVG className={defineCSSIcon()} />
         {/* <img className={defineCSSIcon()} src={iconCheckCicle}/> */}
+
       </div>
-      <p className={defineCSSMessage()}>{errorMessage}</p>
+
+      <p className={defineCSSMessage()}>{local.messageError}</p>
+
     </div>
   );
 };

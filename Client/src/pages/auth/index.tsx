@@ -1,13 +1,14 @@
 import { useFormCustom } from "@/hooks/index.hooks"
 import css from "./index.module.css"
-import { Input } from "@/components/index.components"
 import { IFormData } from "./interface/IFormData"
 import { IFormProps } from "./interface/IFormProps"
-import { UserSVG } from "@/components/fwk-react-inputs/svg/UserSVG"
-import { PasswordSVG } from "@/components/fwk-react-inputs/svg/PasswordSVG"
+import { Input } from "@/components/fwk-react-inputs//index"
+import { UserSVG } from "@/components/fwk-react-inputs//svg/UserSVG"
+import { PasswordSVG } from "@/components/fwk-react-inputs//svg/PasswordSVG"
 import { useEffect } from "react"
 
 import useAuthUserStore from "./store";
+import { validator, validator_Email, validator_Passowrd } from './validators'
 
 export const Auth: React.FC = () => {
 
@@ -24,29 +25,27 @@ export const Auth: React.FC = () => {
 
     const formsProps: IFormProps = {
         email: {
-            attrInput: {
-                name: 'email',
-                placeholder: 'Ingrese usuario',
-                type: 'email',
-                required: true,
-                autoComplete: 'off'
-            },
-            expReg: /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/i,
-            errorMessage: "El correo solo puede contener letras, numeros, puntos, guiones y guion bajo.",
             data: { value: form['email'].value },
+            placeholder: 'Ingrese usuario',
+            type: 'email',
+            name: 'email',
+            required: true,
+            autoComplete: 'off',
+            rules: [
+                (val: string) => validator(val, validator_Email, "El correo solo puede contener letras, numeros, puntos, guiones y guion bajo.")
+            ],
             handleChange: handleChange
         },
         password: {
-            attrInput: {
-                placeholder: "Contraseña: ",
-                type: "password",
-                name: "password",
-                required: true,
-                autoComplete: "off"
-            },
-            expReg: /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9]).{8,}$/,
-            errorMessage: "La contraseña debe contener al menos: 1 letra mayuscula, 1 letra minuscula y 1 numero.",
             data: { value: form['password'].value },
+            placeholder: 'Contraseña',
+            type: 'password',
+            name: 'password',
+            required: true,
+            autoComplete: 'off',
+            rules: [
+                (val: string) => validator(val, validator_Passowrd, "La contraseña debe contener al menos: 1 letra mayuscula, 1 letra minuscula y 1 numero.")
+            ],
             handleChange: handleChange
         }
     }
