@@ -15,9 +15,9 @@
   padding: 1rem;
 }
 
-.container__Item>input[type="text"],
-.container__Item>input[type="password"],
-.container__Item>input[type="email"] {
+.container__Item>input,
+.container__Item>input,
+.container__Item>input {
   width: 100%;
   padding: 1rem;
   padding-right: 1.5rem;
@@ -30,12 +30,12 @@
   border-bottom: 2px solid rgba(0, 0, 0, 0.4);
 }
 
-.container__Item>input[type="text"]:focus,
-.container__Item>input[type="text"]:hover,
-.container__Item>input[type="email"]:focus,
-.container__Item>input[type="email"]:hover,
-.container__Item>input[type="password"]:focus,
-.container__Item>input[type="password"]:hover {
+.container__Item>input:focus,
+.container__Item>input:hover,
+.container__Item>input:focus,
+.container__Item>input:hover,
+.container__Item>input:focus,
+.container__Item>input:hover {
   background-color: #fff;
   color: #000;
   background-color: #b2bac5;
@@ -44,9 +44,9 @@
 }
 
 
-.container__Item>input[type="text"]::placeholder,
-.container__Item>input[type="email"]::placeholder,
-.container__Item>input[type="password"]::placeholder {
+.container__Item>input::placeholder,
+.container__Item>input::placeholder,
+.container__Item>input::placeholder {
   color: #000 !important;
   padding-left: .25rem;
 }
