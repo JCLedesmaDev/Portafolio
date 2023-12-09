@@ -4,9 +4,12 @@ import { IInputProps, IInputData, IInputRules } from "./interface/input.interfac
 import css from "./index.module.css";
 import { CheckCloseSVG } from './svg/CheckCloseSVG';
 
-interface Props { props: IInputProps }
+interface Props {
+  props: IInputProps;
+  className?: any;
+}
 
-export const Input: React.FC<Props> = ({ props }) => {
+export const Input: React.FC<Props> = ({ props, className }) => {
 
   /// VARIABLES
   const { data, handleChange } = props;
@@ -91,19 +94,19 @@ export const Input: React.FC<Props> = ({ props }) => {
 
     if (local.value === undefined) return style;
     if (local.error) {
-      style = css['contact__form__inputs--incorrect']
+      style = css['container__Item--incorrect']
     } else {
-      style = css['contact__form__inputs--correct']
+      style = css['container__Item--correct']
     }
     return style
   }
 
   const defineCSSMessage = () => {
-    let style = css.contact_messageError;
+    let style = css.container__messageError;
 
     if (local.value === undefined) return style;
     if (local.error) {
-      style += ` ${css.contact_messageErrorActive}`
+      style += ` ${css['container__messageError--active']}`
     }
 
     return style
@@ -116,17 +119,16 @@ export const Input: React.FC<Props> = ({ props }) => {
 
   return (
 
-    <div id={`form__${props.name}`}>
+    <div id={`form__${props.name}`} className={`${css.container} ${className}`}>
 
+      <div className={css.container__Item}>
 
-      <div className={css.contact__form__inputs}>
-
-        {/*{props.icon && (<label >  {props.icon} </label>)}*/}
+        {props.icon && (<label className={css.containerItem__iconPrepend}>  {props.icon} </label>)}
 
         <input ref={refInput} defaultValue={local.value} onKeyUp={update} placeholder={props.placeholder} type={props.type} name={props.name} required={props.required} autoComplete={props.autoComplete} className={defineCSSInput()} />
 
         {local.dirty && (
-          <CheckCloseSVG className={css.contact__form__iconValidate} rollback={rollback} />
+          <CheckCloseSVG className={css.container__Item__iconRollback} rollback={rollback} />
         )}
 
       </div>

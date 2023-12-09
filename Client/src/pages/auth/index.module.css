@@ -19,62 +19,38 @@
 }
 
 .container {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+
+    width: 100%;
+    height: 100%;
+    margin-top: 8rem;
     color: #fff;
-    text-align: center;
-    min-height: 525px;
-    width: 320px;
+}
+
+.container>img {
+    width: 12.5rem;
+    height: 12.5rem;
 }
 
 .container>h1 {
-    margin-bottom: 2rem;
+    margin: 2rem 0;
     font-size: (40/16)+rem;
     font-weight: 700;
-    letter-spacing: (2/16)+rem;
+    letter-spacing: .25rem;
 }
 
-.container__Form>.container__Form_field {
-    display: flex;
-    margin-bottom: 1rem;
+.container__Form {
+    width: 25.5625rem;
 }
 
-.container__Form_field>input[type='password'],
-.container__Form_field>input[type='text'] {
-    border: none;
-    border-radius: 4px;
-    font: inherit;
-    padding: 1rem;
-    width: 100%;
-    background-color: #fff;
-    color: #000;
-    border-radius: 0 4px 4px 0;
+.container__Form_fieldIcon {
+    fill: #fff
 }
 
-.container__Form_field>input[type='password']:focus,
-.container__Form_field>input[type='password']:hover,
-.container__Form_field>input[type='text']:focus,
-.container__Form_field>input[type='text']:hover {
-    background-color: #fff;
-    color: #000;
-    /*background-color: #434a52;*/
-    outline: none;
-}
-
-.container__Form_field>label {
-    background-color: #363b41;
-    border-radius: 4px 0 0 4px;
-    padding: 1rem;
-}
-
-.container__Form_field>label>.container__Form_fieldIcon {
-    display: inline-block;
-    fill: #fff;
-    height: 1.5rem;
-    width: 2rem;
-    vertical-align: middle;
-}
-
-
-.container__Form>input[type='submit'] {
+.container__Form_btn {
     border: none;
     border-radius: 4px;
     color: #000;
@@ -84,22 +60,11 @@
     cursor: pointer;
     font-weight: 600;
     padding: 1rem;
-    padding: calc(1rem - 2px);
     transition: all 0.2s ease;
 }
 
-.container__Form>input[type='submit']:focus,
-.container__Form>input[type='submit']:hover {
+.container__Form_btn:focus,
+.container__Form_btn:hover {
     background: #F0382C;
     outline: none;
-}
-
-
-
-.buttons .disabled {
-    background: none;
-    border: solid 2px #969696;
-    color: #969696;
-    /* //opacity: 0.5; */
-    pointer-events: none;
 }

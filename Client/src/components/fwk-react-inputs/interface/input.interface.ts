@@ -17,7 +17,6 @@ export interface IInputProps {
     type: string;
     name: string;
     required: boolean;
-    style?: any;
     icon?: any;
     data: IInputData,
     autoComplete: string,
