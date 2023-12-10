@@ -63,7 +63,7 @@
 /* Icono validacion */
 .container__Item__iconRollback {
   position: absolute;
-  right: 0.4rem;
+  right: 2rem;
   bottom: 1.25rem;
   z-index: 1000;
 
@@ -77,7 +77,7 @@
 /* Icono visibilidad password  */
 .container__Item__iconVisibilidad {
   position: absolute;
-  right: 2rem;
+  right: 0.4rem;
   bottom: 1.25rem;
   z-index: 1000;
 
