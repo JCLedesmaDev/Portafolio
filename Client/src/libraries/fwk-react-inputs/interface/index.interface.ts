@@ -12,10 +12,10 @@ export interface IInputRules {
     messageError: string
 }
 
-type TypeInput = 'text' | 'number' | 'email' | 'password'
+type TypeInput = 'text' | 'number' | 'email'
 export interface IInputProps {
     placeholder: string;
-    type: TypeInput;
+    type?: TypeInput;
     name: string;
     required: boolean;
     icon?: any;

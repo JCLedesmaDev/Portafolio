@@ -3,7 +3,7 @@ import useAuthUserStore from "./store";
 import { useEffect, useState } from "react"
 import { UserSVG } from "@/assets/UserSVG"
 import { useNavigate } from 'react-router-dom'
-import { Input } from "@/libraries/index.libraries"
+import { Input, InputPassword } from "@/libraries/index.libraries"
 import { IFormData } from "./interface/IFormData"
 import { IFormProps } from "./interface/IFormProps"
 import { useFormCustom } from "@/hooks/index.hooks"
@@ -44,7 +44,6 @@ export const Auth: React.FC = () => {
         password: {
             data: { value: form['password'].value },
             placeholder: 'Contraseña',
-            type: 'password',
             name: 'password',
             required: true,
             autoComplete: 'off',
@@ -85,7 +84,7 @@ export const Auth: React.FC = () => {
 
                     <Input props={formsProps.email} />
 
-                    <Input props={formsProps.password} />
+                    <InputPassword props={formsProps.password} />
 
                     <button onClick={login} className={css.container__Form_btn} disabled={disabledBtn}>
                         Iniciar sesion

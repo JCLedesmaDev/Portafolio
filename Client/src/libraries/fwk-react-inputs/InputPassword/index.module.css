@@ -1,0 +1,122 @@
+.container {
+  width: 100%;
+  /*background-color: orange;*/
+  margin-bottom: 1rem;
+}
+
+.container__Item {
+  display: flex;
+  position: relative;
+}
+
+.containerItem__iconPrepend {
+  background-color: #363b41;
+  border-radius: 4px 0 0 4px;
+  padding: 1rem;
+}
+
+.container__Item>input,
+.container__Item>input,
+.container__Item>input {
+  width: 100%;
+  padding: 1rem;
+  padding-right: 1.5rem;
+
+  font-family: var(--font);
+  font-size: 1rem;
+
+  outline: none;
+  border: none;
+  border-bottom: 2px solid rgba(0, 0, 0, 0.4);
+}
+
+.container__Item>input:focus,
+.container__Item>input:hover,
+.container__Item>input:focus,
+.container__Item>input:hover,
+.container__Item>input:focus,
+.container__Item>input:hover {
+  background-color: #fff;
+  color: #000;
+  background-color: #b2bac5;
+  cursor: pointer;
+  outline: none;
+}
+
+
+.container__Item>input::placeholder,
+.container__Item>input::placeholder,
+.container__Item>input::placeholder {
+  color: #000 !important;
+  padding-left: .25rem;
+}
+
+
+.container__Item--correct {
+  background-color: #b2ffb9;
+}
+
+.container__Item--incorrect {
+  background-color: #f6c1c1;
+}
+
+/* Icono validacion */
+.container__Item__iconRollback {
+  position: absolute;
+  right: 0.4rem;
+  bottom: 1.25rem;
+  z-index: 1000;
+
+  height: 1.5rem;
+  width: 2rem;
+  transform: scale(1);
+}
+
+/* Icono validacion */
+
+/* Icono visibilidad password  */
+.container__Item__iconVisibilidad {
+  position: absolute;
+  right: 2rem;
+  bottom: 1.25rem;
+  z-index: 1000;
+
+  height: 1.5rem;
+  width: 2rem;
+  cursor: pointer;
+  transform: scale(1);
+}
+
+/* Icono visibilidad password  */
+
+
+/* Mensaje validacion */
+.container__messageError {
+  font-size: 12px;
+  padding: .5rem;
+  margin: 0;
+  background-color: rgba(255, 0, 0, 0.102);
+  /* //cambiar a block con JS cuando haya error */
+  display: none;
+}
+
+.container__messageError--active {
+  width: 100%;
+  color: #fff;
+  display: block;
+  animation: mensaje-error 1s 1 normal 0s ease-in-out;
+}
+
+@keyframes mensaje-error {
+  0% {
+    visibility: hidden;
+    opacity: 0;
+  }
+
+  100% {
+    visibility: visible;
+    opacity: 1;
+  }
+}
+
+/* Mensaje validacion */

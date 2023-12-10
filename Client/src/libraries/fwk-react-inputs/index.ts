@@ -1,1 +1,2 @@
-export { Input as Input } from './input/index'
+export { Input } from './input/index'
+export { InputPassword } from './InputPassword/index'
