@@ -1,7 +1,8 @@
-export interface ICallSrvResponse<TypeData> {
+/* eslint-disable @typescript-eslint/no-explicit-any */
+export interface ICallSrvResponse {
     info: {
         type: string;
         msg?: string;
-        data?: TypeData;
+        data?: any;
     }
 }

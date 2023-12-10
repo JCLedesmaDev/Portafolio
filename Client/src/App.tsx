@@ -1,15 +1,16 @@
 import './App.css'
-import { useLayoutEffect } from 'react'
+import { useLayoutEffect, useRef } from 'react'
 import { RouterProvider } from 'react-router-dom'
 
 import router from '@/router/index'
-import { apiSrv, IConfigInit } from '@/libraries/index.libraries'
-import { createNotify } from '@/libraries/fwk-react-ui/'
+import { apiSrv, IConfigInit, ui } from '@/libraries/index.libraries'
 
 
 export default function App () {
 
-  const initializate = () => {
+  const refNotify = useRef(null)
+
+  const initializateApp = () => {
     const pl: IConfigInit = {
       info: {
         mockmode: 'false',
@@ -18,16 +19,17 @@ export default function App () {
     }
 
     apiSrv.init(pl)
+    ui.notify.initializateNotify(refNotify)
   }
 
-  createNotify()
   useLayoutEffect(() => {
-    console.log('initializate CONSTRUCTOR')
-    initializate()
+    console.log('initializate APP CONSTRUCTOR')
+    initializateApp()
   }, [])
 
   return (
     <>
+      <div ref={refNotify}></div>
       <RouterProvider router={router} />
     </>
   )

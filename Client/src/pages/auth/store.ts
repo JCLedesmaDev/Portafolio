@@ -29,8 +29,6 @@ const store = createWithEqualityFn<IStore>((set, get) => {
         //},
         actions: {
             login: async (payload: ILoginDtoRequest) => {
-                let flagIsLogin = false
-
                 const res = await apiSrv.callBackend(async () => {
                     return await apiSrv.callSrv({
                         method: 'POST',
@@ -39,12 +37,9 @@ const store = createWithEqualityFn<IStore>((set, get) => {
                     })
                 }, { loader: true })
 
-                if (res.info.type === 'error') return flagIsLogin
-                flagIsLogin = true
-
                 // const userAdapted: IUserModels = userMapper(res.info.data);
                 // appStore.getState().actions.setUser(userAdapted)
-                return flagIsLogin
+                return res
             },
             getUser: async () => {
                 await apiSrv.callBackend(async () => {

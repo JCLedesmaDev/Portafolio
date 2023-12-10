@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import axios, { AxiosInstance, InternalAxiosRequestConfig, AxiosResponse, AxiosError } from 'axios'
 import {
     ICallSrvRequest,
@@ -7,6 +8,7 @@ import {
     IHeaders, ICallBackendOptions
 } from './interface/index.interfaces';
 import { magnamentStorage } from '@/utils/index.utils';
+import { ui } from '../index.libraries';
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 let srv: AxiosInstance;
@@ -43,20 +45,18 @@ export const apiSrv = {
                 }
                 return request
             },
-            (error: AxiosError) => {
-                return Promise.reject(error);
-            }
+            (error: AxiosError) => { return Promise.reject(error); }
         )
         srv.interceptors.response.use(
-            (response: AxiosResponse) => {
-                return response
-            },
+            (response: AxiosResponse) => { return response; },
             (error: AxiosError) => {
                 // Hice que el 401 sea especifico de token
                 if (error.response?.status === 401) {
                     magnamentStorage.remove("user");
                     window.location.href = `${window.location.origin}/auth`;
+
                     // Hacer q aparezca un popup con el mensaje
+                    //ui.notify.showNotify('Se inicio sesion', 'error')
                 }
                 return Promise.reject(error.response);
             }
@@ -73,45 +73,38 @@ export const apiSrv = {
      * @param options Declare if this function has loader or status
      * @returns Return data with these attributes: info: {type: string; msg: string; data: any}
      */
-    callBackend: async <TypeDataResponse> (
-        preCallback: () => Promise<ICallSrvResponse<TypeDataResponse>>,
-        options: ICallBackendOptions
-    ): Promise<ICallSrvResponse<TypeDataResponse>> => {
+    callBackend: async (
+        preCallback: () => Promise<ICallSrvResponse>, options: ICallBackendOptions
+    ): Promise<ICallSrvResponse> => {
 
-        type responseCb = ICallSrvResponse<TypeDataResponse>
-
-        let res = {} as responseCb
+        let res = {} as ICallSrvResponse
 
         try {
             //if (options.loader) showPopupSpinnerFn(true, false, '')
 
-            res = await preCallback() as responseCb
+            res = await preCallback() as ICallSrvResponse
 
             if (res.info.type === 'error') throw new Error(res.info.msg)
 
             if (options.status && res.info.msg) {
-                //showPopupSpinnerFn(false, options.status, res.info.msg as string)
+                ui.notify.showNotify(res.info.msg, res.info.type)
             }
         } catch (error: unknown) {
-            //const err = error as Error
-            //showPopupSpinnerFn(false, true, err.message)
+            const err = error as Error
+            ui.notify.showNotify(err.message, 'error')
         } finally {
             //const time = options.status ? 3000 : 0
             //setTimeout(() => {
             //    showPopupSpinnerFn(false, false, '')
             //}, time);
         }
-        return res
+        return res.info.data ?? ((res.info.type !== 'error') && (res.info.type !== 'warning'))
     },
 
-    callSrv: async <TypeDataRequest, TypeDataResponse> (
-        optCallSrv: ICallSrvRequest<TypeDataRequest>
-    ): Promise<ICallSrvResponse<TypeDataResponse>> => {
-
-        type responseCb = ICallSrvResponse<TypeDataResponse>
+    callSrv: async (optCallSrv: ICallSrvRequest): Promise<ICallSrvResponse> => {
 
         const { method, path, data } = optCallSrv
-        let res = {} as responseCb
+        let res = {} as ICallSrvResponse
 
         try {
             if (method === "GET") {
@@ -124,10 +117,9 @@ export const apiSrv = {
             if (method === "PUT") res = await (await srv.put(path, data)).data
             if (method === "DELETE") res = await (await srv.delete(path)).data
         } catch (error: unknown) {
-
-            const err = error as ICallSrvError<string>
+            const err = error as ICallSrvError
             err.data.info
-                ? res = err.data as responseCb
+                ? res = err.data
                 : res = { info: { type: 'error', msg: err.message } }
         }
         return res

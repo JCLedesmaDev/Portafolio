@@ -1,6 +1,6 @@
 import { ICallSrvResponse } from "./ICallSrvResponse";
 
-export interface ICallSrvError<TypeData> {
-    data: ICallSrvResponse<TypeData>;
+export interface ICallSrvError {
+    data: ICallSrvResponse;
     message: string
 }
