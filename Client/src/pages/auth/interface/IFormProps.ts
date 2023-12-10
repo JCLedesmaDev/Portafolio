@@ -1,4 +1,4 @@
-import { IInputProps } from "@/components/index.components";
+import { IInputProps } from '@/libraries/index.libraries';
 
 export interface IFormProps {
     email: IInputProps;

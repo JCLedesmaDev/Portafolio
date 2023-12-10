@@ -14,7 +14,7 @@ export interface IInputRules {
 
 export interface IInputProps {
     placeholder: string;
-    type: string;
+    type: 'text' | 'number' | 'email' | 'password';
     name: string;
     required: boolean;
     icon?: any;

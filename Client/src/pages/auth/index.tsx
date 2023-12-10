@@ -2,18 +2,21 @@ import { useFormCustom } from "@/hooks/index.hooks"
 import css from "./index.module.css"
 import { IFormData } from "./interface/IFormData"
 import { IFormProps } from "./interface/IFormProps"
-import { Input } from "@/components/fwk-react-inputs//index"
+import { Input } from "@/libraries/index.libraries"
 import { UserSVG } from "@/assets/UserSVG"
 import { PasswordSVG } from "@/assets/PasswordSVG"
 import { useEffect, useState } from "react"
 import imageLogin from '@/assets/rocket-page-logo.png'
 import useAuthUserStore from "./store";
 import { validator_Email, validator_Passowrd } from './validators'
+import { useNavigate } from 'react-router-dom'
+
 
 export const Auth: React.FC = () => {
 
-    const [disabledBtn, setDisabledBtn] = useState<boolean>(true)
+    const [disabledBtn, setDisabledBtn] = useState<boolean>(false) // cambiar a true
     const store = useAuthUserStore()
+    const navigate = useNavigate()
 
     // const data = useSubscribeEvent({ subscribeEventName: 'updateInput' })
 
@@ -54,18 +57,15 @@ export const Auth: React.FC = () => {
         }
     }
 
-    const login = () => {
 
+    const login = async () => {
+        const res = await store.actions.login({
+            email: form.email.value,
+            password: form.password.value
+        })
+
+        if (res) navigate("/")
     }
-
-    useEffect(() => {
-        //store.actions.login({
-        //    email: 'juanledesma6040@gmail.com',
-        //    password: 'holahola123'
-        //}).then(() => {
-        //    store.actions.getUser().then(res => console.log(res))
-        //})
-    }, [])
 
     useEffect(() => {
         const flag = (form.email.error || form.password.error) as boolean
@@ -87,7 +87,9 @@ export const Auth: React.FC = () => {
 
                     <Input props={formsProps.password} />
 
-                    <button onClick={login} className={css.container__Form_btn} disabled={disabledBtn}>Iniciar sesion</button>
+                    <button onClick={login} className={css.container__Form_btn} disabled={disabledBtn}>
+                        Iniciar sesion
+                    </button>
 
                 </div>
 

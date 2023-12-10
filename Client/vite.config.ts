@@ -20,6 +20,6 @@ export default ({ mode }: { mode: string }) => {
       alias: {
         "@": path.resolve(__dirname, 'src'),
       }
-    }
+    },
   });
 };

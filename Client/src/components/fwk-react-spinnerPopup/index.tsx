@@ -18,10 +18,12 @@ export const SpinnerPopup: React.FC = () => {
   const storeSpinner = useStoreSpinner()
 
   /// VARIABLES
-  const modalRoot = document.body;
-  const modalContainer = document.createElement('div');
   const styleOpenModalStatus = `${css.containerModal} ${css["containerModal--openModal"]}`;
   const styleCloseModalStatus = `${css.containerModal}`;
+
+  const modalRoot = document.body;
+  const modalContainer = document.createElement('div');
+
 
   useEffect(() => {
     const $body = document.querySelector("body") as HTMLBodyElement;
@@ -82,6 +84,7 @@ export const SpinnerPopup: React.FC = () => {
         </article>
       </div>
     </article>,
+
     modalContainer
   )
 };

@@ -39,5 +39,5 @@ const storeSpinner = createWithEqualityFn<IStore>((set) => ({
 }), shallow)
 
 
-export const useStoreSpinner = () => ({    ...storeSpinner((state) => (state))})
+export const useStoreSpinner = () => ({ ...storeSpinner((state) => (state)) })
 export default storeSpinner

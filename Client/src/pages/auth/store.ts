@@ -5,57 +5,30 @@ import { shallow } from "zustand/shallow";
 
 // import { userMapper } from "./mappers";
 // import { IUserModels } from "../../models/IUser.models";
-import { apiSrv } from "@/utils/index.utils";
+import { apiSrv } from "@/libraries/index.libraries";
+import { ILoginDtoRequest } from './interface/ILogin.dto';
 // import appStore from "../appStore";
-// import { ILoginDto } from "./interface/frontToBack/ILogin.dto";
-// import { IFormRegister, IRegisterDto } from "./interface/frontToBack/IRegister.dto";
+
 
 interface IStore {
-    readonly state: {
-        // loginFormActive: boolean;
-        // registerFormActive: boolean;
-        // styleForm: string;
-    },
+    //readonly state: {},
     actions: {
-        // setLoginFormActive: (newState: boolean) => void;
-        // setRegisterFormActive: (newState: boolean) => void;
-        // changeStyleForm: () => void
-        login: (payload: any) => Promise<boolean>
+        login: (payload: ILoginDtoRequest) => Promise<boolean>
         getUser: () => Promise<any>
-        // login: (payload: ILoginDto) => Promise<boolean>
-        // register: (payload: IRegisterDto) => Promise<boolean>
     }
 }
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const store = createWithEqualityFn<IStore>((set, get) => {
 
     return {
-        state: {
-            // loginFormActive: true,
-            // registerFormActive: false,
-            // styleForm: '',
-        },
+        //state: {
+        // loginFormActive: true,
+        // registerFormActive: false,
+        // styleForm: '',
+        //},
         actions: {
-            // setLoginFormActive: (newState: boolean) => set(produce(
-            //     (store: IStore) => {
-            //         store.state.loginFormActive = newState
-            //     })
-            // ),
-            // setRegisterFormActive: (newState: boolean) => set(produce(
-            //     (store: IStore) => {
-            //         store.state.registerFormActive = newState
-            //     })
-            // ),
-            // changeStyleForm: () => {
-            //     let style = (get().state.loginFormActive && !get().state.registerFormActive)
-            //         ? 'containerPage__Auth--loginActive'
-            //         : 'containerPage__Auth--registerActive'
-
-            //     set(produce((store: IStore) => {
-            //         store.state.styleForm = style
-            //     }))
-            // },
-            login: async (payload: any) => {
+            login: async (payload: ILoginDtoRequest) => {
                 let flagIsLogin = false
 
                 const res = await apiSrv.callBackend(async () => {
@@ -81,22 +54,6 @@ const store = createWithEqualityFn<IStore>((set, get) => {
                     })
                 }, { loader: true })
             },
-            // register: async (payload: IRegisterDto) => {
-            //     let flagIsRegister = false
-
-            //     const res = await apiSrv.callBackend(async () => {
-            //         return await apiSrv.callSrv({
-            //             method: 'POST',
-            //             path: '/users/register',
-            //             data: payload
-            //         })
-            //     }, { loader: true, status: true })
-
-            //     if (res.info.type === 'error') return flagIsRegister
-            //     flagIsRegister = true
-
-            //     return flagIsRegister
-            // }
         }
     }
 }, shallow)

@@ -3,10 +3,11 @@ import { useLayoutEffect } from 'react'
 import { RouterProvider } from 'react-router-dom'
 
 import router from '@/router/index'
-import { apiSrv, IConfigInit } from '@/utils/index.utils'
-import { showPopupSpinnerAlert } from '@/components/index.components';
+import { apiSrv, IConfigInit } from '@/libraries/index.libraries'
+import { createNotify } from '@/libraries/fwk-react-ui/'
 
-export default function App() {
+
+export default function App () {
 
   const initializate = () => {
     const pl: IConfigInit = {
@@ -15,15 +16,19 @@ export default function App() {
       },
       url: process.env.VITE_URL_API as string // Poner la variable de entorno
     }
-    
-    apiSrv.init(pl)
-    apiSrv.setShowPopupSpinnerAlertFn(showPopupSpinnerAlert)
-  } 
 
+    apiSrv.init(pl)
+  }
+
+  createNotify()
   useLayoutEffect(() => {
     console.log('initializate CONSTRUCTOR')
     initializate()
   }, [])
 
-  return (<RouterProvider router={router} />)
+  return (
+    <>
+      <RouterProvider router={router} />
+    </>
+  )
 }

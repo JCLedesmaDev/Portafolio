@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { evtEmitter } from "@/utils/index.utils";
+import { evtEmitter } from '@/libraries/index.libraries';
 import { useEffect, useState } from "react";
 
 

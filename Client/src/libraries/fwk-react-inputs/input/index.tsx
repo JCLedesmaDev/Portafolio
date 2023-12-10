@@ -1,8 +1,8 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import React, { useEffect, useRef, useState } from "react";
-import { IInputProps, IInputData, IInputRules } from "./interface/input.interface";
+import { IInputProps, IInputData, IInputRules } from "../interface/index.interface";
 import css from "./index.module.css";
-import { CheckCloseSVG } from './svg/CheckCloseSVG';
+import { CheckCloseSVG } from '../svg/CheckCloseSVG';
 
 interface Props {
   props: IInputProps;

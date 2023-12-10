@@ -51,6 +51,5 @@
   "javascript.preferences.quoteStyle": "single",
   "editor.foldingMaximumRegions": 50000,
   "editor.suggest.showReferences": false,
-  "html.hover.references": false,
-  "java.configuration.updateBuildConfiguration": "disabled"
+  "html.hover.references": false
 }
