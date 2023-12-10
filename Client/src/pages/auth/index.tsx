@@ -4,8 +4,7 @@ import { useEffect, useState } from "react"
 import { UserSVG } from "@/assets/UserSVG"
 import { useNavigate } from 'react-router-dom'
 import { Input, InputPassword } from "@/libraries/index.libraries"
-import { IFormData } from "./interface/IFormData"
-import { IFormProps } from "./interface/IFormProps"
+import { IFormProps, IFormData } from "./interface/IForm"
 import { useFormCustom } from "@/hooks/index.hooks"
 import { PasswordSVG } from "@/assets/PasswordSVG"
 import imageLogin from '@/assets/rocket-page-logo.png'
@@ -55,7 +54,6 @@ export const Auth: React.FC = () => {
             handleChange: handleChange
         }
     }
-
 
     const login = async () => {
         const res = await store.actions.login({

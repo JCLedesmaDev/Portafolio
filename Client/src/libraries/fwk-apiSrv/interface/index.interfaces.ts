@@ -1,6 +1,4 @@
-export type { ICallBackendOptions } from './ICallBackendOptions'
-export type { ICallSrvError } from './ICallSrvError'
-export type { ICallSrvRequest } from './ICallSrvRequest'
-export type { ICallSrvResponse } from './ICallSrvResponse'
+export type { ICallBackEndRequest } from './ICallBackend'
+export type { ICallSrvRequest, ICallSrvResponse, ICallSrvError } from './ICallSrv'
 export type { IConfigInit } from './IConfigInit'
 export type { IHeaders } from './IHeaders'

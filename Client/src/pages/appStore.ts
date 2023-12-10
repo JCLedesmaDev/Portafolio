@@ -1,9 +1,10 @@
 import produce from "immer";
 import { createWithEqualityFn } from "zustand/traditional";
 import { shallow } from "zustand/shallow";
-import { IUserModels } from "@/models/index.models";
+import { apiSrv } from "@/libraries/index.libraries";
 import { magnamentStorage } from "@/utils/index.utils";
-// import  {} from ""
+import { IUserModel } from '@/models/index.models';
+import mapper from '@/mappers/index.mappers'
 
 // export interface IFilterSearch {
 //     page: number;
@@ -17,25 +18,39 @@ import { magnamentStorage } from "@/utils/index.utils";
 
 interface IStore {
     readonly state: {
-        user: IUserModels;
+        user: IUserModel;
     },
     actions: {
-        setUser: (user: IUserModels) => void
+        setUser: (user: IUserModel) => void
     }
 }
 
-const appStore = createWithEqualityFn<IStore>((set) => ({
+const appStore = createWithEqualityFn<IStore>((set, get) => ({
     state: {
-        user: magnamentStorage.get<IUserModels>("user") ?? {} as IUserModels,
+        user: magnamentStorage.get<IUserModel>("user") ?? {} as IUserModel,
     },
     actions: {
-        setUser: (user: IUserModels) => {
+        setUser: (user: IUserModel) => {
             magnamentStorage.set("User", user)
             set(produce((store: IStore) => {
                 store.state.user = user
             }))
-        }
-    }
+        },
+        getUser: async () => {
+            const res = await apiSrv.callBackEnd({
+                preCallback: async () => {
+                    return await apiSrv.callSrv({
+                        method: 'GET',
+                        path: '/users/getUser'
+                    })
+                },
+                options: { loader: true }
+            })
+
+            const userAdapted: IUserModel = mapper.user(res.user);
+            get().actions.setUser(userAdapted)
+        },
+    },
 }), shallow)
 
 

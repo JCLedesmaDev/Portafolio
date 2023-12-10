@@ -5,7 +5,7 @@ import {
     ICallSrvError,
     ICallSrvResponse,
     IConfigInit,
-    IHeaders, ICallBackendOptions
+    IHeaders, ICallBackEndRequest
 } from './interface/index.interfaces';
 import { magnamentStorage } from '@/utils/index.utils';
 import { ui } from '../index.libraries';
@@ -73,10 +73,9 @@ export const apiSrv = {
      * @param options Declare if this function has loader or status
      * @returns Return data with these attributes: info: {type: string; msg: string; data: any}
      */
-    callBackend: async (
-        preCallback: () => Promise<ICallSrvResponse>, options: ICallBackendOptions
-    ): Promise<ICallSrvResponse> => {
+    callBackEnd: async (payload: ICallBackEndRequest): Promise<any> => {
 
+        const { preCallback, options } = payload
         let res = {} as ICallSrvResponse
 
         try {
@@ -86,7 +85,7 @@ export const apiSrv = {
 
             if (res.info.type === 'error') throw new Error(res.info.msg)
 
-            if (options.status && res.info.msg) {
+            if (options.status && res.info?.msg) {
                 ui.notify.showNotify(res.info.msg, res.info.type)
             }
         } catch (error: unknown) {
@@ -101,9 +100,9 @@ export const apiSrv = {
         return res.info.data ?? ((res.info.type !== 'error') && (res.info.type !== 'warning'))
     },
 
-    callSrv: async (optCallSrv: ICallSrvRequest): Promise<ICallSrvResponse> => {
+    callSrv: async (payload: ICallSrvRequest): Promise<ICallSrvResponse> => {
 
-        const { method, path, data } = optCallSrv
+        const { method, path, data } = payload
         let res = {} as ICallSrvResponse
 
         try {
