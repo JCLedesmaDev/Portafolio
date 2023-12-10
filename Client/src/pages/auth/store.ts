@@ -6,7 +6,7 @@ import { apiSrv } from "@/libraries/index.libraries";
 import { ILoginDtoRequest } from './interface/ILoginRequest.dto';
 import mapper from '@/mappers/index.mappers'
 import { IUserModel } from '@/models/IUser.model';
-import appStore from "../appStore";
+import appStore from "@/pages/appStore";
 
 interface IStore {
     actions: {
