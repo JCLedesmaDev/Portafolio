@@ -1,4 +1,5 @@
 import notify from './Notify'
+import loader from './Loader'
 
-export default { notify }
+export default { notify, loader }
 

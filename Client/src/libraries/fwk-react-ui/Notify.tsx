@@ -28,10 +28,8 @@ const showNotify = (message: string, type: string, options: ToastOptions = {}) =
     myToast[type](message, opt)
 }
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const initializateNotify = (ref: React.MutableRefObject<null>) => {
     const elementoDom = ref.current
-
     if (elementoDom) {
         const root = ReactDOM.createRoot(elementoDom)
         root.render(<ToastContainer />)
