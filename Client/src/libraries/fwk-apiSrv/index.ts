@@ -51,14 +51,15 @@ export const apiSrv = {
             (response: AxiosResponse) => { return response; },
             (error: AxiosError) => {
                 // Hice que el 401 sea especifico de token
-                if (error.response?.status === 401) {
+                if (error?.response?.status === 401) {
                     magnamentStorage.remove("user");
                     window.location.href = `${window.location.origin}/auth`;
-
-                    // Hacer q aparezca un popup con el mensaje
-                    //ui.notify.showNotify('Se inicio sesion', 'error')
+                } else if (error?.request) {
+                    if (error.message === 'Network Error') {
+                        error.message = 'La solicitud HTTP no pudo completarse debido a un problema de red.'
+                    }
                 }
-                return Promise.reject(error.response);
+                return Promise.reject(error);
             }
         )
     },
@@ -117,7 +118,7 @@ export const apiSrv = {
             if (method === "DELETE") res = await (await srv.delete(path)).data
         } catch (error: unknown) {
             const err = error as ICallSrvError
-            err.data.info
+            err?.data?.info
                 ? res = err.data
                 : res = { info: { type: 'error', msg: err.message } }
         }
