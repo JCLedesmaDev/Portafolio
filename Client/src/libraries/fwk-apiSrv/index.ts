@@ -78,9 +78,9 @@ export const apiSrv = {
 
         const { preCallback, options } = payload
         let res = {} as ICallSrvResponse
-
+        let err: Error
         try {
-            //if (options.loader) showPopupSpinnerFn(true, false, '')
+            if (options.loader) ui.loader.showLoader(options?.message)
 
             res = await preCallback() as ICallSrvResponse
 
@@ -90,14 +90,15 @@ export const apiSrv = {
                 ui.notify.showNotify(res.info.msg, res.info.type)
             }
         } catch (error: unknown) {
-            const err = error as Error
+            err = error as Error
             ui.notify.showNotify(err.message, 'error')
         } finally {
-            //const time = options.status ? 3000 : 0
-            //setTimeout(() => {
-            //    showPopupSpinnerFn(false, false, '')
-            //}, time);
+            const time = options.status ? 3000 : 0
+            setTimeout(() => {
+                ui.loader.closeLoader()
+            }, time);
         }
+        //tODO: Ver como esta en workflow xq aca se me cierra primero el notifiy q el loader...
         return res.info.data ?? ((res.info.type !== 'error') && (res.info.type !== 'warning'))
     },
 

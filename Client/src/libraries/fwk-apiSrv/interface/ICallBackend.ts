@@ -3,6 +3,7 @@ import { ICallSrvResponse } from './index.interfaces';
 interface ICallBackEndOptions {
     loader?: boolean;
     status?: boolean;
+    message?: string;
 }
 
 export interface ICallBackEndRequest {
