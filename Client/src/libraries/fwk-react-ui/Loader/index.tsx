@@ -2,9 +2,13 @@
 import React, { useEffect } from 'react'
 import loading from './spinner.gif'
 import css from './index.module.css'
+import ReactDOM from 'react-dom/client'
 import storeLoader, { useStoreLoader } from './store'
 
-const initializateLoader = (root: any) => root.render(<Loader />)
+const initializateLoader = (ref: any) => {
+    const root = ReactDOM.createRoot(ref.current as any)
+    root.render(<Loader />)
+}
 
 const showLoader = (message: string = '') => {
     storeLoader.getState().actions.showLoader(message)

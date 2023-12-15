@@ -1,5 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { ToastContainer, ToastOptions, toast } from "react-toastify";
+import ReactDOM from 'react-dom/client'
 import 'react-toastify/dist/ReactToastify.css';
 
 
@@ -27,7 +28,10 @@ const showNotify = (message: string, type: string, options: ToastOptions = {}) =
     myToast[type](message, opt)
 }
 
-const initializateNotify = (root: any) => root.render(<ToastContainer />)
+const initializateNotify = (ref: any) => {
+    const root = ReactDOM.createRoot(ref.current as any)
+    root.render(<ToastContainer />)
+}
 
 
 export default {

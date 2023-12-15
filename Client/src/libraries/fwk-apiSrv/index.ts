@@ -93,12 +93,8 @@ export const apiSrv = {
             err = error as Error
             ui.notify.showNotify(err.message, 'error')
         } finally {
-            const time = options.status ? 3000 : 0
-            setTimeout(() => {
-                ui.loader.closeLoader()
-            }, time);
+            if (options.loader) ui.loader.closeLoader()
         }
-        //tODO: Ver como esta en workflow xq aca se me cierra primero el notifiy q el loader...
         return res.info.data ?? ((res.info.type !== 'error') && (res.info.type !== 'warning'))
     },
 

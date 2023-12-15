@@ -8,7 +8,8 @@ import { apiSrv, IConfigInit, ui } from '@/libraries/index.libraries'
 
 export default function App () {
 
-  const refHtml = useRef(null)
+  const refNotify = useRef(null)
+  const refLoader = useRef(null)
 
   const initializateApp = () => {
     const pl: IConfigInit = {
@@ -19,7 +20,7 @@ export default function App () {
     }
 
     apiSrv.init(pl)
-    ui.initializateLibraryUi(refHtml)
+    ui.initializateLibraryUi(refNotify, refLoader)
   }
 
   useLayoutEffect(() => {
@@ -29,7 +30,8 @@ export default function App () {
 
   return (
     <>
-      <div ref={refHtml}></div>
+      <div ref={refNotify}></div>
+      <div ref={refLoader}></div>
       <RouterProvider router={router} />
     </>
   )
