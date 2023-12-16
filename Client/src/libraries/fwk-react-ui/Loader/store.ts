@@ -10,7 +10,7 @@ interface IStore {
     }
 }
 
-const storeLoader = createWithEqualityFn<IStore>((set) => ({
+const storeLoader = createWithEqualityFn<IStore>((set, get) => ({
     state: { show: false, message: 'Espere por favor...' },
     actions: {
         showLoader: (message: string) => {
@@ -21,7 +21,7 @@ const storeLoader = createWithEqualityFn<IStore>((set) => ({
         },
         closeLoader: () => {
             set(produce((store: IStore) => {
-                store.state = { message: '', show: false }
+                store.state.show = false
             }))
         },
     }

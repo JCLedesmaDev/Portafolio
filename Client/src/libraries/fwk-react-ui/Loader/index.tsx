@@ -5,8 +5,17 @@ import css from './index.module.css'
 import ReactDOM from 'react-dom/client'
 import storeLoader, { useStoreLoader } from './store'
 
-const initializateLoader = (ref: any) => {
-    const root = ReactDOM.createRoot(ref.current as any)
+const initializateLoader = (ref: React.MutableRefObject<HTMLDivElement>) => {
+    const $loader = ref.current
+    $loader.style.position = 'absolute'
+    $loader.style.width = '100%';
+    $loader.style.height = '100%';
+    $loader.style.backgroundColor = 'rgba(0, 0, 0, 0.296)';
+
+    $loader.style.display = 'flex'
+    $loader.style.justifyContent = 'center'
+    $loader.style.alignItems = 'center'
+    const root = ReactDOM.createRoot($loader as any)
     root.render(<Loader />)
 }
 
@@ -22,21 +31,23 @@ const Loader: React.FC = () => {
 
     useEffect(() => {
         const $body = document.querySelector("body") as HTMLBodyElement;
+        const $loader = document.getElementById("loader") as HTMLBodyElement;
+
         if (store.state.show) {
             $body.style.overflowY = "hidden";
+            $loader.style.zIndex = '1000000';
         } else {
+            $loader.style.zIndex = '0';
             $body.style.overflowY = "scroll";
         }
     }, [store.state.show])
 
     return (
         store.state.show ? (
-            <div className={css.skeletom}>
-                <div className={css.card}>
-                    <img className={css.spinnerGif} src={loading} />
-                    <div> {store.state.message}</div>
-                </div>
-            </div >
+            <div className={css.container}>
+                <img className={css.spinnerGif} src={loading} />
+                <div> {store.state.message}</div>
+            </div>
         ) : null
     )
 }

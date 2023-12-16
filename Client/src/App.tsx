@@ -8,8 +8,8 @@ import { apiSrv, IConfigInit, ui } from '@/libraries/index.libraries'
 
 export default function App () {
 
-  const refNotify = useRef(null)
-  const refLoader = useRef(null)
+  const refNotify = useRef() as React.MutableRefObject<HTMLDivElement>
+  const refLoader = useRef() as React.MutableRefObject<HTMLDivElement>
 
   const initializateApp = () => {
     const pl: IConfigInit = {
@@ -30,8 +30,8 @@ export default function App () {
 
   return (
     <>
-      <div ref={refNotify}></div>
-      <div ref={refLoader}></div>
+      <div ref={refNotify} id='notify'></div>
+      <div ref={refLoader} id='loader'></div>
       <RouterProvider router={router} />
     </>
   )

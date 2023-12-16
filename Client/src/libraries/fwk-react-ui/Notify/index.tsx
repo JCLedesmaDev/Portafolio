@@ -28,7 +28,7 @@ const showNotify = (message: string, type: string, options: ToastOptions = {}) =
     myToast[type](message, opt)
 }
 
-const initializateNotify = (ref: any) => {
+const initializateNotify = (ref: React.MutableRefObject<HTMLDivElement>) => {
     const root = ReactDOM.createRoot(ref.current as any)
     root.render(<ToastContainer />)
 }
