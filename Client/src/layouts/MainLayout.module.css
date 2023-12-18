@@ -6,8 +6,8 @@
         "sidebar header header header"
         "sidebar content content content"
         "sidebar content content content";
-    column-gap: .75rem;
-    row-gap: .75rem;
+    /*column-gap: .75rem;
+    row-gap: .75rem;*/
     min-height: 100vh;
     background-color: #ccc;
     overflow-x: hidden;

@@ -5,7 +5,6 @@ import image from '@/assets/rocket-page-logo.png'
 import Project from '@/assets/project.png'
 import Skills from '@/assets/skills.jpg'
 import AboutMe from '@/assets/AboutMe.png'
-//import { ReportSVG } from '@/assets/ReportSVG';
 import Report from '@/assets/Report.png';
 
 
