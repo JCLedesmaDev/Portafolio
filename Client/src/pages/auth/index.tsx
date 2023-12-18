@@ -17,8 +17,6 @@ export const Auth: React.FC = () => {
     const store = useAuthUserStore()
     const navigate = useNavigate()
 
-    // const data = useSubscribeEvent({ subscribeEventName: 'updateInput' })
-
     /// METODOS
     const { form, handleChange } = useFormCustom<IFormData>({
         email: { value: undefined, dirty: false, error: false },

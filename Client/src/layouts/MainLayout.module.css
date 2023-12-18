@@ -1,0 +1,29 @@
+.mainContainer {
+    display: grid;
+    grid-template-columns: 0.6fr repeat(3, minmax(300px, 1fr));
+    grid-template-rows: 0.3fr 1fr 1fr;
+    grid-template-areas:
+        "sidebar header header header"
+        "sidebar content content content"
+        "sidebar content content content";
+    column-gap: .75rem;
+    row-gap: .75rem;
+    min-height: 100vh;
+    background-color: #ccc;
+    overflow-x: hidden;
+}
+
+.header {
+    background: red;
+    grid-area: header;
+}
+
+.sidebar {
+    /*background: orange;*/
+    grid-area: sidebar;
+}
+
+.content {
+    grid-area: content;
+    background: #eee;
+}
