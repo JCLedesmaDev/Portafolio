@@ -3,19 +3,12 @@ import React, { useEffect } from 'react'
 import loading from './spinner.gif'
 import css from './index.module.css'
 import ReactDOM from 'react-dom/client'
-import storeLoader, { useStoreLoader } from './store'
+import { useStoreLoader } from '../store'
 
 const initializateLoader = (ref: React.MutableRefObject<HTMLDivElement>) => {
     const $loader = ref.current
     const root = ReactDOM.createRoot($loader as any)
     root.render(<Loader />)
-}
-
-const showLoader = (message: string = '') => {
-    storeLoader.getState().actions.showLoader(message)
-}
-const closeLoader = () => {
-    storeLoader.getState().actions.closeLoader()
 }
 
 const Loader: React.FC = () => {
@@ -52,8 +45,4 @@ const Loader: React.FC = () => {
     )
 }
 
-export default {
-    initializateLoader,
-    showLoader,
-    closeLoader
-}
+export default { initializateLoader }

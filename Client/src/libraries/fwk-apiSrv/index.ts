@@ -80,20 +80,20 @@ export const apiSrv = {
         let res = {} as ICallSrvResponse
         let err: Error
         try {
-            if (options.loader) ui.loader.showLoader(options?.message)
+            if (options.loader) ui.actions.showLoader(options?.message)
 
             res = await preCallback() as ICallSrvResponse
 
             if (res.info.type === 'error') throw new Error(res.info.msg)
 
             if (options.status && res.info?.msg) {
-                ui.notify.showNotify(res.info.msg, res.info.type)
+                ui.actions.showNotify(res.info.msg, res.info.type)
             }
         } catch (error: unknown) {
             err = error as Error
-            ui.notify.showNotify(err.message, 'error')
+            ui.actions.showNotify(err.message, 'error')
         } finally {
-            if (options.loader) ui.loader.closeLoader()
+            if (options.loader) ui.actions.closeLoader()
         }
         return res.info.data ?? ((res.info.type !== 'error') && (res.info.type !== 'warning'))
     },
