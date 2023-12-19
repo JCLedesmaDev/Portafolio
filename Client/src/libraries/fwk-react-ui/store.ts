@@ -20,13 +20,12 @@ interface IStore {
 const storeUi = createWithEqualityFn<IStore>((set) => ({
     state: {
         show: false,
-        message: 'Espere por favor...',
         titleView: ''
     },
     actions: {
-        showLoader: (newMessage: string = '') => {
+        showLoader: (newMessage: string = 'Espere por favor...') => {
             set(produce((store: IStore) => {
-                if (newMessage) store.state.message = newMessage
+                store.state.message = newMessage
                 store.state.show = true
             }))
         },
