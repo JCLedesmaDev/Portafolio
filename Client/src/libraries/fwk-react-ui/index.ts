@@ -1,6 +1,6 @@
 import notify from './Notify'
 import loader from './Loader'
-import storeUi from './store'
+import storeUi, { useStoreUi } from './store'
 
 const initializateLibraryUi = (
     refNotify: React.MutableRefObject<HTMLDivElement>,
@@ -10,9 +10,10 @@ const initializateLibraryUi = (
     loader.initializateLoader(refLoader)
 }
 
+
 export default {
-    state: storeUi.getState().state,
     actions: storeUi.getState().actions,
+    useStoreUi,
     initializateLibraryUi
 }
 

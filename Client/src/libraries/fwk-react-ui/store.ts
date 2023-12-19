@@ -4,7 +4,7 @@ import produce from 'immer'
 import { ToastOptions, toast } from "react-toastify";
 
 interface IStore {
-    readonly state: {
+    state: {
         show: boolean;
         message?: string;
         titleView: string;
@@ -54,6 +54,7 @@ const storeUi = createWithEqualityFn<IStore>((set) => ({
             myToast[type](newMessage, opt)
         },
         setTitleView: (newTitle: string) => {
+            console.log("🚀 ~ setTitleVie:", newTitle)
             set(produce((store: IStore) => {
                 store.state.titleView = newTitle
             }))
@@ -62,6 +63,6 @@ const storeUi = createWithEqualityFn<IStore>((set) => ({
 }), shallow)
 
 
-export const useStoreLoader = () => ({ ...storeUi((state) => (state)) })
+export const useStoreUi = () => ({ ...storeUi((state) => (state)) })
 export default storeUi
 
