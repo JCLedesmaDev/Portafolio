@@ -3,7 +3,8 @@
     "javascript",
     "javascriptreact",
     "typescript",
-    "vue"
+    "vue",
+    "react"
   ],
   "editor.formatOnPaste": true,
   "editor.formatOnSave": true,
@@ -32,6 +33,9 @@
     "editor.defaultFormatter": "vscode.html-language-features"
   },
   "[typescript]": {
+    "editor.defaultFormatter": "vscode.typescript-language-features"
+  },
+  "[typescriptreact]": {
     "editor.defaultFormatter": "vscode.typescript-language-features"
   },
   "javascript.format.insertSpaceAfterConstructor": true,

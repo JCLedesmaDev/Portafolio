@@ -104,7 +104,7 @@ p {
 
 /* ------------ Clases re utilizables. ------------ */
 
-.noneElement {
+.noneElement { /* SE USA en el sidebar*/
   display: none;
 }
 

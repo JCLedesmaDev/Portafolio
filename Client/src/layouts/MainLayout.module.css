@@ -1,29 +1,114 @@
 .mainContainer {
     display: grid;
-    grid-template-columns: 0.6fr repeat(3, minmax(300px, 1fr));
-    grid-template-rows: 0.3fr 1fr 1fr;
+    grid-template-columns: 0.5fr repeat(3, minmax(300px, 1fr));
+    grid-template-rows: .2fr 1fr 1fr;
     grid-template-areas:
         "sidebar header header header"
         "sidebar content content content"
         "sidebar content content content";
-    /*column-gap: .75rem;
-    row-gap: .75rem;*/
+    column-gap: .25rem;
+    /*row-gap: .75rem;*/
     min-height: 100vh;
     background-color: #ccc;
     overflow-x: hidden;
 }
 
-.header {
-    background: red;
+.mainContainerSidebarNone {
+    grid-template-areas:
+        "header header header header"
+        "content content content content"
+        "content content content content";
+}
+
+/* ### HEADER CSS ### */
+
+.headerGridContainer {
+    background: #fafafa;
     grid-area: header;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 2rem;
 }
 
-.sidebar {
+.headerContainer__title{
     /*background: orange;*/
-    grid-area: sidebar;
+    font-weight: 800;
+    font-size: 1.5rem;
+    display: flex;
+    align-items: center;
 }
 
-.content {
+.headerContainer__title button {
+    background-color: transparent;
+    margin-right: 1rem;
+    padding: .5rem;
+    cursor: pointer;
+    border: 1px solid #000;
+    border-radius: .25rem;
+}
+
+/* ### HEADER CSS ### */
+
+
+/* ### SIDEBAR CSS ### */
+    .sidebarGridContainer {
+        grid-area: sidebar;
+        height: 100%;
+        background: #7386d5;
+        color: #fff;
+        transition: all 0.3s;
+        box-shadow: 1px 10px 15px #000;
+    }
+    .sidebarGridContainerNone {
+        display: none;
+    }
+
+    .sidebarContainer__header {
+        padding: 1.25rem;
+        margin-top: 2rem;
+        background: #6d7fcc;
+        text-align: center;
+    }
+
+    .sidebarContainer__content {
+        padding: 1.25rem 0;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .sidebarContainer__content a {
+        color: #fff;
+        text-align: left;
+        padding: 1.25rem;
+        font-size: .9rem;
+        display: flex;
+        align-items: center;
+        justify-content: left;
+        border-bottom: 1px solid #47748b;
+    }
+
+    .sidebarContainer__content a img {
+        margin-right: .5rem;
+        width: 25px;
+        height: 25px;
+    }
+
+    .sidebarContainer__content a:hover {
+        color: #7386d5;
+        background: #fff;
+        text-decoration: underline;
+    }
+
+    .isActive {
+        text-decoration: underline;
+        background: #fff;
+        color: #6d7fcc !important;
+        font-size: 1.1rem !important;
+        margin-bottom: 5px;
+    }
+/* ### SIDEBAR CSS ### */
+
+.contentGridContainer {
     grid-area: content;
-    background: #eee;
 }

@@ -7,7 +7,7 @@ export const Administration: React.FC = () => {
 
     useEffect(() => {
         //ui.actions.setTitleView('AdministracioEAn')
-        storeUi.actions.setTitleView('AdministracioEAn')
+        storeUi.actions.setTitleView('Administración')
     }, [])
 
     return (
