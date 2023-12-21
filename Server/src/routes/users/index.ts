@@ -9,6 +9,8 @@ const router = express.Router();
 
 router.post('/login', validatorLoginRequest, controller.loginUser);
 
+router.post('/logOut', controller.logOutUser);
+
 router.get('/getUser', controller.getUser);
 
 router.post('/updateUser', authHandler, fileMulterHandler([

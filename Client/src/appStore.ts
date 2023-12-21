@@ -21,7 +21,8 @@ interface IStore {
         user: IUserModel;
     },
     actions: {
-        setUser: (user: IUserModel) => void
+        setUser: (user: IUserModel) => void;
+        logOut: () => void;
     }
 }
 
@@ -50,6 +51,18 @@ const appStore = createWithEqualityFn<IStore>((set, get) => ({
             const userAdapted: IUserModel = mapper.user(res.user);
             get().actions.setUser(userAdapted)
         },
+        logOut: async () => {
+            await apiSrv.callBackEnd({
+                preCallback: async () => {
+                    return await apiSrv.callSrv({
+                        method: 'GET',
+                        path: '/users/logOut'
+                    })
+                },
+                options: { loader: true }
+            })
+            magnamentStorage.remove("user");
+        }
     },
 }), shallow)
 

@@ -48,6 +48,13 @@ const loginUser = controllerWrapper(async (req: Request, res: Response) => {
     return data
 })
 
+const logOutUser = controllerWrapper(async (req: Request, res: Response) => {
+    res.clearCookie('jwt')
+    res.clearCookie('infoUsr')
+    return true
+})
+
+
 const getUser = controllerWrapper(async (req: Request) => {
     const data = await logic.getUser()
     delete data.info.data.user.id
@@ -65,4 +72,4 @@ const updateUser = controllerWrapper(async (req: Request) => {
     return await logic.updateUser(payload)
 })
 
-export default { loginUser, getUser, updateUser }
+export default { loginUser, logOutUser, getUser, updateUser }

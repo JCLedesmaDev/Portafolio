@@ -1,4 +1,4 @@
-import { Outlet, useNavigation } from "react-router-dom"
+import { Outlet, useNavigate } from "react-router-dom"
 import css from './MainLayout.module.css'
 import { NavLink } from 'react-router-dom'
 import { ui } from '@/libraries/index.libraries';
@@ -10,12 +10,19 @@ import AboutMe from '@/assets/AboutMe.png'
 import Report from '@/assets/Report.png';
 import { useState } from 'react';
 import { MenuSVG } from '@/assets/MenuSVG';
+import { useAppStore } from '@/appStore';
 
 export const MainLayout: React.FC = () => {
 
+    const appStore = useAppStore()
     const storeUi = ui.useStoreUi()
-    //const navigation = useNavigation()
+    const navigate = useNavigate()
     const [toggle, setToggle] = useState(true)
+
+    const logOut = async () => {
+        await appStore.actions.logOut()
+        navigate('/auth')
+    }
 
     return (
         <main className={`${css.mainContainer} ${toggle ? css.mainContainerSidebarNone : ''}`}>
@@ -28,7 +35,7 @@ export const MainLayout: React.FC = () => {
                     <p> {storeUi.state.titleView}</p>
                 </div>
 
-                <a>Cerrar Sesion</a>
+                <button className={css.btnLogOut} onClick={logOut}>Cerrar Sesion</button>
             </div>
 
             <div className={`${css.sidebarGridContainer} ${toggle ? css.sidebarGridContainerNone : ''}`}>
