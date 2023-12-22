@@ -3,7 +3,7 @@ import { MainLayout } from "@/layouts/MainLayout";
 import { NotFound } from "@/pages/notFound";
 import { Auth } from "@/pages/auth";
 import { LoggerDB } from "@/pages/loggerDb";
-import { Administration } from '@/pages/administration';
+import { HomeAdmin } from '@/pages/homeAdmin';
 
 const router = createBrowserRouter([
   {
@@ -12,13 +12,13 @@ const router = createBrowserRouter([
     errorElement: <NotFound />,
   },
   {
-    path: '/administration',
+    path: '/admin',
     element: (<MainLayout />),
     children: [
       {
         index: true,
         //path: 'project',
-        element: <Administration />
+        element: <HomeAdmin />
       },
       {
         path: 'loggerDb',

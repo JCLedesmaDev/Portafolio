@@ -20,8 +20,8 @@ export const MainLayout: React.FC = () => {
     const [toggle, setToggle] = useState(true)
 
     const logOut = async () => {
-        await appStore.actions.logOut()
-        navigate('/auth')
+        const data = await appStore.actions.logOut()
+        if (data) navigate('/auth')
     }
 
     return (

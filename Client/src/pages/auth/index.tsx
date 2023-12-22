@@ -59,7 +59,7 @@ export const Auth: React.FC = () => {
             password: form.password.value
         })
 
-        if (res) navigate("/")
+        if (res) navigate("/admin")
     }
 
     useEffect(() => {
