@@ -66,8 +66,8 @@ export const MainLayout: React.FC = () => {
                 </div>
             </div>
 
+            {/* Gracais al Outlet aqui se plasmaran todos los childrens de router/index.tsx */}
             <div className={css.contentGridContainer}>
-                {/* Gracais al Outlet aqui se plasmaran todos los childrens de router/index.tsx */}
                 <Outlet />
             </div>
         </main >

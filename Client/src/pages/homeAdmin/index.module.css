@@ -1,13 +1,31 @@
-.main{
-    /*background: red;*/
+.main {
     width: 100%;
     height: 100%;
     text-align: center;
-    margin-top:3rem;
+}
+
+.main h2 {
+    padding: 4rem;
+    padding-bottom: 2rem;
+}
+
+.containerBoxs {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.box {
+    display: flex;
+    width: 300px;
+    height: 300px;
+    background: #eee;
+    margin: 1rem;
+    box-shadow: 1px 5px 10px #000;
 }
 
 .box img {
     margin-right: .5rem;
-    width: 25px;
-    height: 25px;
+    width: 100px;
+    height: 100px;
 }

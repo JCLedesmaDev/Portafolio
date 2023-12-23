@@ -20,7 +20,7 @@ export const HomeAdmin: React.FC = () => {
         <main className={css.main}>
 
             <h2>Acceso Rapido</h2>
-            <div>
+            <div className={css.containerBoxs}>
                 <NavLink to="#" className={css.box}>
                     <img src={AboutMe} />
                     Mi descripcion
@@ -40,8 +40,6 @@ export const HomeAdmin: React.FC = () => {
                     <img src={Report} />
                     Reportes LoggerDB
                 </NavLink>
-
-
             </div>
 
         </main>
