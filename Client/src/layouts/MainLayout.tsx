@@ -3,14 +3,16 @@ import css from './MainLayout.module.css'
 import { NavLink } from 'react-router-dom'
 import { ui } from '@/libraries/index.libraries';
 
-import image from '@/assets/rocket-page-logo.png'
-import Project from '@/assets/project.png'
-import Skills from '@/assets/skills.jpg'
-import AboutMe from '@/assets/AboutMe.png'
-import Report from '@/assets/Report.png';
 import { useState } from 'react';
 import { MenuSVG } from '@/assets/MenuSVG';
 import { useAppStore } from '@/appStore';
+
+import image from '@/assets/rocket-page-logo.png'
+import Project from '@/assets/project.png'
+import Skills from '@/assets/skills.png'
+import AboutMe from '@/assets/AboutMe.png'
+import Report from '@/assets/Report.png';
+import Portafolio from '@/assets/Portafolio.png'
 
 export const MainLayout: React.FC = () => {
 
@@ -32,7 +34,7 @@ export const MainLayout: React.FC = () => {
                     <button onClick={() => setToggle((preVal) => !preVal)}>
                         <MenuSVG />
                     </button>
-                    <p> {storeUi.state.titleView}</p>
+                    <h2> {storeUi.state.titleView}</h2>
                 </div>
 
                 <button className={css.btnLogOut} onClick={logOut}>Cerrar Sesion</button>
@@ -40,28 +42,33 @@ export const MainLayout: React.FC = () => {
 
             <div className={`${css.sidebarGridContainer} ${toggle ? css.sidebarGridContainerNone : ''}`}>
                 <div className={css.sidebarContainer__header}>
-                    <NavLink to="/"><img src={image} /></NavLink>
+                    <NavLink to="/admin"><img src={image} /></NavLink>
                 </div>
 
                 <div className={`${css.sidebarContainer__content}`}>
-                    <NavLink to="#" className={({ isActive }) => isActive ? css.isActive : undefined}>
+                    <NavLink to="/admin/myDescription" className={({ isActive }) => isActive ? css.isActive : undefined}>
                         <img src={AboutMe} />
-                        Mi descripcion
+                        <h5>Mi descripcion</h5>
                     </NavLink>
 
-                    <NavLink to="/mySkills" className={({ isActive }) => isActive ? css.isActive : undefined}>
+                    <NavLink to="/admin/mySkills" className={({ isActive }) => isActive ? css.isActive : undefined}>
                         <img src={Skills} />
-                        Mis habilidades
+                        <h5>Mis habilidades</h5>
                     </NavLink>
 
-                    <NavLink to="/project" className={({ isActive }) => isActive ? css.isActive : undefined}>
+                    <NavLink to="/admin/myProjects" className={({ isActive }) => isActive ? css.isActive : undefined}>
                         <img src={Project} />
-                        Mis proyectos
+                        <h5>Mis proyectos</h5>
                     </NavLink>
 
-                    <NavLink to="/loggerDb" className={({ isActive }) => isActive ? css.isActive : undefined}>
+                    <NavLink to="/" className={({ isActive }) => isActive ? css.isActive : undefined}>
+                        <img src={Portafolio} />
+                        <h5>Ver portafolio</h5>
+                    </NavLink>
+
+                    <NavLink to="/admin/loggerDb" className={({ isActive }) => isActive ? css.isActive : undefined}>
                         <img src={Report} />
-                        Reportes LoggerDB
+                        <h5>Reportes LoggerDB</h5>
                     </NavLink>
                 </div>
             </div>

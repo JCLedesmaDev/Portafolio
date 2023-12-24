@@ -30,8 +30,8 @@ const Loader: React.FC = () => {
             $loader.style.alignItems = 'center'
             $loader.style.zIndex = '1000000';
         } else {
-            $loader.style.zIndex = '0';
             $body.style.overflowY = "scroll";
+            $loader.style.display = 'none'
         }
     }, [store.state.show])
 

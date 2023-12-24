@@ -1,0 +1,42 @@
+.main {
+    width: 100%;
+    height: 100%;
+    text-align: center;
+}
+
+.main h3 {
+    padding: 2rem;
+}
+
+.containerBoxs {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+
+    margin: 1rem;
+    min-width: 12.5rem;
+    min-height: 12.5rem;
+
+    color: #000;
+    background: #eee;
+    /*font-weight: 800;*/
+    box-shadow: 1px 5px 10px #000;
+}
+
+.box img {
+    /*margin-right: .5rem;*/
+    width: 6.25rem;
+    height: 6.25rem;
+}
+
+.box:hover {
+    transform: scale(1.1);
+}

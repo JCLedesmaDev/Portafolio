@@ -3,12 +3,16 @@ import { MainLayout } from "@/layouts/MainLayout";
 import { NotFound } from "@/pages/notFound";
 import { Auth } from "@/pages/auth";
 import { LoggerDB } from "@/pages/loggerDb";
-import { HomeAdmin } from '@/pages/homeAdmin';
+import { Home } from '@/pages/home';
+import { Portfolio } from '@/pages/portfolio';
+import { Skills } from '@/pages/skills';
+import { Projects } from '@/pages/projects';
+import { Description } from '@/pages/description';
 
 const router = createBrowserRouter([
   {
     path: '/',
-    element: (<p>PRINCIPAL PORTAFOLIO</p>),
+    element: <Portfolio />,
     errorElement: <NotFound />,
   },
   {
@@ -17,8 +21,19 @@ const router = createBrowserRouter([
     children: [
       {
         index: true,
-        //path: 'project',
-        element: <HomeAdmin />
+        element: <Home />
+      },
+      {
+        path: 'myDescription',
+        element: <Description />
+      },
+      {
+        path: 'myProjects',
+        element: <Projects />
+      },
+      {
+        path: 'mySkills',
+        element: <Skills />
       },
       {
         path: 'loggerDb',

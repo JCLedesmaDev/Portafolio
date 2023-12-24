@@ -4,11 +4,11 @@ import css from './index.module.css'
 import { NavLink } from 'react-router-dom'
 
 import Project from '@/assets/project.png'
-import Skills from '@/assets/skills.jpg'
+import Skills from '@/assets/skills.png'
 import AboutMe from '@/assets/AboutMe.png'
 import Report from '@/assets/Report.png';
 
-export const HomeAdmin: React.FC = () => {
+export const Home: React.FC = () => {
     const storeUi = ui.useStoreUi()
 
     useEffect(() => {
@@ -19,26 +19,27 @@ export const HomeAdmin: React.FC = () => {
     return (
         <main className={css.main}>
 
-            <h2>Acceso Rapido</h2>
+            <h3>Acceso Rapido</h3>
+
             <div className={css.containerBoxs}>
-                <NavLink to="#" className={css.box}>
+                <NavLink to="/admin/myDescription" className={css.box}>
                     <img src={AboutMe} />
-                    Mi descripcion
+                    <h4>Mi descripcion</h4>
                 </NavLink>
 
-                <NavLink to="/mySkills" className={css.box}>
+                <NavLink to="/admin/mySkills" className={css.box}>
                     <img src={Skills} />
-                    Mis habilidades
+                    <h4>Mis habilidades</h4>
                 </NavLink>
 
-                <NavLink to="/project" className={css.box}>
+                <NavLink to="/admin/myProjects" className={css.box}>
                     <img src={Project} />
-                    Mis proyectos
+                    <h4>Mis proyectos</h4>
                 </NavLink>
 
-                <NavLink to="/loggerDb" className={css.box} >
+                <NavLink to="/admin/loggerDb" className={css.box} >
                     <img src={Report} />
-                    Reportes LoggerDB
+                    <h4>Reportes LoggerDB</h4>
                 </NavLink>
             </div>
 
