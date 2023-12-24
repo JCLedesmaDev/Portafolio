@@ -1,0 +1,22 @@
+.json-viewer {
+    font-family: 'Arial', sans-serif;
+    margin: 10px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.json-toggle {
+    cursor: pointer;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.json-key {
+    cursor: pointer;
+    margin-right: 5px;
+}
+
+.json-value {
+    margin-left: 20px;
+}

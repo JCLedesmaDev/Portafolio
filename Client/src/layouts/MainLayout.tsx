@@ -19,7 +19,7 @@ export const MainLayout: React.FC = () => {
     const appStore = useAppStore()
     const storeUi = ui.useStoreUi()
     const navigate = useNavigate()
-    const [toggle, setToggle] = useState(true)
+    const [toggle, setToggle] = useState(false)
 
     const logOut = async () => {
         const data = await appStore.actions.logOut()
@@ -34,10 +34,12 @@ export const MainLayout: React.FC = () => {
                     <button onClick={() => setToggle((preVal) => !preVal)}>
                         <MenuSVG />
                     </button>
-                    <h2> {storeUi.state.titleView}</h2>
+                    <h3> {storeUi.state.titleView}</h3>
                 </div>
 
-                <button className={css.btnLogOut} onClick={logOut}>Cerrar Sesion</button>
+                <button className={css.btnLogOut} onClick={logOut}>
+                    Cerrar Sesion
+                </button>
             </div>
 
             <div className={`${css.sidebarGridContainer} ${toggle ? css.sidebarGridContainerNone : ''}`}>

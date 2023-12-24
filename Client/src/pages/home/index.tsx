@@ -19,7 +19,7 @@ export const Home: React.FC = () => {
     return (
         <main className={css.main}>
 
-            <h3>Acceso Rapido</h3>
+            <h3 className='sub-section-title'>Acceso Rapido</h3>
 
             <div className={css.containerBoxs}>
                 <NavLink to="/admin/myDescription" className={css.box}>
