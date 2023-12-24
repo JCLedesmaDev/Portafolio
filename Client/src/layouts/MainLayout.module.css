@@ -1,7 +1,7 @@
 .mainContainer {
     display: grid;
     grid-template-columns: 0.5fr repeat(3, minmax(100px, 1fr));
-    grid-template-rows: .2fr 1fr 1fr;
+    grid-template-rows: .175fr 1fr 1fr;
     grid-template-areas:
         "sidebar header header header"
         "sidebar content content content"
@@ -41,10 +41,8 @@
 .headerContainer__title button {
     background-color: transparent;
     margin-right: 1rem;
-    padding: .5rem;
     cursor: pointer;
-    border: 2px solid #dc143c;
-    border-radius: .5rem;
+    border: none;
     fill: #fff;
     background-color: transparent;
 }
@@ -55,12 +53,13 @@
 
 .btnLogOut {
     font-weight: 600;
-    padding: .75rem;
+    padding: .5rem;
     border-radius: .5rem;
     cursor: pointer;
     border: 2px solid #dc143c;
     background-color: transparent;
     color: #fff;
+    font-size: 1rem;
 }
 
 .btnLogOut:hover {
