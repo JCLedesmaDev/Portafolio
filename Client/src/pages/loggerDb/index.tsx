@@ -128,7 +128,7 @@ export const LoggerDB: React.FC = () => {
 
     return (
         <main className={css.main}>
-            <h3 className='sub-section-title'>Loggers DB</h3>
+            <h3 className='sub-section-title'>Registros de Logs</h3>
 
             <div className={css.containerBoxs}>
                 {document && (document.map((doc: any) => (

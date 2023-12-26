@@ -1,0 +1,17 @@
+🕐 VER el css de app.css
+
+🕐Concentrar todo fwk-react-ui en un store para tener el setTitle...
+
+https://codepen.io/today54/details/eYYyJoL 
+
+
+🕐 Verificar que sucede cuando en el BE, se lanza una excepcion... ¿Continua el flujo?
+🕐 Utilizar un mapper en el LoggerDB del BE: 
+ {
+    Tipo:
+    Fecha:
+    Usuario:
+    Request :
+    Response:
+ }
+Falta agregar Modal, Paginacion y Filtrados por Usuario, Tipo y Fecha
