@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import React, { useEffect, useState } from "react";
 import ReactDOM from "react-dom";
-import styleCss from "./index.module.css";
+import css from "./index.module.css";
 
 interface Props {
     children: string | any;
@@ -16,25 +16,23 @@ export const DialogModal: React.FC<Props> = (props) => {
     console.log("🚀 ~ file: index.tsx:16 ~ children:", children)
 
     /// VARIABLES
-    const [css, setCss] = useState(styleCss.containerModal)
+    const [updateCss, setUpdateCss] = useState(css.containerModal)
 
     useEffect(() => {
         const $body = document.querySelector("body") as HTMLBodyElement;
         if (isOpen) {
             $body.style.overflowY = "hidden";
-            setCss(`${styleCss.containerModal} ${styleCss["containerModal--openModal"]}`)
+            setUpdateCss(`${css.container} ${css["container--open"]}`)
         } else {
             $body.style.overflowY = "scroll";
-            setCss(styleCss.containerModal)
+            setUpdateCss(css.container)
         }
     }, [isOpen])
 
     return ReactDOM.createPortal(isOpen && (
-        <article className={css}>
-            <div>
-                <article className={`${styleCss.contentModal} ${personCss}`} >
-                    {children}
-                </article>
+        <article className={updateCss}>
+            <div className={`${css.content} ${personCss}`} >
+                {children}
                 <button onClick={props.onClose}>CERRAR</button>
             </div>
         </article>),
