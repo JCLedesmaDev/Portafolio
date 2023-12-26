@@ -32,7 +32,7 @@ export const DialogModal: React.FC<Props> = (props) => {
     return ReactDOM.createPortal(isOpen && (
         <article className={css}>
             <div>
-                <article className={` ${styleCss.contentModal} ${personCss}`} >
+                <article className={`${styleCss.contentModal} ${personCss}`} >
                     {children}
                 </article>
                 <button onClick={props.onClose}>CERRAR</button>

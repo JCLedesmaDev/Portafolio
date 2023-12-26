@@ -28,7 +28,7 @@ const JSONViewerItem = (props: any) => {
 };
 
 export const JSONViewer = ({ data, depth = 0 }: any) => {
-    const [modal, setModal] = useState(true)
+    const [modal, setModal] = useState(false)
 
     const showModal = (data: any) => {
         console.log("🚀 ~ file: index.tsx:33 ~ showModal ~ data:", data)
@@ -47,9 +47,13 @@ export const JSONViewer = ({ data, depth = 0 }: any) => {
                 />
             ))}
         </div>
+
         <DialogModal isOpen={modal} onClose={() => setModal(false)}>
-            <p id="header">ASDASD</p>
-            <h1 id="body">EEE</h1>
+            <div id="header">
+                <div>asd</div>
+                ASd
+            </div>
+            <h1 id="body"></h1>
         </DialogModal>
     </>)
 };
