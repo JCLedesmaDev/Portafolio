@@ -50,27 +50,27 @@ export const MainLayout: React.FC = () => {
                 <div className={`${css.sidebarContainer__content}`}>
                     <NavLink to="/admin/myDescription" className={({ isActive }) => isActive ? css.isActive : undefined}>
                         <img src={AboutMe} />
-                        <h5>Mi descripcion</h5>
+                        <h4>Mi descripcion</h4>
                     </NavLink>
 
                     <NavLink to="/admin/mySkills" className={({ isActive }) => isActive ? css.isActive : undefined}>
                         <img src={Skills} />
-                        <h5>Mis habilidades</h5>
+                        <h4>Mis habilidades</h4>
                     </NavLink>
 
                     <NavLink to="/admin/myProjects" className={({ isActive }) => isActive ? css.isActive : undefined}>
                         <img src={Project} />
-                        <h5>Mis proyectos</h5>
+                        <h4>Mis proyectos</h4>
                     </NavLink>
 
                     <NavLink to="/" className={({ isActive }) => isActive ? css.isActive : undefined}>
                         <img src={Portafolio} />
-                        <h5>Ver portafolio</h5>
+                        <h4>Ver portafolio</h4>
                     </NavLink>
 
                     <NavLink to="/admin/loggerDb" className={({ isActive }) => isActive ? css.isActive : undefined}>
                         <img src={Report} />
-                        <h5>Reportes LoggerDB</h5>
+                        <h4>Reportes LoggerDB</h4>
                     </NavLink>
                 </div>
             </div>

@@ -1,0 +1,57 @@
+.json-viewer {
+    width: 18.75rem;
+    font-family: 'Arial', sans-serif;
+    margin: 0.625rem;
+    padding: 0.9375rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.json-attr {
+    width: 100%;
+    font-size: .9rem;
+    margin-top: .5rem;
+}
+
+
+/* Estilos específicos para diferentes niveles de anidamiento */
+.json-viewer.depth-0 {
+    background: #fff;
+    border: 2px solid #3498db;
+    /* Cambia el color del borde para el nivel 0 */
+}
+
+.json-viewer.depth-1 {
+    background-color: #ecf0f1;
+    /* Cambia el color de fondo para el nivel 1 */
+}
+
+.json-viewer.depth-2 {
+    background: #ddd;
+    border-left: 5px solid #e74c3c;
+    /* Agrega una línea izquierda roja para el nivel 2 */
+}
+
+.json-viewer.depth-3 {
+    background: #ccc;
+    border-left: 5px solid #24c416;
+    /* Agrega una línea izquierda roja para el nivel 2 */
+}
+
+.json-viewer.depth-4 {
+    background: #f7f3f39a;
+    border-left: 5px solid #1be6b7;
+    /* Agrega una línea izquierda roja para el nivel 2 */
+}
+
+.json-viewer.depth-5 {
+    background: #f7f3f3f8;
+    border-left: 5px solid #e40aeb;
+    /* Agrega una línea izquierda roja para el nivel 2 */
+}
+
+.json-viewer.depth-6 {
+    background: #f7f3f3f8;
+    border-left: 5px solid #e74c3c;
+    /* Agrega una línea izquierda roja para el nivel 2 */
+}

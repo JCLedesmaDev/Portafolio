@@ -1,22 +1,16 @@
-.json-viewer {
-    font-family: 'Arial', sans-serif;
-    margin: 10px;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
+.main {
+    width: 100%;
+    height: 100%;
+    text-align: center;
 }
 
-.json-toggle {
-    cursor: pointer;
-    font-weight: bold;
-    margin-bottom: 5px;
+.main h3 {
+    padding: 2rem;
 }
 
-.json-key {
-    cursor: pointer;
-    margin-right: 5px;
-}
-
-.json-value {
-    margin-left: 20px;
+.containerBoxs {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
 }

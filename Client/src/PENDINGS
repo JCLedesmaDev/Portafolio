@@ -4,3 +4,13 @@
 
 https://codepen.io/today54/details/eYYyJoL 
 
+
+🕐 Verificar que sucede cuando en el BE, se lanza una excepcion... ¿Continua el flujo?
+🕐 Utilizar un mapper en el LoggerDB del BE: 
+ {
+    Tipo:
+    Fecha:
+    Usuario:
+    Request :
+    Response:
+ }
