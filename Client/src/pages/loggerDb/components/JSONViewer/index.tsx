@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import css from './index.module.css'
+import { DialogModal } from '@/components/index.components';
 
 
 const JSONViewerItem = (props: any) => {
@@ -12,22 +13,43 @@ const JSONViewerItem = (props: any) => {
     const typeData = Array.isArray(value) ? 'Array' : 'Object'
 
     return (<>
-        {typeof value === 'object'
-            ? (<>
-                <div className={css['json-attr']} style={{ cursor: 'pointer' }} onClick={toggleExpand}>
-                    <b>{expanded ? '-' : '+'} {name}:</b> {typeData}
-                </div>
-                {expanded && (<JSONViewer data={value} depth={depth + 1} />)}
-            </>)
-            : (<div className={css['json-attr']}><b> {name}:</b>  {value} </div>)
-        }
+        <div className={css['json-attr']}>
+            {(typeof value === 'object')
+                ? (<>
+                    <div style={{ cursor: 'pointer' }} onClick={toggleExpand}>
+                        <b>{expanded ? '-' : '+'} {name}:</b> {typeData}
+                    </div>
+                    {expanded && (<JSONViewer data={value} depth={depth + 1} />)}
+                </>)
+                : (<><b> {name}:</b> {value} </>)}
+        </div>
+
     </>);
 };
 
-export const JSONViewer = ({ data, depth = 0 }: any) => (
-    <div className={`${css['json-viewer']} ${css[`depth-${depth}`]}`}>
-        {Object.entries(data)?.map(([key, value]) => (
-            <JSONViewerItem key={key} name={key} value={value} depth={depth} />
-        ))}
-    </div>
-);
+export const JSONViewer = ({ data, depth = 0 }: any) => {
+    const [modal, setModal] = useState(true)
+
+    const showModal = (data: any) => {
+        console.log("🚀 ~ file: index.tsx:33 ~ showModal ~ data:", data)
+        setModal(true)
+    }
+
+    return (<>
+        <div className={`${css['json-viewer']} ${css[`depth-${depth}`]}`}
+            onClick={() => showModal(data)}>
+            {Object.entries(data)?.map(([key, value]) => (
+                <JSONViewerItem
+                    key={key}
+                    name={key}
+                    value={value}
+                    depth={depth}
+                />
+            ))}
+        </div>
+        <DialogModal isOpen={modal} onClose={() => setModal(false)}>
+            <p id="header">ASDASD</p>
+            <h1 id="body">EEE</h1>
+        </DialogModal>
+    </>)
+};

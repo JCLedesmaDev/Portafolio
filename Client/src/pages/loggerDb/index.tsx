@@ -4,7 +4,6 @@ import { ui } from '@/libraries/index.libraries';
 import { JSONViewer } from './components/JSONViewer';
 import css from './index.module.css'
 
-
 export const LoggerDB: React.FC = () => {
 
     const storeUi = ui.useStoreUi()
@@ -131,8 +130,8 @@ export const LoggerDB: React.FC = () => {
             <h3 className='sub-section-title'>Registros de Logs</h3>
 
             <div className={css.containerBoxs}>
-                {document && (document.map((doc: any) => (
-                    <JSONViewer data={doc} />
+                {document && (document.map((doc: any, index: number) => (
+                    <JSONViewer data={doc} key={index} />
                 )))}
             </div>
         </main>
