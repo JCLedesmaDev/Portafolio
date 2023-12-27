@@ -20,15 +20,15 @@ const loginUser = controllerWrapper(async (req: Request, res: Response) => {
 
     const data = await logic.loginUser(payload)
 
-    //if (data?.info?.type !== 'error') {
+    req.locals.usrId = data.info.data.user.id
+
     if (!data?.error) {
         res.cookie('jwt', data.info.data.token, {
             // No accesible desde JavaScript en el cliente
             httpOnly: true,
             // Al pasar este tiempo, desaparece automaticamente en el navegador
             expires: new Date(Date.now() + eval(config.get('expire_cookie'))),
-            // Firma la cookie con una clave secreta.
-            signed: true,
+            signed: true, // Firma la cookie con una clave secreta.
             sameSite: "strict"
         })
 
@@ -37,8 +37,7 @@ const loginUser = controllerWrapper(async (req: Request, res: Response) => {
             httpOnly: true,
             // Al pasar este tiempo, desaparece automaticamente en el navegador
             expires: new Date(Date.now() + eval(config.get('expire_cookie'))),
-            // Firma la cookie con una clave secreta.
-            signed: true,
+            signed: true, // Firma la cookie con una clave secreta.
             sameSite: "strict"
         })
 

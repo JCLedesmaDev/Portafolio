@@ -45,15 +45,17 @@ export const apiSrv = {
                 }
                 return request
             },
-            (error: AxiosError) => { return Promise.reject(error); }
+            (error: AxiosError) => { return Promise.reject(error.request); }
         )
         srv.interceptors.response.use(
             (response: AxiosResponse) => { return response; },
             (error: AxiosError) => {
                 // Hice que el 401 sea especifico de token
                 if (error?.response?.status === 401) {
-                    magnamentStorage.remove("user");
-                    window.location.href = `${window.location.origin}/auth`;
+                    setTimeout(() => {
+                        magnamentStorage.remove("user");
+                        window.location.href = `${window.location.origin}/auth`;
+                    }, 4000)
                 } else if (error?.request) {
                     if (error.message === 'Network Error') {
                         error.message = 'La solicitud HTTP no pudo completarse debido a un problema de red.'

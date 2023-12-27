@@ -22,16 +22,14 @@ const insertLoggerDb = async (infoLooger: ILogger) => {
             date: new Date(),
             request: request,
             response: response || {},
-            ...(usrId !== '' && {
-                user: new Types.ObjectId(usrId),
-            })
+            user: new Types.ObjectId(usrId),
         }
 
         await collections.RegisterDb.create(registerData)
     } catch (error) {
-        throw new ApplicationError({ 
-            message: "Ocurrio un error al querer loggear la info.", 
-            source: error 
+        throw new ApplicationError({
+            message: "Ocurrio un error al querer loggear la info.",
+            source: error
         });
     }
 }

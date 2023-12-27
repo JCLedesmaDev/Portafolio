@@ -6,5 +6,5 @@ export interface IRegisterDb extends IBase {
     date: Date;
     request: object;
     response: object;
-    user: IUser;
+    user?: IUser;
 }

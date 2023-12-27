@@ -13,7 +13,10 @@ const getAllLogerDb = async (opts: IFilterPagination): Promise<PaginateResult<IR
         const options: PaginateOptions = {
             page,
             limit: 3,
-            populate: { strictPopulate: false, path: 'User' }
+            populate: {
+                strictPopulate: false,
+                path: 'user' // hace referencia al nombre del attr.
+            }
         }
         const query: FilterQuery<IRegisterDbSchema> = {
             ...((filterText !== '') && {
@@ -22,9 +25,9 @@ const getAllLogerDb = async (opts: IFilterPagination): Promise<PaginateResult<IR
         }
         return await collections.RegisterDb.paginate(query, options)
     } catch (error) {
-        throw new ApplicationError({ 
-            message: 'Ha ocurrido un error al obtener el listado de registros', 
-            source: error 
+        throw new ApplicationError({
+            message: 'Ha ocurrido un error al obtener el listado de registros',
+            source: error
         })
     }
 }

@@ -21,6 +21,4 @@ const getAllLogerDb = tryCatchWrapper(async (payload: IFilterPagination) => {
 })
 
 
-export default {
-    getAllLogerDb
-}
+export default { getAllLogerDb }

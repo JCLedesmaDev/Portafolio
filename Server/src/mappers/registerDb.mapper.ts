@@ -2,8 +2,8 @@ import { IRegisterDb } from "@interface/index.interfaces";
 import { IRegisterDbSchema, IUserSchema } from "@models/ICollections";
 import mappers from "./index.mappers";
 
-export const multipleRegisterDb = (resource: IRegisterDbSchema[]): IRegisterDb[] => {
-    return resource.map(project => singleRegisterDb(project))
+export const multipleRegisterDb = (docs: IRegisterDbSchema[]): IRegisterDb[] => {
+    return docs.map(doc => singleRegisterDb(doc))
 }
 
 const singleRegisterDb = (resource: IRegisterDbSchema): IRegisterDb => {
@@ -13,7 +13,7 @@ const singleRegisterDb = (resource: IRegisterDbSchema): IRegisterDb => {
         request: resource.request,
         response: resource.response,
         type: resource.type,
-        user: mappers.user(resource.user as IUserSchema)
+        user: resource?.user ? mappers.user(resource?.user as IUserSchema) : undefined
     }
     return mapper
 };

@@ -7,7 +7,7 @@ const RegisterDbSchema = new Schema<IRegisterDbSchema>({
     date: { type: Date, required: true },
     request: { type: Object, required: true },
     response: { type: Object, required: true },
-    user: { type: Types.ObjectId, ref: 'User', required: false }
+    user: { type: Types.ObjectId, ref: 'User', required: true }
 }, {
     timestamps: true, // Nos crea un campo mas con la fecha de creacion y actualizacion del registro
     versionKey: false // Desactivamos la version del dato dentro de mongoose  
@@ -16,4 +16,4 @@ const RegisterDbSchema = new Schema<IRegisterDbSchema>({
 // Le indicamos a nuestro modelo, que va a poder paginar
 RegisterDbSchema.plugin(mongoosePaginate)
 
-export default model<IRegisterDbSchema , PaginateModel<IRegisterDbSchema>>('RegisterDb', RegisterDbSchema);
+export default model<IRegisterDbSchema, PaginateModel<IRegisterDbSchema>>('RegisterDb', RegisterDbSchema);
