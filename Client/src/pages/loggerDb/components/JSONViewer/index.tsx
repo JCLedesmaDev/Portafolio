@@ -34,6 +34,7 @@ export const JSONViewer = ({ data, depth = 0 }: any) => {
         console.log("🚀 ~ file: index.tsx:33 ~ showModal ~ data:", data)
         setModal(true)
     }
+    const closeModal = () => setModal(false)
 
     return (<>
         <div className={`${css['json-viewer']} ${css[`depth-${depth}`]}`}
@@ -48,17 +49,18 @@ export const JSONViewer = ({ data, depth = 0 }: any) => {
             ))}
         </div>
 
-        <DialogModal isOpen={modal} onClose={() => setModal(false)}>
-            {/*<div id="header">
+        {/*<DialogModal isOpen={modal} onClose={() => setModal(false)}>
+            <div id="header">
                 <div>asd</div>
                 ASd
-            </div>*/}
+            </div>
 
             <h1 id="body" style={{ width: '300px' }}>BODY</h1>
 
-            {/*<div id='footer'>
+            <div id='footer'>
                 footer
-            </div>*/}
-        </DialogModal>
+            </div>
+        </DialogModal>*/}
+        <DialogModal isOpen={modal} onClose={closeModal} message='LALALALA' />
     </>)
 };

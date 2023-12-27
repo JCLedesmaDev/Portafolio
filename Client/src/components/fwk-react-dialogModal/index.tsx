@@ -4,9 +4,10 @@ import ReactDOM from "react-dom";
 import css from "./index.module.css";
 
 interface Props {
-    children: any;
     isOpen: boolean;
     onClose: () => void;
+    children?: any;
+    message?: string;
 }
 
 export const DialogModal: React.FC<Props> = (props) => {
@@ -33,6 +34,7 @@ export const DialogModal: React.FC<Props> = (props) => {
 
     const defineChildrens = () => {
         const isSeveralChildrens = Array.isArray(props.children)
+        console.log("🚀 ~ file: index.tsx:37 ~ defineChildrens ~ props.children:", props.children)
 
         if (isSeveralChildrens) {
             const fndHeader = props.children.find((x: any) => x.props.id === 'header')
@@ -44,7 +46,8 @@ export const DialogModal: React.FC<Props> = (props) => {
                 ...(fndBody && { body: fndBody }),
                 ...(fndFooter && { footer: fndFooter })
             }))
-        } else {
+        }
+        if (!isSeveralChildrens && props.children) {
             setChildrens((prevVal) => ({
                 ...prevVal,
                 [props.children.props.id]: props.children,
@@ -65,7 +68,9 @@ export const DialogModal: React.FC<Props> = (props) => {
 
                 {childrens.header && childrens.header}
 
-                {childrens.body && childrens.body}
+                {childrens.body ?? (
+                    <h3>{props.message}</h3>
+                )}
 
                 {childrens.footer ?? (
                     <button onClick={props.onClose}>CERRAR</button>
