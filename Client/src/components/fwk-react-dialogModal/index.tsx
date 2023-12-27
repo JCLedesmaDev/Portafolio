@@ -5,9 +5,11 @@ import css from "./index.module.css";
 
 interface Props {
     isOpen: boolean;
-    onClose: () => void;
+    onCancel?: () => void;
+    onAccept?: () => void;
     children?: any;
     message?: string;
+    title?: string;
 }
 
 export const DialogModal: React.FC<Props> = (props) => {
@@ -34,8 +36,6 @@ export const DialogModal: React.FC<Props> = (props) => {
 
     const defineChildrens = () => {
         const isSeveralChildrens = Array.isArray(props.children)
-        console.log("🚀 ~ file: index.tsx:37 ~ defineChildrens ~ props.children:", props.children)
-
         if (isSeveralChildrens) {
             const fndHeader = props.children.find((x: any) => x.props.id === 'header')
             const fndBody = props.children.find((x: any) => x.props.id === 'body')
@@ -66,15 +66,20 @@ export const DialogModal: React.FC<Props> = (props) => {
         <article className={updateCss}>
             <div className={`${css.content}`} >
 
-                {childrens.header && childrens.header}
+                <div>
+                    {childrens.header ?? (<h2>{props.title}</h2>)}
+                </div>
 
-                {childrens.body ?? (
-                    <h3>{props.message}</h3>
-                )}
+                <div>
+                    {childrens.body ?? (<h3>{props.message}</h3>)}
+                </div>
 
-                {childrens.footer ?? (
-                    <button onClick={props.onClose}>CERRAR</button>
-                )}
+                <div className={css.btnContainer}>
+                    {childrens.footer ?? (<>
+                        <button onClick={props.onCancel}>Cancelar</button>
+                        <button onClick={props.onAccept}>Aceptar</button>
+                    </>)}
+                </div>
 
             </div>
         </article>),

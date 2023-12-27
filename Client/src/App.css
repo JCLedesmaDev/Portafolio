@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Titillium+Web&display=swap');
+
 :root {
   /* Variables que re utilizaremos en el proyecto */
   --color-principal: #dc143c;
@@ -15,7 +17,8 @@
 
   --max-width: 75rem;
   --header-nav-height: 4rem;
-  --font: "Raleway", sans-serif;
+  /*--font: "Raleway", sans-serif;*/
+  --font: "Titillium Web", "Raleway";
 
   /* Background Degrade */
   --color-naranja-degrade: #ff6a0074;

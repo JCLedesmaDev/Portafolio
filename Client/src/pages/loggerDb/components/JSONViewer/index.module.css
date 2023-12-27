@@ -1,5 +1,4 @@
 .json-viewer {
-    width: 18.75rem;
     font-family: 'Arial', sans-serif;
     margin: 0.625rem;
     padding: 0.9375rem;
@@ -8,11 +7,15 @@
 }
 
 .json-attr {
-    width: 100%;
     font-size: .9rem;
     margin-top: .5rem;
 }
 
+.dialogBody{
+    width: 31.25rem;
+    max-height: 70vh;
+    overflow-y: auto;
+}
 
 /* Estilos específicos para diferentes niveles de anidamiento */
 .json-viewer.depth-0 {

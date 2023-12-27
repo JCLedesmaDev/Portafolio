@@ -6,61 +6,76 @@ import { DialogModal } from '@/components/index.components';
 
 
 const JSONViewerItem = (props: any) => {
-    const { name, value, depth } = props
+    const { name, value, depth, expandObj } = props
 
     const [expanded, setExpanded] = useState(false);
-    const toggleExpand = () => setExpanded(!expanded);
-    const typeData = Array.isArray(value) ? 'Array' : 'Object'
+    const toggleExpand = () => {
+        if (expandObj) setExpanded(!expanded)
+    };
 
     return (<>
         <div className={css['json-attr']}>
             {(typeof value === 'object')
                 ? (<>
                     <div style={{ cursor: 'pointer' }} onClick={toggleExpand}>
-                        <b>{expanded ? '-' : '+'} {name}:</b> {typeData}
+                        <b>{expanded ? '-' : '+'} {name}: </b>
+                        {Array.isArray(value) ? 'Array' : 'Object'}
                     </div>
-                    {expanded && (<JSONViewer data={value} depth={depth + 1} />)}
+                    {expanded && (
+                        <JSONViewer
+                            data={value}
+                            depth={depth + 1}
+                            openModal={false}
+                            expandObj={expandObj}
+                        />
+                    )}
                 </>)
                 : (<><b> {name}:</b> {value} </>)}
         </div>
-
     </>);
 };
 
-export const JSONViewer = ({ data, depth = 0 }: any) => {
+export const JSONViewer = ({ data, depth = 0, openModal = true, expandObj = false }: any) => {
     const [modal, setModal] = useState(false)
 
-    const showModal = (data: any) => {
-        console.log("🚀 ~ file: index.tsx:33 ~ showModal ~ data:", data)
-        setModal(true)
+    const showModal = () => {
+        if (openModal) setModal(true)
     }
-    const closeModal = () => setModal(false)
 
     return (<>
         <div className={`${css['json-viewer']} ${css[`depth-${depth}`]}`}
-            onClick={() => showModal(data)}>
+            onClick={showModal}>
             {Object.entries(data)?.map(([key, value]) => (
                 <JSONViewerItem
                     key={key}
                     name={key}
                     value={value}
                     depth={depth}
+                    expandObj={expandObj}
                 />
             ))}
         </div>
 
-        {/*<DialogModal isOpen={modal} onClose={() => setModal(false)}>
+        <DialogModal isOpen={modal}>
             <div id="header">
-                <div>asd</div>
-                ASd
+                <h2>Datos del Log</h2>
             </div>
 
-            <h1 id="body" style={{ width: '300px' }}>BODY</h1>
+            <div id="body" className={css.dialogBody}>
+                {Object.entries(data)?.map(([key, value]) => (
+                    <JSONViewerItem
+                        key={key}
+                        name={key}
+                        value={value}
+                        depth={depth}
+                        expandObj={true}
+                    />
+                ))}
+            </div>
 
             <div id='footer'>
-                footer
+                <button onClick={() => setModal(false)}>Cerrar</button>
             </div>
-        </DialogModal>*/}
-        <DialogModal isOpen={modal} onClose={closeModal} message='LALALALA' />
+        </DialogModal>
     </>)
 };
