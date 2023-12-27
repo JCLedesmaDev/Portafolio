@@ -10,3 +10,7 @@ export { evtEmitter } from './fwk-eventEmitter/index'
 
 import ui from './fwk-react-ui'
 export { ui }
+
+export { DialogModal } from './fwk-react-dialogModal'
+
+export { Paginate } from './fwk-react-paginate'

@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import css from './index.module.css'
-import { DialogModal } from '@/components/index.components';
+import { DialogModal } from '@/libraries/index.libraries';
 
 
 const JSONViewerItem = (props: any) => {

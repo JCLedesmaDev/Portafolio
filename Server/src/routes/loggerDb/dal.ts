@@ -12,7 +12,7 @@ const getAllLogerDb = async (opts: IFilterPagination): Promise<PaginateResult<IR
 
         const options: PaginateOptions = {
             page,
-            limit: 3,
+            limit: 10,
             populate: {
                 strictPopulate: false,
                 path: 'user' // hace referencia al nombre del attr.

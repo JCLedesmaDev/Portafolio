@@ -7,24 +7,47 @@ import { apiSrv } from "@/libraries/index.libraries";
 import mapper from '@/mappers/index.mappers'
 import { ILoggerDB } from '@/models/ILoggerDB.model';
 
+export interface IFilterSearch {
+    page: number;
+    filterText?: string
+}
+interface IPagination {
+    pagesTotal: number;
+    pageActual: number;
+}
+
 interface IStore {
     state: {
-        loggersDb: ILoggerDB[]
+        loggersDb: ILoggerDB[],
+        paginate: IPagination
     }
     actions: {
         setLoggersDb: (loggers: ILoggerDB[]) => void;
+        setPaginate: (data: IPagination) => void
         getAllLogersDb: () => Promise<boolean>
     }
 }
 
 const store = createWithEqualityFn<IStore>((set, get) => ({
     state: {
-        loggersDb: []
+        loggersDb: [],
+        paginate: {
+            pagesTotal: 0,
+            pageActual: 0
+        }
     },
     actions: {
         setLoggersDb: (loggers: ILoggerDB[]) => {
             set(produce((store: IStore) => {
                 store.state.loggersDb = loggers
+            }))
+        },
+        setPaginate: (data: any) => {
+            set(produce((store: IStore) => {
+                store.state.paginate = {
+                    pageActual: data.currentPage,
+                    pagesTotal: data.totalPages
+                }
             }))
         },
         getAllLogersDb: async () => {
@@ -37,11 +60,10 @@ const store = createWithEqualityFn<IStore>((set, get) => ({
                 },
                 options: { loader: true }
             })
-            console.log("🚀 ~ file: store.ts:34 ~ getAllLogersDb: ~ res:", res)
-            const loggersAdapted: ILoggerDB[] = mapper.registerLoggers(
-                res.user
-            );
+            const loggersAdapted: ILoggerDB[] = mapper.loggerDb(res.docs);
             get().actions.setLoggersDb(loggersAdapted)
+            get().actions.setPaginate(res)
+
             return res
         }
     }

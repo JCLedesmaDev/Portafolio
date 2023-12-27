@@ -8,11 +8,14 @@ const eventHandler = async (req: Request, res: Response, next: NextFunction) => 
         headers: req.headers,
         body: req.locals.info,
         params: req.params,
-        url: req.url
+        url: req.url,
+        method: req.method
     }
 
+    if (req.method === 'GET') return next()
+
     await logger.insertLoggerDb({
-        usrId: req.locals.usrId as string, 
+        usrId: req.locals.usrId as string,
         type: 'Evento',
         request: requestInfo,
         response: res.locals.result
