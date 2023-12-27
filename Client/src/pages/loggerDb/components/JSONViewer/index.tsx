@@ -49,11 +49,16 @@ export const JSONViewer = ({ data, depth = 0 }: any) => {
         </div>
 
         <DialogModal isOpen={modal} onClose={() => setModal(false)}>
-            <h1 id="body" style={{ width: '300px' }}>BODY</h1>
-            <div id="header">
+            {/*<div id="header">
                 <div>asd</div>
                 ASd
-            </div>
+            </div>*/}
+
+            <h1 id="body" style={{ width: '300px' }}>BODY</h1>
+
+            {/*<div id='footer'>
+                footer
+            </div>*/}
         </DialogModal>
     </>)
 };
