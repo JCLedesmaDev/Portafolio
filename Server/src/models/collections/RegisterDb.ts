@@ -4,7 +4,7 @@ import mongoosePaginate from 'mongoose-paginate-v2'
 
 const RegisterDbSchema = new Schema<IRegisterDbSchema>({
     type: { type: String, required: true },
-    date: { type: Date, required: true },
+    date: { type: String, required: true },
     request: { type: Object, required: true },
     response: { type: Object, required: true },
     user: { type: Types.ObjectId, ref: 'User', required: true }

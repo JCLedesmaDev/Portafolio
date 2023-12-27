@@ -49,7 +49,7 @@ export interface ICategorySchema extends Document, SoftDeleteInterface {
 export interface IRegisterDbSchema extends Document {
     type: string;
     user: ObjectId | IUserSchema;
-    date: Date;
+    date: String;
     request: object;
     response: object;
 }

@@ -19,7 +19,7 @@ const insertLoggerDb = async (infoLooger: ILogger) => {
 
         const registerData = {
             type: type,
-            date: new Date(),
+            date: new Date().toLocaleString(),
             request: request,
             response: response || {},
             user: new Types.ObjectId(usrId),

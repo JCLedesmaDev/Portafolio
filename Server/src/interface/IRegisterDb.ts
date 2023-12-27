@@ -3,7 +3,7 @@ import { IBase } from "./common/IBase";
 
 export interface IRegisterDb extends IBase {
     type: string;
-    date: Date;
+    date: String;
     request: object;
     response: object;
     user?: IUser;
