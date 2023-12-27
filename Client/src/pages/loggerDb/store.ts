@@ -38,7 +38,6 @@ const store = createWithEqualityFn<IStore>((set, get) => ({
                 options: { loader: true }
             })
             console.log("🚀 ~ file: store.ts:34 ~ getAllLogersDb: ~ res:", res)
-
             const loggersAdapted: ILoggerDB[] = mapper.registerLoggers(
                 res.user
             );
