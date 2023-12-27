@@ -1,9 +1,9 @@
 import express from "express";
-import UsersRoutes from './users'
-import SkillsRoutes from './skills'
-import ProjectsRoutes from './projects'
-import CategoryRoutes from './category'
-import LoggerDbRoutes from './loggerDb'
+import UsersRoutes from './users/routes'
+import SkillsRoutes from './skills/routes'
+import ProjectsRoutes from './projects/routes'
+import CategoryRoutes from './category/routes'
+import LoggerDbRoutes from './loggerDb/routes'
 
 const router = express.Router();
 
