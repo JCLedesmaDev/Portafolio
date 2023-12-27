@@ -1,3 +1,3 @@
 export interface IBase {
-    Id: string
+    id?: string
 }

@@ -27,17 +27,21 @@ export const LoggerDB: React.FC = () => {
 
             <div className={css.containerBoxs}>
                 {store.state.loggersDb.map((doc: any, index: number) => (
-                    <JSONViewer data={doc} key={index} />
+                    <div className={css.box}>
+                        <JSONViewer data={doc} key={index} />
+                    </div>
                 ))}
             </div>
 
-            <Paginate
-                btnNextText='Siguiente'
-                btnPreviousText='Anterior'
-                changePage={changePage}
-                pagesTotal={store.state.paginate.pagesTotal}
-                pageActual={store.state.paginate.pageActual}
-            />
+            <div>
+                <Paginate
+                    btnNextText='Siguiente'
+                    btnPreviousText='Anterior'
+                    changePage={changePage}
+                    pagesTotal={store.state.paginate.pagesTotal}
+                    pageActual={store.state.paginate.pageActual}
+                />
+            </div>
         </main>
     )
 }

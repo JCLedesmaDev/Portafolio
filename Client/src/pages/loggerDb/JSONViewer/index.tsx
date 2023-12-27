@@ -17,7 +17,7 @@ const JSONViewerItem = (props: any) => {
         <div className={css['json-attr']}>
             {(typeof value === 'object')
                 ? (<>
-                    <div style={{ cursor: 'pointer' }} onClick={toggleExpand}>
+                    <div onClick={toggleExpand}>
                         <b>{expanded ? '-' : '+'} {name}: </b>
                         {Array.isArray(value) ? 'Array' : 'Object'}
                     </div>

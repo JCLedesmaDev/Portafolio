@@ -4,6 +4,7 @@
     padding: 0.9375rem;
     border: 1px solid #ccc;
     border-radius: 5px;
+    cursor: pointer;
 }
 
 .json-attr {

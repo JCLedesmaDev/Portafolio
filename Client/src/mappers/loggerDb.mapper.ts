@@ -4,7 +4,7 @@ import { ILoggerDB } from '@/models/ILoggerDB.model';
 const singleLoggerDb = (resource: any): ILoggerDB => {
     const mapper: ILoggerDB = {
         Fecha: resource.date,
-        Usuario: resource.user,
+        Usuario: resource.user.email,
         Tipo: resource.type,
         Request: resource.request,
         Response: resource.response

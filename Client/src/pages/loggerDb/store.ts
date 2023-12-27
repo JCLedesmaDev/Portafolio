@@ -45,7 +45,7 @@ const store = createWithEqualityFn<IStore>((set, get) => ({
         setPaginate: (data: any) => {
             set(produce((store: IStore) => {
                 store.state.paginate = {
-                    pageActual: data.currentPage,
+                    pageActual: data.currentPage - 1,
                     pagesTotal: data.totalPages
                 }
             }))
