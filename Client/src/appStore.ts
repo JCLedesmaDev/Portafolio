@@ -68,5 +68,5 @@ const appStore = createWithEqualityFn<IStore>((set, get) => ({
 }), shallow)
 
 
-export const useAppStore = () => ({ ...appStore((state) => (state)) })
+//export const useAppStore = () => ({ ...appStore((state) => (state)) })
 export default appStore

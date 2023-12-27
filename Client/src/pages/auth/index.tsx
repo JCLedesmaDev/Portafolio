@@ -1,5 +1,5 @@
 import css from "./index.module.css"
-import useAuthUserStore from "./store";
+import useAuthStore from "./store";
 import { useEffect, useState } from "react"
 import { UserSVG } from "@/assets/UserSVG"
 import { useNavigate } from 'react-router-dom'
@@ -14,7 +14,7 @@ import { validator_Email, validator_Passowrd } from './validators'
 export const Auth: React.FC = () => {
 
     const [disabledBtn, setDisabledBtn] = useState<boolean>(true)
-    const store = useAuthUserStore()
+    const store = useAuthStore()
     const navigate = useNavigate()
 
     /// METODOS

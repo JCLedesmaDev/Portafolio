@@ -41,4 +41,5 @@ const store = createWithEqualityFn<IStore>((set, get) => {
     }
 }, shallow)
 
+//export const useAuthStore = () => ({ ...store((state) => (state)) })
 export default store

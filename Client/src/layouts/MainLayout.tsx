@@ -5,7 +5,7 @@ import { ui } from '@/libraries/index.libraries';
 
 import { useState } from 'react';
 import { MenuSVG } from '@/assets/MenuSVG';
-import { useAppStore } from '@/appStore';
+import useAppStore from '@/appStore';
 
 import image from '@/assets/rocket-page-logo.png'
 import Project from '@/assets/project.png'

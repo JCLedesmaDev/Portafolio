@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { useEffect, useState } from 'react';
 import { ui } from '@/libraries/index.libraries';
-import { JSONViewer } from './components/JSONViewer';
+import { JSONViewer } from './JSONViewer';
 import css from './index.module.css'
 
 export const LoggerDB: React.FC = () => {
