@@ -51,7 +51,8 @@ const loginUser = controllerWrapper(async (req: Request, res: Response) => {
 const logOutUser = controllerWrapper(async (req: Request, res: Response) => {
     res.clearCookie('jwt')
     res.clearCookie('infoUsr')
-    return true
+    const data = logic.logOutUser()
+    return data
 })
 
 

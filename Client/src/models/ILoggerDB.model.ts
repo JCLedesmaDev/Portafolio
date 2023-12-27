@@ -1,7 +1,7 @@
 import { IUserModel } from "./IUser.model"
 import { IBase } from "./common/IBase";
 
-export interface IRegisterDbModel extends IBase {
+export interface ILoggerDB extends IBase {
     Tipo: string;
     Usuario: IUserModel;
     Fecha: Date;

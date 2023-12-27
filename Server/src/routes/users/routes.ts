@@ -9,7 +9,7 @@ const router = express.Router();
 
 router.post('/login', validatorLoginRequest, controller.loginUser);
 
-router.post('/logOut', controller.logOutUser);
+router.get('/logOut', controller.logOutUser);
 
 router.get('/getUser', controller.getUser);
 

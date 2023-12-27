@@ -32,7 +32,7 @@ const appStore = createWithEqualityFn<IStore>((set, get) => ({
     },
     actions: {
         setUser: (user: IUserModel) => {
-            magnamentStorage.set("User", user)
+            magnamentStorage.set("user", user)
             set(produce((store: IStore) => {
                 store.state.user = user
             }))

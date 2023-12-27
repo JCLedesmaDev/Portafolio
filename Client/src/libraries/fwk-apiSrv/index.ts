@@ -59,7 +59,7 @@ export const apiSrv = {
                         error.message = 'La solicitud HTTP no pudo completarse debido a un problema de red.'
                     }
                 }
-                return Promise.reject(error);
+                return Promise.reject(error.response);
             }
         )
     },

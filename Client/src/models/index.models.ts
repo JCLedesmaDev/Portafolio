@@ -1,7 +1,7 @@
 export type { IUserModel } from './IUser.model'
 export type { ITechnologyModel } from './ITechnology.model'
 export type { ISkillModel } from './ISkill.model'
-export type { IRegisterDbModel } from './IRegisterDb.model'
+export type { IRegisterDbModel } from './ILoggerDB.model'
 export type { IProjectModel } from './IProject.model'
 export type { IFileRequestModel } from './IFileRequest.model'
 export type { IColaboratorModel } from './IColaborator.model'

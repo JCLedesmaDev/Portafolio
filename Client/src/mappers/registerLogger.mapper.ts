@@ -1,8 +1,8 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { IRegisterDbModel } from '@/models/IRegisterDb.model';
+import { ILoggerDB } from '@/models/ILoggerDB.model';
 
-export const registerLogger = (resource: any): IRegisterDbModel => {
-    const mapper: IRegisterDbModel = {
+const singleRegisterLogger = (resource: any): ILoggerDB => {
+    const mapper: ILoggerDB = {
         Fecha: resource.date,
         Id: resource.id,
         Usuario: resource.user,
@@ -11,4 +11,8 @@ export const registerLogger = (resource: any): IRegisterDbModel => {
         Response: resource.response
     }
     return mapper
+}
+
+export const registerLoggers = (resource: any[]): ILoggerDB[] => {
+    return resource.map(x => singleRegisterLogger(x))
 }

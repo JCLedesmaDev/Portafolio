@@ -6,6 +6,6 @@ const router = express.Router();
 
 router.use(authHandler)
 
-router.get('/getAllLogerDb', controller.getAllLogerDb);
+router.get('/getAll', controller.getAllLogerDb);
 
 export default router;

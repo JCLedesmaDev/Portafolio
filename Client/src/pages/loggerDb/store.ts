@@ -1,43 +1,51 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { createWithEqualityFn } from "zustand/traditional";
+import produce from "immer";
 import { shallow } from "zustand/shallow";
 
 import { apiSrv } from "@/libraries/index.libraries";
-import { ILoginDtoRequest } from './interface/ILoginRequest.dto';
 import mapper from '@/mappers/index.mappers'
-import { IUserModel } from '@/models/IUser.model';
-import appStore from "@/appStore";
-import { magnamentStorage } from '@/utils/index.utils';
+import { ILoggerDB } from '@/models/ILoggerDB.model';
 
 interface IStore {
+    state: {
+        loggersDb: ILoggerDB[]
+    }
     actions: {
-        getRegisterLogger: () => Promise<boolean>
+        setLoggersDb: (loggers: ILoggerDB[]) => void;
+        getAllLogersDb: () => Promise<boolean>
     }
 }
 
-const store = createWithEqualityFn<IStore>((set, get) => {
-    return {
-        actions: {
-            getRegisterLogger: async () => {
-                //const res = await apiSrv.callBackEnd({
-                //    preCallback: async () => {
-                //        return await apiSrv.callSrv({
-                //            method: 'POST',
-                //            path: '/users/login',
-                //            data: payload
-                //        })
-                //    },
-                //    options: { loader: true }
-                //})
+const store = createWithEqualityFn<IStore>((set, get) => ({
+    state: {
+        loggersDb: []
+    },
+    actions: {
+        setLoggersDb: (loggers: ILoggerDB[]) => {
+            set(produce((store: IStore) => {
+                store.state.loggersDb = loggers
+            }))
+        },
+        getAllLogersDb: async () => {
+            const res = await apiSrv.callBackEnd({
+                preCallback: async () => {
+                    return await apiSrv.callSrv({
+                        method: 'GET',
+                        path: '/loggerDb/getAll'
+                    })
+                },
+                options: { loader: true }
+            })
+            console.log("🚀 ~ file: store.ts:34 ~ getAllLogersDb: ~ res:", res)
 
-                //const userAdapted: IUserModel = mapper.user(res.user);
-                //magnamentStorage.set('user', userAdapted)
-                //appStore.getState().actions.setUser(userAdapted)
-
-                //return res
-            }
+            const loggersAdapted: ILoggerDB[] = mapper.registerLoggers(
+                res.user
+            );
+            get().actions.setLoggersDb(loggersAdapted)
+            return res
         }
     }
-}, shallow)
+}), shallow)
 
 export default store

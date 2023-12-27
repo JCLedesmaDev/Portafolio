@@ -7,12 +7,10 @@ import { ILoginDtoRequest } from './interface/ILoginRequest.dto';
 import mapper from '@/mappers/index.mappers'
 import { IUserModel } from '@/models/IUser.model';
 import appStore from "@/appStore";
-import { magnamentStorage } from '@/utils/index.utils';
 
 interface IStore {
     actions: {
         login: (payload: ILoginDtoRequest) => Promise<boolean>
-        getUser: () => Promise<any>
     }
 }
 
@@ -32,9 +30,7 @@ const store = createWithEqualityFn<IStore>((set, get) => {
                 })
 
                 const userAdapted: IUserModel = mapper.user(res.user);
-                magnamentStorage.set('user', userAdapted)
                 appStore.getState().actions.setUser(userAdapted)
-
                 return res
             }
         }

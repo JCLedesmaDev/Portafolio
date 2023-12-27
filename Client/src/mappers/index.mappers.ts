@@ -1,7 +1,9 @@
+import { registerLoggers } from './registerLogger.mapper'
 import { user } from './user.mapper'
 
 const mappers = {
-    user
+    user,
+    registerLoggers
 }
 
 export default mappers

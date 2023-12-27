@@ -35,8 +35,8 @@ const loginUser = tryCatchWrapper(async (payload: ILoginDtoRequest) => {
 
     const response: ILoginDtoResponse = {
         token: jwt.tokenSign({
-            _id: user._id, 
-            userAgent: payload.userAgent, 
+            _id: user._id,
+            userAgent: payload.userAgent,
             remoteAddress: payload.remoteAddress,
         }),
         user: mappers.user(user)
@@ -47,6 +47,13 @@ const loginUser = tryCatchWrapper(async (payload: ILoginDtoRequest) => {
         data: response
     })
 })
+
+const logOutUser = tryCatchWrapper(async () => {
+    return responseMessage.success<boolean>({
+        data: true
+    })
+})
+
 
 const getUser = tryCatchWrapper(async () => {
     const user = await externalDb.getUserByField({
@@ -81,7 +88,7 @@ const updateUser = tryCatchWrapper(async (payload: IUpdateUserRequest) => {
     }
 
     const userUpdate = await externalDb.updateUser(payload)
-    
+
     if (userUpdate && payload.imageProfile && user.imageProfile !== '') {
         deleteFile(user.imageProfile)
     }
@@ -94,4 +101,4 @@ const updateUser = tryCatchWrapper(async (payload: IUpdateUserRequest) => {
 
 
 
-export default { loginUser, getUser, updateUser }
+export default { loginUser, logOutUser, getUser, updateUser }
