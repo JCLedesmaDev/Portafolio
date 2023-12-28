@@ -1,4 +1,3 @@
-import { tryCatchWrapper } from "@utils/tryCatchWrapper"
 import externalDb from './dal'
 import externalDbUser from "@src/routes/users/dal"
 import mappers from "@mappers/index.mappers"
@@ -11,7 +10,7 @@ import { deleteFile } from "@utils/deleteFile"
 import { ISkillSchema, ITechnologySchema } from "@models/ICollections"
 
 
-const addTechnology = tryCatchWrapper(async (payload: IAddTechnologyRequest) => {
+const addTechnology = async (payload: IAddTechnologyRequest) => {
 
     let skillUser = {} as ISkillSchema | null
 
@@ -60,10 +59,10 @@ const addTechnology = tryCatchWrapper(async (payload: IAddTechnologyRequest) => 
         message: 'Ha creado una tecnologia exitosamente!',
         data: response
     })
-})
+}
 
-const updateTechnology = tryCatchWrapper(async (payload: IUpdateTechnologyRequest) => {
-   
+const updateTechnology = async (payload: IUpdateTechnologyRequest) => {
+
     const findTechnology = await externalDb.findTechnologyByFields({
         name: payload.name
     })
@@ -97,9 +96,9 @@ const updateTechnology = tryCatchWrapper(async (payload: IUpdateTechnologyReques
         message: 'Se edito correctamente!',
         data: response
     })
-})
+}
 
-const deleteTechnology = tryCatchWrapper(async (payload: IDeleteTechnologyRequest) => {
+const deleteTechnology = async (payload: IDeleteTechnologyRequest) => {
     const findTechnology = await externalDb.findTechnologyByFields({
         _id: payload.idTechnology
     })
@@ -133,7 +132,7 @@ const deleteTechnology = tryCatchWrapper(async (payload: IDeleteTechnologyReques
     return responseMessage.success({
         message: 'Se elimino correctamente!',
     })
-})
+}
 
 
 export default {

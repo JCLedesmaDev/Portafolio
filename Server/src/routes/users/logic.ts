@@ -4,14 +4,13 @@ import bcrypt from "@utils/bcryptPassword"
 import mappers from "@mappers/index.mappers"
 import { deleteFile } from '@utils/deleteFile';
 import responseMessage from "@utils/responseMessage"
-import { tryCatchWrapper } from "@utils/tryCatchWrapper"
 import { ApplicationError } from "@utils/applicationError"
 import externalDb from "./dal"
 import { ILoginDtoRequest, ILoginDtoResponse } from './dto/login.dto';
 import { IGetUserResponse } from './dto/getUser.dto';
 import { IUpdateUserRequest } from './dto/updateUser.dto';
 
-const loginUser = tryCatchWrapper(async (payload: ILoginDtoRequest) => {
+const loginUser = async (payload: ILoginDtoRequest) => {
 
     const user = await externalDb.getUserByField({
         email: payload.email
@@ -46,16 +45,13 @@ const loginUser = tryCatchWrapper(async (payload: ILoginDtoRequest) => {
         message: 'Ha iniciado sesion correctamente!',
         data: response
     })
-})
+}
 
-const logOutUser = tryCatchWrapper(async () => {
-    return responseMessage.success<boolean>({
-        data: true
-    })
-})
+const logOutUser = async () => {
+    return responseMessage.success<boolean>({ data: true })
+}
 
-
-const getUser = tryCatchWrapper(async () => {
+const getUser = async () => {
     const user = await externalDb.getUserByField({
         email: config.get("email_admin")
     });
@@ -73,9 +69,9 @@ const getUser = tryCatchWrapper(async () => {
     return responseMessage.success<IGetUserResponse>({
         data: response
     })
-})
+}
 
-const updateUser = tryCatchWrapper(async (payload: IUpdateUserRequest) => {
+const updateUser = async (payload: IUpdateUserRequest) => {
 
     const user = await externalDb.getUserByField({
         _id: payload.idUser
@@ -96,7 +92,7 @@ const updateUser = tryCatchWrapper(async (payload: IUpdateUserRequest) => {
     return responseMessage.success({
         message: 'Se edito correctamente!',
     })
-})
+}
 
 
 

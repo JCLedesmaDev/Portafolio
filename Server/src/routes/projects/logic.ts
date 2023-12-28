@@ -1,7 +1,6 @@
 import mappers from "@mappers/index.mappers";
 import externalDbUser from "@src/routes/users/dal"
 import responseMessage from "@utils/responseMessage";
-import { tryCatchWrapper } from "@utils/tryCatchWrapper";
 import { ApplicationError } from "@utils/applicationError";
 import { IAddProjectRequest, IAddProjectResponse } from "./dto/addProject.dto";
 import externalDb from './dal'
@@ -11,7 +10,7 @@ import { IUpdateProjectRequest, IUpdateProjectResponse } from "./dto/updateProje
 import { IProjectSchema } from "@models/ICollections";
 
 
-const addProject = tryCatchWrapper(async (payload: IAddProjectRequest) => {
+const addProject = async (payload: IAddProjectRequest) => {
     const fndProject = await externalDb.findProjectByField({
         name: payload.name
     })
@@ -33,9 +32,9 @@ const addProject = tryCatchWrapper(async (payload: IAddProjectRequest) => {
         message: 'Ha creado una tecnologia exitosamente!',
         data: response
     })
-})
+}
 
-const deleteProject = tryCatchWrapper(async (payload: IDeleteProjectRequest) => {
+const deleteProject = async (payload: IDeleteProjectRequest) => {
     const fndProject = await externalDb.findProjectByField({
         _id: payload.idProject
     })
@@ -56,9 +55,9 @@ const deleteProject = tryCatchWrapper(async (payload: IDeleteProjectRequest) => 
     return responseMessage.success({
         message: 'Se elimino correctamente!',
     })
-})
+}
 
-const updateProject = tryCatchWrapper(async (payload: IUpdateProjectRequest) => {
+const updateProject = async (payload: IUpdateProjectRequest) => {
     const fndProject = await externalDb.findProjectByField({
         _id: payload.idProject
     })
@@ -77,7 +76,7 @@ const updateProject = tryCatchWrapper(async (payload: IUpdateProjectRequest) => 
         })
     }
 
-    const response : IUpdateProjectResponse = {
+    const response: IUpdateProjectResponse = {
         project: mappers.singleProject(projectUpdate as IProjectSchema)
     }
 
@@ -85,7 +84,7 @@ const updateProject = tryCatchWrapper(async (payload: IUpdateProjectRequest) => 
         message: 'Se edito exitosamente!',
         data: response
     })
-})
+}
 
 export default {
     addProject,

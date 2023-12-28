@@ -4,11 +4,11 @@ interface IRequestMessage<TypeData> {
     data?: TypeData
 }
 
-interface IResponseMessage<typeData> {
+export interface IResponseMessage<typeData> {
     info: {
         type: string;
+        data: typeData
         msg?: string;
-        data?: typeData
     }
 }
 
@@ -18,9 +18,9 @@ interface IResponseMessage<typeData> {
  * @params typeData: Se pasa por parametro el tipo de dato que sera "data"
  * @returns Objeto generico de respuesta.
  */
-const success = <typeData>(info: IRequestMessage<typeData>): IResponseMessage<typeData> => {
+const success = <typeData> (info: IRequestMessage<typeData>): IResponseMessage<typeData> => {
     const { data, message } = info
-    
+
     return response<typeData>({ typeResponse: 'success', message, data })
 }
 
@@ -30,7 +30,7 @@ const success = <typeData>(info: IRequestMessage<typeData>): IResponseMessage<ty
  * @params typeData: Se pasa por parametro el tipo de dato que sera "data"
  * @returns Objeto generico de respuesta.
  */
-const error = <typeData>(info: IRequestMessage<typeData>): IResponseMessage<typeData> => {
+const error = <typeData> (info: IRequestMessage<typeData>): IResponseMessage<typeData> => {
     const { data, message } = info
 
     return response<typeData>({ typeResponse: 'error', message, data })
@@ -42,14 +42,14 @@ interface IRequestMethod<TypeData> extends IRequestMessage<TypeData> {
     typeResponse: string
 }
 
-const response = <typeData>(infoResponse: IRequestMethod<typeData>): IResponseMessage<typeData> => {
+const response = <typeData> (infoResponse: IRequestMethod<typeData>): IResponseMessage<typeData> => {
     const { data, message, typeResponse } = infoResponse
-    
+
     return {
         info: {
             type: typeResponse,
+            data: data as typeData,
             ...(message && { msg: message }),
-            ...(data && { data: data as typeData })
         },
     }
 }

@@ -1,3 +1,5 @@
+import 'express-async-errors';
+
 import express, { Express } from 'express';
 import 'module-alias/register';
 import cookieParser from 'cookie-parser'

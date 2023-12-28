@@ -1,6 +1,5 @@
 import mappers from "@mappers/index.mappers";
 import responseMessage from "@utils/responseMessage";
-import { tryCatchWrapper } from "@utils/tryCatchWrapper";
 import { ApplicationError } from "@utils/applicationError";
 import externalDb from './dal'
 import { ICategorySchema } from "@models/ICollections";
@@ -10,7 +9,7 @@ import { IUpdateCategoryRequest, IUpdateCategoryResponse } from "./dto/updateCat
 import { IGetCategoryResponse } from "./dto/getCategory.dto";
 
 
-const getAll = tryCatchWrapper(async () => {
+const getAll = async () => {
 
     const listCategories = await externalDb.getAll()
 
@@ -21,9 +20,9 @@ const getAll = tryCatchWrapper(async () => {
     return responseMessage.success<IGetCategoryResponse>({
         data: response
     })
-})
+}
 
-const addCategory = tryCatchWrapper(async (payload: IAddCaterogyRequest) => {
+const addCategory = async (payload: IAddCaterogyRequest) => {
     const fndProject = await externalDb.findCategoryByField({
         name: payload.name
     })
@@ -44,9 +43,9 @@ const addCategory = tryCatchWrapper(async (payload: IAddCaterogyRequest) => {
         message: 'Ha creado una categoria exitosamente!',
         data: response
     })
-})
+}
 
-const deleteCategory = tryCatchWrapper(async (payload: IDeleteCategoryRequest) => {
+const deleteCategory = async (payload: IDeleteCategoryRequest) => {
     const fndProject = await externalDb.findCategoryByField({
         _id: payload.idCategory
     })
@@ -62,9 +61,9 @@ const deleteCategory = tryCatchWrapper(async (payload: IDeleteCategoryRequest) =
     return responseMessage.success({
         message: 'Se elimino correctamente!',
     })
-})
+}
 
-const updateCategory = tryCatchWrapper(async (payload: IUpdateCategoryRequest) => {
+const updateCategory = async (payload: IUpdateCategoryRequest) => {
     const fndProject = await externalDb.findCategoryByField({
         _id: payload.idCategory
     })
@@ -86,7 +85,7 @@ const updateCategory = tryCatchWrapper(async (payload: IUpdateCategoryRequest) =
         message: 'Se edito exitosamente!',
         data: response
     })
-})
+}
 
 export default {
     getAll,

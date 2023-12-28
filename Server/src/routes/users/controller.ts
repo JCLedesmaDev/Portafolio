@@ -8,6 +8,7 @@ import { IUpdateUserRequest } from "./dto/updateUser.dto";
 
 
 const loginUser = controllerWrapper(async (req: Request, res: Response) => {
+
     //Almacenamos en "payload", los datos que cumplieron con el Validators y evita captar datos extras sin contemplar
     const payload = matchedData(req) as ILoginDtoRequest
 
@@ -18,47 +19,43 @@ const loginUser = controllerWrapper(async (req: Request, res: Response) => {
 
     req.locals.info = payload // Se utiliza en el eventHandler
 
-    const data = await logic.loginUser(payload)
+    const data: any = await logic.loginUser(payload)
 
     req.locals.usrId = data.info.data.user.id
 
-    if (!data?.error) {
-        res.cookie('jwt', data.info.data.token, {
-            // No accesible desde JavaScript en el cliente
-            httpOnly: true,
-            // Al pasar este tiempo, desaparece automaticamente en el navegador
-            expires: new Date(Date.now() + eval(config.get('expire_cookie'))),
-            signed: true, // Firma la cookie con una clave secreta.
-            sameSite: "strict"
-        })
+    res.cookie('jwt', data.info.data.token, {
+        // No accesible desde JavaScript en el cliente
+        httpOnly: true,
+        // Al pasar este tiempo, desaparece automaticamente en el navegador
+        expires: new Date(Date.now() + eval(config.get('expire_cookie'))),
+        signed: true, // Firma la cookie con una clave secreta.
+        sameSite: "strict"
+    })
 
-        res.cookie('infoUsr', data.info.data.user.id, {
-            // No accesible desde JavaScript en el cliente
-            httpOnly: true,
-            // Al pasar este tiempo, desaparece automaticamente en el navegador
-            expires: new Date(Date.now() + eval(config.get('expire_cookie'))),
-            signed: true, // Firma la cookie con una clave secreta.
-            sameSite: "strict"
-        })
+    res.cookie('infoUsr', data.info.data.user.id, {
+        // No accesible desde JavaScript en el cliente
+        httpOnly: true,
+        // Al pasar este tiempo, desaparece automaticamente en el navegador
+        expires: new Date(Date.now() + eval(config.get('expire_cookie'))),
+        signed: true, // Firma la cookie con una clave secreta.
+        sameSite: "strict"
+    })
 
-        delete data.info.data.user.id
-        delete data.info.data.token
-    }
+    delete data.info.data.user.id
+    delete data.info.data.token
+
     return data
 })
 
 const logOutUser = controllerWrapper(async (req: Request, res: Response) => {
     res.clearCookie('jwt')
     res.clearCookie('infoUsr')
-    const data = logic.logOutUser()
-    return data
+    return logic.logOutUser()
 })
 
-
 const getUser = controllerWrapper(async (req: Request) => {
-    const data = await logic.getUser()
+    const data: any = await logic.getUser()
     delete data.info.data.user.id
-
     return data
 })
 
