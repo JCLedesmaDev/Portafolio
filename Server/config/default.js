@@ -7,7 +7,7 @@ module.exports = {
     jwt_secret: 'claveSuperSecreta',
     expire_jwt: '1000*60*30', // 30 min
 
-    expire_cookie: '1000*60*30', // 30 min
+    expire_cookie: '1000*60*1', // 30 min
     cookie_secret: 'claveSuperSecreta'
 }
 

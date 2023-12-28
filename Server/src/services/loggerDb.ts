@@ -16,29 +16,20 @@ interface ILogger {
  * Crea un registro en la BD con los parametros ingresados.
  * @param infoLooger  usuarioId: string; tipo: string; request: any; response: any; 
  */
-const insertLoggerDb = async (infoLooger: ILogger) => {
-    try {
-        const { usrId, method, url, type, request, response } = infoLooger
+const insertLoggerDb = (infoLooger: ILogger) => {
+    const { usrId, method, url, type, request, response } = infoLooger
 
-        const registerData = {
-            type: type,
-            method: method,
-            url: url,
-            date: new Date().toLocaleString(),
-            request: request,
-            response: response || {},
-            user: usrId ? new Types.ObjectId(usrId) : 'undefined',
-        }
-
-        await collections.LoggerDb.create(registerData)
-    } catch (error) {
-        throw new ApplicationError({
-            message: "Ocurrio un error al querer loggear la info.",
-            source: error
-        });
+    const registerData = {
+        type: type,
+        method: method,
+        url: url,
+        date: new Date().toLocaleString(),
+        request: request,
+        response: response || {},
+        user: usrId ? new Types.ObjectId(usrId) : undefined,
     }
+
+    collections.LoggerDb.create(registerData)
 }
 
-export default {
-    insertLoggerDb
-}
+export default { insertLoggerDb }
