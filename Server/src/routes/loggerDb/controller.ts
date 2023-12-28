@@ -10,7 +10,8 @@ const getAllLogerDb = controllerWrapper(async (req: Request) => {
     } as IFilterPagination
 
     req.locals.info = payload
-    
+    req.locals.notLogs = true
+
     return await logic.getAllLogerDb(payload)
 });
 

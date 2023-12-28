@@ -17,6 +17,7 @@ declare namespace Express {
       info: any;
       result: any;
       finished: boolean;
+      notLogs: boolean
     };
 
     files: any;

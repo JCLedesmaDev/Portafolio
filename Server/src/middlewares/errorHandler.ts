@@ -8,27 +8,28 @@ const errorHandler = async (err: ApplicationError, req: Request, res: Response, 
         headers: req.headers,
         body: req.locals?.info,
         params: req.params,
-        url: req.url
     }
     const responseInfo = {
         ...err,
         stack: err.stack
-    }    
+    }
     try {
         console.log("🚀 ---------------------------------------------------")
         console.log("🚀 ~ file: errorHandler.ts:8 ~ errorHandler ~ err", err)
         console.log("🚀 ---------------------------------------------------")
 
-        if (err.source) { 
+        if (err.source) {
             // Solo mandara registro a la BD, cuando sea un error proveniente de la asincronia
             await logger.insertLoggerDb({
                 usrId: req.locals.usrId as string,
                 type: 'Error',
+                url: req.url,
+                method: req.method,
                 request: requestInfo,
                 response: responseInfo
             })
         }
-        return res.status(err.status).json(
+        res.status(err.status).json(
             responseMessage.error<any>({ message: err.message })
         )
     } catch (error: any) {
@@ -39,15 +40,21 @@ const errorHandler = async (err: ApplicationError, req: Request, res: Response, 
                 stack: error.stack
             }
         }
+        try {
+            await logger.insertLoggerDb({
+                usrId: req.locals.usrId as string,
+                type: 'Error',
+                url: req.url,
+                method: req.method,
+                request: requestInfo,
+                response: errorInfo
+            })
+        } catch (error) {
+            console.log("🚀~ errorHandler ~ error:", error)
+        }
         res.status(500).json(responseMessage.error({
             message: 'Ocurrio un error interno. En breve estara resuelto'
         }))
-        return await logger.insertLoggerDb({
-            usrId: req.locals.usrId as string,  
-            type: 'Error',
-            request: requestInfo,
-            response: errorInfo
-        })
     }
 }
 

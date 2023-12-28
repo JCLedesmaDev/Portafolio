@@ -46,10 +46,12 @@ export interface ICategorySchema extends Document, SoftDeleteInterface {
     name: string;
 }
 
-export interface IRegisterDbSchema extends Document {
+export interface ILoggerDbSchema extends Document {
     type: string;
     user: ObjectId | IUserSchema;
-    date: String;
+    date: string;
+    url: string;
+    method: string;
     request: object;
     response: object;
 }

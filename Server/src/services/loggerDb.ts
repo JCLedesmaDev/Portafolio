@@ -3,8 +3,11 @@ import { ApplicationError } from "@utils/applicationError";
 import { Types } from "mongoose";
 
 interface ILogger {
-    usrId: string;
     type: string;
+    method: string;
+    url: string;
+    usrId: string;
+
     request: any;
     response: any;
 }
@@ -15,17 +18,19 @@ interface ILogger {
  */
 const insertLoggerDb = async (infoLooger: ILogger) => {
     try {
-        const { usrId, type, request, response } = infoLooger
+        const { usrId, method, url, type, request, response } = infoLooger
 
         const registerData = {
             type: type,
+            method: method,
+            url: url,
             date: new Date().toLocaleString(),
             request: request,
             response: response || {},
-            user: new Types.ObjectId(usrId),
+            user: usrId ? new Types.ObjectId(usrId) : 'undefined',
         }
 
-        await collections.RegisterDb.create(registerData)
+        await collections.LoggerDb.create(registerData)
     } catch (error) {
         throw new ApplicationError({
             message: "Ocurrio un error al querer loggear la info.",

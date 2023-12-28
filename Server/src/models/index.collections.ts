@@ -1,5 +1,5 @@
 
-import RegisterDb from './collections/RegisterDb'
+import LoggerDb from './collections/LoggerDb'
 import Project from './collections/Project';
 import Technology from './collections/Technology';
 import User from './collections/User';
@@ -9,7 +9,7 @@ import Skill from './collections/Skill';
 const collections = {
     User,
     Project,
-    RegisterDb,
+    LoggerDb,
     Skill,
     Technology,
     Category

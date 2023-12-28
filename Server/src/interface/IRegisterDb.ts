@@ -1,10 +1,11 @@
-import { IUser } from "./IUser"
 import { IBase } from "./common/IBase";
 
 export interface IRegisterDb extends IBase {
     type: string;
-    date: String;
+    date: string;
+    url: string;
+    method: string;
     request: object;
     response: object;
-    user?: IUser;
+    user: string;
 }

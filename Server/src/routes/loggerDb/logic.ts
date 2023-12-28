@@ -12,7 +12,7 @@ const getAllLogerDb = tryCatchWrapper(async (payload: IFilterPagination) => {
 
     const listRegisterDbMapper: IGetAllLogerDbResponse = mappers.pagination<IRegisterDb[]>({
         resource: listRegisterDb,
-        callBackMapper: mappers.multipleRegisterDb
+        callBackMapper: mappers.multipleLoggerDb
     })
 
     return responseMessage.success<IGetAllLogerDbResponse>({
