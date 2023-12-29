@@ -1,7 +1,7 @@
 export interface ILoggerDB {
     Tipo: string;
     Usuario: string;
-    Fecha: Date;
+    Fecha: string;
     Url: string;
     Metodo: string;
     Request: object;

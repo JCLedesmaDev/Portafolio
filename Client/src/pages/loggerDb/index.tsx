@@ -10,15 +10,30 @@ export const LoggerDB: React.FC = () => {
     const storeUi = ui.useStoreUi()
     const store = useLoggerDbStore()
 
+    const getAllLoggersDb = (page: number = 1) => {
+        const fechaHasta = new Date()
+        const fechaDesde = new Date(fechaHasta)
+        fechaDesde.setDate(fechaDesde.getDate() - 2)
+        fechaDesde.setHours(0, 0, 0, 0)
+
+        store.actions.getAllLogersDb({
+            page,
+            limitPage: 10,
+            dateFrom: fechaDesde,
+            dateUntil: fechaHasta,
+            userId: '658d8d790b4915d7e98c834e',
+            typeEvent: '',
+        })
+    }
+
     const changePage = ({ selected }: any) => {
-        console.log("🚀 ~ file: index.tsx:15 ~ changePage ~ selected:", selected)
-        //    window.scrollTo(0, 0);
-        //    //getAllAlbumCollections(selected + 1)
+        console.log("🚀 ~ selected:", selected)
+        //getAllLoggersDb(selected + 1)
     }
 
     useEffect(() => {
         storeUi.actions.setTitleView('Logger DB')
-        store.actions.getAllLogersDb()
+        getAllLoggersDb()
     }, [])
 
     return (
@@ -27,7 +42,7 @@ export const LoggerDB: React.FC = () => {
 
             <div className={css.containerBoxs}>
                 {store.state.loggersDb.map((doc: any, index: number) => (
-                    <div className={css.box}>
+                    <div key={index} className={css.box}>
                         <JSONViewer data={doc} key={index} />
                     </div>
                 ))}

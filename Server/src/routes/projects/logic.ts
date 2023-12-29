@@ -15,11 +15,10 @@ const addProject = async (payload: IAddProjectRequest) => {
         name: payload.name
     })
 
-    if (fndProject === null) {
-        throw new ApplicationError({
-            message: 'Ya existe un proyecto con este nombre. Intentelo nuevamente'
-        })
-    }
+    if (fndProject === null) throw new ApplicationError({
+        message: 'Ya existe un proyecto con este nombre. Intentelo nuevamente'
+    })
+
 
     const newProject = await externalDb.addNewProject(payload)
     externalDbUser.addRefProjectToUser(newProject._id, payload.usrId)
@@ -39,11 +38,10 @@ const deleteProject = async (payload: IDeleteProjectRequest) => {
         _id: payload.idProject
     })
 
-    if (fndProject === null) {
-        throw new ApplicationError({
-            message: 'No existe un proyecto con este nombre. Intentelo nuevamente'
-        })
-    }
+    if (fndProject === null) throw new ApplicationError({
+        message: 'No existe un proyecto con este nombre. Intentelo nuevamente'
+    })
+
 
     const projectDelete = await externalDb.deleteProject(payload.idProject);
 
@@ -62,11 +60,10 @@ const updateProject = async (payload: IUpdateProjectRequest) => {
         _id: payload.idProject
     })
 
-    if (fndProject === null) {
-        throw new ApplicationError({
-            message: 'No existe un proyecto con este nombre. Intentelo nuevamente'
-        })
-    }
+    if (fndProject === null) throw new ApplicationError({
+        message: 'No existe un proyecto con este nombre. Intentelo nuevamente'
+    })
+
 
     const projectUpdate = await externalDb.updateProject(payload)
 

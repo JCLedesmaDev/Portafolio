@@ -1,13 +1,12 @@
 import { controllerWrapper } from "@utils/controllerWrapper";
 import { Request } from "express"
 import logic from './logic'
-import { IFilterPagination } from "@interface/pagination";
+import { matchedData } from 'express-validator';
+import { IGetAllLoggerDbRequest } from './dto/getAllLoggerDb.dto';
 
 const getAllLogerDb = controllerWrapper(async (req: Request) => {
-    const payload = {
-        page: req.query.page || 1,
-        filterText: req.query.filterText || ''
-    } as IFilterPagination
+
+    const payload = matchedData(req) as IGetAllLoggerDbRequest
 
     req.locals.info = payload
     req.locals.notLogs = true

@@ -6,15 +6,10 @@ import { shallow } from "zustand/shallow";
 import { apiSrv } from "@/libraries/index.libraries";
 import mapper from '@/mappers/index.mappers'
 import { ILoggerDB } from '@/models/ILoggerDB.model';
+import { IPagination } from '@/interface/IPagination';
+import { IFilterPaginationDb } from './interface/IFilterPaginationDb';
 
-export interface IFilterSearch {
-    page: number;
-    filterText?: string
-}
-interface IPagination {
-    pagesTotal: number;
-    pageActual: number;
-}
+
 
 interface IStore {
     state: {
@@ -24,7 +19,7 @@ interface IStore {
     actions: {
         setLoggersDb: (loggers: ILoggerDB[]) => void;
         setPaginate: (data: IPagination) => void
-        getAllLogersDb: () => Promise<boolean>
+        getAllLogersDb: (filters: IFilterPaginationDb) => Promise<boolean>
     }
 }
 
@@ -50,12 +45,13 @@ const store = createWithEqualityFn<IStore>((set, get) => ({
                 }
             }))
         },
-        getAllLogersDb: async () => {
+        getAllLogersDb: async (filters: IFilterPaginationDb) => {
             const res = await apiSrv.callBackEnd({
                 preCallback: async () => {
                     return await apiSrv.callSrv({
-                        method: 'GET',
-                        path: '/loggerDb/getAll'
+                        method: 'POST',
+                        path: '/loggerDb/getAll',
+                        data: filters
                     })
                 },
                 options: { loader: true }
@@ -70,3 +66,4 @@ const store = createWithEqualityFn<IStore>((set, get) => ({
 }), shallow)
 
 export default store
+

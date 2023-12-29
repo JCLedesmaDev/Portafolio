@@ -45,7 +45,9 @@ export const apiSrv = {
                 }
                 return request
             },
-            (error: AxiosError) => { return Promise.reject(error.request); }
+            (error: AxiosError) => {
+                return Promise.reject(error.request);
+            }
         )
         srv.interceptors.response.use(
             (response: AxiosResponse) => { return response; },
@@ -61,7 +63,7 @@ export const apiSrv = {
                         error.message = 'La solicitud HTTP no pudo completarse debido a un problema de red.'
                     }
                 }
-                return Promise.reject(error.response);
+                return Promise.reject(error.response || error);
             }
         )
     },
@@ -119,7 +121,9 @@ export const apiSrv = {
             const err = error as ICallSrvError
             err?.data?.info
                 ? res = err.data
-                : res = { info: { type: 'error', msg: err.message } }
+                : res = {
+                    info: { type: 'error', msg: err?.message }
+                }
         }
         return res
     }

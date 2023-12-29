@@ -27,11 +27,10 @@ const addCategory = async (payload: IAddCaterogyRequest) => {
         name: payload.name
     })
 
-    if (fndProject === null) {
-        throw new ApplicationError({
-            message: 'Ya existe una categoria con este nombre. Intentelo nuevamente'
-        })
-    }
+    if (fndProject === null) throw new ApplicationError({
+        message: 'Ya existe una categoria con este nombre. Intentelo nuevamente'
+    })
+
 
     const newProject = await externalDb.addNewCategory(payload)
 
@@ -50,11 +49,10 @@ const deleteCategory = async (payload: IDeleteCategoryRequest) => {
         _id: payload.idCategory
     })
 
-    if (fndProject === null) {
-        throw new ApplicationError({
-            message: 'No existe una categoria con este nombre. Intentelo nuevamente'
-        })
-    }
+    if (fndProject === null) throw new ApplicationError({
+        message: 'No existe una categoria con este nombre. Intentelo nuevamente'
+    })
+
 
     await externalDb.deleteCategory(payload.idCategory);
 
@@ -68,11 +66,10 @@ const updateCategory = async (payload: IUpdateCategoryRequest) => {
         _id: payload.idCategory
     })
 
-    if (fndProject === null) {
-        throw new ApplicationError({
-            message: 'No existe una categoria con este nombre. Intentelo nuevamente'
-        })
-    }
+    if (fndProject === null) throw new ApplicationError({
+        message: 'No existe una categoria con este nombre. Intentelo nuevamente'
+    })
+
 
     const categoryUpdate = await externalDb.updateCategory(payload)
 

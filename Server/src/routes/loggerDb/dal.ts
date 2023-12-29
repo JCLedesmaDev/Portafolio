@@ -1,27 +1,35 @@
-import { IFilterPagination } from "@interface/index.interfaces";
 import { ILoggerDbSchema } from "@models/ICollections"
 import collections from "@models/index.collections";
 import { ApplicationError } from "@utils/applicationError";
-import { FilterQuery, PaginateOptions, PaginateResult } from "mongoose";
+import { FilterQuery, PaginateOptions, PaginateResult, Types } from "mongoose";
+import { IGetAllLoggerDbRequest } from './dto/getAllLoggerDb.dto';
+import moment from 'moment';
 
 
 
-const getAllLogerDb = async (opts: IFilterPagination): Promise<PaginateResult<ILoggerDbSchema>> => {
+const getAllLogerDb = async (opts: IGetAllLoggerDbRequest): Promise<PaginateResult<ILoggerDbSchema>> => {
     try {
-        const { page, filterText = '' } = opts
+        const { page, typeEvent, dateFrom, dateUntil, userId, limitPage } = opts
 
         const options: PaginateOptions = {
-            page,
-            limit: 10,
+            page: Number(page),
+            limit: Number(limitPage),
             populate: {
                 strictPopulate: false,
                 path: 'user' // hace referencia al nombre del attr.
             }
         }
         const query: FilterQuery<ILoggerDbSchema> = {
-            ...((filterText !== '') && {
-                type: { $regex: new RegExp(filterText), $options: 'i' }
+            ...((typeEvent) && {
+                type: { $regex: new RegExp(typeEvent), $options: 'i' } //Valida que exista coincidencia de text
             }),
+            date: {
+                // Mayor o igual que la fecha de inicio
+                $gte: moment(dateFrom).unix() * 1000,
+                // Menor o igual que la fecha de fin
+                $lte: moment(dateUntil).unix() * 1000,
+            },
+            ...((userId) && { _id: new Types.ObjectId(userId) }) // Falla filtrado x Id
         }
         return await collections.LoggerDb.paginate(query, options)
     } catch (error) {

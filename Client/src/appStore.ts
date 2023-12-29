@@ -6,16 +6,6 @@ import { magnamentStorage } from "@/utils/index.utils";
 import { IUserModel } from '@/models/index.models';
 import mapper from '@/mappers/index.mappers'
 
-// export interface IFilterSearch {
-//     page: number;
-//     filterText?: string
-// }
-
-// interface IPagination {
-//     totalPages: number;
-//     currentPage: number;
-// }
-
 interface IStore {
     readonly state: {
         user: IUserModel;

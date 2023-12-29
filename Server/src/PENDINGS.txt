@@ -1,5 +1,4 @@
 
 ⏰ En cada metodo POST devolver el ID del nuevo registro
  
-
- ⏰ Revisar que pasa si quito el tryCatch de logic.js y solo me quedo con el del dal.js
+Eliminar la interface de PaginationREquest en todos lados y reemplazar por express-validator

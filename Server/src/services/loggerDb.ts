@@ -1,6 +1,6 @@
 import collections from "@models/index.collections"
-import { ApplicationError } from "@utils/applicationError";
 import { Types } from "mongoose";
+import moment from 'moment';
 
 interface ILogger {
     type: string;
@@ -23,7 +23,7 @@ const insertLoggerDb = (infoLooger: ILogger) => {
         type: type,
         method: method,
         url: url,
-        date: new Date().toLocaleString(),
+        date: moment().unix() * 1000, // Me devuelve en seg y hay que convertirlo en ms
         request: request,
         response: response || {},
         user: usrId ? new Types.ObjectId(usrId) : undefined,

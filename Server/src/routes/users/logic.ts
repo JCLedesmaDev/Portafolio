@@ -16,21 +16,17 @@ const loginUser = async (payload: ILoginDtoRequest) => {
         email: payload.email
     });
 
-    if (user === null) {
-        throw new ApplicationError({
-            message: 'Usuario inexistente. Intentelo nuevamente'
-        });
-    }
+    if (user === null) throw new ApplicationError({
+        message: 'Usuario inexistente. Intentelo nuevamente'
+    });
 
     const comparePassword = await bcrypt.compare(
         payload.password, user.password
     )
 
-    if (!comparePassword) {
-        throw new ApplicationError({
-            message: 'Contraseña incorrecta. Intentelo nuevamente'
-        })
-    }
+    if (!comparePassword) throw new ApplicationError({
+        message: 'Contraseña incorrecta. Intentelo nuevamente'
+    })
 
     const response: ILoginDtoResponse = {
         token: jwt.tokenSign({
@@ -56,11 +52,10 @@ const getUser = async () => {
         email: config.get("email_admin")
     });
 
-    if (user === null) {
-        throw new ApplicationError({
-            message: 'Usuario no encontrado.'
-        });
-    }
+    if (user === null) throw new ApplicationError({
+        message: 'Usuario no encontrado.'
+    });
+
 
     const response: IGetUserResponse = {
         user: mappers.user(user)
@@ -77,11 +72,9 @@ const updateUser = async (payload: IUpdateUserRequest) => {
         _id: payload.idUser
     });
 
-    if (user === null) {
-        throw new ApplicationError({
-            message: 'Usuario inexistente. Intentelo nuevamente'
-        });
-    }
+    if (user === null) throw new ApplicationError({
+        message: 'Usuario inexistente. Intentelo nuevamente'
+    });
 
     const userUpdate = await externalDb.updateUser(payload)
 

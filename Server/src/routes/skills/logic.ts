@@ -27,21 +27,19 @@ const addTechnology = async (payload: IAddTechnologyRequest) => {
         name: payload.name
     })
 
-    if (findTechnology !== null) {
-        throw new ApplicationError({
-            message: 'Ya existe una tecnologia con este nombre. Intentelo con otro.'
-        });
-    }
+    if (findTechnology !== null) throw new ApplicationError({
+        message: 'Ya existe una tecnologia con este nombre. Intentelo con otro.'
+    });
+
 
     const fndCategory = await externalDb.findCategoryByFields({
         _id: payload.idCategory
     })
 
-    if (fndCategory === null) {
-        throw new ApplicationError({
-            message: 'Categoria inexistente. Intentelo con otro.'
-        });
-    }
+    if (fndCategory === null) throw new ApplicationError({
+        message: 'Categoria inexistente. Intentelo con otro.'
+    });
+
 
     const newTechnology = await externalDb.addTechnology(payload);
 
@@ -67,21 +65,19 @@ const updateTechnology = async (payload: IUpdateTechnologyRequest) => {
         name: payload.name
     })
 
-    if (findTechnology === null) {
-        throw new ApplicationError({
-            message: 'Tecnologia inexistente. Intentelo con otro.'
-        });
-    }
+    if (findTechnology === null) throw new ApplicationError({
+        message: 'Tecnologia inexistente. Intentelo con otro.'
+    });
+
 
     const fndCategory = await externalDb.findCategoryByFields({
         _id: payload.idCategory
     })
 
-    if (fndCategory === null) {
-        throw new ApplicationError({
-            message: 'Categoria inexistente. Intentelo con otro.'
-        });
-    }
+    if (fndCategory === null) throw new ApplicationError({
+        message: 'Categoria inexistente. Intentelo con otro.'
+    });
+
 
     const technologyUpdate = await externalDb.updateTechnology(payload)
     if (technologyUpdate && payload.image && findTechnology.image !== '') {
@@ -103,11 +99,10 @@ const deleteTechnology = async (payload: IDeleteTechnologyRequest) => {
         _id: payload.idTechnology
     })
 
-    if (findTechnology === null) {
-        throw new ApplicationError({
-            message: 'Tecnologia inexistente. Intentelo con otro.'
-        });
-    }
+    if (findTechnology === null) throw new ApplicationError({
+        message: 'Tecnologia inexistente. Intentelo con otro.'
+    });
+
 
     const technologyDelete = await externalDb.deleteTechnology(payload);
 

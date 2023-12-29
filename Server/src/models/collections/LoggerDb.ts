@@ -4,7 +4,7 @@ import mongoosePaginate from 'mongoose-paginate-v2'
 
 const LoggerDbSchema = new Schema<ILoggerDbSchema>({
     type: { type: String, required: true },
-    date: { type: String, required: true },
+    date: { type: Number, required: true },
     url: { type: String, required: true },
     method: { type: String, required: true },
     request: { type: Object, required: true },
