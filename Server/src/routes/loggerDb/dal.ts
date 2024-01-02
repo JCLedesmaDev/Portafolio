@@ -29,7 +29,7 @@ const getAllLogerDb = async (opts: IGetAllLoggerDbRequest): Promise<PaginateResu
                 // Menor o igual que la fecha de fin
                 $lte: moment(dateUntil).unix() * 1000,
             },
-            ...((userId) && { _id: new Types.ObjectId(userId) }) // TODO: Falla filtrado x Id
+            ...((userId) && { user: userId })
         }
         return await collections.LoggerDb.paginate(query, options)
     } catch (error) {

@@ -1,9 +1,15 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { Paginate, ui } from '@/libraries/index.libraries';
 import useLoggerDbStore from './store'
-import { JSONViewer } from './JSONViewer';
+import { JSONViewer } from './components/jsonViewer';
 import css from './index.module.css'
+
+import DatePicker from 'react-date-picker';
+import 'react-date-picker/dist/DatePicker.css';
+import 'react-calendar/dist/Calendar.css';
+
+import Switch from "react-switch";
 
 export const LoggerDB: React.FC = () => {
 
@@ -18,7 +24,7 @@ export const LoggerDB: React.FC = () => {
 
         store.actions.getAllLogersDb({
             page,
-            limitPage: 10,
+            limitPage: 2,
             dateFrom: fechaDesde,
             dateUntil: fechaHasta,
             userId: '658d8d790b4915d7e98c834e',
@@ -31,14 +37,62 @@ export const LoggerDB: React.FC = () => {
         //getAllLoggersDb(selected + 1)
     }
 
+    const [toggleState, setToggle] = useState(false)
+    const handleToggle = () => {
+        setToggle(!toggleState)
+    };
+
+
     useEffect(() => {
         storeUi.actions.setTitleView('Logger DB')
         getAllLoggersDb()
     }, [])
 
+
     return (
         <main className={css.main}>
             <h3 className='sub-section-title'>Registros de Logs</h3>
+
+            <div>
+                <div>
+                    <label > Fecha desde: </label>
+                    <DatePicker
+                        onChange={(e: any) => console.log(e)}
+                        value={new Date()}
+                        monthPlaceholder="asdasd"
+                    />
+                </div>
+                <div>
+                    <label > Fecha hasta: </label>
+                    <DatePicker
+                        onChange={(e: any) => console.log(e)}
+                        value={new Date()}
+                        calendarAriaLabel="asdasd"
+                    />
+                </div>
+
+                <label htmlFor="material-switch">
+                    <span>Toggle wacho</span>
+                    <Switch
+                        checked={toggleState}
+                        onChange={handleToggle}
+                        onColor="#86d3ff"
+                        onHandleColor="#2693e6"
+                        handleDiameter={30}
+                        uncheckedIcon={false}
+                        checkedIcon={false}
+                        boxShadow="0px 1px 5px rgba(0, 0, 0, 0.6)"
+                        activeBoxShadow="0px 0px 1px 10px rgba(0, 0, 0, 0.2)"
+                        height={20}
+                        width={48}
+                        className="react-switch"
+                        id="material-switch"
+                    />
+                </label>
+            </div>
+
+
+
 
             <div className={css.containerBoxs}>
                 {store.state.loggersDb.map((doc: any, index: number) => (
