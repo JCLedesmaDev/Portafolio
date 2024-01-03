@@ -1,8 +1,9 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import React, { useEffect, useRef, useState } from "react";
-import { IInputProps, IInputData, IInputRules } from "../interface/index.interface";
+import { IInputProps } from "../interface/index.interface";
 import css from "./index.module.css";
 import { CheckCloseSVG } from '../svg/CheckCloseSVG';
+import { IRules } from '../interface/IRules';
 
 interface Props {
   props: IInputProps;
@@ -16,14 +17,23 @@ export const Input: React.FC<Props> = ({ props, className }) => {
 
   const refInput = useRef<any>()
   const [origVal, setOrigVal] = useState()
-  const [local, setLocal] = useState<IInputData>({
-    value: '',
-    dirty: false,
-    error: false,
-    messageError: ''
+  const [local, setLocal] = useState<IInputProps>({
+    data: {
+      value: '',
+      dirty: false,
+      error: false,
+      messageError: ''
+    },
+    autoComplete: 'false',
+    name: '',
+    type: 'text',
+    placeholder: '',
+    required: false,
+    icon: undefined,
+    handleChange: () => { }
   })
 
-  const [cmpRules, setCmpRules] = useState<IInputRules[]>([{
+  const [cmpRules, setCmpRules] = useState<IRules[]>([{
     fnCondition: (val) => !(props.required && !!val),
     messageError: 'Este campo es requerido.'
   }])
@@ -32,56 +42,70 @@ export const Input: React.FC<Props> = ({ props, className }) => {
 
   const initInput = () => {
     //console.log(`CONSTRUCTOR INPUT ${props.name}`)
-    props.rules.forEach(rule => {
+    props.rules?.forEach(rule => {
       setCmpRules((prevVal) => ([...prevVal, rule]))
     })
     setOrigVal(data.value)
-    setLocal({
-      value: data.value,
-      dirty: data.dirty,
-      error: data.error
-    })
+    setLocal(props)
   }
 
   const validateRules = () => {
     //console.log(`Rules INPUT ${props.name}`)
     for (const rule of cmpRules) {
 
-      if (rule.fnCondition(local.value)) {
-        setLocal((prevData) => ({
-          ...prevData, error: true, messageError: rule.messageError
+      if (rule.fnCondition(local.data.value)) {
+        setLocal((prevVal) => ({
+          ...prevVal, data: {
+            ...prevVal.data, error: true, messageError: rule.messageError
+          }
         }))
         handleChange(props.name, {
-          value: local.value, dirty: local.dirty, error: true
+          value: local.data.value, dirty: local.data.dirty, error: true
         })
         break;
       }
 
-      setLocal((prevData) => ({
-        ...prevData, error: false, messageError: ''
+      setLocal((prevVal) => ({
+        ...prevVal, data: {
+          ...prevVal.data, error: false, messageError: ''
+        }
       }))
       handleChange(props.name, {
-        value: local.value, dirty: local.dirty, error: false
+        value: local.data.value, dirty: local.data.dirty, error: false
       })
     }
   }
 
   const update = (evt: any) => {
+    console.log("🚀 ~ file: index.tsx:80 ~ update ~ evt:", evt)
     const { value, files } = evt.target;
     // En caso de cargar imagenes tb
     const imageInput = files != null && files[0];
-    setLocal((prevData) => ({
-      ...prevData,
-      value: imageInput ? imageInput : value,
-      dirty: value !== origVal
-    }))
+
+    setLocal((prevVal) => {
+      //console.log("🚀 ~ file: index.tsx:86 ~ setLocal ~ prevVal:", prevVal)
+
+      const val = {
+        ...prevVal,
+        data: {
+          ...prevVal.data,
+          value: imageInput ? imageInput : value,
+          dirty: value !== origVal
+        }
+      }
+      //console.log("🚀 ~ file: index.tsx:88 ~ setLocal ~ val:", val)
+      return val
+    })
   }
 
   const rollback = () => {
-    setLocal(() => ({
-      error: false,
-      value: origVal,
-      dirty: false
+    setLocal((prevVal) => ({
+      ...prevVal,
+      data: {
+        error: false,
+        value: origVal,
+        dirty: false
+      }
     }))
     handleChange(props.name, {
       value: origVal, dirty: false, error: false
@@ -92,8 +116,8 @@ export const Input: React.FC<Props> = ({ props, className }) => {
   const defineCSSInput = () => {
     let style = '';
 
-    if (local.value === undefined) return style;
-    if (local.error) {
+    if (local.data.value === undefined) return style;
+    if (local.data.error) {
       style = css['container__Item--incorrect']
     } else {
       style = css['container__Item--correct']
@@ -104,8 +128,8 @@ export const Input: React.FC<Props> = ({ props, className }) => {
   const defineCSSMessage = () => {
     let style = css.container__messageError;
 
-    if (local.value === undefined) return style;
-    if (local.error) {
+    if (local.data.value === undefined) return style;
+    if (local.data.error) {
       style += ` ${css['container__messageError--active']}`
     }
 
@@ -115,7 +139,7 @@ export const Input: React.FC<Props> = ({ props, className }) => {
 
   useEffect(() => { initInput() }, [])
 
-  useEffect(() => { validateRules() }, [local.value])
+  useEffect(() => { validateRules() }, [local.data.value])
 
   return (
 
@@ -125,15 +149,15 @@ export const Input: React.FC<Props> = ({ props, className }) => {
 
         {props.icon && (<label className={css.containerItem__iconPrepend}>  {props.icon} </label>)}
 
-        <input ref={refInput} defaultValue={local.value} onKeyUp={update} placeholder={props.placeholder} type={props.type} name={props.name} required={props.required} autoComplete={props.autoComplete} className={defineCSSInput()} />
+        <input ref={refInput} defaultValue={local.data.value} onKeyUp={update} placeholder={props.placeholder} type={props.type} name={props.name} required={props.required} autoComplete={props.autoComplete} className={defineCSSInput()} />
 
-        {local.dirty && (
+        {local.data.dirty && (
           <CheckCloseSVG className={css.container__Item__iconRollback} rollback={rollback} />
         )}
 
       </div>
 
-      <p className={defineCSSMessage()}>{local.messageError}</p>
+      <p className={defineCSSMessage()}>{local.data.messageError}</p>
 
     </div>
   );
