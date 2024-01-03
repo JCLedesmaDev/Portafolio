@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { useEffect, useState } from 'react';
-import { Paginate, ui } from '@/libraries/index.libraries';
+import { Input, Paginate, ui } from '@/libraries/index.libraries';
 import useLoggerDbStore from './store'
 import { JSONViewer } from './components/jsonViewer';
 import css from './index.module.css'
@@ -10,6 +10,8 @@ import 'react-date-picker/dist/DatePicker.css';
 import 'react-calendar/dist/Calendar.css';
 
 import Switch from "react-switch";
+import { InputList } from '@/libraries/fwk-react-inputs/InputList';
+import { useFormCustom } from '@/hooks/index.hooks';
 
 export const LoggerDB: React.FC = () => {
 
@@ -43,6 +45,11 @@ export const LoggerDB: React.FC = () => {
     };
 
 
+    const { form, handleChange } = useFormCustom<any>({
+        userList: { value: undefined, dirty: false, error: false },
+    })
+    console.log("🚀 ~ file: index.tsx:51 ~ form:", form)
+
     useEffect(() => {
         storeUi.actions.setTitleView('Logger DB')
         getAllLoggersDb()
@@ -54,7 +61,7 @@ export const LoggerDB: React.FC = () => {
             <h3 className='sub-section-title'>Registros de Logs</h3>
 
             <div>
-                <div>
+                {/*<div>
                     <label > Fecha desde: </label>
                     <DatePicker
                         onChange={(e: any) => console.log(e)}
@@ -88,11 +95,44 @@ export const LoggerDB: React.FC = () => {
                         className="react-switch"
                         id="material-switch"
                     />
-                </label>
+                </label>*/}
+
+                <div style={{ width: '220px' }}>
+                    <Input props={{
+                        data: { value: undefined },
+                        placeholder: 'Ingrese usuario',
+                        type: 'email',
+                        name: 'email',
+                        required: true,
+                        autoComplete: 'off',
+                        handleChange: () => { }
+                    }} />
+                </div>
+
+                <div style={{ width: '220px' }}>
+                    <InputList props={{
+                        data: {
+                            value: form['userList'].value,
+                            options: [
+                                { key: 'EEE', value: 'LALALA' },
+                                { key: 'a', value: 'Asdasd' }
+                            ],
+                            messageError: 'asdqwd error'
+                        },
+                        optId: 'key',
+                        optLbl: 'value',
+                        placeholder: 'Seleccione un usuario',
+                        name: 'userList',
+                        required: true,
+                        autoComplete: 'off',
+                        handleChange
+                    }} />
+                </div>
+
             </div>
 
 
-
+            {/* PROBAANDO */}
 
             <div className={css.containerBoxs}>
                 {store.state.loggersDb.map((doc: any, index: number) => (

@@ -77,35 +77,23 @@ export const Input: React.FC<Props> = ({ props, className }) => {
   }
 
   const update = (evt: any) => {
-    console.log("🚀 ~ file: index.tsx:80 ~ update ~ evt:", evt)
     const { value, files } = evt.target;
     // En caso de cargar imagenes tb
     const imageInput = files != null && files[0];
-
-    setLocal((prevVal) => {
-      //console.log("🚀 ~ file: index.tsx:86 ~ setLocal ~ prevVal:", prevVal)
-
-      const val = {
-        ...prevVal,
-        data: {
-          ...prevVal.data,
-          value: imageInput ? imageInput : value,
-          dirty: value !== origVal
-        }
+    setLocal((prevVal) => ({
+      ...prevVal,
+      data: {
+        ...prevVal.data,
+        value: imageInput ? imageInput : value,
+        dirty: value !== origVal
       }
-      //console.log("🚀 ~ file: index.tsx:88 ~ setLocal ~ val:", val)
-      return val
-    })
+    }))
   }
 
   const rollback = () => {
     setLocal((prevVal) => ({
       ...prevVal,
-      data: {
-        error: false,
-        value: origVal,
-        dirty: false
-      }
+      data: { error: false, value: origVal, dirty: false }
     }))
     handleChange(props.name, {
       value: origVal, dirty: false, error: false

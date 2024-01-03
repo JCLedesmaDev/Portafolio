@@ -88,11 +88,7 @@ export const InputList: React.FC<IProps> = ({ props, className }) => {
         const { value } = evt.target;
         setLocal((prevVal) => ({
             ...prevVal,
-            data: {
-                ...prevVal.data,
-                value: value,
-                dirty: value !== origVal
-            }
+            data: { ...prevVal.data, value: value, dirty: value !== origVal }
         }))
     }
 
@@ -101,9 +97,7 @@ export const InputList: React.FC<IProps> = ({ props, className }) => {
             ...prevVal,
             data: {
                 options: prevVal.data.options,
-                error: false,
-                value: origVal,
-                dirty: false
+                error: false, value: origVal, dirty: false
             }
         }))
         handleChange(props.name, {
@@ -147,7 +141,7 @@ export const InputList: React.FC<IProps> = ({ props, className }) => {
 
                 {props.icon && (<label className={css.containerItem__iconPrepend}>  {props.icon} </label>)}
 
-                <select ref={refSelect} name={props.name} required={props.required} autoComplete={props.autoComplete} className={defineCSSSelect()} onChange={update} defaultValue={local.data.value}>
+                <select id={`select__${props.name}`} ref={refSelect} name={props.name} required={props.required} autoComplete={props.autoComplete} className={defineCSSSelect()} onChange={update} defaultValue={local.data.value}>
 
                     <option value={''} disabled hidden>
                         {props.placeholder}
