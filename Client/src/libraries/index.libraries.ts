@@ -3,7 +3,7 @@ export type { IConfigInit } from './fwk-apiSrv/interface/index.interfaces'
 
 export { Input, InputPassword } from './fwk-react-inputs/index'
 export type {
-    IInputProps, IInputData
+    IInputProps, IInputData, ISelectData, ISelectOptions, ISelectProps
 } from './fwk-react-inputs/interface/index.interface'
 
 export { evtEmitter } from './fwk-eventEmitter/index'
