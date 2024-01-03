@@ -17,16 +17,16 @@ export const LoggerDB: React.FC = () => {
 
     const storeUi = ui.useStoreUi()
     const store = useLoggerDbStore()
+    const fechaHasta = new Date()
+    const fechaDesde = new Date(fechaHasta)
+    fechaDesde.setDate(fechaDesde.getDate() - 2)
+    fechaDesde.setHours(0, 0, 0, 0)
 
     const getAllLoggersDb = (page: number = 1) => {
-        const fechaHasta = new Date()
-        const fechaDesde = new Date(fechaHasta)
-        fechaDesde.setDate(fechaDesde.getDate() - 2)
-        fechaDesde.setHours(0, 0, 0, 0)
 
         store.actions.getAllLogersDb({
             page,
-            limitPage: 2,
+            limitPage: 10,
             dateFrom: fechaDesde,
             dateUntil: fechaHasta,
             userId: '658d8d790b4915d7e98c834e',
@@ -61,11 +61,11 @@ export const LoggerDB: React.FC = () => {
             <h3 className='sub-section-title'>Registros de Logs</h3>
 
             <div>
-                {/*<div>
+                <div>
                     <label > Fecha desde: </label>
                     <DatePicker
                         onChange={(e: any) => console.log(e)}
-                        value={new Date()}
+                        value={fechaDesde}
                         monthPlaceholder="asdasd"
                     />
                 </div>
@@ -73,7 +73,7 @@ export const LoggerDB: React.FC = () => {
                     <label > Fecha hasta: </label>
                     <DatePicker
                         onChange={(e: any) => console.log(e)}
-                        value={new Date()}
+                        value={fechaHasta}
                         calendarAriaLabel="asdasd"
                     />
                 </div>
@@ -95,19 +95,7 @@ export const LoggerDB: React.FC = () => {
                         className="react-switch"
                         id="material-switch"
                     />
-                </label>*/}
-
-                <div style={{ width: '220px' }}>
-                    <Input props={{
-                        data: { value: undefined },
-                        placeholder: 'Ingrese usuario',
-                        type: 'email',
-                        name: 'email',
-                        required: true,
-                        autoComplete: 'off',
-                        handleChange: () => { }
-                    }} />
-                </div>
+                </label>
 
                 <div style={{ width: '220px' }}>
                     <InputList props={{
