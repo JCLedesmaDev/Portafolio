@@ -1,38 +1,33 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
 import { useEffect, useRef, useState } from 'react';
-import { IInputListProps } from '../interface/index.interface';
+import { IInputCalendarProps } from '../interface/index.interface';
 import css from './index.module.css'
 import { CheckCloseSVG } from '../svg/CheckCloseSVG';
 import { IRules } from '../interface/IRules';
 
 interface IProps {
-    props: IInputListProps;
+    props: IInputCalendarProps;
     className?: any;
 }
 
-export const InputList: React.FC<IProps> = ({ props, className }) => {
+export const InputCalendar: React.FC<IProps> = ({ props, className }) => {
 
     /// VARIABLES
     const { data, handleChange } = props;
 
-    const refSelect = useRef<any>()
+    const refCalendar = useRef<any>()
     const [origVal, setOrigVal] = useState()
-    const [local, setLocal] = useState<IInputListProps>({
+    const [local, setLocal] = useState<IInputCalendarProps>({
         data: {
             value: '',
             dirty: false,
             error: false,
-            options: [],
             messageError: '',
         },
         autoComplete: 'false',
         name: '',
-        optId: 'id',
-        optLbl: 'name',
-        placeholder: '',
         required: false,
-        icon: undefined,
         handleChange: () => { }
     })
 
@@ -95,14 +90,13 @@ export const InputList: React.FC<IProps> = ({ props, className }) => {
         setLocal((prevVal) => ({
             ...prevVal,
             data: {
-                options: prevVal.data.options,
                 error: false, value: origVal, dirty: false
             }
         }))
         handleChange(props.name, {
             value: origVal, dirty: false, error: false
         })
-        if (refSelect.current) refSelect.current.value = ''
+        if (refCalendar.current) refCalendar.current.value = ''
     }
 
     const defineCSSSelect = () => {
@@ -138,21 +132,8 @@ export const InputList: React.FC<IProps> = ({ props, className }) => {
         <div className={`${css.container} ${className}`}>
             <div className={css.container__Item}>
 
-                {props.icon && (<label className={css.containerItem__iconPrepend}>  {props.icon} </label>)}
+                <input type="datetime-local" ref={refCalendar} name={props.name} required={props.required} autoComplete={props.autoComplete} className={defineCSSSelect()} onChange={update} defaultValue={local.data.value} />
 
-                <select id={`select__${props.name}`} ref={refSelect} name={props.name} required={props.required} autoComplete={props.autoComplete} className={defineCSSSelect()} onChange={update} defaultValue={local.data.value}>
-
-                    <option value={''} disabled hidden>
-                        {props.placeholder}
-                    </option>
-
-                    {local.data.options?.map((opt: any, index: number) => (
-                        <option key={index} value={opt[local.optId as any]}>
-                            {opt[local.optLbl as any]}
-                        </option>
-                    ))}
-
-                </select>
 
                 {local.data.dirty && (
                     <CheckCloseSVG className={css.container__Item__iconRollback} rollback={rollback} />

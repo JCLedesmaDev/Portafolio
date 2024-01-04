@@ -1,7 +1,7 @@
 import { IRules } from './IRules';
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
-export interface ISelectProps {
+export interface IInputListProps {
     placeholder: string;
     name: string;
     required: boolean;
@@ -10,11 +10,11 @@ export interface ISelectProps {
     handleChange: (nameField: string, data: any) => void,
     optId?: string;
     optLbl?: string;
-    data: ISelectData,
+    data: IInputListData,
     rules?: IRules[]
 }
 
-export interface ISelectData {
+export interface IInputListData {
     value: any;
     options: any[];
     dirty?: boolean

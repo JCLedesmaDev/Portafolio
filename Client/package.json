@@ -16,7 +16,6 @@
       "immer": "^9.0.19",
       "moment": "^2.30.1",
       "react": "^18.2.0",
-      "react-date-picker": "^10.6.0",
       "react-dom": "^18.2.0",
       "react-hook-form": "^7.25.3",
       "react-paginate": "^8.1.4",

@@ -22,7 +22,6 @@ export const getAllLogerDbRequest = [
         .trim(), // Elimina los espacios del comienzo y final del texto
 
     body('typeEvent')
-        .optional({ checkFalsy: true })
         .isString()
         .trim(), // Elimina los espacios del comienzo y final del texto
 

@@ -5,27 +5,51 @@ import useLoggerDbStore from './store'
 import { JSONViewer } from './components/jsonViewer';
 import css from './index.module.css'
 
-import DatePicker from 'react-date-picker';
-import 'react-date-picker/dist/DatePicker.css';
-import 'react-calendar/dist/Calendar.css';
+
 
 import Switch from "react-switch";
+
 import { InputList } from '@/libraries/fwk-react-inputs/InputList';
 import { useFormCustom } from '@/hooks/index.hooks';
 import { IFormData, IFormProps } from './interface/IForm';
+import { InputCalendar } from '@/libraries/fwk-react-inputs/inputCalendar';
 
 export const LoggerDB: React.FC = () => {
 
     const storeUi = ui.useStoreUi()
     const store = useLoggerDbStore()
-
+    const [disabledBtn, setDisabledBtn] = useState<boolean>(false)
 
     const { form, handleChange } = useFormCustom<IFormData>({
+        dateFrom: { value: '', dirty: false, error: false },
+        dateUntil: { value: '', dirty: false, error: false },
+        typeEvent: { value: false },
+        limitPage: { value: 10, dirty: false, error: false },
         user: { value: undefined, dirty: false, error: false, options: [] },
-        countPerPage: { value: undefined, dirty: false, error: false },
     })
 
     const formsProps: IFormProps = {
+        dateFrom: {
+            data: { value: form['dateFrom'].value },
+            name: 'dateFrom',
+            required: true,
+            autoComplete: 'off',
+            handleChange: handleChange,
+
+        },
+        dateUntil: {
+            data: { value: form['dateUntil'].value },
+            name: 'dateUntil',
+            required: true,
+            autoComplete: 'off',
+            handleChange: handleChange
+
+        },
+        typeEvent: {
+            handleChange: handleChange,
+            data: { value: form['typeEvent'].value },
+            name: 'typeEvent',
+        },
         user: {
             data: {
                 value: form['user'].value,
@@ -38,60 +62,44 @@ export const LoggerDB: React.FC = () => {
             optLbl: 'value',
             placeholder: 'Seleccione un usuario',
             name: 'user',
-            required: true,
+            required: false,
             autoComplete: 'off',
             handleChange: handleChange
         },
-        countPerPage: {
-            data: {
-                value: form['countPerPage'].value,
-            },
+        limitPage: {
+            data: { value: form['limitPage'].value },
             type: 'number',
-            placeholder: '',
-            name: 'countPerPage',
+            placeholder: 'Ingrese un numero.',
+            name: 'limitPage',
             required: false,
             autoComplete: 'off',
             handleChange: handleChange
         }
     }
 
-
-
-    const fechaHasta = new Date()
-    const fechaDesde = new Date(fechaHasta)
-    fechaDesde.setDate(fechaDesde.getDate() - 2)
-    fechaDesde.setHours(0, 0, 0, 0)
-
-
-
-
     const getAllLoggersDb = (page: number = 1) => {
-
+        console.log("🚀 ~ file: index.tsx:29 ~ form:", form)
         store.actions.getAllLogersDb({
             page,
-            limitPage: 10,
-            dateFrom: fechaDesde,
-            dateUntil: fechaHasta,
-            //userId: '658d8d790b4915d7e98c834e',
-            userId: '',
-            typeEvent: '',
+            limitPage: 20,
+            dateFrom: form.dateFrom.value,
+            dateUntil: form.dateUntil.value,
+            userId: '',//form.user.value,
+            typeEvent: !form.typeEvent.value ? 'Evento' : 'Error',
         })
     }
 
-    const changePage = ({ selected }: any) => {
-        console.log("🚀 ~ selected:", selected)
-        //getAllLoggersDb(selected + 1)
-    }
-    const [toggleState, setToggle] = useState(false)
-    const handleToggle = () => {
-        setToggle(!toggleState)
-    };
-
+    const changePage = ({ selected }: any) => getAllLoggersDb(selected + 1)
+    const handleToggle = (e: any) => handleChange('typeEvent', { value: e })
 
     useEffect(() => {
         storeUi.actions.setTitleView('Reportes de Logs')
-        getAllLoggersDb()
     }, [])
+
+    useEffect(() => {
+        const flag = (form.dateFrom.error || form.dateUntil.error || form.user.error) as boolean
+        setDisabledBtn(flag)
+    }, [form.dateFrom.error, form.dateUntil.error, form.user.error])
 
     return (
         <main className={css.main}>
@@ -100,18 +108,12 @@ export const LoggerDB: React.FC = () => {
 
                 <div className={css.navFilterDate}>
                     <h4 > Fecha desde: </h4>
-                    <DatePicker
-                        onChange={(e: any) => console.log(e)}
-                        value={fechaDesde}
-                    />
+                    <InputCalendar props={formsProps.dateFrom} />
                 </div>
 
                 <div className={css.navFilterDate}>
                     <h4 > Fecha hasta: </h4>
-                    <DatePicker
-                        onChange={(e: any) => console.log(e)}
-                        value={fechaHasta}
-                    />
+                    <InputCalendar props={formsProps.dateUntil} />
                 </div>
 
                 <div className={css.navFilterToggle}>
@@ -119,16 +121,16 @@ export const LoggerDB: React.FC = () => {
                     <div>
                         <span>Evento</span>
                         <Switch
-                            checked={toggleState}
+                            checked={formsProps.typeEvent.data.value}
                             onChange={handleToggle}
                             onColor="#86d3ff"
                             onHandleColor="#2693e6"
-                            handleDiameter={30}
+                            handleDiameter={25}
                             uncheckedIcon={false}
                             checkedIcon={false}
                             boxShadow="0px 1px 5px rgba(0, 0, 0, 0.6)"
                             activeBoxShadow="0px 0px 1px 10px rgba(0, 0, 0, 0.2)"
-                            height={20}
+                            height={15}
                             width={48}
                             className="react-switch"
                             id="material-switch"
@@ -137,14 +139,17 @@ export const LoggerDB: React.FC = () => {
                     </div>
                 </div>
 
-                {/*<div className={css.navFilterInput}>
-                    <h4>Cant. Logs por pagina</h4>
-                    <Input props={formsProps['countPerPage']} />
-                </div>*/}
-
                 <InputList props={formsProps['user']} className={css.navFilterInputList} />
 
-                <button className={css.navFilterBtn}>
+                <div className={css.navFilterInputNumber}>
+                    <h4 > Cant. logs X pag.: </h4>
+                    <Input props={formsProps.limitPage} />
+                </div>
+
+                <button onClick={() => getAllLoggersDb()}
+                    className={css.navFilterBtn}
+                    disabled={disabledBtn}
+                >
                     Cargar registros
                 </button>
 
@@ -160,15 +165,16 @@ export const LoggerDB: React.FC = () => {
                     : <h2>Aun no se ha cargado ningun registro</h2>}
             </div>
 
-            {/*store.state.loggersDb.length > 0 &&*/}
+            {store.state.loggersDb.length > 0 && (<div className={css.containerPaginate}>
+                <Paginate
+                    btnNextText='Siguiente'
+                    btnPreviousText='Anterior'
+                    changePage={changePage}
+                    pagesTotal={store.state.paginate.pagesTotal}
+                    pageActual={store.state.paginate.pageActual}
+                />
+            </div>)}
 
-            <Paginate
-                btnNextText='Siguiente'
-                btnPreviousText='Anterior'
-                changePage={changePage}
-                pagesTotal={store.state.paginate.pagesTotal}
-                pageActual={store.state.paginate.pageActual}
-            />
         </main>
     )
 }

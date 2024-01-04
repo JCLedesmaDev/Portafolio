@@ -1,11 +1,26 @@
-import { IInputData, IInputProps, ISelectData, ISelectProps } from '@/libraries/index.libraries';
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import { IInputData, IInputProps, IInputListData, IInputListProps, IInputCalendarProps, IInputCalendarData } from '@/libraries/index.libraries';
 
 export interface IFormProps {
-    user: ISelectProps;
-    countPerPage: IInputProps;
+    dateFrom: IInputCalendarProps;
+    dateUntil: IInputCalendarProps;
+    limitPage: IInputProps;
+    typeEvent: {
+        handleChange: (nameField: string, data: any) => void,
+        name: string;
+        data: {
+            value: boolean
+        }
+    }
+    user: IInputListProps;
 }
 
 export interface IFormData {
-    user: ISelectData;
-    countPerPage: IInputData;
+    dateFrom: IInputCalendarData;
+    dateUntil: IInputCalendarData;
+    typeEvent: {
+        value: boolean
+    }
+    limitPage: IInputData;
+    user: IInputListData;
 }

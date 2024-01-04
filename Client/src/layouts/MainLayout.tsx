@@ -43,6 +43,7 @@ export const MainLayout: React.FC = () => {
             </div>
 
             <div className={`${css.sidebarGridContainer} ${toggle ? css.sidebarGridContainerNone : ''}`}>
+
                 <div className={css.sidebarContainer__header}>
                     <NavLink to="/admin"><img src={image} /></NavLink>
                 </div>
@@ -70,7 +71,7 @@ export const MainLayout: React.FC = () => {
 
                     <NavLink to="/admin/loggerDb" className={({ isActive }) => isActive ? css.isActive : undefined}>
                         <img src={Report} />
-                        <h4>Reportes LoggerDB</h4>
+                        <h4>Ver LoggerDB</h4>
                     </NavLink>
                 </div>
             </div>

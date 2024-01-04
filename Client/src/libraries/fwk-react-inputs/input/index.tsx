@@ -34,14 +34,15 @@ export const Input: React.FC<Props> = ({ props, className }) => {
   })
 
   const [cmpRules, setCmpRules] = useState<IRules[]>([{
-    fnCondition: (val) => !(props.required && !!val),
+    //fnCondition: (val) => !(props.required && !!val),
+    fnCondition: (val) => props.required && !val,
     messageError: 'Este campo es requerido.'
   }])
 
   /// METODOS
 
   const initInput = () => {
-    //console.log(`CONSTRUCTOR INPUT ${props.name}`)
+    console.log(`CONSTRUCTOR INPUT ${props.name}`)
     props.rules?.forEach(rule => {
       setCmpRules((prevVal) => ([...prevVal, rule]))
     })
