@@ -3,23 +3,82 @@
     height: 100%;
     display: flex;
     flex-direction: column;
-    justify-content: space-around;
 }
 
-.main h3 {
-    text-align: center;
-    padding: 2rem;
-}
+/* PROBANDO*/
 
 .containerBoxs {
-    height: 70%;
+    height: 85%;
     display: flex;
     flex-wrap: wrap;
+    gap: 3rem;
     justify-content: center;
     align-items: start;
+    overflow: auto;
 }
 
-.box{
+.containerNavFilter {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    background: #ddd;
+    height: 5rem;
+}
+
+.box {
     height: 10.9375rem;
     margin: 0 1rem;
+}
+
+/* PROBANDO*/
+
+.navFilterDate {
+    display: flex;
+    flex-direction: column;
+}
+
+.navFilterToggle {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    width: 12.5rem;
+}
+
+.navFilterToggle div {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+/*.navFilterInput {
+    display: flex;
+    align-items: center;
+}
+
+.navFilterInput input {
+    margin-top: 1rem;
+}*/
+
+.navFilterInputList {
+    width: 14.0625rem !important;
+    height: 3.125rem !important;
+    margin-top: 1rem;
+}
+
+.navFilterBtn {
+    border: none;
+    color: var(--color-blanco);
+    background-color: var(--color-principal);
+    border-radius: 8px;
+    cursor: pointer;
+    padding: 1rem;
+    transition: all 0.2s ease;
+}
+
+.navFilterBtn:focus,
+.navFilterBtn:hover {
+    background: #F0382C;
+    outline: none;
+    color: #fff;
 }

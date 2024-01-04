@@ -4,11 +4,11 @@
   height: 100vh;
   margin: 0 !important;
   padding: 0 !important;
-  background: linear-gradient(90deg, rgba(47,54,64,1) 23%, rgba(24,27,32,1) 100%);
+  background: linear-gradient(90deg, rgba(47, 54, 64, 1) 23%, rgba(24, 27, 32, 1) 100%);
 }
 
 .moon {
-  background: linear-gradient(90deg, rgba(208,208,208,1) 48%, rgba(145,145,145,1) 100%);
+  background: linear-gradient(90deg, rgba(208, 208, 208, 1) 48%, rgba(145, 145, 145, 1) 100%);
   position: absolute;
   top: -6.25rem;
   left: -18.75rem;
@@ -16,14 +16,14 @@
   height: 56.25rem;
   content: '';
   border-radius: 100%;
-  box-shadow: 0px 0px 30px -4px rgba(0,0,0,0.5);
+  box-shadow: 0px 0px 30px -4px rgba(0, 0, 0, 0.5);
 }
 
 .moon__crater {
   position: absolute;
   content: '';
   border-radius: 100%;
-  background: linear-gradient(90deg, rgba(122,122,122,1) 38%, rgba(195,195,195,1) 100%);
+  background: linear-gradient(90deg, rgba(122, 122, 122, 1) 38%, rgba(195, 195, 195, 1) 100%);
   opacity: 0.6;
 }
 
@@ -66,8 +66,13 @@
 }
 
 @keyframes shimmer {
-  from {opacity: 0;}
-  to {opacity: 0.7;}
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 0.7;
+  }
 }
 
 .star1 {
@@ -147,7 +152,7 @@
 }
 
 .error__button--active:hover {
-  box-shadow: 0px 0px 8px 0px rgba(0,0,0,0.5);
+  box-shadow: 0px 0px 8px 0px rgba(0, 0, 0, 0.5);
   color: white;
 }
 
@@ -385,36 +390,25 @@
   height: 18.75rem !important;
 }
 
-.astronaut__head__canvas{
+.astronaut__head__canvas {
   width: 3.75rem !important;
   height: 3.75rem !important;
 }
 
 /* Estilos para pantallas medianas */
 @media screen and (max-width: 768px) {
-  html{
-    font-size: 14px;
-  }
   .astronaut__cord__canvas {
     width: 17.1875rem !important;
     height: 17.1875rem !important;
   }
-  .contentNotFound{
+
+  .contentNotFound {
     /* height: 10px !important; */
     width: 102vw;
   }
 }
 
-@media screen and (max-width: 660px) {
-  html{
-    font-size: 12px;
-  }
-}
-
 @media screen and (max-width: 480px) {
-  html{
-    font-size: 10px;
-  }
   .astronaut__cord__canvas {
     width: 14rem !important;
     height: 17rem !important;
@@ -423,9 +417,6 @@
 
 
 @media screen and (max-width: 380px) {
-  html{
-    font-size: 8px;
-  }
   .astronaut__cord__canvas {
     width: 12.5rem !important;
     height: 16rem !important;

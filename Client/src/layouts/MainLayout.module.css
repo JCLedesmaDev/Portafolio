@@ -8,7 +8,7 @@
         "sidebar content content content";
     column-gap: .25rem;
     min-height: 100vh;
-    background-color: #ccc;
+    background-color: #eee;
     overflow-x: hidden;
 }
 
@@ -44,7 +44,6 @@
     cursor: pointer;
     border: none;
     fill: #fff;
-    background-color: transparent;
 }
 
 .headerContainer__title button:hover {
@@ -52,14 +51,14 @@
 }
 
 .btnLogOut {
-    font-weight: 600;
+    /*font-weight: 600;*/
     padding: .5rem;
     border-radius: .5rem;
     cursor: pointer;
     border: 2px solid #dc143c;
     background-color: transparent;
     color: #fff;
-    font-size: 1rem;
+    /*font-size: 1rem;*/
 }
 
 .btnLogOut:hover {
@@ -82,11 +81,10 @@
     position: relative;
     opacity: 1;
     pointer-events: auto;
-    transition: 
-        opacity 0.3s ease-in-out, 
-        pointer-events 0.3s ease-in-out, 
-        transform 0.3s ease-in-out
-    ;
+    transition:
+        opacity 0.3s ease-in-out,
+        pointer-events 0.3s ease-in-out,
+        transform 0.3s ease-in-out;
 }
 
 .sidebarGridContainerNone {

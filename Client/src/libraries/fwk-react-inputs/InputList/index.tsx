@@ -55,7 +55,6 @@ export const InputList: React.FC<IProps> = ({ props, className }) => {
     const validateRules = () => {
         //console.log(`Rules INPUT ${props.name}`)
         for (const rule of cmpRules) {
-
             if (rule.fnCondition(local.data.value)) {
                 setLocal((prevVal) => ({
                     ...prevVal,

@@ -7,6 +7,7 @@
 .container__Item {
   display: flex;
   position: relative;
+  height: 100%;
 }
 
 .containerItem__iconPrepend {
@@ -55,12 +56,11 @@
 /* Icono validacion */
 .container__Item__iconRollback {
   position: absolute;
-  right: 0.4rem;
-  bottom: 1.25rem;
+  right: 0.75rem;
   z-index: 1000;
 
-  height: 1.5rem;
-  width: 2rem;
+  height: 100%;
+  width: 1.5rem;
   transform: scale(1);
 }
 

@@ -32,10 +32,36 @@
 
 html {
   box-sizing: border-box;
-  font-family: var(--font);
+  font-family: var(--font) !important;
   font-size: 16px;
   scroll-behavior: smooth;
 }
+
+/* Estilos para pantallas medianas */
+@media screen and (max-width: 768px) {
+  html {
+    font-size: 14px;
+  }
+}
+
+@media screen and (max-width: 660px) {
+  html {
+    font-size: 12px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  html {
+    font-size: 10px;
+  }
+}
+
+/*@media screen and (max-width: 380px) {
+  html {
+    font-size: 8px;
+  }
+}*/
+
 
 *,
 *::after,
@@ -52,6 +78,7 @@ body {
 
 /* Propiedades que tendran exclusivamente los enlaces */
 a {
+  font-size: 0.875rem;
   color: var(--color-enlaces);
   transition: all 0.3s ease-out;
   text-decoration: none;
@@ -101,6 +128,10 @@ img {
 /* Propiedades en comun para todos los parrafos*/
 p {
   line-height: 1.6;
+}
+
+button {
+  font-size: 0.875rem;
 }
 
 /* ------------ Estilos generales ------------ */
@@ -199,10 +230,5 @@ p {
   transform: scale(0.8);
 }
 
-@media screen and (max-width: 325px) {
-  html {
-    font-size: calc(16px * 0.853);
-  }
-}
 
 /* ------------ Clases re utilizables. ------------ */
