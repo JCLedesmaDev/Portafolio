@@ -86,7 +86,7 @@ export const InputList: React.FC<IProps> = ({ props, className }) => {
     }
 
     const rollback = () => {
-        const dirtyFlag = origVal ? undefined : false
+        const dirtyFlag = origVal ? false : undefined
         setLocal((prevVal) => ({
             ...prevVal,
             data: {
@@ -140,7 +140,7 @@ export const InputList: React.FC<IProps> = ({ props, className }) => {
 
                 {props.icon && (<label className={css.containerItem__iconPrepend}>  {props.icon} </label>)}
 
-                <select id={`select__${props.name}`} ref={refSelect} name={props.name} required={props.required} autoComplete={props.autoComplete} className={defineCSSSelect()} onChange={update} defaultValue={local.data.value}>
+                <select id={`select__${props.name}`} ref={refSelect} name={props.name} required={props.required} autoComplete={props.autoComplete} className={defineCSSSelect()} onChange={update} value={local.data.value}>
 
                     <option value={''} disabled hidden>
                         {props.placeholder}

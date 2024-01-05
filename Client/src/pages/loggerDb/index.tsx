@@ -48,6 +48,14 @@ export const LoggerDB: React.FC = () => {
         },
         user: {
             data: { value: form['user'].value, options: store.state.users },
+            //data: {
+            //    value: form['user'].value, options: [...store.state.users, {
+            //        "id": "658d8d790b4915d7e98c839e",
+            //        "email": "admin@gmail.com",
+            //        "projectsList": [],
+            //        "skillsList": []
+            //    }]
+            //},
             optId: 'id',
             optLbl: 'email',
             placeholder: 'Seleccione un usuario',
