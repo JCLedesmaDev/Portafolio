@@ -15,13 +15,15 @@
     margin: 0 4rem;
     height: 5.5rem;
 }
+
 /* */
 .navFilterDate {
     display: flex;
     flex-direction: column;
-    width: 12.5rem;
+    width: 15.625rem;
     margin-top: .5rem;
 }
+
 /* */
 .navFilterToggle {
     display: flex;
@@ -30,18 +32,21 @@
     align-items: center;
     width: 12.5rem;
 }
+
 .navFilterToggle div {
     display: flex;
     justify-content: space-around;
     align-items: center;
     gap: .5rem;
 }
+
 /* */
 .navFilterInputList {
     width: 14.0625rem !important;
     height: 2.1875rem !important;
     margin-top: 1rem;
 }
+
 /* */
 .navFilterBtn {
     border: none;
@@ -52,26 +57,31 @@
     padding: 1rem;
     transition: all 0.2s ease;
 }
+
 .navFilterBtn:focus,
 .navFilterBtn:hover {
     background: #F0382C;
     outline: none;
     color: #fff;
 }
-.navFilterBtn:disabled{
+
+.navFilterBtn:disabled {
     background: #f0392c7e;
 }
+
 /* */
-.navFilterInputNumber{
+.navFilterInputNumber {
 
     /*width: 14.0625rem !important;*/
     /*height: 35px !important;*/
     margin-top: 1rem;
 }
+
 .navFilterInputNumber input {
     margin: 0;
     padding: .25rem;
 }
+
 /*---------------------------- */
 
 .containerBoxs {
@@ -80,12 +90,13 @@
     gap: 1rem;
     justify-content: center;
     align-content: start;
-   
+
     /*max-height: 44rem;*/
     max-height: 74vh;
     overflow: auto;
 
 }
+
 .box {
     height: 14.0625rem;
 }
@@ -96,10 +107,10 @@
     bottom: 0rem;
     left: 0;
     right: 0;
-    
+
     width: 90%;
     height: 4rem;
-    
+
     display: flex;
     align-items: center;
     margin: auto;

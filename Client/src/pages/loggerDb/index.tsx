@@ -24,8 +24,8 @@ export const LoggerDB: React.FC = () => {
         dateFrom: { value: '' },
         dateUntil: { value: '' },
         typeEvent: { value: false },
-        limitPage: { value: 10 },
-        user: { value: undefined, options: [] },
+        limitPage: { value: '' },
+        user: { value: '', options: [] },
     })
 
     const formsProps: IFormProps = {
@@ -64,7 +64,7 @@ export const LoggerDB: React.FC = () => {
             optLbl: 'value',
             placeholder: 'Seleccione un usuario',
             name: 'user',
-            required: false,
+            required: true,
             autoComplete: 'off',
             handleChange: handleChange
         },
@@ -99,9 +99,9 @@ export const LoggerDB: React.FC = () => {
     }, [])
 
     useEffect(() => {
-        const flag = (form.dateFrom.error || form.dateUntil.error || form.user.error) as boolean
+        const flag = (form.dateFrom.error || form.dateUntil.error || form.user.error || form.limitPage.error) as boolean
         setDisabledBtn(flag)
-    }, [form.dateFrom.error, form.dateUntil.error, form.user.error])
+    }, [form.dateFrom.error, form.dateUntil.error, form.user.error, form.limitPage.error])
 
     return (
         <main className={css.main}>

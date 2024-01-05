@@ -87,12 +87,13 @@ export const InputPassword: React.FC<Props> = ({ props, className }) => {
   }
 
   const rollback = () => {
+    const dirtyFlag = origVal ? undefined : false
     setLocal((prevVal) => ({
       ...prevVal,
-      data: { error: false, value: origVal, dirty: false }
+      data: { error: false, value: origVal, dirty: dirtyFlag }
     }))
     handleChange(props.name, {
-      value: origVal, dirty: false, error: false
+      error: false, value: origVal, dirty: dirtyFlag
     })
     if (refInput.current) refInput.current.value = ''
   }

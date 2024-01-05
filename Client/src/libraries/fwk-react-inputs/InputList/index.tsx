@@ -47,7 +47,7 @@ export const InputList: React.FC<IProps> = ({ props, className }) => {
     }
 
     const validateRules = () => {
-        //console.log(`Rules INPUT ${props.name}`)
+        console.log(`Rules INPUT ${props.name}`)
         for (const rule of cmpRules) {
             if (rule.fnCondition(local.data.value)) {
                 setLocal((prevVal) => ({
@@ -86,15 +86,15 @@ export const InputList: React.FC<IProps> = ({ props, className }) => {
     }
 
     const rollback = () => {
+        const dirtyFlag = origVal ? undefined : false
         setLocal((prevVal) => ({
             ...prevVal,
             data: {
-                options: prevVal.data.options,
-                error: false, value: origVal, dirty: false
+                options: prevVal.data.options, error: false, value: origVal, dirty: dirtyFlag
             }
         }))
         handleChange(props.name, {
-            value: origVal, dirty: false, error: false
+            error: false, value: origVal, dirty: dirtyFlag
         })
         if (refSelect.current) refSelect.current.value = ''
     }
