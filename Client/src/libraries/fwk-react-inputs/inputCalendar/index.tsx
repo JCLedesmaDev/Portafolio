@@ -19,12 +19,7 @@ export const InputCalendar: React.FC<IProps> = ({ props, className }) => {
     const refCalendar = useRef<any>()
     const [origVal, setOrigVal] = useState()
     const [local, setLocal] = useState<IInputCalendarProps>({
-        data: {
-            value: '',
-            dirty: false,
-            error: false,
-            messageError: '',
-        },
+        data: { value: '', },
         autoComplete: 'false',
         name: '',
         required: false,
@@ -102,7 +97,7 @@ export const InputCalendar: React.FC<IProps> = ({ props, className }) => {
     const defineCSSSelect = () => {
         let style = '';
 
-        if (local.data.value === undefined) return style;
+        if (local.data.value === undefined || local.data.dirty === undefined) return style;
         if (local.data.error) {
             style = css['container__Item--incorrect']
         } else {
@@ -114,7 +109,7 @@ export const InputCalendar: React.FC<IProps> = ({ props, className }) => {
     const defineCSSMessage = () => {
         let style = css.container__messageError;
 
-        if (local.data.value === undefined) return style;
+        if (local.data.value === undefined || local.data.dirty === undefined) return style;
         if (local.data.error) {
             style += ` ${css['container__messageError--active']}`
         }

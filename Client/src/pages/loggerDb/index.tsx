@@ -21,16 +21,18 @@ export const LoggerDB: React.FC = () => {
     const [disabledBtn, setDisabledBtn] = useState<boolean>(false)
 
     const { form, handleChange } = useFormCustom<IFormData>({
-        dateFrom: { value: '', dirty: false, error: false },
-        dateUntil: { value: '', dirty: false, error: false },
+        dateFrom: { value: '' },
+        dateUntil: { value: '' },
         typeEvent: { value: false },
-        limitPage: { value: 10, dirty: false, error: false },
-        user: { value: undefined, dirty: false, error: false, options: [] },
+        limitPage: { value: 10 },
+        user: { value: undefined, options: [] },
     })
 
     const formsProps: IFormProps = {
         dateFrom: {
-            data: { value: form['dateFrom'].value },
+            data: {
+                value: form['dateFrom'].value
+            },
             name: 'dateFrom',
             required: true,
             autoComplete: 'off',
@@ -71,7 +73,7 @@ export const LoggerDB: React.FC = () => {
             type: 'number',
             placeholder: 'Ingrese un numero.',
             name: 'limitPage',
-            required: false,
+            required: true,
             autoComplete: 'off',
             handleChange: handleChange
         }

@@ -19,13 +19,7 @@ export const InputList: React.FC<IProps> = ({ props, className }) => {
     const refSelect = useRef<any>()
     const [origVal, setOrigVal] = useState()
     const [local, setLocal] = useState<IInputListProps>({
-        data: {
-            value: '',
-            dirty: false,
-            error: false,
-            options: [],
-            messageError: '',
-        },
+        data: { value: '', options: [] },
         autoComplete: 'false',
         name: '',
         optId: 'id',
@@ -108,7 +102,7 @@ export const InputList: React.FC<IProps> = ({ props, className }) => {
     const defineCSSSelect = () => {
         let style = '';
 
-        if (local.data.value === undefined) return style;
+        if (local.data.value === undefined || local.data.dirty === undefined) return style;
         if (local.data.error) {
             style = css['container__Item--incorrect']
         } else {
@@ -120,7 +114,7 @@ export const InputList: React.FC<IProps> = ({ props, className }) => {
     const defineCSSMessage = () => {
         let style = css.container__messageError;
 
-        if (local.data.value === undefined) return style;
+        if (local.data.value === undefined || local.data.dirty === undefined) return style;
         if (local.data.error) {
             style += ` ${css['container__messageError--active']}`
         }

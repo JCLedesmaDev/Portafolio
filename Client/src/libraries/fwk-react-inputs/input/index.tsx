@@ -18,12 +18,7 @@ export const Input: React.FC<Props> = ({ props, className }) => {
   const refInput = useRef<any>()
   const [origVal, setOrigVal] = useState()
   const [local, setLocal] = useState<IInputProps>({
-    data: {
-      value: '',
-      dirty: false,
-      error: false,
-      messageError: ''
-    },
+    data: { value: '' },
     autoComplete: 'false',
     name: '',
     type: 'text',
@@ -34,7 +29,6 @@ export const Input: React.FC<Props> = ({ props, className }) => {
   })
 
   const [cmpRules, setCmpRules] = useState<IRules[]>([{
-    //fnCondition: (val) => !(props.required && !!val),
     fnCondition: (val) => props.required && !val,
     messageError: 'Este campo es requerido.'
   }])
@@ -105,7 +99,8 @@ export const Input: React.FC<Props> = ({ props, className }) => {
   const defineCSSInput = () => {
     let style = '';
 
-    if (local.data.value === undefined) return style;
+    if (local.data.value === undefined || local.data.dirty === undefined) return style;
+
     if (local.data.error) {
       style = css['container__Item--incorrect']
     } else {
@@ -117,7 +112,7 @@ export const Input: React.FC<Props> = ({ props, className }) => {
   const defineCSSMessage = () => {
     let style = css.container__messageError;
 
-    if (local.data.value === undefined) return style;
+    if (local.data.value === undefined || local.data.dirty === undefined) return style;
     if (local.data.error) {
       style += ` ${css['container__messageError--active']}`
     }
