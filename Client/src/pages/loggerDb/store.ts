@@ -8,6 +8,7 @@ import mapper from '@/mappers/index.mappers'
 import { ILoggerDB } from '@/models/ILoggerDB.model';
 import { IPagination } from '@/interface/IPagination';
 import { IFilterPaginationDb } from './interface/IFilterPaginationDb';
+import { IUserModel } from '@/models/IUser.model';
 
 
 
@@ -15,11 +16,14 @@ interface IStore {
     state: {
         loggersDb: ILoggerDB[],
         paginate: IPagination
+        users: IUserModel[]
     }
     actions: {
         setLoggersDb: (loggers: ILoggerDB[]) => void;
+        setUsers: (users: IUserModel[]) => void;
         setPaginate: (data: IPagination) => void
         getAllLogersDb: (filters: IFilterPaginationDb) => Promise<boolean>
+        getAllUsers: () => Promise<any>
     }
 }
 
@@ -29,12 +33,18 @@ const store = createWithEqualityFn<IStore>((set, get) => ({
         paginate: {
             pagesTotal: 0,
             pageActual: 0
-        }
+        },
+        users: []
     },
     actions: {
         setLoggersDb: (loggers: ILoggerDB[]) => {
             set(produce((store: IStore) => {
                 store.state.loggersDb = loggers
+            }))
+        },
+        setUsers: (users: IUserModel[]) => {
+            set(produce((store: IStore) => {
+                store.state.users = users
             }))
         },
         setPaginate: (data: any) => {
@@ -61,6 +71,19 @@ const store = createWithEqualityFn<IStore>((set, get) => ({
             get().actions.setPaginate(res)
 
             return res
+        },
+        getAllUsers: async () => {
+            const res = await apiSrv.callBackEnd({
+                preCallback: async () => {
+                    return await apiSrv.callSrv({
+                        method: 'GET',
+                        path: '/users/getAllUsers'
+                    })
+                },
+                options: { loader: true }
+            })
+            const usersAdapted: IUserModel[] = mapper.multipleUsers(res.users);
+            get().actions.setUsers(usersAdapted)
         }
     }
 }), shallow)

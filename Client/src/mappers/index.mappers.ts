@@ -1,8 +1,9 @@
 import { loggerDb } from './loggerDb.mapper'
-import { user } from './user.mapper'
+import { singleUser, multipleUsers } from './user.mapper'
 
 const mappers = {
-    user,
+    singleUser,
+    multipleUsers,
     loggerDb
 }
 

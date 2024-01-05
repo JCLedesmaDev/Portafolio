@@ -9,6 +9,7 @@ import externalDb from "./dal"
 import { ILoginDtoRequest, ILoginDtoResponse } from './dto/login.dto';
 import { IGetUserResponse } from './dto/getUser.dto';
 import { IUpdateUserRequest } from './dto/updateUser.dto';
+import { IGetAllUserResponse } from './dto/getAllUsers.dto';
 
 const loginUser = async (payload: ILoginDtoRequest) => {
 
@@ -34,7 +35,7 @@ const loginUser = async (payload: ILoginDtoRequest) => {
             userAgent: payload.userAgent,
             remoteAddress: payload.remoteAddress,
         }),
-        user: mappers.user(user)
+        user: mappers.singleUser(user)
     }
 
     return responseMessage.success<ILoginDtoResponse>({
@@ -58,7 +59,7 @@ const getUser = async () => {
 
 
     const response: IGetUserResponse = {
-        user: mappers.user(user)
+        user: mappers.singleUser(user)
     }
 
     return responseMessage.success<IGetUserResponse>({
@@ -87,7 +88,17 @@ const updateUser = async (payload: IUpdateUserRequest) => {
     })
 }
 
+const getAllUser = async () => {
+    const listUsers = await externalDb.getAllUser()
+
+    const response: IGetAllUserResponse = {
+        users: mappers.multipleUsers(listUsers)
+    }
+
+    return responseMessage.success<IGetAllUserResponse>({
+        data: response
+    })
+}
 
 
-
-export default { loginUser, logOutUser, getUser, updateUser }
+export default { loginUser, logOutUser, getUser, updateUser, getAllUser }

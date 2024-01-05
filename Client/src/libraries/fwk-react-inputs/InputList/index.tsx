@@ -122,6 +122,12 @@ export const InputList: React.FC<IProps> = ({ props, className }) => {
         return style
     }
 
+    useEffect(() => {
+        setLocal((prevVal) => ({
+            ...prevVal,
+            data: { ...prevVal.data, options: props.data.options }
+        }))
+    }, [props.data.options])
 
     useEffect(() => { initInput() }, [])
 

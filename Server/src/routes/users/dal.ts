@@ -30,6 +30,26 @@ const getUserByField = async (objFind: any): Promise<IUserSchema | null> => {
     }
 }
 
+const getAllUser = async (): Promise<IUserSchema[]> => {
+    try {
+        return await collections.User.find().populate([
+            { strictPopulate: false, path: 'Skill' },
+            { // Hacemos populate de los proyectos que tiene el usuario
+                strictPopulate: false, path: 'Project', populate: {
+                    // hacemos populate de los colaboradores de los proyectos del usuario.
+                    strictPopulate: false, path: 'Colaborator'
+                }
+            }
+        ]);
+    } catch (error) {
+        throw new ApplicationError({
+            message: 'Ha ocurrido un error al obtener los usuarios',
+            source: error
+        });
+    }
+}
+
+
 const updateUser = async (payload: IUpdateUserRequest): Promise<IUserSchema | null> => {
     try {
         return await collections.User.findByIdAndUpdate(
@@ -104,11 +124,12 @@ const deleteRefSkillToUser = async (idSkill: string, usrId: string): Promise<voi
 }
 
 
-export default { 
-    getUserByField, 
+export default {
+    getUserByField,
     updateUser,
     addRefSkillToUser,
     deleteRefSkillToUser,
     addRefProjectToUser,
-    deleteRefProjectToUser
- }
+    deleteRefProjectToUser,
+    getAllUser
+}

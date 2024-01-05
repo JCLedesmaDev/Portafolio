@@ -53,6 +53,11 @@ const logOutUser = controllerWrapper(async (req: Request, res: Response) => {
     return logic.logOutUser()
 })
 
+const getAllUser = controllerWrapper(async (req: Request) => {
+    req.locals.notLogs = true
+    return await logic.getAllUser()
+})
+
 const getUser = controllerWrapper(async (req: Request) => {
     const data: any = await logic.getUser()
     delete data.info.data.user.id
@@ -69,4 +74,4 @@ const updateUser = controllerWrapper(async (req: Request) => {
     return await logic.updateUser(payload)
 })
 
-export default { loginUser, logOutUser, getUser, updateUser }
+export default { loginUser, logOutUser, getUser, updateUser, getAllUser }

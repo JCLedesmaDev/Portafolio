@@ -16,7 +16,7 @@ const singleLoggerDb = (resource: ILoggerDbSchema): IRegisterDb => {
         response: resource.response,
         type: resource.type,
         user: resource?.user
-            ? mappers.user(resource?.user as IUserSchema).email
+            ? mappers.singleUser(resource?.user as IUserSchema).email
             : 'Anonimo'
     }
     return mapper

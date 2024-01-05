@@ -48,6 +48,20 @@
 }
 
 /* */
+.navFilterInputNumber {
+    width: 12.5rem !important;
+    margin-top: 1rem;
+}
+
+.navFilterInputNumber input {
+    margin: 0;
+    padding: .25rem;
+}
+.navFilterInputNumber svg {
+    right: 1.25rem;
+}
+
+/* */
 .navFilterBtn {
     border: none;
     color: var(--color-blanco);
@@ -69,18 +83,6 @@
     background: #f0392c7e;
 }
 
-/* */
-.navFilterInputNumber {
-
-    /*width: 14.0625rem !important;*/
-    /*height: 35px !important;*/
-    margin-top: 1rem;
-}
-
-.navFilterInputNumber input {
-    margin: 0;
-    padding: .25rem;
-}
 
 /*---------------------------- */
 

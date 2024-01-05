@@ -4,14 +4,15 @@ import { multipleProjects, singleProject } from "./project.mapper"
 import { multipleLoggerDb } from "./loggerDb.mapper"
 import { multipleSkills } from "./skills.mapper"
 import { multipleTechnologies, singleTechnology } from "./technology.mapper"
-import { user } from "./user.mapper"
+import { singleUser, multipleUsers } from "./user.mapper"
 
 const mappers = {
-    user,
+    singleUser,
     pagination,
     singleTechnology,
     singleCategory,
     singleProject,
+    multipleUsers,
     multipleSkills,
     multipleTechnologies,
     multipleCategories,

@@ -12,6 +12,7 @@
   justify-content: center;
   align-items: center;
   
+  z-index: 10000000000;
   pointer-events: none;
   opacity: 0;
   transform: scale(0);

@@ -5,8 +5,6 @@ import useLoggerDbStore from './store'
 import { JSONViewer } from './components/jsonViewer';
 import css from './index.module.css'
 
-
-
 import Switch from "react-switch";
 
 import { InputList } from '@/libraries/fwk-react-inputs/InputList';
@@ -24,20 +22,17 @@ export const LoggerDB: React.FC = () => {
         dateFrom: { value: '' },
         dateUntil: { value: '' },
         typeEvent: { value: false },
-        limitPage: { value: '' },
+        limitPage: { value: 10 },
         user: { value: '', options: [] },
     })
 
-    const formsProps: IFormProps = {
+    const formProps: IFormProps = {
         dateFrom: {
-            data: {
-                value: form['dateFrom'].value
-            },
+            data: { value: form['dateFrom'].value },
             name: 'dateFrom',
             required: true,
             autoComplete: 'off',
             handleChange: handleChange,
-
         },
         dateUntil: {
             data: { value: form['dateUntil'].value },
@@ -45,7 +40,6 @@ export const LoggerDB: React.FC = () => {
             required: true,
             autoComplete: 'off',
             handleChange: handleChange
-
         },
         typeEvent: {
             handleChange: handleChange,
@@ -53,18 +47,12 @@ export const LoggerDB: React.FC = () => {
             name: 'typeEvent',
         },
         user: {
-            data: {
-                value: form['user'].value,
-                options: [
-                    { key: 'EEE', value: 'LALALA' },
-                    { key: 'a', value: 'Asdasd' }
-                ],
-            },
-            optId: 'key',
-            optLbl: 'value',
+            data: { value: form['user'].value, options: store.state.users },
+            optId: 'id',
+            optLbl: 'email',
             placeholder: 'Seleccione un usuario',
             name: 'user',
-            required: true,
+            required: false,
             autoComplete: 'off',
             handleChange: handleChange
         },
@@ -79,6 +67,9 @@ export const LoggerDB: React.FC = () => {
         }
     }
 
+    const changePage = ({ selected }: any) => getAllLoggersDb(selected + 1)
+    const handleToggle = (e: any) => handleChange('typeEvent', { value: e })
+
     const getAllLoggersDb = (page: number = 1) => {
         console.log("🚀 ~ file: index.tsx:29 ~ form:", form)
         store.actions.getAllLogersDb({
@@ -86,16 +77,14 @@ export const LoggerDB: React.FC = () => {
             limitPage: form.limitPage.value,
             dateFrom: form.dateFrom.value,
             dateUntil: form.dateUntil.value,
-            userId: '',//form.user.value,
+            userId: form.user.value,
             typeEvent: !form.typeEvent.value ? 'Evento' : 'Error',
         })
     }
 
-    const changePage = ({ selected }: any) => getAllLoggersDb(selected + 1)
-    const handleToggle = (e: any) => handleChange('typeEvent', { value: e })
-
     useEffect(() => {
         storeUi.actions.setTitleView('Reportes de Logs')
+        store.actions.getAllUsers()
     }, [])
 
     useEffect(() => {
@@ -110,12 +99,12 @@ export const LoggerDB: React.FC = () => {
 
                 <div className={css.navFilterDate}>
                     <h4 > Fecha desde: </h4>
-                    <InputCalendar props={formsProps.dateFrom} />
+                    <InputCalendar props={formProps.dateFrom} />
                 </div>
 
                 <div className={css.navFilterDate}>
                     <h4 > Fecha hasta: </h4>
-                    <InputCalendar props={formsProps.dateUntil} />
+                    <InputCalendar props={formProps.dateUntil} />
                 </div>
 
                 <div className={css.navFilterToggle}>
@@ -123,7 +112,7 @@ export const LoggerDB: React.FC = () => {
                     <div>
                         <span>Evento</span>
                         <Switch
-                            checked={formsProps.typeEvent.data.value}
+                            checked={formProps.typeEvent.data.value}
                             onChange={handleToggle}
                             onColor="#86d3ff"
                             onHandleColor="#2693e6"
@@ -141,11 +130,11 @@ export const LoggerDB: React.FC = () => {
                     </div>
                 </div>
 
-                <InputList props={formsProps['user']} className={css.navFilterInputList} />
+                <InputList props={formProps['user']} className={css.navFilterInputList} />
 
                 <div className={css.navFilterInputNumber}>
                     <h4 > Cant. logs X pag.: </h4>
-                    <Input props={formsProps.limitPage} />
+                    <Input props={formProps.limitPage} />
                 </div>
 
                 <button onClick={() => getAllLoggersDb()}

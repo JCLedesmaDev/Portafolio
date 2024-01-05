@@ -38,7 +38,7 @@ const appStore = createWithEqualityFn<IStore>((set, get) => ({
                 options: { loader: true }
             })
 
-            const userAdapted: IUserModel = mapper.user(res.user);
+            const userAdapted: IUserModel = mapper.singleUser(res.user);
             get().actions.setUser(userAdapted)
         },
         logOut: async () => {
