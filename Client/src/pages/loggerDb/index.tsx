@@ -83,7 +83,7 @@ export const LoggerDB: React.FC = () => {
         console.log("🚀 ~ file: index.tsx:29 ~ form:", form)
         store.actions.getAllLogersDb({
             page,
-            limitPage: 20,
+            limitPage: form.limitPage.value,
             dateFrom: form.dateFrom.value,
             dateUntil: form.dateUntil.value,
             userId: '',//form.user.value,
