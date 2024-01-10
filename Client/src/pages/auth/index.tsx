@@ -33,7 +33,7 @@ export const Auth: React.FC = () => {
             autoComplete: 'off',
             icon: <UserSVG className={css.container__Form_fieldIcon} />,
             rules: [{
-                fnCondition: (val) => validator_Email.exec(val) === null,
+                fnCondition: (val) => !validator_Email.test(val),
                 messageError: 'El correo solo puede contener letras, numeros, puntos, guiones y guion bajo.'
             }],
             handleChange: handleChange
@@ -46,7 +46,7 @@ export const Auth: React.FC = () => {
             autoComplete: 'off',
             icon: < PasswordSVG className={css.container__Form_fieldIcon} />,
             rules: [{
-                fnCondition: (val) => validator_Passowrd.exec(val) === null,
+                fnCondition: (val) => !validator_Passowrd.test(val),
                 messageError: 'La contraseña debe contener al menos: 1 letra mayuscula, 1 letra minuscula y 1 numero.'
             }],
             handleChange: handleChange
