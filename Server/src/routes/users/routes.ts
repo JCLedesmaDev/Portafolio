@@ -13,7 +13,7 @@ router.get('/logOut', authHandler, controller.logOutUser);
 
 router.get('/getUser', controller.getUser);
 
-router.get('/getAllUsers', controller.getAllUser);
+router.get('/getAllUsers', authHandler, controller.getAllUser);
 
 router.post('/updateUser', authHandler, fileMulterHandler([
     { name: 'imageProfile', maxCount: 1 }
