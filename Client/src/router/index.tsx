@@ -8,6 +8,7 @@ import { Portfolio } from '@/pages/portfolio';
 import { Skills } from '@/pages/skills';
 import { Projects } from '@/pages/projects';
 import { Description } from '@/pages/description';
+import { RoutePrivate } from '@/components/index.components';
 
 const router = createBrowserRouter([
   {
@@ -17,7 +18,10 @@ const router = createBrowserRouter([
   },
   {
     path: '/admin',
-    element: (<MainLayout />),
+    element: (<RoutePrivate redirectTo='/auth'>
+      <MainLayout />
+    </RoutePrivate>
+    ),
     children: [
       {
         index: true,

@@ -16,7 +16,7 @@ export const magnamentStorage = {
     const storage = localStorage.getItem(nameStorage) as null | string
     return storage
       ? JSON.parse(storage) as TypeStorage
-      : {} as TypeStorage;
+      : undefined;
   },
 
   remove: (nameStorage: string) => {
