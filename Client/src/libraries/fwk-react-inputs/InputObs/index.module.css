@@ -17,6 +17,7 @@
 
 .container__Item>textarea {
   width: 100%;
+  /*height: unset;*/
   padding: 1rem;
   padding-right: 2.25rem;
   font-family: var(--font);

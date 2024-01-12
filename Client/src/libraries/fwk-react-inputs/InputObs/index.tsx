@@ -17,7 +17,7 @@ export const InputObs: React.FC<Props> = ({ props, className }) => {
 
   const refTextarea = useRef<any>()
   const [origVal, setOrigVal] = useState()
-  const [rows, setRows] = useState(2)
+  const [rows, setRows] = useState(3)
 
   const [local, setLocal] = useState<IInputProps>({
     data: { value: '' },
@@ -125,12 +125,9 @@ export const InputObs: React.FC<Props> = ({ props, className }) => {
 
   const calculateAutoResizeTextarea = () => {
 
-    const newRows = Math.ceil(refTextarea.current.scrollHeight / 35);
-    if (newRows > 23) return
-
-    console.log("🚀 ~ calculateAutoResizeTextarea ~ newRows:", newRows)
+    const newRows = refTextarea.current ? refTextarea.current.value.split("\n").length : 3
     //refTextarea.current.rows = 
-    setRows(newRows)
+    setRows(newRows + 1)
   }
 
   useEffect(() => { initInput() }, [])
