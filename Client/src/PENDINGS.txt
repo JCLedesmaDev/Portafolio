@@ -1,14 +1,3 @@
 🕐 VER el css de app.css
 
 
-🕐 Verificar que sucede cuando en el BE, se lanza una excepcion... ¿Continua el flujo?
-🕐 Definir desde el BE, que acciones puede ejecutar un usuario (para evitar q cualquiera acceda al Reportes LoggerDB)
-🕐 Utilizar un mapper en el LoggerDB del FE: 
- {
-    Tipo:
-    Fecha:
-    Usuario:
-    Request :
-    Response:
- }
-🕐 Falta agregar Modal, Paginacion y Filtrados por Usuario, Tipo y Fecha

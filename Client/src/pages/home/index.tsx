@@ -22,9 +22,9 @@ export const Home: React.FC = () => {
             <h3 className='sub-section-title'>Acceso Rapido</h3>
 
             <div className={css.containerBoxs}>
-                <NavLink to="/admin/myDescription" className={css.box}>
+                <NavLink to="/admin/myProfile" className={css.box}>
                     <img src={AboutMe} />
-                    <h4>Mi descripcion</h4>
+                    <h4>Mi perfil</h4>
                 </NavLink>
 
                 <NavLink to="/admin/mySkills" className={css.box}>

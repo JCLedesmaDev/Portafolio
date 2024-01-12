@@ -1,0 +1,357 @@
+{
+    "lenguage": "ES",
+    "header": {
+        "myPortfolio": "<span>Mi </span>Portafolio",
+        "home": "Inicio",
+        "aboutMe": "Sobre mi",
+        "portfolio": "Portafolio",
+        "contact": "Contacto"
+    },
+    "home": {
+        "presentation": "Hola! Mi nombre es <br/> <span> Juan Cruz Ledesma </span> <br/> Y soy <span>Desarrollador Full-Stack.</span>",
+        "knowMe": "Conoceme!"
+    },
+    "aboutMe": {
+        "nameCompleted": "Juan Cruz Ledesma",
+        "rol": "Desarrollador Full-Stack.",
+        "aboutme": "Sobre mi:",
+        "presentations": [
+            "Hola, soy Juan Cruz, me gusta que me llamen Juan, Juanchi o Juancho, tengo 22 años y soy una persona que se caracteriza por saber escuchar y entender rápidamente las necesidades de los clientes. Me apasiona el diseño web y me esfuerzo por crear sitios web que combinen una estética y un arte equilibrado que se adapte perfectamente a las necesidades de cada cliente.",
+            "Mi formación en el diseño de planos arquitectónicos me enseñó la importancia de tener una buena arquitectura y diseño en cualquier proyecto. Por eso, me mantengo en constante formación en el Desarrollo <i> <b>Back-End</b> </i> para lograr un código robusto, elegante y flexible. Me emociona aprender cosas nuevas y siempre estoy en busca de nuevas oportunidades para seguir creciendo en mi carrera.",
+            "Actualmente estoy cursando la <b>Tecnicatura Superior en Desarrollo de Software</b> en el Instituto Técnico Superior Córdoba (I.T.S. Córdoba) para profundizar mis conocimientos en el mundo del <b>Software</b>. Si bien me defino como Desarrollador <i> <b>Front-End</b> </i>, también tengo algunos conocimientos en el entorno de <b>NodeJS</b>. Actualmente, me estoy enfocando en comprender cabalmente estos lenguajes para definirme como <b>Full-Stack</b>."
+        ],
+        "downloadCV": "DESCARGA MI CV",
+        "CVLink": "https://drive.google.com/file/d/1Iwd0mwjammSLvsssjJbGikZGydgGll9-/view?usp=share_link",
+        "mySkills": "Mis Habilidades:",
+        "mySkillsPresentations": [
+            "Considero que soy <b>detallista</b> (hablando del diseño), me importan mucho los detalles aunque estos sean mínimos y trato de que todo esté en armonía en cuanto a los colores y formas de los objetos.",
+            "A su vez, también me considero <b>autocrítico</b> ya que siempre pienso que podría mejorar cierto detalle o aspecto. <br /> Por último, siempre <b>acepto</b> y tomo muy en cuenta cualquier crítica, sugerencia y/o tip sobre cómo hacer de cierta manera algún trabajo."
+        ],
+        "skills_area": [
+            "Front-End:",
+            "Back-End:",
+            "Otros:",
+            "Proximamente:"
+        ],
+        "technology": "Tecnologias:",
+        "front_Technologies": [
+            {
+                "title": "HTML5",
+                "alt": "icon html5"
+            },
+            {
+                "title": "CSS3",
+                "alt": "icon css3"
+            },
+            {
+                "title": "JavaScript",
+                "alt": "icon JS EcmaScript6"
+            },
+            {
+                "title": "ReactJS",
+                "alt": "icon react"
+            },
+            {
+                "title": "Vue 3",
+                "alt": "icon vue js"
+            },
+            {
+                "title": "Angular 12",
+                "alt": "icon angular"
+            },
+            {
+                "title": "Blazor",
+                "alt": "icon blazor"
+            },
+            {
+                "title": "Ionic 5",
+                "alt": "icon ionic"
+            },
+            {
+                "title": "Quasar v2",
+                "alt": "icon quasar"
+            },
+            {
+                "title": "Zustand",
+                "alt": "icon Zustand"
+            },
+            {
+                "title": "jQuery",
+                "alt": "icon jquery"
+            }
+        ],
+        "back_Technologies": [
+            {
+                "title": "NodeJS",
+                "alt": "icon nodejs"
+            },
+            {
+                "title": "ExpressJS",
+                "content": "Express <span> JS</span>"
+            },
+            {
+                "title": "MongoDB",
+                "alt": "icon mongodb"
+            },
+            {
+                "title": ".Net 6",
+                "alt": "icon .net 6"
+            },
+            {
+                "title": "EF Core",
+                "alt": "icon entity framework core"
+            },
+            {
+                "title": "Sql Server",
+                "alt": "icon sql server"
+            }
+        ],
+        "other_technology": [
+            {
+                "title": "TypeScript",
+                "alt": "icon typescript"
+            },
+            {
+                "title": "Git",
+                "alt": "icon git"
+            },
+            {
+                "title": "NVM",
+                "alt": "icon nvm"
+            }
+        ],
+        "coming_soon": [
+            {
+                "title": "NextJS",
+                "alt": "icon nextjs"
+            },
+            {
+                "title": "React Native",
+                "alt": "icon react native"
+            },
+            {
+                "title": "MySQL",
+                "alt": "icon mysql"
+            }
+        ]
+    },
+    "doneProjects": {
+        "myWorks": "Proyectos realizados",
+        "projects": [
+            {
+                "title": "Album Virtual",
+                "description": "Este proyecto fue desarrollado previamente dentro del cursado de la Tecnicatura de Software. Nos permite coleccionar albumes y comprar las figuras de los albumes coleccionados.",
+                "createdWith": "Esta aplicacion esta siendo creada utilizando: <br/> <b>- En el <i>Back-End</i> :</b> NodeJS, ExpressJS, TypeScript y MongoDB, implementando una <b>Arquitectura orientada a Microservicios.</b> <br/> <b>- En el <i>Front-End</i> :</b> ReactJS con sus respectivos Hooks y Custom Hooks, TypeScript, Zustand y Vite <b> implementando una arquitectura orientada al Clean Architecture.</b> <br/>",
+                "datesModal": [
+                    {
+                        "title": "<b>PERIODO:</b>",
+                        "content": "05/12/2022 - 02/04/2023"
+                    },
+                    {
+                        "title": "<b>TIPO:</b>",
+                        "content": "Sitio <i>Web</i>"
+                    },
+                    {
+                        "title": "<b>ENLACE:</b>",
+                        "content": "<a href='https://album-virtual.netlify.app/' target='_blank' rel='noopener'>Haz click aqui</a>"
+                    },
+                    {
+                        "title": "<b>REPOSITORIO:</b>",
+                        "content": "<a href='https://github.com/JCLedesmaDev/Album-Virtual' target='_blank' rel='noopener'>Haz click aqui</a>"
+                    }
+                ]
+            },
+            {
+                "title": "Sistema de Gestion de Productos",
+                "description": "Este proyecto fue desarrollado dentro del cursado de la Tecnicatura de Software en colaboracion con Vanesa Herrera. Nos permite gestionar Productos.",
+                "createdWith": "Esta aplicacion esta siendo creada utilizando: <br/> <b>- En el <i>Back-End</i> :</b> .NET 4.7.2 y SqlClient aplicando conocimientos sobre Store Procedure. <br/> <b>- En el <i>Front-End</i> :</b> Windows Form. <br/>",
+                "datesModal": [
+                    {
+                        "title": "<b>COLABORADORA:</b>",
+                        "content": "<a href='https://github.com/Vanemariel' target='_blank' rel='noopener'> Github de Vanesa Herrera </a>"
+                    },
+                    {
+                        "title": "<b>PERIODO:</b>",
+                        "content": "14/09/2022 - 21/10/2022"
+                    },
+                    {
+                        "title": "<b>TIPO:</b>",
+                        "content": "<i>Escritorio</i>"
+                    },
+                    {
+                        "title": "<b>REPOSITORIO:</b>",
+                        "content": "<a href='https://github.com/JCLedesmaDev/Productos-con-SQL-y-Capas' target='_blank' rel='noopener'>Haz click aqui</a>"
+                    }
+                ]
+            },
+            {
+                "title": "Turnero de Peluqueria",
+                "description": "Este proyecto fue desarrollado dentro del cursado de la Tecnicatura de Software. Nos permite saber si hay un turno reservado.",
+                "createdWith": "Esta aplicacion esta siendo creada utilizando: <br/> <b>- En el <i>Back-End</i> :</b> .NET 6, Entity Framework, SQL Server. <br/> <b>- En el <i>Front-End</i> :</b> Blazor Web Assembly acompañada de la libreria 'Radzen Blazor Components', aplicando conocimientos tales como el manejo de estados por Actions <br/>",
+                "datesModal": [
+                    {
+                        "title": "<b>PERIODO:</b>",
+                        "content": "02/07/2022 - 13/09/2022"
+                    },
+                    {
+                        "title": "<b>TIPO:</b>",
+                        "content": "Diseño <i>Web Responsive</i>"
+                    },
+                    {
+                        "title": "<b>REPOSITORIO:</b>",
+                        "content": "<a href='https://github.com/JCLedesmaDev/Turnero-Peluqueria' target='_blank' rel='noopener'>Haz click aqui</a>"
+                    }
+                ]
+            },
+            {
+                "title": "Sistema de Gestion Mis actividades",
+                "description": "Proyecto que nos permite registrar nuestras actividades dependiendo de su categoria",
+                "createdWith": "Esta aplicacion fue creada utilizando: <br> <b>- En el <i>Front-End</i> :</b> Ionic con React y TypeScript con sus respectivos Hooks tales como:  useEffect, useContext, useReducer y Hooks personalizados. <br/>",
+                "datesModal": [
+                    {
+                        "title": "<b>PERIODO:</b>",
+                        "content": "16/01/2022 - 01/03/2022"
+                    },
+                    {
+                        "title": "<b>TIPO:</b>",
+                        "content": "Aplicacion movil"
+                    },
+                    {
+                        "title": "<b>REPOSITORIO:</b>",
+                        "content": "<a href='https://github.com/JCLedesmaDev/Sistema-de-Gestion-de-Mis-actividades' target='_blank' rel='noopener'>Haz click aqui</a>"
+                    },
+                    {
+                        "title": "<b>DESCARGAR APK:</b>",
+                        "content": "<a href='https://drive.google.com/file/d/1V7vvkIhBCB36NC-2U6Dmt2yS5IScJEzH/view?usp=sharing' target='_blank' rel='noopener'>Haz click aqui</a>"
+                    }
+                ]
+            },
+            {
+                "title": "Pagina Web - Mi portafolio",
+                "description": "Proyecto para la presentacion de mis conocimientos en el desarrollo web.",
+                "createdWith": "Esta aplicacion fue creada utilizando: <br> <b>- En el <i>Front-End</i> :</b> React con TypeScript, Axios, Html-react-parser",
+                "datesModal": [
+                    {
+                        "title": "<b>PERIODO:</b>",
+                        "content": "12/12/2021 - 02/02/2022"
+                    },
+                    {
+                        "title": "<b>TIPO:</b>",
+                        "content": "PWA ( <i>Progressive Web App</i> )"
+                    },
+                    {
+                        "title": "<b>REPOSITORIO:</b>",
+                        "content": "<a href='https://github.com/JCLedesmaDev/Portafolio' target='_blank' rel='noopener'>Haz click aqui</a>"
+                    }
+                ]
+            },
+            {
+                "title": "Sistema de Gestion de Proyectos con Stack M.E.R.N",
+                "description": "Proyecto que nos permite anotar las tareas pendientes a desarrollar, de cada proyecto en particular en el que estemos trabajando.",
+                "createdWith": "Esta aplicacion esta siendo creada utilizando: <br/> <b>- En el <i>Back-End</i> :</b> NodeJS, Express, MongoDB. <br/> <b>- En el <i>Front-End</i> :</b> ReactJS con sus respectivos Hooks tales como: useState, useEffect, useContext y useReducer; <br/>",
+                "datesModal": [
+                    {
+                        "title": "<b>PERIODO:</b>",
+                        "content": "19/03/2021 - 24/04/2021"
+                    },
+                    {
+                        "title": "<b>TIPO:</b>",
+                        "content": "Diseño <i>Web Responsive</i>"
+                    },
+                    {
+                        "title": "<b>REPOSITORIO:</b>",
+                        "content": "<a href='https://github.com/JCLedesmaDev/Sistema-de-Gestion-de-Proyectos' target='_blank' rel='noopener'>Haz click aqui</a>"
+                    }
+                ]
+            },
+            {
+                "title": "Sistema de Gestion de Libros",
+                "description": "Proyecto que lleva el registro de una bibloteca personal para organizar tu propia bibloteca.",
+                "createdWith": "Esta aplicacion fue creada utilizando: <br/> <b>- En el <i> Back-End</i> :</b> NodeJS, ExpressJS, MongoDB. <br/> <b>- En el <i>Front-End</i> :</b> HTML5, CSS3 / Bootstrap 4 y Vanilla JavaScript.",
+                "datesModal": [
+                    {
+                        "title": "<b>PERIODO:</b>",
+                        "content": "16/10/2020 - 10/11/2020"
+                    },
+                    {
+                        "title": "<b>TIPO:</b>",
+                        "content": "Sitio <i>Web Responsive</i>"
+                    },
+                    {
+                        "title": "<b>REPOSITORIO:</b>",
+                        "content": "<a href='https://github.com/JCLedesmaDev/Sistema-de-Gestion-de-Libros' target='_blank' rel='noopener'>Haz click aqui</a>"
+                    }
+                ]
+            }
+        ],
+        "clickMe": "Haz click para saber mas..."
+    },
+    "contact": {
+        "interested": "¿Interesado?",
+        "modeContact": [
+            {
+                "icon": "fas fa-map-marker-alt",
+                "title": "UBICACION",
+                "links": [
+                    "<a href='https://www.google.com.ar/maps/dir//Córdoba,+Capital,+Córdoba/@-31.4200053,-64.2237957,13z/data=!3m1!4b1!4m9!4m8!1m0!1m5!1m1!1s0x9432985f478f5b69:0xb0a24f9a5366b092!2m2!1d-64.1887761!2d-31.4200833!3e1' target='_blank' rel='noopener'>Cordoba Capital, Cordoba, Argentina.</a>"
+                ]
+            },
+            {
+                "icon": "fas fa-phone",
+                "title": "TELEFONO",
+                "links": [
+                    "<a href='tel:3512371503'>(+54) 351-2371503</a>"
+                ]
+            },
+            {
+                "icon": "fas fa-envelope",
+                "title": "EMAIL",
+                "links": [
+                    "<a href='mailto:juanledesma6040@gmail.com'>juanledesma6040@gmail.com</a>"
+                ]
+            },
+            {
+                "icon": "fas fa-hashtag",
+                "title": "REDES SOCIALES",
+                "links": [
+                    "<a href='https://github.com/JCLedesmaDev' target='_blank' rel='noopener' > <i data-icon='github' class='fab fa-github'/></a>",
+                    "<a href='https://www.linkedin.com/in/juan-cruz-ledesma-383b40191/' target='_blank' rel='noopener'> <i data-icon='linkedIn' class='fab fa-linkedin-in'/></a>",
+                    "<a href='https://www.instagram.com/juanchii_ledesmaok/' target='_blank' rel='noopener'> <i data-icon='instagram' class='fab fa-instagram'/></a>"
+                ]
+            }
+        ],
+        "formContactInputs": [
+            {
+                "type": "text",
+                "name": "name",
+                "placeholder": "Ingrese su nombre",
+                "messageError": "El 'nombre' tiene que ser de 1 a 40 dígitos y solo puede contener letras y espacios en blanco.",
+                "autoComplete": "off"
+            },
+            {
+                "type": "email",
+                "name": "email",
+                "placeholder": "Ingrese su correo electrónico",
+                "messageError": "El correo solo puede contener letras, numeros, puntos, guiones y guion bajo.",
+                "autoComplete": "off"
+            },
+            {
+                "type": "textarea",
+                "name": "comment",
+                "placeholder": "Dejeme su consulta aquí",
+                "messageError": "Su consulta no debe acceder de los 255 caracteres.",
+                "autoComplete": "off",
+                "cols": 50,
+                "rows": 10
+            }
+        ],
+        "button": "Enviar mensaje",
+        "modalContact": "¡Muchas gracias por su consulta!",
+        "modalContactError": "Uupss.. Ha ocurrido un error, intentelo mas tarde."
+    },
+    "footer": {
+        "sitie": "Sitio diseñado por ",
+        "linkedIn": "<a href='https://www.linkedin.com/in/juan-cruz-ledesma/' target='_blank' rel='noopene'> Juan Cruz Ledesma </a>",
+        "gitHub": "<a href='https://github.com/JCLedesmaDev' target='_blank' rel='noopene'> @JCLedesmaDev </a>"
+    }
+}

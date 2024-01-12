@@ -1,0 +1,30 @@
+.main {
+    display: grid;
+    grid-template-columns: 0.70fr 0.30fr;
+    grid-template-rows: min(100%, 5rem) 1fr 1fr;
+    grid-template-areas:
+        "title title"
+        "description loadFiles"
+        "description loadFiles";
+    gap: .25rem;
+    height: 95%;
+    margin: 1rem 2rem;
+    background-color: #eee;
+}
+
+.title {
+    grid-area: title;
+    display: flex;
+    align-items: center;
+}
+
+.description {
+    grid-area: description;
+    background: orange;
+
+}
+
+.loadFiles {
+    grid-area: loadFiles;
+    background: red;
+}

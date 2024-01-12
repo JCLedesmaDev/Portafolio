@@ -7,7 +7,7 @@ import { Home } from '@/pages/home';
 import { Portfolio } from '@/pages/portfolio';
 import { Skills } from '@/pages/skills';
 import { Projects } from '@/pages/projects';
-import { Description } from '@/pages/description';
+import { Profile } from '@/pages/profile';
 import { RoutePrivate } from '@/components/index.components';
 
 const router = createBrowserRouter([
@@ -28,8 +28,8 @@ const router = createBrowserRouter([
         element: <Home />
       },
       {
-        path: 'myDescription',
-        element: <Description />
+        path: 'myProfile',
+        element: <Profile />
       },
       {
         path: 'myProjects',

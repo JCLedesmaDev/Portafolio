@@ -1,6 +1,7 @@
 .mainContainer {
     display: grid;
-    grid-template-columns: minmax(6.25rem, 0.5fr) repeat(3, minmax(6.25rem, 1fr));
+    grid-template-columns:
+        minmax(6.25rem, 0.5fr) repeat(3, minmax(6.25rem, 1fr));
     grid-template-rows: .175fr 1fr 1fr;
     grid-template-areas:
         "sidebar header header header"
@@ -98,7 +99,8 @@
     background: #6d7fcc;
     text-align: center;
 }
-.sidebarContainer__header img{
+
+.sidebarContainer__header img {
     width: 9.375rem;
 }
 
@@ -136,28 +138,31 @@
 }
 
 @media screen and (max-width: 1250px) {
- 
-    .sidebarContainer__header img{
+
+    .sidebarContainer__header img {
         margin-top: 2rem;
         width: 6.25rem;
     }
 
-    .sidebarContainer__content a{
-        flex-direction: column; 
+    .sidebarContainer__content a {
+        flex-direction: column;
         text-align: center;
     }
-    .sidebarContainer__content a img{
+
+    .sidebarContainer__content a img {
         margin: 0;
     }
 }
 
 @media screen and (max-width: 768px) {
-    .sidebarContainer__header img{
+    .sidebarContainer__header img {
         width: 45px;
     }
+
     .sidebarContainer__content a h4 {
         display: none;
     }
+
     .sidebarContainer__content a img {
         width: 1.5625rem;
         height: 1.5625rem;
