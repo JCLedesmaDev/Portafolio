@@ -1,10 +1,10 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
 import { useEffect, useRef, useState } from 'react';
-import { IInputListProps } from '../interface/index.interface';
 import css from './index.module.css'
 import { CheckCloseSVG } from '../svg/CheckCloseSVG';
 import { IRules } from '../interface/IRules';
+import { IInputListProps } from '../interface/IInputList';
 
 interface IProps {
     props: IInputListProps;

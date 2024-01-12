@@ -1,10 +1,10 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
 import { useEffect, useRef, useState } from 'react';
-import { IInputCalendarProps } from '../interface/index.interface';
 import css from './index.module.css'
 import { CheckCloseSVG } from '../svg/CheckCloseSVG';
 import { IRules } from '../interface/IRules';
+import { IInputCalendarProps } from '../interface/IInputCalendar';
 
 interface IProps {
     props: IInputCalendarProps;

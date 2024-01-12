@@ -10,13 +10,15 @@ interface Props {
   className?: any;
 }
 
-export const Input: React.FC<Props> = ({ props, className }) => {
+export const InputObs: React.FC<Props> = ({ props, className }) => {
 
   /// VARIABLES
   const { data, handleChange } = props;
 
-  const refInput = useRef<any>()
+  const refTextarea = useRef<any>()
   const [origVal, setOrigVal] = useState()
+  const [rows, setRows] = useState(2)
+
   const [local, setLocal] = useState<IInputProps>({
     data: { value: '' },
     autoComplete: 'false',
@@ -94,7 +96,7 @@ export const Input: React.FC<Props> = ({ props, className }) => {
     handleChange(props.name, {
       error: false, value: origVal, dirty: dirtyFlag
     })
-    if (refInput.current) refInput.current.value = origVal
+    if (refTextarea.current) refTextarea.current.value = origVal
   }
 
   const defineCSSInput = () => {
@@ -121,10 +123,23 @@ export const Input: React.FC<Props> = ({ props, className }) => {
     return style
   }
 
+  const calculateAutoResizeTextarea = () => {
+
+    const newRows = Math.ceil(refTextarea.current.scrollHeight / 35);
+    if (newRows > 23) return
+
+    console.log("🚀 ~ calculateAutoResizeTextarea ~ newRows:", newRows)
+    //refTextarea.current.rows = 
+    setRows(newRows)
+  }
 
   useEffect(() => { initInput() }, [])
 
-  useEffect(() => { validateRules() }, [local.data.value])
+  useEffect(() => {
+    validateRules()
+    calculateAutoResizeTextarea()
+  }, [local.data.value])
+
 
   return (
 
@@ -134,7 +149,7 @@ export const Input: React.FC<Props> = ({ props, className }) => {
 
         {props.icon && (<label className={css.containerItem__iconPrepend}>  {props.icon} </label>)}
 
-        <input ref={refInput} defaultValue={local.data.value} onKeyUp={update} placeholder={props.placeholder} type={props.type} name={props.name} required={props.required} autoComplete={props.autoComplete} className={defineCSSInput()} id={`input__${props.name}`} />
+        <textarea ref={refTextarea} defaultValue={local.data.value} onKeyUp={update} placeholder={props.placeholder} name={props.name} required={props.required} autoComplete={props.autoComplete} className={defineCSSInput()} rows={rows} id={`textarea__${props.name}`} />
 
         {local.data.dirty && (
           <CheckCloseSVG className={css.container__Item__iconRollback} rollback={rollback} />

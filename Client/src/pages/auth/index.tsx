@@ -23,7 +23,7 @@ export const Auth: React.FC = () => {
         password: { value: undefined, dirty: false, error: false }
     })
 
-    const formsProps: IFormProps = {
+    const formProps: IFormProps = {
         email: {
             data: { value: form['email'].value },
             placeholder: 'Ingrese usuario',
@@ -78,9 +78,9 @@ export const Auth: React.FC = () => {
 
                 <div className={css.container__Form}>
 
-                    <Input props={formsProps.email} />
+                    <Input props={formProps.email} />
 
-                    <InputPassword props={formsProps.password} />
+                    <InputPassword props={formProps.password} />
 
                     <button onClick={login} className={css.container__Form_btn} disabled={disabledBtn}>
                         Iniciar sesion

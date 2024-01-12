@@ -1,11 +1,11 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import React, { useEffect, useRef, useState } from "react";
-import { IInputProps } from "../interface/index.interface";
 import css from "./index.module.css";
 import { CheckCloseSVG } from '../svg/CheckCloseSVG';
 import { VisibilitySVG } from './svg/VisibilitySVG';
 import { InvisibilitySVG } from './svg/InvisibilitySVG';
 import { IRules } from '../interface/IRules';
+import { IInputProps } from '../interface/IInput';
 
 interface Props {
   props: IInputProps;
@@ -133,13 +133,13 @@ export const InputPassword: React.FC<Props> = ({ props, className }) => {
 
   return (
 
-    <div id={`form__${props.name}`} className={`${css.container} ${className}`}>
+    <div className={`${css.container} ${className}`}>
 
       <div className={css.container__Item}>
 
         {props.icon && (<label className={css.containerItem__iconPrepend}>  {props.icon} </label>)}
 
-        <input ref={refInput} defaultValue={local.data.value} onKeyUp={update} placeholder={props.placeholder} type={visiblePassword ? 'text' : 'password'} name={props.name} required={props.required} autoComplete={props.autoComplete} className={defineCSSInput()} />
+        <input ref={refInput} defaultValue={local.data.value} onKeyUp={update} placeholder={props.placeholder} type={visiblePassword ? 'text' : 'password'} name={props.name} required={props.required} autoComplete={props.autoComplete} className={defineCSSInput()} id={`input__${props.name}`} />
 
 
         {local.data.dirty && (

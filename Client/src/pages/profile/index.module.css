@@ -4,10 +4,10 @@
     grid-template-rows: min(100%, 5rem) 1fr 1fr;
     grid-template-areas:
         "title title"
-        "description loadFiles"
-        "description loadFiles";
+        "profile loadFiles"
+        "profile loadFiles";
     gap: .25rem;
-    height: 95%;
+    height: 88vh;
     margin: 1rem 2rem;
     background-color: #eee;
 }
@@ -18,11 +18,23 @@
     align-items: center;
 }
 
-.description {
-    grid-area: description;
-    background: orange;
-
+.profile {
+    grid-area: profile;
+    display: flex;
+    justify-content: space-around;
+    align-content: flex-start;
+    flex-wrap: wrap;
+    gap: 1rem;
+    overflow: auto;
 }
+.profile__field {
+    width: 100%;
+    max-width: 28.125rem;
+}
+.profile__field h4{
+    margin-bottom: 1rem;
+}
+
 
 .loadFiles {
     grid-area: loadFiles;
