@@ -5,8 +5,6 @@ import { Input, InputObs, ui } from '@/libraries/index.libraries'
 import { useFormCustom } from '@/hooks/index.hooks'
 import { IFormData, IFormProps } from './interface/IForm'
 
-import TextareaAutosize from 'react-textarea-autosize';
-
 export const Profile: React.FC = () => {
     const storeUi = ui.useStoreUi()
 
@@ -79,16 +77,11 @@ export const Profile: React.FC = () => {
 
                 <div className={css.profile__field}>
                     <h4>Sobre mi:</h4>
-                    {/*<TextareaAutosize
-                        rows={4}
-                        onKeyUp={(e: any) => handleChange('aboutMe', { value: e })}
-                        defaultValue={form['aboutMe'].value}
-                    />*/}
-                    <InputObs props={formProps.aboutMe} />
+                    <InputObs props={formProps.aboutMe} rows={13} />
                 </div>
 
 
-                <div className={css.profile__field}>
+                <div className={`${css.profile__field} ${css.previewVist}`}>
                     <h4>Vista previa</h4>
                     <div dangerouslySetInnerHTML={{ __html: form['aboutMe'].value }} />
                 </div>

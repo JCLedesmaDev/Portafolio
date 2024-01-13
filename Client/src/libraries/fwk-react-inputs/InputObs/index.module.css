@@ -17,7 +17,6 @@
 
 .container__Item>textarea {
   width: 100%;
-  /*height: unset;*/
   padding: 1rem;
   padding-right: 2.25rem;
   font-family: var(--font);
@@ -55,9 +54,8 @@
 /* Icono validacion */
 .container__Item__iconRollback {
   position: absolute;
-  right: 0.75rem;
+  right: 1rem;
   z-index: 1000;
-
   height: 100%;
   width: 1.5rem;
   transform: scale(1);
