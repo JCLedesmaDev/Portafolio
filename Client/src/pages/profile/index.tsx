@@ -5,18 +5,12 @@ import { Input, InputObs, ui } from '@/libraries/index.libraries'
 import { useFormCustom } from '@/hooks/index.hooks'
 import { IFormData, IFormProps } from './interface/IForm'
 
+import image from '@/assets/rocket-page-logo.png'
+
 export const Profile: React.FC = () => {
     const storeUi = ui.useStoreUi()
 
-    const description = `Hola, soy Juan Cruz, me gusta que me llamen Juan, Juanchi o Juancho, tengo 22 años y soy una persona que se caracteriza por saber escuchar y entender rápidamente las necesidades de los clientes. Me apasiona el diseño web y me esfuerzo por crear sitios web que combinen una estética y un arte equilibrado que se adapte perfectamente a las necesidades de cada cliente.
-    <br> <br>
-    Mi formación en el diseño de planos arquitectónicos me enseñó la importancia de tener una buena arquitectura y diseño en cualquier proyecto. Por eso, me mantengo en constante formación en el Desarrollo <i> <b>Back-End</b> </i> para lograr un código robusto, elegante y flexible. Me emociona aprender cosas nuevas y siempre estoy en busca de nuevas oportunidades para seguir creciendo en mi carrera.
-    <br> <br>
-    Actualmente estoy cursando la <b>Tecnicatura Superior en Desarrollo de Software</b> en el Instituto Técnico Superior Córdoba (I.T.S. Córdoba) para profundizar mis conocimientos en el mundo del <b>Software</b>. Si bien me defino como Desarrollador <i> <b>Front-End</b> </i>, también tengo algunos conocimientos en el entorno de <b>NodeJS</b>. Actualmente, me estoy enfocando en comprender cabalmente estos lenguajes para definirme como <b>Full-Stack</b>.Hola, soy Juan Cruz, me gusta que me llamen Juan, Juanchi o Juancho, tengo 22 años y soy una persona que se caracteriza por saber escuchar y entender rápidamente las necesidades de los clientes. Me apasiona el diseño web y me esfuerzo por crear sitios web que combinen una estética y un arte equilibrado que se adapte perfectamente a las necesidades de cada cliente.
-    <br> <br>
-    Mi formación en el diseño de planos arquitectónicos me enseñó la importancia de tener una buena arquitectura y diseño en cualquier proyecto. Por eso, me mantengo en constante formación en el Desarrollo <i> <b>Back-End</b> </i> para lograr un código robusto, elegante y flexible. Me emociona aprender cosas nuevas y siempre estoy en busca de nuevas oportunidades para seguir creciendo en mi carrera.
-    <br> <br>
-    Actualmente estoy cursando la <b>Tecnicatura Superior en Desarrollo de Software</b> en el Instituto Técnico Superior Córdoba (I.T.S. Córdoba) para profundizar mis conocimientos en el mundo del <b>Software</b>. Si bien me defino como Desarrollador <i> <b>Front-End</b> </i>, también tengo algunos conocimientos en el entorno de <b>NodeJS</b>. Actualmente, me estoy enfocando en comprender cabalmente estos lenguajes para definirme como <b>Full-Stack</b>.`
+    const description = `Hola, soy Juan Cruz, me gusta que me llamen Juan, Juanchi o Juancho, tengo 22 años y soy una persona que se caracteriza por saber escuchar y entender rápidamente las necesidades de los clientes. Me apasiona el diseño web y me esfuerzo por crear sitios web que combinen una estética y un arte equilibrado que se adapte perfectamente a las necesidades de cada cliente.    <br> <br>  Mi formación en el diseño de planos arquitectónicos me enseñó la importancia de tener una buena arquitectura y diseño en cualquier proyecto. Por eso, me mantengo en constante formación en el Desarrollo <i> <b>Back-End</b> </i> para lograr un código robusto, elegante y flexible. Me emociona aprender cosas nuevas y siempre estoy en busca de nuevas oportunidades para seguir creciendo en mi carrera. <br> <br>  Actualmente estoy cursando la <b>Tecnicatura Superior en Desarrollo de Software</b> en el Instituto Técnico Superior Córdoba (I.T.S. Córdoba) para profundizar mis conocimientos en el mundo del <b>Software</b>. Si bien me defino como Desarrollador <i> <b>Front-End</b> </i>, también tengo algunos conocimientos en el entorno de <b>NodeJS</b>. Actualmente, me estoy enfocando en comprender cabalmente estos lenguajes para definirme como <b>Full-Stack</b>.Hola, soy Juan Cruz, me gusta que me llamen Juan, Juanchi o Juancho, tengo 22 años y soy una persona que se caracteriza por saber escuchar y entender rápidamente las necesidades de los clientes. Me apasiona el diseño web y me esfuerzo por crear sitios web que combinen una estética y un arte equilibrado que se adapte perfectamente a las necesidades de cada cliente.<br> <br>Mi formación en el diseño de planos arquitectónicos me enseñó la importancia de tener una buena arquitectura y diseño en cualquier proyecto. Por eso, me mantengo en constante formación en el Desarrollo <i> <b>Back-End</b> </i> para lograr un código robusto, elegante y flexible. Me emociona aprender cosas nuevas y siempre estoy en busca de nuevas oportunidades para seguir creciendo en mi carrera. <br> <br> Actualmente estoy cursando la <b>Tecnicatura Superior en Desarrollo de Software</b> en el Instituto Técnico Superior Córdoba (I.T.S. Córdoba) para profundizar mis conocimientos en el mundo del <b>Software</b>. Si bien me defino como Desarrollador <i> <b>Front-End</b> </i>, también tengo algunos conocimientos en el entorno de <b>NodeJS</b>. Actualmente, me estoy enfocando en comprender cabalmente estos lenguajes para definirme como <b>Full-Stack</b>.`
 
     /// METODOS
     const { form, handleChange } = useFormCustom<IFormData>({
@@ -53,7 +47,6 @@ export const Profile: React.FC = () => {
         },
     }
 
-
     useEffect(() => {
         storeUi.actions.setTitleView('Mi Perfil')
     }, [])
@@ -89,9 +82,16 @@ export const Profile: React.FC = () => {
             </div>
 
             <div className={css.loadFiles}>
-                PARA CARGAR LA IMAGEN DE PERFIL
+
+                <input type="image" src={image} alt="Image profile" />
+                <input type="search" name="a" id="" />
+
+
+                {/*<img src={image} alt="Image profile" />*/}
+                <input type="file" name="a" id="" draggable />
 
                 <br />
+
 
                 PARA CARGAR CV
             </div>
