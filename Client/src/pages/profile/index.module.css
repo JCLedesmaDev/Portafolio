@@ -28,8 +28,8 @@
 }
 
 .profile__field {
-    width: 100%;
-    max-width: 375px;
+    width: 45%;
+    margin: 0 1rem;
 }
 
 .profile__field h4 {
@@ -37,11 +37,30 @@
 }
 
 .previewVist div {
-    max-height: 23rem;
+    height: 100%;
+    max-height: 55vh;
     overflow-y: auto;
 }
 
 .loadFiles {
     grid-area: loadFiles;
     background: red;
+}
+
+@media screen and (max-width: 768px) {
+  .main {
+    grid-template-areas:
+        "title title"
+        "loadFiles loadFiles"
+        "profile profile";
+    }
+    .profile {
+        overflow: visible;
+    }
+}
+@media screen and (max-width: 1024px) {
+    .profile__field {
+        width: 100%;
+        margin: 0;
+    }
 }

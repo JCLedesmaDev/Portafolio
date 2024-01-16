@@ -137,7 +137,8 @@ export const InputObs: React.FC<Props> = ({ props, className, rows = 2 }) => {
         {props.icon && (<label className={css.containerItem__iconPrepend}>  {props.icon} </label>)}
 
         <TextareaAutosize
-          ref={refTextarea} defaultValue={local.data.value} onKeyUp={update} placeholder={props.placeholder} name={props.name} required={props.required} autoComplete={props.autoComplete} className={defineCSSInput()} rows={rows} id={`textarea__${props.name}`} maxRows={rows}
+          ref={refTextarea} defaultValue={local.data.value} onKeyUp={update} placeholder={props.placeholder} name={props.name} required={props.required} autoComplete={props.autoComplete} className={defineCSSInput()} id={`textarea__${props.name}`} maxRows={rows}
+
         />
 
         {local.data.dirty && (
