@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { useEffect } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import css from './index.module.css'
 import { Input, InputObs, ui } from '@/libraries/index.libraries'
 import { useFormCustom } from '@/hooks/index.hooks'
@@ -8,17 +8,23 @@ import { IFormData, IFormProps } from './interface/IForm'
 import image from '@/assets/rocket-page-logo.png'
 
 export const Profile: React.FC = () => {
+
+    /// HOOKS
     const storeUi = ui.useStoreUi()
-
-    const description = `Hola, soy Juan Cruz, me gusta que me llamen Juan, Juanchi o Juancho, tengo 22 años y soy una persona que se caracteriza por saber escuchar y entender rápidamente las necesidades de los clientes. Me apasiona el diseño web y me esfuerzo por crear sitios web que combinen una estética y un arte equilibrado que se adapte perfectamente a las necesidades de cada cliente.    <br> <br>  Mi formación en el diseño de planos arquitectónicos me enseñó la importancia de tener una buena arquitectura y diseño en cualquier proyecto. Por eso, me mantengo en constante formación en el Desarrollo <i> <b>Back-End</b> </i> para lograr un código robusto, elegante y flexible. Me emociona aprender cosas nuevas y siempre estoy en busca de nuevas oportunidades para seguir creciendo en mi carrera. <br> <br>  Actualmente estoy cursando la <b>Tecnicatura Superior en Desarrollo de Software</b> en el Instituto Técnico Superior Córdoba (I.T.S. Córdoba) para profundizar mis conocimientos en el mundo del <b>Software</b>. Si bien me defino como Desarrollador <i> <b>Front-End</b> </i>, también tengo algunos conocimientos en el entorno de <b>NodeJS</b>. Actualmente, me estoy enfocando en comprender cabalmente estos lenguajes para definirme como <b>Full-Stack</b>.Hola, soy Juan Cruz, me gusta que me llamen Juan, Juanchi o Juancho, tengo 22 años y soy una persona que se caracteriza por saber escuchar y entender rápidamente las necesidades de los clientes. Me apasiona el diseño web y me esfuerzo por crear sitios web que combinen una estética y un arte equilibrado que se adapte perfectamente a las necesidades de cada cliente.<br> <br>Mi formación en el diseño de planos arquitectónicos me enseñó la importancia de tener una buena arquitectura y diseño en cualquier proyecto. Por eso, me mantengo en constante formación en el Desarrollo <i> <b>Back-End</b> </i> para lograr un código robusto, elegante y flexible. Me emociona aprender cosas nuevas y siempre estoy en busca de nuevas oportunidades para seguir creciendo en mi carrera. <br> <br> Actualmente estoy cursando la <b>Tecnicatura Superior en Desarrollo de Software</b> en el Instituto Técnico Superior Córdoba (I.T.S. Córdoba) para profundizar mis conocimientos en el mundo del <b>Software</b>. Si bien me defino como Desarrollador <i> <b>Front-End</b> </i>, también tengo algunos conocimientos en el entorno de <b>NodeJS</b>. Actualmente, me estoy enfocando en comprender cabalmente estos lenguajes para definirme como <b>Full-Stack</b>.`
-
-    /// METODOS
+    const refImageProfile = useRef<HTMLInputElement>(null)
+    const refCvProfile = useRef<HTMLInputElement>(null)
     const { form, handleChange } = useFormCustom<IFormData>({
         nameComplete: { value: '', dirty: false, error: false },
         rol: { value: '', dirty: false, error: false },
-        aboutMe: { value: description, dirty: false, error: false },
+        aboutMe: { value: '', dirty: false, error: false },
+        imageProfile: { value: '', dirty: false, error: false },
+        cvProfile: { value: '', dirty: false, error: false }
     })
 
+    const [imageSelect, setImageSelect] = useState(image);
+    const [cvSelect, setCvSelect] = useState('');
+
+    /// VARIABES
     const formProps: IFormProps = {
         nameComplete: {
             data: { value: form['nameComplete'].value },
@@ -46,6 +52,34 @@ export const Profile: React.FC = () => {
             handleChange: handleChange
         },
     }
+
+    /// METODOS
+    const openInputFile = (name = 'imageProfile' || 'cvProfile') => {
+        if (name === 'imageProfile') {
+            if (refImageProfile.current) refImageProfile.current.click()
+        } else {
+            if (refCvProfile.current) refCvProfile.current.click()
+        }
+    }
+
+    const updateImageProfile = (e: any, name = 'imageProfile' || 'cvProfile') => {
+
+        const file = e.target.files[0]
+        if (!file) return
+
+        const urlFile = URL.createObjectURL(file)
+
+        if (name === 'imageProfile') {
+            setImageSelect(urlFile)
+            handleChange('imageProfile', { value: e.target.files[0] })
+        } else {
+            setCvSelect(urlFile)
+            handleChange('cvProfile', { value: e.target.files[0] })
+        }
+    }
+    //const formData = new FormData();
+    //// Agrega el archivo al FormData
+    //formData.append('archivo', archivo);
 
     useEffect(() => {
         storeUi.actions.setTitleView('Mi Perfil')
@@ -83,17 +117,29 @@ export const Profile: React.FC = () => {
 
             <div className={css.loadFiles}>
 
-                <input type="image" src={image} alt="Image profile" />
-                <input type="search" name="a" id="" />
+                <div className={css.loadFiles__profile}>
+                    <h4>Imagen de Perfil</h4>
+                    <img src={imageSelect} alt="Image profile"
+                        onClick={() => openInputFile('imageProfile')}
+                        style={{ cursor: 'pointer' }}
+                    />
 
+                    <input type="file" ref={refImageProfile} style={{ display: 'none' }}
+                        onChange={(e: any) => updateImageProfile(e, 'imageProfile')} />
+                </div>
 
-                {/*<img src={image} alt="Image profile" />*/}
-                <input type="file" name="a" id="" draggable />
+                <div className={css.loadFiles__cv}>
+                    <h4>Curriculum Vitae</h4>
+                    <button onClick={() => openInputFile('cvProfile')}>
+                        Cargar Curriculum
+                    </button>
 
-                <br />
+                    <input type="file" ref={refCvProfile} style={{ display: 'none' }}
+                        onChange={(e: any) => updateImageProfile(e, 'cvProfile')} />
 
+                    {cvSelect && (<a href={cvSelect} target='_blank'>Abrir Curriculum</a>)}
+                </div>
 
-                PARA CARGAR CV
             </div>
 
         </main>

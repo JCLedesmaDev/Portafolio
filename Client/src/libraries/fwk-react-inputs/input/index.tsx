@@ -8,9 +8,10 @@ import { IInputProps } from '../interface/IInput';
 interface Props {
   props: IInputProps;
   className?: any;
+  style?: object
 }
 
-export const Input: React.FC<Props> = ({ props, className }) => {
+export const Input: React.FC<Props> = ({ props, className, style }) => {
 
   /// VARIABLES
   const { data, handleChange } = props;
@@ -72,14 +73,14 @@ export const Input: React.FC<Props> = ({ props, className }) => {
   }
 
   const update = (evt: any) => {
-    const { value, files } = evt.target;
+    const { value } = evt.target;
+
     // En caso de cargar imagenes tb
-    const imageInput = files != null && files[0];
     setLocal((prevVal) => ({
       ...prevVal,
       data: {
         ...prevVal.data,
-        value: imageInput ? imageInput : value,
+        value: value,
         dirty: value !== origVal
       }
     }))
@@ -128,7 +129,7 @@ export const Input: React.FC<Props> = ({ props, className }) => {
 
   return (
 
-    <div className={`${css.container} ${className}`}>
+    <div className={`${css.container} ${className}`} style={style}>
 
       <div className={css.container__Item}>
 
