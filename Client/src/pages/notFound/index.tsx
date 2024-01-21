@@ -11,7 +11,7 @@ export const NotFound: React.FC = () => {
 
     const navigate = useNavigate()
     // const data = useSubscribeEvent({ subscribeEventName: 'updateInput' })
-    
+
     const goToHome = () => {
         navigate('/')
     }

@@ -50,13 +50,14 @@ html {
   }
 }
 
+/*
 @media screen and (max-width: 480px) {
   html {
     font-size: 10px;
   }
 }
 
-/*@media screen and (max-width: 380px) {
+@media screen and (max-width: 380px) {
   html {
     font-size: 8px;
   }

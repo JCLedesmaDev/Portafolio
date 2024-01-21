@@ -36,6 +36,7 @@ export const validatorUpdateUserRequest = [
         .withMessage('Debe enviar UNA imagen de formato .png o .jpeg para el perfil.'),
 
     body("curriculumVitae", "Este campo es requerido")
+        .optional()
         .exists({ checkFalsy: true }) // Los campos con valores falsos (por ejemplo, "", 0, falso, nulo) tampoco existirán'),
         .trim() // Elimina los espacios del comienzo y final del texto
         .notEmpty(), // No puede venir vacio

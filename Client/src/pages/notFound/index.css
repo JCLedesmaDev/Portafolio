@@ -1,6 +1,7 @@
 /* Estilos para pantallas grandes (por defecto) */
 .contentNotFound {
   width: 100vw;
+  overflow: hidden !important;
   height: 100vh;
   margin: 0 !important;
   padding: 0 !important;
@@ -12,8 +13,8 @@
   position: absolute;
   top: -6.25rem;
   left: -18.75rem;
-  width: 56.25rem;
-  height: 56.25rem;
+  width: 47rem;
+  height: 47rem;
   content: '';
   border-radius: 100%;
   box-shadow: 0px 0px 30px -4px rgba(0, 0, 0, 0.5);
@@ -29,14 +30,14 @@
 
 .moon__crater1 {
   top: 15.625rem;
-  left: 31.25rem;
-  width: 3.75rem;
-  height: 11.25rem;
+  left: 21.25rem;
+  width: 2.75rem;
+  height: 9.25rem;
 }
 
 .moon__crater2 {
-  top: 40.625rem;
-  left: 21.25rem;
+  top: 30.625rem;
+  left: 18.25rem;
   width: 2.5rem;
   height: 5rem;
   transform: rotate(55deg);
@@ -106,19 +107,20 @@
 
 .error {
   position: absolute;
-  left: 6.25rem;
-  top: 25rem;
+  left: 2.25rem;
+  /*background: orange;*/
+  top: 20rem;
   transform: translateY(-60%);
   font-family: 'Righteous', cursive;
   color: #363e49;
 }
 
 .error__title {
-  font-size: 10rem;
+  font-size: 7rem;
 }
 
 .error__subtitle {
-  font-size: 2rem;
+  font-size: 1.5rem;
 }
 
 .error__description {
@@ -418,7 +420,7 @@
 
 @media screen and (max-width: 380px) {
   .astronaut__cord__canvas {
-    width: 12.5rem !important;
-    height: 16rem !important;
+    width: 10rem !important;
+    height: 13rem !important;
   }
 }

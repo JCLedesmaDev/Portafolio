@@ -18,7 +18,7 @@ export const Profile: React.FC = () => {
         rol: { value: '', dirty: false, error: false },
         aboutMe: { value: '', dirty: false, error: false },
         imageProfile: { value: '', dirty: false, error: false },
-        cvProfile: { value: '', dirty: false, error: false }
+        curriculumVitae: { value: '', dirty: false, error: false }
     })
 
     const [imageSelect, setImageSelect] = useState(image);
@@ -54,7 +54,7 @@ export const Profile: React.FC = () => {
     }
 
     /// METODOS
-    const openInputFile = (name = 'imageProfile' || 'cvProfile') => {
+    const openInputFile = (name = 'imageProfile' || 'curriculumVitae') => {
         if (name === 'imageProfile') {
             if (refImageProfile.current) refImageProfile.current.click()
         } else {
@@ -62,7 +62,7 @@ export const Profile: React.FC = () => {
         }
     }
 
-    const updateImageProfile = (e: any, name = 'imageProfile' || 'cvProfile') => {
+    const updateImageProfile = (e: any, name = 'imageProfile' || 'curriculumVitae') => {
 
         const file = e.target.files[0]
         if (!file) return
@@ -104,7 +104,7 @@ export const Profile: React.FC = () => {
 
                 <div className={css.profile__field}>
                     <h4>Sobre mi:</h4>
-                    <InputObs props={formProps.aboutMe} rows={13} />
+                    <InputObs props={formProps.aboutMe} rows={11} />
                 </div>
 
 
@@ -130,16 +130,21 @@ export const Profile: React.FC = () => {
 
                 <div className={css.loadFiles__cv}>
                     <h4>Curriculum Vitae</h4>
-                    <button onClick={() => openInputFile('cvProfile')}>
+                    <button onClick={() => openInputFile('curriculumVitae')} className={css.btn}>
                         Cargar Curriculum
                     </button>
 
                     <input type="file" ref={refCvProfile} style={{ display: 'none' }}
-                        onChange={(e: any) => updateImageProfile(e, 'cvProfile')} />
+                        onChange={(e: any) => updateImageProfile(e, 'curriculumVitae')} />
 
                     {cvSelect && (<a href={cvSelect} target='_blank'>Abrir Curriculum</a>)}
                 </div>
 
+            </div>
+
+            <div className={css.btnContainer}>
+                <button className={css.btn}>Guardar</button>
+                <button className={css.btn}>Cancelar</button>
             </div>
 
         </main>

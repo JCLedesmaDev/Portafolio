@@ -16,7 +16,8 @@ router.get('/getUser', controller.getUser);
 router.get('/getAllUsers', authHandler, controller.getAllUser);
 
 router.post('/updateUser', authHandler, fileMulterHandler([
-    { name: 'imageProfile', maxCount: 1 }
+    { name: 'imageProfile', maxCount: 1 },
+    { name: 'curriculumVitae', maxCount: 1 }
 ]), validatorUpdateUserRequest, controller.updateUser);
 
 export default router;

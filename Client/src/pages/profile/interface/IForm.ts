@@ -13,6 +13,6 @@ export interface IFormData {
     rol: IInputData;
     aboutMe: IInputData;
     imageProfile: IInputData;
-    cvProfile: IInputData;
+    curriculumVitae: IInputData;
 }
 
