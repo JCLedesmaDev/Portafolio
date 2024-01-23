@@ -1,4 +1,6 @@
 
 ⏰ En cada metodo POST devolver el ID del nuevo registro
- 
+ -> Agregar Lazy loading
+ -> Encriptar todos los keys y values del localStorage
+ -> Idem pero con las cookies en back
 Eliminar la interface de PaginationREquest en todos lados y reemplazar por express-validator
