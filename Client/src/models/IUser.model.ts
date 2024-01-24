@@ -5,7 +5,7 @@ import { IBase } from './common/IBase';
 export interface IUserModel extends IBase {
     fullName?: string;
     imageProfile?: string;
-    seniority?: string;
+    rol?: string;
     aboutMe?: string;
     email?: string;
     projectsList?: IProjectModel[];

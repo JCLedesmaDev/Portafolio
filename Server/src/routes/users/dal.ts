@@ -56,7 +56,7 @@ const updateUser = async (payload: IUpdateUserRequest): Promise<IUserSchema | nu
             payload.idUser,
             {
                 fullName: payload.fullName,
-                seniority: payload.seniority,
+                rol: payload.rol,
                 aboutMe: payload.aboutMe,
                 mySoftSkills: payload.mySoftSkills,
                 ...(payload.imageProfile && {

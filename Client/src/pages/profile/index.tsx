@@ -6,15 +6,18 @@ import { useFormCustom } from '@/hooks/index.hooks'
 import { IFormData, IFormProps } from './interface/IForm'
 
 import image from '@/assets/rocket-page-logo.png'
+import useStore from './store'
 
 export const Profile: React.FC = () => {
 
     /// HOOKS
-    const storeUi = ui.useStoreUi()
+    const storeUi = ui.useStore()
+    const store = useStore()
+
     const refImageProfile = useRef<HTMLInputElement>(null)
     const refCvProfile = useRef<HTMLInputElement>(null)
     const { form, handleChange } = useFormCustom<IFormData>({
-        nameComplete: { value: '', dirty: false, error: false },
+        fullName: { value: '', dirty: false, error: false },
         rol: { value: '', dirty: false, error: false },
         aboutMe: { value: '', dirty: false, error: false },
         imageProfile: { value: '', dirty: false, error: false },
@@ -26,11 +29,11 @@ export const Profile: React.FC = () => {
 
     /// VARIABES
     const formProps: IFormProps = {
-        nameComplete: {
-            data: { value: form['nameComplete'].value },
+        fullName: {
+            data: { value: form['fullName'].value },
             placeholder: 'Ejem.: Juan Cruz Ledesma',
             type: 'text',
-            name: 'nameComplete',
+            name: 'fullName',
             required: true,
             autoComplete: 'off',
             handleChange: handleChange
@@ -74,9 +77,19 @@ export const Profile: React.FC = () => {
             handleChange('cvProfile', { value: e.target.files[0] })
         }
     }
-    //const formData = new FormData();
-    //// Agrega el archivo al FormData
-    //formData.append('archivo', archivo);
+
+
+    const updateUser = () => {
+        const formData = new FormData();
+
+        formData.append('fullName', form.fullName.value);
+        formData.append('rol', form.rol.value);
+        formData.append('aboutMe', form.aboutMe.value);
+        formData.append('imageProfile', form.imageProfile.value);
+        formData.append('curriculumVitae', form.curriculumVitae.value);
+
+        store.actions.updateUser(formData)
+    }
 
     useEffect(() => {
         storeUi.actions.setTitleView('Mi Perfil')
@@ -91,7 +104,7 @@ export const Profile: React.FC = () => {
 
                 <div className={css.profile__field}>
                     <h4>Ingrese nombre completo</h4>
-                    <Input props={formProps.nameComplete} />
+                    <Input props={formProps.fullName} />
                 </div>
 
                 <div className={css.profile__field}>
@@ -140,7 +153,7 @@ export const Profile: React.FC = () => {
             </div>
 
             <div className={css.btnContainer}>
-                <button className={css.btn}>Guardar</button>
+                <button className={css.btn} onClick={updateUser}>Guardar</button>
                 <button className={css.btn}>Cancelar</button>
             </div>
 

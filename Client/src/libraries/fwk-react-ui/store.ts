@@ -63,6 +63,6 @@ const storeUi = createWithEqualityFn<IStore>((set) => ({
 }), shallow)
 
 
-export const useStoreUi = () => ({ ...storeUi((state) => (state)) })
+export const useStore = () => ({ ...storeUi((state) => (state)) })
 export default storeUi
 

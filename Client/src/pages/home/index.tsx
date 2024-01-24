@@ -9,7 +9,7 @@ import AboutMe from '@/assets/AboutMe.png'
 import Report from '@/assets/Report.png';
 
 export const Home: React.FC = () => {
-    const storeUi = ui.useStoreUi()
+    const storeUi = ui.useStore()
 
     useEffect(() => {
         //ui.actions.setTitleView('AdministracioEAn')

@@ -17,7 +17,7 @@ import Portafolio from '@/assets/Portafolio.png'
 export const MainLayout: React.FC = () => {
 
     const appStore = useAppStore()
-    const storeUi = ui.useStoreUi()
+    const storeUi = ui.useStore()
     const navigate = useNavigate()
     const [toggle, setToggle] = useState(false)
 

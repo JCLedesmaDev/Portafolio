@@ -3,7 +3,7 @@ import { SoftDeleteInterface } from "mongoose-delete";
 
 export interface IUserSchema extends Document, SoftDeleteInterface {
     fullName: string;
-    seniority: string;
+    rol: string;
     imageProfile: string;
     aboutMe: string;
     email: string;

@@ -1,7 +1,7 @@
 import { IInputProps, IInputData } from '@/libraries/index.libraries';
 
 export interface IFormProps {
-    nameComplete: IInputProps;
+    fullName: IInputProps;
     rol: IInputProps;
     aboutMe: IInputProps;
     //imageProfile: IInputProps;
@@ -9,7 +9,7 @@ export interface IFormProps {
 }
 
 export interface IFormData {
-    nameComplete: IInputData;
+    fullName: IInputData;
     rol: IInputData;
     aboutMe: IInputData;
     imageProfile: IInputData;

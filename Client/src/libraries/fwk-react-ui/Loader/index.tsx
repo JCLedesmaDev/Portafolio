@@ -3,7 +3,7 @@ import React, { useEffect } from 'react'
 import loading from './spinner.gif'
 import css from './index.module.css'
 import ReactDOM from 'react-dom/client'
-import { useStoreUi } from '../store'
+import { useStore } from '../store'
 
 const initializateLoader = (ref: React.MutableRefObject<HTMLDivElement>) => {
     const $loader = ref.current
@@ -12,7 +12,7 @@ const initializateLoader = (ref: React.MutableRefObject<HTMLDivElement>) => {
 }
 
 const Loader: React.FC = () => {
-    const store = useStoreUi()
+    const store = useStore()
 
     useEffect(() => {
         const $body = document.querySelector("body") as HTMLBodyElement;

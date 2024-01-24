@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import axios, { AxiosInstance, InternalAxiosRequestConfig, AxiosResponse, AxiosError } from 'axios'
+import axios, { AxiosInstance, InternalAxiosRequestConfig, AxiosResponse, AxiosError, AxiosRequestConfig } from 'axios'
 import {
     ICallSrvRequest,
     ICallSrvError,
@@ -105,18 +105,25 @@ export const apiSrv = {
     callSrv: async (payload: ICallSrvRequest): Promise<ICallSrvResponse> => {
 
         const { method, path, data } = payload
+        const options: AxiosRequestConfig = {
+            headers: {
+                "Content-Type": data instanceof FormData
+                    ? 'multipart/form-data'
+                    : 'application/json'
+            },
+        }
         let res = {} as ICallSrvResponse
 
         try {
             if (method === "GET") {
                 const params = { ...(data && data) }
                 res = await (await srv.get(path, {
-                    params: params || {}
+                    params: params || {},
                 })).data
             }
-            if (method === "POST") res = await (await srv.post(path, data)).data
-            if (method === "PUT") res = await (await srv.put(path, data)).data
-            if (method === "DELETE") res = await (await srv.delete(path)).data
+            if (method === "POST") res = await (await srv.post(path, data, options)).data
+            if (method === "PUT") res = await (await srv.put(path, data, options)).data
+            if (method === "DELETE") res = await (await srv.delete(path, data)).data
         } catch (error: unknown) {
             const err = error as ICallSrvError
             err?.data?.info

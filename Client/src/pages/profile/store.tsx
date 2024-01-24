@@ -5,18 +5,17 @@ import { shallow } from "zustand/shallow";
 import { apiSrv } from "@/libraries/index.libraries";
 import mapper from '@/mappers/index.mappers'
 import { IUserModel } from '@/models/IUser.model';
-import { IUpdateUserDtoRequest } from './interface/IUpdateUserRequest.dto';
 import appStore from "@/appStore";
 
 interface IStore {
     actions: {
-        updateUser: (usrData: IUpdateUserDtoRequest) => Promise<boolean>
+        updateUser: (usrData: FormData) => Promise<boolean>
     }
 }
 
-const store = createWithEqualityFn<IStore>((set, get) => ({
+const store = createWithEqualityFn<IStore>(() => ({
     actions: {
-        updateUser: async (usrData: IUpdateUserDtoRequest) => {
+        updateUser: async (usrData: FormData) => {
             const res = await apiSrv.callBackEnd({
                 preCallback: async () => {
                     return await apiSrv.callSrv({

@@ -14,7 +14,7 @@ import { InputCalendar } from '@/libraries/fwk-react-inputs/inputCalendar';
 
 export const LoggerDB: React.FC = () => {
 
-    const storeUi = ui.useStoreUi()
+    const storeUi = ui.useStore()
     const store = useLoggerDbStore()
     const [disabledBtn, setDisabledBtn] = useState<boolean>(false)
 
@@ -80,7 +80,7 @@ export const LoggerDB: React.FC = () => {
 
     const getAllLoggersDb = (page: number = 1) => {
         console.log("🚀 ~ file: index.tsx:29 ~ form:", form)
-        store.actions.getAllLogersDb({
+        store.actions.getAllLoggersDb({
             page,
             limitPage: form.limitPage.value,
             dateFrom: form.dateFrom.value,

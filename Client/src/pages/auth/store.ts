@@ -14,16 +14,16 @@ interface IStore {
     }
 }
 
-const store = createWithEqualityFn<IStore>((set, get) => {
+const store = createWithEqualityFn<IStore>(() => {
     return {
         actions: {
-            login: async (payload: ILoginDtoRequest) => {
+            login: async (userData: ILoginDtoRequest) => {
                 const res = await apiSrv.callBackEnd({
                     preCallback: async () => {
                         return await apiSrv.callSrv({
                             method: 'POST',
                             path: '/users/login',
-                            data: payload
+                            data: userData
                         })
                     },
                     options: { loader: true }

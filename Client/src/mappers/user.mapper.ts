@@ -11,7 +11,7 @@ export const singleUser = (resource: any): IUserModel => {
         id: resource?.id,
         fullName: resource?.fullName,
         imageProfile: resource?.imageProfile,
-        seniority: resource?.seniority,
+        rol: resource?.rol,
         aboutMe: resource?.aboutMe,
         email: resource?.email,
         curriculumVitae: resource?.curriculumVitae,

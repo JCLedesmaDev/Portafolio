@@ -5,7 +5,7 @@ import { ISkill } from "./ISkill";
 export interface IUser extends IBase {
     fullName: string;
     imageProfile: string;
-    seniority: string;
+    rol: string;
     aboutMe: string;
     email: string;
     projectsList: IProject[];
