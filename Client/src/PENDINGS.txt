@@ -1,3 +1,5 @@
 🕐 VER el css de app.css
-
+ -> Agregar Lazy loading
+ -> Encriptar todos los keys y values del localStorage
+ -> Idem pero con las cookies en back
 

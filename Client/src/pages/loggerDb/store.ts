@@ -7,10 +7,8 @@ import { apiSrv } from "@/libraries/index.libraries";
 import mapper from '@/mappers/index.mappers'
 import { ILoggerDB } from '@/models/ILoggerDB.model';
 import { IPagination } from '@/interface/IPagination';
-import { IFilterPaginationDb } from './interface/IFilterPaginationDb';
 import { IUserModel } from '@/models/IUser.model';
-
-
+import { IGetAllLoggersDtoRequest } from './interface/IGetAllLoggersRequest.dto';
 
 interface IStore {
     state: {
@@ -22,7 +20,7 @@ interface IStore {
         setLoggersDb: (loggers: ILoggerDB[]) => void;
         setUsers: (users: IUserModel[]) => void;
         setPaginate: (data: IPagination) => void
-        getAllLogersDb: (filters: IFilterPaginationDb) => Promise<boolean>
+        getAllLoggersDb: (filters: IGetAllLoggersDtoRequest) => Promise<boolean>
         getAllUsers: () => Promise<any>
     }
 }
@@ -55,7 +53,7 @@ const store = createWithEqualityFn<IStore>((set, get) => ({
                 }
             }))
         },
-        getAllLogersDb: async (filters: IFilterPaginationDb) => {
+        getAllLoggersDb: async (filters: IGetAllLoggersDtoRequest) => {
             const res = await apiSrv.callBackEnd({
                 preCallback: async () => {
                     return await apiSrv.callSrv({

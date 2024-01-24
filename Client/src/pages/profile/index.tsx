@@ -63,12 +63,9 @@ export const Profile: React.FC = () => {
     }
 
     const updateImageProfile = (e: any, name = 'imageProfile' || 'curriculumVitae') => {
-
         const file = e.target.files[0]
         if (!file) return
-
         const urlFile = URL.createObjectURL(file)
-
         if (name === 'imageProfile') {
             setImageSelect(urlFile)
             handleChange('imageProfile', { value: e.target.files[0] })

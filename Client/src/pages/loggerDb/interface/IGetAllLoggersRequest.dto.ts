@@ -1,4 +1,4 @@
-export interface IFilterPaginationDb {
+export interface IGetAllLoggersDtoRequest {
     page: number;
     limitPage: number;
     dateFrom: Date;
