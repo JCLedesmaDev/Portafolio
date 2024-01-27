@@ -49,6 +49,7 @@ const storeUi = createWithEqualityFn<IStore>((set) => ({
                 draggable: true,
                 pauseOnHover: true,
                 theme: "light",
+                stacked: true,
                 ...options
             }
             myToast[type](newMessage, opt)

@@ -16,6 +16,7 @@ export const Profile: React.FC = () => {
 
     const refImageProfile = useRef<HTMLInputElement>(null)
     const refCvProfile = useRef<HTMLInputElement>(null)
+    const [disabledBtn, setDisabledBtn] = useState<boolean>(false)
     const { form, handleChange } = useFormCustom<IFormData>({
         fullName: { value: '', dirty: false, error: false },
         rol: { value: '', dirty: false, error: false },
@@ -69,31 +70,55 @@ export const Profile: React.FC = () => {
         const file = e.target.files[0]
         if (!file) return
         const urlFile = URL.createObjectURL(file)
+        const typeFile = file.type.split("/").pop()
+
         if (name === 'imageProfile') {
+            if (!(typeFile === 'png' || typeFile === 'jpeg' || typeFile === 'jpg')) {
+                handleChange('imageProfile', { error: true })
+                return storeUi.actions.showNotify(
+                    'Debe enviar UNA imagen de formato .png o .jpeg para el perfil.', 'error'
+                )
+            }
             setImageSelect(urlFile)
-            handleChange('imageProfile', { value: e.target.files[0] })
+            handleChange('imageProfile', {
+                value: e.target.files[0],
+                error: false
+            })
         } else {
+            if (typeFile !== 'pdf') {
+                handleChange('curriculumVitae', { error: true })
+                return storeUi.actions.showNotify(
+                    'Debe enviar UN archivo de formato .pdf para el CV.', 'error'
+                )
+            }
             setCvSelect(urlFile)
-            handleChange('cvProfile', { value: e.target.files[0] })
+            handleChange('curriculumVitae', {
+                value: e.target.files[0],
+                error: false
+            })
         }
     }
 
 
     const updateUser = () => {
         const formData = new FormData();
-
-        formData.append('fullName', form.fullName.value);
-        formData.append('rol', form.rol.value);
-        formData.append('aboutMe', form.aboutMe.value);
-        formData.append('imageProfile', form.imageProfile.value);
-        formData.append('curriculumVitae', form.curriculumVitae.value);
-
+        for (const property in form) {
+            const formProperty = form[property as keyof IFormData]
+            if (formProperty.value !== '') {
+                formData.append(property, formProperty.value);
+            }
+        }
         store.actions.updateUser(formData)
     }
 
     useEffect(() => {
         storeUi.actions.setTitleView('Mi Perfil')
     }, [])
+
+    useEffect(() => {
+        const flag = (form.fullName.error || form.rol.error || form.aboutMe.error || form.imageProfile.error || form.curriculumVitae.error) as boolean
+        setDisabledBtn(flag)
+    }, [form.fullName.error, form.rol.error, form.aboutMe.error, form.imageProfile.error, form.curriculumVitae.error])
 
     return (
         <main className={css.main}>
@@ -153,8 +178,8 @@ export const Profile: React.FC = () => {
             </div>
 
             <div className={css.btnContainer}>
-                <button className={css.btn} onClick={updateUser}>Guardar</button>
                 <button className={css.btn}>Cancelar</button>
+                <button className={css.btn} onClick={updateUser} disabled={disabledBtn}>Guardar</button>
             </div>
 
         </main>

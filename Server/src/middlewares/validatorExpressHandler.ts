@@ -15,10 +15,16 @@ const validateResults = (req: Request, res: Response, next: NextFunction) => {
 
         if (req.files) deleteFilesWhenExistError(req.files)
 
-        const extractedErrors = mapperErrorsFields(errors)
+        let extractedErrors: any[] = []
+        let errorMessage = 'Hay un error en los siguientes campos enviados: '
 
-        return res.json(responseMessage.error<any>({
-            message: 'Error en datos enviados', data: extractedErrors
+        errors.array({ onlyFirstError: true }).map(err => {
+            extractedErrors.push({ [err.param]: err.msg })
+            errorMessage += ` ${err.param};`
+        });
+
+        return res.json(responseMessage.error({
+            message: errorMessage, data: extractedErrors
         }))
     }
 }
