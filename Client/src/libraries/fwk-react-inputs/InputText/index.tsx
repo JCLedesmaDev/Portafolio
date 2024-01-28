@@ -11,7 +11,7 @@ interface Props {
   style?: object
 }
 
-export const Input: React.FC<Props> = ({ props, className, style }) => {
+export const InputText: React.FC<Props> = ({ props, className, style }) => {
 
   /// VARIABLES
   const { data, handleChange } = props;

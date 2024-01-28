@@ -3,7 +3,7 @@ import useAuthStore from "./store";
 import { useEffect, useState } from "react"
 import { UserSVG } from "@/assets/UserSVG"
 import { useNavigate } from 'react-router-dom'
-import { Input, InputPassword } from "@/libraries/index.libraries"
+import { InputText, InputPassword } from "@/libraries/index.libraries"
 import { IFormProps, IFormData } from "./interface/IForm"
 import { useFormCustom } from "@/hooks/index.hooks"
 import { PasswordSVG } from "@/assets/PasswordSVG"
@@ -78,7 +78,7 @@ export const Auth: React.FC = () => {
 
                 <div className={css.container__Form}>
 
-                    <Input props={formProps.email} />
+                    <InputText props={formProps.email} />
 
                     <InputPassword props={formProps.password} />
 

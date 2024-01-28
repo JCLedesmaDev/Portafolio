@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { useEffect, useRef, useState } from 'react'
 import css from './index.module.css'
-import { Input, InputObs, ui } from '@/libraries/index.libraries'
+import { InputText, InputObs, ui } from '@/libraries/index.libraries'
 import { useFormCustom } from '@/hooks/index.hooks'
 import { IFormData, IFormProps } from './interface/IForm'
 
@@ -129,12 +129,12 @@ export const Profile: React.FC = () => {
 
                 <div className={css.profile__field}>
                     <h4>Ingrese nombre completo</h4>
-                    <Input props={formProps.fullName} />
+                    <InputText props={formProps.fullName} />
                 </div>
 
                 <div className={css.profile__field}>
                     <h4>Ingrese el rol que ocupa actualmente</h4>
-                    <Input props={formProps.rol} />
+                    <InputText props={formProps.rol} />
                 </div>
 
                 <div className={css.profile__field}>

@@ -1,4 +1,4 @@
-export { Input } from './input/index'
+export { InputText } from './InputText/index'
 export { InputPassword } from './InputPassword/index'
 export { InputCalendar } from './inputCalendar/index'
 export { InputList } from './InputList/index'

@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { useEffect, useState } from 'react';
-import { Input, Paginate, ui } from '@/libraries/index.libraries';
+import { InputText, Paginate, ui } from '@/libraries/index.libraries';
 import useLoggerDbStore from './store'
 import { JSONViewer } from './components/jsonViewer';
 import css from './index.module.css'
@@ -142,7 +142,7 @@ export const LoggerDB: React.FC = () => {
 
                 <div className={css.navFilterInputNumber}>
                     <h4 > Cant. logs X pag.: </h4>
-                    <Input props={formProps.limitPage} />
+                    <InputText props={formProps.limitPage} />
                 </div>
 
                 <button onClick={() => getAllLoggersDb()}
