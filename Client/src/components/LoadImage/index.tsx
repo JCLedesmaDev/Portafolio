@@ -1,34 +1,14 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-
 import { ui } from '@/libraries/index.libraries';
 import { useEffect, useRef, useState } from 'react';
-
+import { IRules } from './interface/IRules';
+import { ILoadFileProps } from './interface/ILoadFile';
+import imageDefault from './imageDefault.png'
 interface Props {
     props: ILoadFileProps;
     className?: any;
     style?: object
 }
-
-interface ILoadFileProps {
-    name: string;
-    required: boolean;
-    data: ILoadFileData
-    rules?: IRules[]
-    imageDefault: any
-    handleChange: (nameField: string, data: any) => void,
-}
-
-interface ILoadFileData {
-    value: any;
-    dirty?: boolean
-    error?: boolean,
-}
-interface IRules {
-    fnCondition: (val: any) => any;
-    messageError: string
-}
-
-
 
 export const LoadFile: React.FC<Props> = ({ props, className, style }) => {
     const { data, handleChange } = props;
@@ -36,19 +16,20 @@ export const LoadFile: React.FC<Props> = ({ props, className, style }) => {
     /// HOOKS
     const refFile = useRef<HTMLInputElement>(null)
     const [origVal, setOrigVal] = useState()
-    const [fileSelect, setFileSelect] = useState(props.imageDefault);
+    const [fileSelect, setFileSelect] = useState(props.imageDefault || imageDefault);
     const storeUi = ui.useStore()
 
     const [local, setLocal] = useState<ILoadFileProps>({
         data: { value: '' },
         name: '',
+        type: 'image',
         required: false,
         handleChange: () => { },
         imageDefault: ''
     })
     const [cmpRules, setCmpRules] = useState<IRules[]>([{
         fnCondition: (val) => props.required && !val,
-        messageError: 'Este campo es requerido.'
+        messageError: `Este campo ${props.name} es requerido.`
     }])
 
     /// METODOS
@@ -61,7 +42,6 @@ export const LoadFile: React.FC<Props> = ({ props, className, style }) => {
         setLocal(props)
     }
     const validateRules = () => {
-
         const typeFile = local.data.value.type.split("/").pop()
 
         for (const rule of cmpRules) {
@@ -111,11 +91,13 @@ export const LoadFile: React.FC<Props> = ({ props, className, style }) => {
 
     console.log("🚀 ~ props:", props)
 
-    return (<>
-        <img src={fileSelect} alt={props.name}
-            onClick={openInputFile} style={{ cursor: 'pointer' }}
-        />
+    return (
+        <div className={className} style={style}>
+            <img src={fileSelect} alt={props.name}
+                onClick={openInputFile} style={{ cursor: 'pointer' }}
+            />
 
-        <input type="file" ref={refFile} style={{ display: 'none' }} onChange={update} />
-    </>)
+            <input type="file" ref={refFile} style={{ display: 'none' }} onChange={update} />
+        </div>
+    )
 }
