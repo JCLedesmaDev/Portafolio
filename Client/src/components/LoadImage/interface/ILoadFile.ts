@@ -7,7 +7,7 @@ export interface ILoadFileProps {
     type: 'image' | 'file'
     data: ILoadFileData
     rules?: IRules[]
-    imageDefault: any
+    imageDefault?: any
     handleChange: (nameField: string, data: any) => void,
 }
 interface ILoadFileData {

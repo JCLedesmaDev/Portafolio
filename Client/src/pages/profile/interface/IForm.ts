@@ -1,11 +1,12 @@
+import { ILoadFileProps } from '@/components/LoadImage/interface/ILoadFile';
 import { IInputProps, IInputData } from '@/libraries/index.libraries';
 
 export interface IFormProps {
     fullName: IInputProps;
     rol: IInputProps;
     aboutMe: IInputProps;
-    //imageProfile: IInputProps;
-    //cvProfile: IInputProps;
+    imageProfile: ILoadFileProps;
+    curriculumVitae: ILoadFileProps;
 }
 
 export interface IFormData {

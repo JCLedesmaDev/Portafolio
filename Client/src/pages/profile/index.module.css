@@ -76,6 +76,7 @@
     /*padding: 2rem 0;*/
 }
 
+.loadFiles__cv button,
 .btn {
     border: none;
     color: var(--color-blanco);
@@ -84,8 +85,11 @@
     cursor: pointer;
     padding: 1rem;
     transition: all 0.2s ease;
+    margin: 0 1rem;
 }
 
+.loadFiles__cv button:focus,
+.loadFiles__cv button:hover,
 .btn:focus,
 .btn:hover {
     background: #F0382C;

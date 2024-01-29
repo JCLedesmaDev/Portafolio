@@ -3,7 +3,6 @@ import { ui } from '@/libraries/index.libraries';
 import { useEffect, useRef, useState } from 'react';
 import { IRules } from './interface/IRules';
 import { ILoadFileProps } from './interface/ILoadFile';
-import imageDefault from './imageDefault.png'
 interface Props {
     props: ILoadFileProps;
     className?: any;
@@ -16,7 +15,6 @@ export const LoadFile: React.FC<Props> = ({ props, className, style }) => {
     /// HOOKS
     const refFile = useRef<HTMLInputElement>(null)
     const [origVal, setOrigVal] = useState()
-    const [fileSelect, setFileSelect] = useState(props.imageDefault || imageDefault);
     const storeUi = ui.useStore()
 
     const [local, setLocal] = useState<ILoadFileProps>({
@@ -27,14 +25,15 @@ export const LoadFile: React.FC<Props> = ({ props, className, style }) => {
         handleChange: () => { },
         imageDefault: ''
     })
+    const [fileSelect, setFileSelect] = useState(local.imageDefault || props.imageDefault);
     const [cmpRules, setCmpRules] = useState<IRules[]>([{
-        fnCondition: (val) => props.required && !val,
-        messageError: `Este campo ${props.name} es requerido.`
+        fnCondition: (val) => local.required && !val,
+        messageError: `Este campo ${local.name} es requerido.`
     }])
 
     /// METODOS
     const initInput = () => {
-        console.log(`CONSTRUCTOR INPUT ${props.name}`)
+        console.log(`CONSTRUCTOR INPUT ${local.name}`)
         props.rules?.forEach(rule => {
             setCmpRules((prevVal) => ([...prevVal, rule]))
         })
@@ -42,23 +41,21 @@ export const LoadFile: React.FC<Props> = ({ props, className, style }) => {
         setLocal(props)
     }
     const validateRules = () => {
-        const typeFile = local.data.value.type.split("/").pop()
+        const typeFile = local.data.value?.type?.split("/").pop()
 
         for (const rule of cmpRules) {
             if (rule.fnCondition(typeFile)) {
                 setLocal((prevVal) => ({
                     ...prevVal, data: { ...prevVal.data, error: true }
                 }))
-                handleChange(props.name, {
-                    value: local.data.value, dirty: local.data.dirty, error: true
-                })
+                handleChange(local.name, { error: true })
                 storeUi.actions.showNotify(rule.messageError, 'error')
                 break;
             } else {
                 setLocal((prevVal) => ({
                     ...prevVal, data: { ...prevVal.data, error: false }
                 }))
-                handleChange(props.name, {
+                handleChange(local.name, {
                     value: local.data.value, dirty: local.data.dirty, error: false
                 })
             }
@@ -89,13 +86,21 @@ export const LoadFile: React.FC<Props> = ({ props, className, style }) => {
 
     useEffect(() => { validateRules() }, [local.data.value])
 
-    console.log("🚀 ~ props:", props)
+    console.log("🚀 ~ props:", local)
 
     return (
         <div className={className} style={style}>
-            <img src={fileSelect} alt={props.name}
-                onClick={openInputFile} style={{ cursor: 'pointer' }}
-            />
+            {local.type === 'image' && (
+                <img src={fileSelect} alt={local.name}
+                    onClick={openInputFile} style={{ cursor: 'pointer' }}
+                />
+            )}
+            {local.type === 'file' && (<>
+                <button onClick={openInputFile}>Cargar archivo </button>
+                {fileSelect && (
+                    <a href={fileSelect} target='_blank'>Abrir archivo </a>
+                )}
+            </>)}
 
             <input type="file" ref={refFile} style={{ display: 'none' }} onChange={update} />
         </div>

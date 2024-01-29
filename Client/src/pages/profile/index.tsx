@@ -1,12 +1,13 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useState } from 'react'
 import css from './index.module.css'
 import { InputText, InputObs, ui } from '@/libraries/index.libraries'
 import { useFormCustom } from '@/hooks/index.hooks'
 import { IFormData, IFormProps } from './interface/IForm'
 
-import image from '@/assets/rocket-page-logo.png'
+import imageDefault from '@/assets/imageDefault.png'
 import useStore from './store'
+import { LoadFile } from '@/components/LoadImage'
 
 export const Profile: React.FC = () => {
 
@@ -14,8 +15,6 @@ export const Profile: React.FC = () => {
     const storeUi = ui.useStore()
     const store = useStore()
 
-    const refImageProfile = useRef<HTMLInputElement>(null)
-    const refCvProfile = useRef<HTMLInputElement>(null)
     const [disabledBtn, setDisabledBtn] = useState<boolean>(false)
     const { form, handleChange } = useFormCustom<IFormData>({
         fullName: { value: '', dirty: false, error: false },
@@ -25,8 +24,6 @@ export const Profile: React.FC = () => {
         curriculumVitae: { value: '', dirty: false, error: false }
     })
 
-    const [imageSelect, setImageSelect] = useState(image);
-    const [cvSelect, setCvSelect] = useState('');
 
     /// VARIABES
     const formProps: IFormProps = {
@@ -55,51 +52,36 @@ export const Profile: React.FC = () => {
             autoComplete: 'off',
             handleChange: handleChange
         },
+        imageProfile: {
+            data: { value: form['imageProfile'].value },
+            type: 'image',
+            name: 'imageProfile',
+            required: false,
+            handleChange: handleChange,
+            imageDefault: imageDefault,
+            rules: [
+                {
+                    fnCondition: (typeFile) => !(typeFile === 'png' || typeFile === 'jpeg' || typeFile === 'jpg'),
+                    messageError: 'Debe enviar UNA imagen de formato .png o .jpeg para el perfil.'
+                }
+            ]
+        },
+        curriculumVitae: {
+            data: { value: form['curriculumVitae'].value },
+            type: 'file',
+            name: 'curriculumVitae',
+            required: false,
+            rules: [
+                {
+                    fnCondition: (typeFile) => typeFile !== 'pdf',
+                    messageError: 'Debe enviar UN archivo de formato .pdf para el CV.'
+                }
+            ],
+            handleChange: handleChange
+        },
     }
 
     /// METODOS
-    const openInputFile = (name = 'imageProfile' || 'curriculumVitae') => {
-        if (name === 'imageProfile') {
-            if (refImageProfile.current) refImageProfile.current.click()
-        } else {
-            if (refCvProfile.current) refCvProfile.current.click()
-        }
-    }
-
-    const updateImageProfile = (e: any, name = 'imageProfile' || 'curriculumVitae') => {
-        const file = e.target.files[0]
-        if (!file) return
-        const urlFile = URL.createObjectURL(file)
-        const typeFile = file.type.split("/").pop()
-
-        if (name === 'imageProfile') {
-            if (!(typeFile === 'png' || typeFile === 'jpeg' || typeFile === 'jpg')) {
-                handleChange('imageProfile', { error: true })
-                return storeUi.actions.showNotify(
-                    'Debe enviar UNA imagen de formato .png o .jpeg para el perfil.', 'error'
-                )
-            }
-            setImageSelect(urlFile)
-            handleChange('imageProfile', {
-                value: e.target.files[0],
-                error: false
-            })
-        } else {
-            if (typeFile !== 'pdf') {
-                handleChange('curriculumVitae', { error: true })
-                return storeUi.actions.showNotify(
-                    'Debe enviar UN archivo de formato .pdf para el CV.', 'error'
-                )
-            }
-            setCvSelect(urlFile)
-            handleChange('curriculumVitae', {
-                value: e.target.files[0],
-                error: false
-            })
-        }
-    }
-
-
     const updateUser = () => {
         const formData = new FormData();
         for (const property in form) {
@@ -154,25 +136,12 @@ export const Profile: React.FC = () => {
 
                 <div className={css.loadFiles__profile}>
                     <h4>Imagen de Perfil</h4>
-                    <img src={imageSelect} alt="Image profile"
-                        onClick={() => openInputFile('imageProfile')}
-                        style={{ cursor: 'pointer' }}
-                    />
-
-                    <input type="file" ref={refImageProfile} style={{ display: 'none' }}
-                        onChange={(e: any) => updateImageProfile(e, 'imageProfile')} />
+                    <LoadFile props={formProps.imageProfile} />
                 </div>
 
                 <div className={css.loadFiles__cv}>
                     <h4>Curriculum Vitae</h4>
-                    <button onClick={() => openInputFile('curriculumVitae')} className={css.btn}>
-                        Cargar Curriculum
-                    </button>
-
-                    <input type="file" ref={refCvProfile} style={{ display: 'none' }}
-                        onChange={(e: any) => updateImageProfile(e, 'curriculumVitae')} />
-
-                    {cvSelect && (<a href={cvSelect} target='_blank'>Abrir Curriculum</a>)}
+                    <LoadFile props={formProps.curriculumVitae} />
                 </div>
 
             </div>
