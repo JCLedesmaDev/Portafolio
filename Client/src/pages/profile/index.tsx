@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import css from './index.module.css'
 import { InputText, InputObs, ui } from '@/libraries/index.libraries'
 import { useFormCustom } from '@/hooks/index.hooks'
@@ -18,7 +18,7 @@ export const Profile: React.FC = () => {
     const appStore = useAppStore()
 
     const [disabledBtn, setDisabledBtn] = useState<boolean>(false)
-    const { form, handleChange } = useFormCustom<IFormData>({
+    const { form, handleChange, resetForm } = useFormCustom<IFormData>({
         fullName: { value: appStore.state.user.fullName, dirty: false, error: false },
         rol: { value: appStore.state.user.rol, dirty: false, error: false },
         aboutMe: { value: appStore.state.user.aboutMe, dirty: false, error: false },
@@ -93,6 +93,7 @@ export const Profile: React.FC = () => {
             }
         }
         store.actions.updateUser(formData)
+        resetForm()
     }
 
     useEffect(() => {

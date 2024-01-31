@@ -2,3 +2,5 @@
 ⏰ En cada metodo POST devolver el ID del nuevo registro
 
 Eliminar la interface de PaginationREquest en todos lados y reemplazar por express-validator
+
+🕐 Hacer que las key de las cookies se envien encriptadas y desencriptar en el back
