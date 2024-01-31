@@ -8,7 +8,7 @@ import { IFormData, IFormProps } from './interface/IForm'
 import useStore from './store'
 import useAppStore from '@/appStore'
 import imageDefault from '@/assets/imageDefault.png'
-import { LoadFile } from '@/components/LoadImage'
+import { LoadFile } from '@/libraries/fwk-react-loadFile'
 
 export const Profile: React.FC = () => {
 

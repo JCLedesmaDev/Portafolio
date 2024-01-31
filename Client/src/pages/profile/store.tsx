@@ -24,7 +24,7 @@ const store = createWithEqualityFn<IStore>(() => ({
                         data: usrData
                     })
                 },
-                options: { loader: true }
+                options: { loader: true, status: true }
             })
 
             const userAdapted: IUserModel = mapper.singleUser(res.user);

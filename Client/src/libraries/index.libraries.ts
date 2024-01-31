@@ -12,3 +12,6 @@ export { ui }
 export { DialogModal } from './fwk-react-dialogModal'
 
 export { Paginate } from './fwk-react-paginate'
+
+export { LoadFile } from './fwk-react-loadFile'
+export type { ILoadFileProps } from './fwk-react-loadFile/interface/ILoadFile'

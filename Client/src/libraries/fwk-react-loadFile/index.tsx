@@ -3,6 +3,8 @@ import { ui } from '@/libraries/index.libraries';
 import { useEffect, useRef, useState } from 'react';
 import { IRules } from './interface/IRules';
 import { ILoadFileProps } from './interface/ILoadFile';
+import { CheckCloseSVG } from './svg/CheckCloseSVG';
+import css from './index.module.css'
 interface Props {
     props: ILoadFileProps;
     className?: any;
@@ -25,7 +27,7 @@ export const LoadFile: React.FC<Props> = ({ props, className, style }) => {
         handleChange: () => { },
         imageDefault: ''
     })
-    const [fileSelect, setFileSelect] = useState(props.data.value || (local.imageDefault || props.imageDefault));
+    const [fileSelect, setFileSelect] = useState(props.data.value || props.imageDefault);
     const [cmpRules, setCmpRules] = useState<IRules[]>([{
         fnCondition: (val) => local.required && !val,
         messageError: `Este campo ${local.name} es requerido.`
@@ -64,7 +66,7 @@ export const LoadFile: React.FC<Props> = ({ props, className, style }) => {
                 setLocal((prevVal) => ({
                     ...prevVal, data: {
                         ...prevVal.data,
-                        value: '', error: true
+                        error: true
                     }
                 }))
                 handleChange(local.name, { error: true })
@@ -80,15 +82,33 @@ export const LoadFile: React.FC<Props> = ({ props, className, style }) => {
     }
 
 
+    const rollback = () => {
+        const dirtyFlag = origVal ? undefined : false
+        setLocal((prevVal) => ({
+            ...prevVal,
+            data: { error: false, value: origVal, dirty: dirtyFlag }
+        }))
+        setFileSelect(origVal)
+        handleChange(props.name, {
+            error: false, value: origVal, dirty: dirtyFlag
+        })
+    }
+
     useEffect(() => { initInput() }, [])
 
     return (
-        <div className={className} style={style}>
+        <div className={`${css.container} ${className}`} style={style}>
+
+            {local.data.dirty && (
+                <CheckCloseSVG className={css.container__Item__iconRollback} rollback={rollback} />
+            )}
+
             {local.type === 'image' && (
                 <img src={fileSelect} alt={local.name}
                     onClick={openInputFile} style={{ cursor: 'pointer' }}
                 />
             )}
+
             {local.type === 'file' && (<>
                 <button onClick={openInputFile}>Cargar archivo </button>
                 {fileSelect && (

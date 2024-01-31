@@ -1,6 +1,4 @@
-import { ILoadFileProps } from '@/components/LoadImage/interface/ILoadFile';
-import { IInputProps, IInputData } from '@/libraries/index.libraries';
-
+import { IInputProps, IInputData, ILoadFileProps } from '@/libraries/index.libraries';
 export interface IFormProps {
     fullName: IInputProps;
     rol: IInputProps;

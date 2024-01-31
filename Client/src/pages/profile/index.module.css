@@ -61,7 +61,7 @@
 }
 
 .loadFiles__profile img {
-    width: 13rem;
+    max-width: 13rem;
     height: 13rem;
     border-radius: 100%;
 }
