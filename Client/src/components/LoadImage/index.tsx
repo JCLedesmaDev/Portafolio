@@ -25,7 +25,7 @@ export const LoadFile: React.FC<Props> = ({ props, className, style }) => {
         handleChange: () => { },
         imageDefault: ''
     })
-    const [fileSelect, setFileSelect] = useState(local.imageDefault || props.imageDefault);
+    const [fileSelect, setFileSelect] = useState(props.data.value || (local.imageDefault || props.imageDefault));
     const [cmpRules, setCmpRules] = useState<IRules[]>([{
         fnCondition: (val) => local.required && !val,
         messageError: `Este campo ${local.name} es requerido.`
@@ -40,53 +40,47 @@ export const LoadFile: React.FC<Props> = ({ props, className, style }) => {
         setOrigVal(data.value)
         setLocal(props)
     }
-    const validateRules = () => {
-        const typeFile = local.data.value?.type?.split("/").pop()
-
-        for (const rule of cmpRules) {
-            if (rule.fnCondition(typeFile)) {
-                setLocal((prevVal) => ({
-                    ...prevVal, data: { ...prevVal.data, error: true }
-                }))
-                handleChange(local.name, { error: true })
-                storeUi.actions.showNotify(rule.messageError, 'error')
-                break;
-            } else {
-                setLocal((prevVal) => ({
-                    ...prevVal, data: { ...prevVal.data, error: false }
-                }))
-                handleChange(local.name, {
-                    value: local.data.value, dirty: local.data.dirty, error: false
-                })
-            }
-        }
-    }
-
-    const update = (evt: any) => {
-        const file = evt.target.files[0]
-        if (!file) return
-        const urlFile = URL.createObjectURL(file)
-
-        setFileSelect(urlFile)
-        setLocal((prevVal) => ({
-            ...prevVal,
-            data: {
-                ...prevVal.data,
-                value: file,
-                dirty: file !== origVal
-            }
-        }))
-    }
 
     const openInputFile = () => {
         if (refFile.current) refFile.current.click()
     }
 
+    const update = (evt: any) => {
+        const file = evt.target.files[0]
+        if (!file) return
+
+        const isError = validateRules(file)
+        if (isError) return
+
+        const urlFile = URL.createObjectURL(file)
+        setFileSelect(urlFile)
+    }
+
+    const validateRules = (file: any) => {
+        const typeFile = file.type?.split("/").pop()
+
+        for (const rule of cmpRules) {
+            if (rule.fnCondition(typeFile)) {
+                setLocal((prevVal) => ({
+                    ...prevVal, data: {
+                        ...prevVal.data,
+                        value: '', error: true
+                    }
+                }))
+                handleChange(local.name, { error: true })
+                storeUi.actions.showNotify(rule.messageError, 'error')
+                return true
+            } else {
+                const data = { value: file, dirty: file !== origVal, error: false }
+                setLocal((prevVal) => ({ ...prevVal, data }))
+                handleChange(local.name, data)
+            }
+        }
+        return false
+    }
+
+
     useEffect(() => { initInput() }, [])
-
-    useEffect(() => { validateRules() }, [local.data.value])
-
-    console.log("🚀 ~ props:", local)
 
     return (
         <div className={className} style={style}>

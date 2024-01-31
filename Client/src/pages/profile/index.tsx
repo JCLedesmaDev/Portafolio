@@ -5,8 +5,9 @@ import { InputText, InputObs, ui } from '@/libraries/index.libraries'
 import { useFormCustom } from '@/hooks/index.hooks'
 import { IFormData, IFormProps } from './interface/IForm'
 
-import imageDefault from '@/assets/imageDefault.png'
 import useStore from './store'
+import useAppStore from '@/appStore'
+import imageDefault from '@/assets/imageDefault.png'
 import { LoadFile } from '@/components/LoadImage'
 
 export const Profile: React.FC = () => {
@@ -14,14 +15,15 @@ export const Profile: React.FC = () => {
     /// HOOKS
     const storeUi = ui.useStore()
     const store = useStore()
+    const appStore = useAppStore()
 
     const [disabledBtn, setDisabledBtn] = useState<boolean>(false)
     const { form, handleChange } = useFormCustom<IFormData>({
-        fullName: { value: '', dirty: false, error: false },
-        rol: { value: '', dirty: false, error: false },
-        aboutMe: { value: '', dirty: false, error: false },
-        imageProfile: { value: '', dirty: false, error: false },
-        curriculumVitae: { value: '', dirty: false, error: false }
+        fullName: { value: appStore.state.user.fullName, dirty: false, error: false },
+        rol: { value: appStore.state.user.rol, dirty: false, error: false },
+        aboutMe: { value: appStore.state.user.aboutMe, dirty: false, error: false },
+        imageProfile: { value: appStore.state.user.imageProfile, dirty: false, error: false },
+        curriculumVitae: { value: appStore.state.user.curriculumVitae, dirty: false, error: false }
     })
 
 

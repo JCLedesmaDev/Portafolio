@@ -35,7 +35,7 @@ export const fileMulterHandler = (nameFields: INameFields[]) => {
                 })
                 req.body[field.name] = files
             })
-            
+
             return next();
         } catch (error: any) {
             return res.json(responseMessage.error<any>({
@@ -58,7 +58,7 @@ const configureMulterStorage = () => {
         ) => {
             setTimeout(() => {
                 const fileName = file.originalname.replace(/\s/g, '_')
-                callback(null, `${Date.now()}-${fileName}`); //TODO 123123213232-pepito_el_mejor.pdf
+                callback(null, `${Date.now()}-${fileName}`);
             }, 10)
         }
     });

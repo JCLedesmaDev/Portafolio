@@ -52,22 +52,25 @@ const getAllUser = async (): Promise<IUserSchema[]> => {
 
 const updateUser = async (payload: IUpdateUserRequest): Promise<IUserSchema | null> => {
     try {
+
+        const usr = {
+            fullName: payload.fullName,
+            rol: payload.rol,
+            aboutMe: payload.aboutMe,
+            mySoftSkills: payload.mySoftSkills,
+            ...(payload.imageProfile && {
+                imageProfile: `${config.get('server.public_url')}/${payload.imageProfile[0].filename}`,
+            }),
+            ...(payload.curriculumVitae && {
+                curriculumVitae: `${config.get('server.public_url')}/${payload.curriculumVitae[0].filename}`,
+            }),
+        }
         return await collections.User.findByIdAndUpdate(
-            payload.idUser,
-            {
-                fullName: payload.fullName,
-                rol: payload.rol,
-                aboutMe: payload.aboutMe,
-                mySoftSkills: payload.mySoftSkills,
-                ...(payload.imageProfile && {
-                    imageProfile: `${config.get('server.public_url')}/${payload.imageProfile[0].filename}`,
-                }),
-                curriculumVitae: payload.curriculumVitae
-            }
+            payload.idUser, usr
         )
     } catch (error) {
         throw new ApplicationError({
-            message: 'Ha ocurrido un error al actualziar este album',
+            message: 'Ha ocurrido un error al actualizar este usuario',
             source: error
         })
     }

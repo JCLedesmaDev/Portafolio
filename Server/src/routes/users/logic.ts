@@ -10,6 +10,7 @@ import { ILoginDtoRequest, ILoginDtoResponse } from './dto/login.dto';
 import { IGetUserResponse } from './dto/getUser.dto';
 import { IUpdateUserRequest } from './dto/updateUser.dto';
 import { IGetAllUserResponse } from './dto/getAllUsers.dto';
+import { IUserSchema } from '@models/ICollections';
 
 const loginUser = async (payload: ILoginDtoRequest) => {
 
@@ -83,8 +84,19 @@ const updateUser = async (payload: IUpdateUserRequest) => {
         deleteFile(user.imageProfile)
     }
 
+    if (userUpdate && payload.curriculumVitae && user.curriculumVitae !== '') {
+        deleteFile(user.curriculumVitae)
+    }
+
+    const response: IGetUserResponse = {
+        user: mappers.singleUser(userUpdate as IUserSchema)
+    }
+
+    delete response.user.id
+
     return responseMessage.success({
         message: 'Se edito correctamente!',
+        data: response
     })
 }
 
