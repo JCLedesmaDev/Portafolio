@@ -5,7 +5,7 @@ export interface IInputCalendarProps {
     name: string;
     required: boolean;
     autoComplete: string,
-    handleChange: (nameField: string, data: any) => void,
+    refresh: () => void,
     data: IInputCalendarData,
     rules?: IRules[]
 }

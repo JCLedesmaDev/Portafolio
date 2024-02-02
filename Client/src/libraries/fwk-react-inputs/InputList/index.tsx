@@ -1,21 +1,24 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-
-import { useEffect, useRef, useState } from 'react';
+import { forwardRef, useEffect, useImperativeHandle, useRef, useState } from 'react';
 import css from './index.module.css'
 import { CheckCloseSVG } from '../svg/CheckCloseSVG';
 import { IRules } from '../interface/IRules';
-import { IInputListProps } from '../interface/IInputList';
+import { IInputListData, IInputListProps } from '../interface/IInputList';
+import { IExposeInputList } from '../interface/IExposeInput';
+import { useMerge } from '@/hooks/useMerge';
 
-interface IProps {
-    props: IInputListProps;
+interface Props {
     className?: any;
+    style?: object;
+    required: boolean;
 }
 
-export const InputList: React.FC<IProps> = ({ props, className }) => {
+export const InputList = forwardRef<IExposeInputList, Props>((
+    { className, style, required }, ref
+) => {
 
-    /// VARIABLES
-    const { data, handleChange } = props;
-
+    /// HOOKS
+    const { merge } = useMerge()
     const refSelect = useRef<any>()
     const [origVal, setOrigVal] = useState()
     const [local, setLocal] = useState<IInputListProps>({
@@ -27,27 +30,16 @@ export const InputList: React.FC<IProps> = ({ props, className }) => {
         placeholder: '',
         required: false,
         icon: undefined,
-        handleChange: () => { }
+        refresh: () => { },
     })
 
     const [cmpRules, setCmpRules] = useState<IRules[]>([{
-        //fnCondition: (val) => !(props.required && !!val),
-        fnCondition: (val) => props.required && !val,
+        fnCondition: (val) => required && !val,
         messageError: 'Este campo es requerido.'
     }])
 
     /// METODOS
-
-    const initInput = () => {
-        props.rules?.forEach(rule => {
-            setCmpRules((prevVal) => ([...prevVal, rule]))
-        })
-        setOrigVal(data.value)
-        setLocal(props)
-    }
-
     const validateRules = () => {
-        console.log(`Rules INPUT ${props.name}`)
         for (const rule of cmpRules) {
             if (rule.fnCondition(local.data.value)) {
                 setLocal((prevVal) => ({
@@ -56,24 +48,16 @@ export const InputList: React.FC<IProps> = ({ props, className }) => {
                         ...prevVal.data, error: true, messageError: rule.messageError
                     }
                 }))
-
-                handleChange(props.name, {
-                    value: local.data.value,
-                    dirty: local.data.dirty,
-                    error: true
-                })
+                local.refresh()
                 break;
+            } else {
+                setLocal((prevVal) => ({
+                    ...prevVal, data: {
+                        ...prevVal.data, error: false, messageError: ''
+                    }
+                }))
+                local.refresh()
             }
-            setLocal((prevVal) => ({
-                ...prevVal, data: {
-                    ...prevVal.data, error: false, messageError: ''
-                }
-            }))
-            handleChange(props.name, {
-                value: local.data.value,
-                dirty: local.data.dirty,
-                error: false
-            })
         }
     }
 
@@ -81,7 +65,11 @@ export const InputList: React.FC<IProps> = ({ props, className }) => {
         const { value } = evt.target;
         setLocal((prevVal) => ({
             ...prevVal,
-            data: { ...prevVal.data, value: value, dirty: value !== origVal }
+            data: {
+                ...prevVal.data,
+                value: value,
+                dirty: value !== origVal
+            }
         }))
     }
 
@@ -93,10 +81,7 @@ export const InputList: React.FC<IProps> = ({ props, className }) => {
                 options: prevVal.data.options, error: false, value: origVal, dirty: dirtyFlag
             }
         }))
-        handleChange(props.name, {
-            error: false, value: origVal, dirty: dirtyFlag
-        })
-        if (refSelect.current) refSelect.current.value = ''
+        if (refSelect.current) refSelect.current.value = origVal
     }
 
     const defineCSSSelect = () => {
@@ -122,28 +107,61 @@ export const InputList: React.FC<IProps> = ({ props, className }) => {
         return style
     }
 
-    useEffect(() => {
+    useImperativeHandle(ref, () => ({
+        reset, set, setData, props: local
+    }), [local])
+
+    const set = (val: IInputListProps, prop?: string) => {
+        console.log(`CONSTRUCTOR INPUT ${val.name}`)
+
+        const data = JSON.parse(JSON.stringify(local))
+        const mergeData: IInputListProps = Object.assign(
+            data, merge(data, val, prop)
+        );
+        mergeData.refresh = val.refresh
+        setLocal(mergeData)
+
+        mergeData.rules?.forEach(rule => {
+            setCmpRules((prevVal) => ([...prevVal, rule]))
+        })
+    }
+
+    const setData = (val: IInputListData, prop: string) => {
+        const dataMerge: IInputListData = merge(local.data, val, prop)
+        // eslint-disable-next-line no-prototype-builtins
+        if (prop === 'value' || val?.hasOwnProperty('value')) {
+            setOrigVal(dataMerge.value)
+        }
+        setLocal((prevVal) => ({ ...prevVal, data: dataMerge }))
+    }
+
+    const reset = () => {
+        setOrigVal(local.data.value)
         setLocal((prevVal) => ({
             ...prevVal,
-            data: { ...prevVal.data, options: props.data.options }
+            data: { ...prevVal.data, dirty: undefined }
         }))
-    }, [props.data.options])
-
-    useEffect(() => { initInput() }, [])
+    }
 
     useEffect(() => { validateRules() }, [local.data.value])
 
+    useEffect(() => {
+        setLocal((prevVal) => ({
+            ...prevVal,
+            data: { ...prevVal.data, options: local.data.options }
+        }))
+    }, [local.data.options])
 
     return (
-        <div className={`${css.container} ${className}`}>
+        <div className={`${css.container} ${className}`} style={style}>
             <div className={css.container__Item}>
 
-                {props.icon && (<label className={css.containerItem__iconPrepend}>  {props.icon} </label>)}
+                {local.icon && (<label className={css.containerItem__iconPrepend}>  {local.icon} </label>)}
 
-                <select id={`select__${props.name}`} ref={refSelect} name={props.name} required={props.required} autoComplete={props.autoComplete} className={defineCSSSelect()} onChange={update} value={local.data.value}>
+                <select id={`select__${local.name}`} ref={refSelect} name={local.name} required={local.required} autoComplete={local.autoComplete} className={defineCSSSelect()} onChange={update} value={local.data.value}>
 
                     <option value={''} disabled hidden>
-                        {props.placeholder}
+                        {local.placeholder}
                     </option>
 
                     {local.data.options?.map((opt: any, index: number) => (
@@ -163,4 +181,4 @@ export const InputList: React.FC<IProps> = ({ props, className }) => {
 
         </div>
     )
-}
+})

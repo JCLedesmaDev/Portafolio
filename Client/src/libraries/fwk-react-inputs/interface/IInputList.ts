@@ -7,7 +7,7 @@ export interface IInputListProps {
     required: boolean;
     icon?: any;
     autoComplete: string,
-    handleChange: (nameField: string, data: any) => void,
+    refresh: () => void,
     optId?: string;
     optLbl?: string;
     data: IInputListData,

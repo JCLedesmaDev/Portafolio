@@ -10,7 +10,7 @@ export interface IInputProps {
     icon?: any;
     data: IInputData,
     autoComplete: string,
-    handleChange: (nameField: string, data: any) => void,
+    refresh: () => void,
     rules?: IRules[]
 }
 

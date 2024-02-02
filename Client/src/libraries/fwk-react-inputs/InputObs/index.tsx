@@ -1,22 +1,25 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import React, { useEffect, useRef, useState } from "react";
+import { forwardRef, useEffect, useImperativeHandle, useRef, useState } from "react";
 import css from "./index.module.css";
 import { CheckCloseSVG } from '../svg/CheckCloseSVG';
-import { IRules } from '../interface/IRules';
-import { IInputProps } from '../interface/IInput';
 import TextareaAutosize from 'react-textarea-autosize';
+import { useMerge } from '@/hooks/index.hooks';
+import { IExposeInput, IInputData, IInputProps } from '@/libraries/index.libraries';
+import { IRules } from '../interface/IRules';
 
 interface Props {
-  props: IInputProps;
   className?: any;
+  style?: object;
+  required: boolean;
   rows?: number
 }
 
-export const InputObs: React.FC<Props> = ({ props, className, rows = 2 }) => {
+export const InputObs = forwardRef<IExposeInput, Props>((
+  { className, style, required, rows = 2 }, ref
+) => {
 
-  /// VARIABLES
-  const { data, handleChange } = props;
-
+  /// HOOKS
+  const { merge } = useMerge()
   const refTextarea = useRef<any>()
   const [origVal, setOrigVal] = useState()
   const [local, setLocal] = useState<IInputProps>({
@@ -26,25 +29,15 @@ export const InputObs: React.FC<Props> = ({ props, className, rows = 2 }) => {
     placeholder: '',
     required: false,
     icon: undefined,
-    handleChange: () => { }
+    refresh: () => { },
   })
 
   const [cmpRules, setCmpRules] = useState<IRules[]>([{
-    fnCondition: (val) => props.required && !val,
+    fnCondition: (val) => required && !val,
     messageError: 'Este campo es requerido.'
   }])
 
   /// METODOS
-
-  const initInput = () => {
-    console.log(`CONSTRUCTOR INPUT ${props.name}`)
-    props.rules?.forEach(rule => {
-      setCmpRules((prevVal) => ([...prevVal, rule]))
-    })
-    setOrigVal(data.value)
-    setLocal(props)
-  }
-
   const validateRules = () => {
     //console.log(`Rules INPUT ${props.name}`)
     for (const rule of cmpRules) {
@@ -55,32 +48,26 @@ export const InputObs: React.FC<Props> = ({ props, className, rows = 2 }) => {
             ...prevVal.data, error: true, messageError: rule.messageError
           }
         }))
-        handleChange(props.name, {
-          value: local.data.value, dirty: local.data.dirty, error: true
-        })
+        local.refresh()
         break;
+      } else {
+        setLocal((prevVal) => ({
+          ...prevVal, data: {
+            ...prevVal.data, error: false, messageError: ''
+          }
+        }))
+        local.refresh()
       }
-
-      setLocal((prevVal) => ({
-        ...prevVal, data: {
-          ...prevVal.data, error: false, messageError: ''
-        }
-      }))
-      handleChange(props.name, {
-        value: local.data.value, dirty: local.data.dirty, error: false
-      })
     }
   }
 
   const update = (evt: any) => {
-    const { value, files } = evt.target;
-    // En caso de cargar imagenes tb
-    const imageInput = files != null && files[0];
+    const { value } = evt.target;
     setLocal((prevVal) => ({
       ...prevVal,
       data: {
         ...prevVal.data,
-        value: imageInput ? imageInput : value,
+        value: value,
         dirty: value !== origVal
       }
     }))
@@ -92,9 +79,6 @@ export const InputObs: React.FC<Props> = ({ props, className, rows = 2 }) => {
       ...prevVal,
       data: { error: false, value: origVal, dirty: dirtyFlag }
     }))
-    handleChange(props.name, {
-      error: false, value: origVal, dirty: dirtyFlag
-    })
     if (refTextarea.current) refTextarea.current.value = origVal
   }
 
@@ -123,21 +107,54 @@ export const InputObs: React.FC<Props> = ({ props, className, rows = 2 }) => {
   }
 
 
-  useEffect(() => { initInput() }, [])
+  useImperativeHandle(ref, () => ({
+    reset, set, setData, props: local
+  }), [local])
+
+  const set = (val: IInputProps, prop?: string) => {
+    console.log(`CONSTRUCTOR INPUT ${val.name}`)
+
+    const data = JSON.parse(JSON.stringify(local))
+    const mergeData: IInputProps = Object.assign(
+      data, merge(data, val, prop)
+    );
+    mergeData.refresh = val.refresh
+    setLocal(mergeData)
+
+    mergeData.rules?.forEach(rule => {
+      setCmpRules((prevVal) => ([...prevVal, rule]))
+    })
+  }
+
+  const setData = (val: IInputData, prop: string) => {
+    const dataMerge: IInputData = merge(local.data, val, prop)
+    // eslint-disable-next-line no-prototype-builtins
+    if (prop === 'value' || val?.hasOwnProperty('value')) {
+      setOrigVal(dataMerge.value)
+    }
+    setLocal((prevVal) => ({ ...prevVal, data: dataMerge }))
+  }
+
+  const reset = () => {
+    setOrigVal(local.data.value)
+    setLocal((prevVal) => ({
+      ...prevVal,
+      data: { ...prevVal.data, dirty: undefined }
+    }))
+  }
 
   useEffect(() => { validateRules() }, [local.data.value])
 
-
   return (
 
-    <div className={`${css.container} ${className}`}>
+    <div className={`${css.container} ${className}`} style={style} >
 
       <div className={css.container__Item}>
 
-        {props.icon && (<label className={css.containerItem__iconPrepend}>  {props.icon} </label>)}
+        {local.icon && (<label className={css.containerItem__iconPrepend}>  {local.icon} </label>)}
 
         <TextareaAutosize
-          ref={refTextarea} defaultValue={local.data.value} onKeyUp={update} placeholder={props.placeholder} name={props.name} required={props.required} autoComplete={props.autoComplete} className={defineCSSInput()} id={`textarea__${props.name}`} maxRows={rows}
+          ref={refTextarea} defaultValue={local.data.value} onKeyUp={update} placeholder={local.placeholder} name={local.name} required={local.required} autoComplete={local.autoComplete} className={defineCSSInput()} id={`textarea__${local.name}`} maxRows={rows}
 
         />
 
@@ -151,4 +168,4 @@ export const InputObs: React.FC<Props> = ({ props, className, rows = 2 }) => {
 
     </div>
   );
-};
+});

@@ -1,21 +1,25 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
-import { useEffect, useRef, useState } from 'react';
+import { forwardRef, useEffect, useImperativeHandle, useRef, useState } from 'react';
 import css from './index.module.css'
 import { CheckCloseSVG } from '../svg/CheckCloseSVG';
 import { IRules } from '../interface/IRules';
-import { IInputCalendarProps } from '../interface/IInputCalendar';
+import { IInputCalendarData, IInputCalendarProps } from '../interface/IInputCalendar';
+import { IExposeInputCalendar } from '../interface/IExposeInput';
+import { useMerge } from '@/hooks/useMerge';
 
-interface IProps {
-    props: IInputCalendarProps;
+interface Props {
     className?: any;
+    style?: object;
+    required: boolean;
 }
 
-export const InputCalendar: React.FC<IProps> = ({ props, className }) => {
+export const InputCalendar = forwardRef<IExposeInputCalendar, Props>((
+    { className, style, required }, ref
+) => {
 
     /// VARIABLES
-    const { data, handleChange } = props;
-
+    const { merge } = useMerge()
     const refCalendar = useRef<any>()
     const [origVal, setOrigVal] = useState()
     const [local, setLocal] = useState<IInputCalendarProps>({
@@ -23,24 +27,16 @@ export const InputCalendar: React.FC<IProps> = ({ props, className }) => {
         autoComplete: 'false',
         name: '',
         required: false,
-        handleChange: () => { }
+        refresh: () => { },
     })
 
     const [cmpRules, setCmpRules] = useState<IRules[]>([{
         //fnCondition: (val) => !(props.required && !!val),
-        fnCondition: (val) => props.required && !val,
+        fnCondition: (val) => required && !val,
         messageError: 'Este campo es requerido.'
     }])
 
     /// METODOS
-
-    const initInput = () => {
-        props.rules?.forEach(rule => {
-            setCmpRules((prevVal) => ([...prevVal, rule]))
-        })
-        setOrigVal(data.value)
-        setLocal(props)
-    }
 
     const validateRules = () => {
         //console.log(`Rules INPUT ${props.name}`)
@@ -52,24 +48,16 @@ export const InputCalendar: React.FC<IProps> = ({ props, className }) => {
                         ...prevVal.data, error: true, messageError: rule.messageError
                     }
                 }))
-
-                handleChange(props.name, {
-                    value: local.data.value,
-                    dirty: local.data.dirty,
-                    error: true
-                })
+                local.refresh()
                 break;
+            } else {
+                setLocal((prevVal) => ({
+                    ...prevVal, data: {
+                        ...prevVal.data, error: false, messageError: ''
+                    }
+                }))
+                local.refresh()
             }
-            setLocal((prevVal) => ({
-                ...prevVal, data: {
-                    ...prevVal.data, error: false, messageError: ''
-                }
-            }))
-            handleChange(props.name, {
-                value: local.data.value,
-                dirty: local.data.dirty,
-                error: false
-            })
         }
     }
 
@@ -77,7 +65,11 @@ export const InputCalendar: React.FC<IProps> = ({ props, className }) => {
         const { value } = evt.target;
         setLocal((prevVal) => ({
             ...prevVal,
-            data: { ...prevVal.data, value: value, dirty: value !== origVal }
+            data: {
+                ...prevVal.data,
+                value: value,
+                dirty: value !== origVal
+            }
         }))
     }
 
@@ -87,10 +79,7 @@ export const InputCalendar: React.FC<IProps> = ({ props, className }) => {
             ...prevVal,
             data: { error: false, value: origVal, dirty: dirtyFlag }
         }))
-        handleChange(props.name, {
-            error: false, value: origVal, dirty: dirtyFlag
-        })
-        if (refCalendar.current) refCalendar.current.value = ''
+        if (refCalendar.current) refCalendar.current.value = origVal
     }
 
     const defineCSSSelect = () => {
@@ -117,16 +106,51 @@ export const InputCalendar: React.FC<IProps> = ({ props, className }) => {
     }
 
 
-    useEffect(() => { initInput() }, [])
+
+    useImperativeHandle(ref, () => ({
+        reset, set, setData, props: local
+    }), [local])
+
+    const set = (val: IInputCalendarProps, prop?: string) => {
+        console.log(`CONSTRUCTOR INPUT ${val.name}`)
+
+        const data = JSON.parse(JSON.stringify(local))
+        const mergeData: IInputCalendarProps = Object.assign(
+            data, merge(data, val, prop)
+        );
+        mergeData.refresh = val.refresh
+        setLocal(mergeData)
+
+        mergeData.rules?.forEach(rule => {
+            setCmpRules((prevVal) => ([...prevVal, rule]))
+        })
+    }
+
+    const setData = (val: IInputCalendarData, prop: string) => {
+        const dataMerge: IInputCalendarData = merge(local.data, val, prop)
+        // eslint-disable-next-line no-prototype-builtins
+        if (prop === 'value' || val?.hasOwnProperty('value')) {
+            setOrigVal(dataMerge.value)
+        }
+        setLocal((prevVal) => ({ ...prevVal, data: dataMerge }))
+    }
+
+    const reset = () => {
+        setOrigVal(local.data.value)
+        setLocal((prevVal) => ({
+            ...prevVal,
+            data: { ...prevVal.data, dirty: undefined }
+        }))
+    }
 
     useEffect(() => { validateRules() }, [local.data.value])
 
 
     return (
-        <div className={`${css.container} ${className}`}>
+        <div className={`${css.container} ${className}`} style={style}>
             <div className={css.container__Item}>
 
-                <input type="datetime-local" ref={refCalendar} name={props.name} required={props.required} autoComplete={props.autoComplete} className={defineCSSSelect()} onChange={update} defaultValue={local.data.value} />
+                <input type="datetime-local" ref={refCalendar} name={local.name} required={local.required} autoComplete={local.autoComplete} className={defineCSSSelect()} onChange={update} defaultValue={local.data.value} />
 
 
                 {local.data.dirty && (
@@ -138,4 +162,4 @@ export const InputCalendar: React.FC<IProps> = ({ props, className }) => {
 
         </div>
     )
-}
+})

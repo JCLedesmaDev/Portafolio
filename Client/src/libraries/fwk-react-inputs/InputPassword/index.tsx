@@ -1,22 +1,26 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import React, { useEffect, useRef, useState } from "react";
+import React, { forwardRef, useEffect, useImperativeHandle, useRef, useState } from "react";
 import css from "./index.module.css";
 import { CheckCloseSVG } from '../svg/CheckCloseSVG';
 import { VisibilitySVG } from './svg/VisibilitySVG';
 import { InvisibilitySVG } from './svg/InvisibilitySVG';
 import { IRules } from '../interface/IRules';
-import { IInputProps } from '../interface/IInput';
+import { IInputData, IInputProps } from '../interface/IInput';
+import { IExposeInput } from '../interface/IExposeInput';
+import { useMerge } from '@/hooks/index.hooks';
 
 interface Props {
-  props: IInputProps;
   className?: any;
+  style?: object;
+  required: boolean;
 }
 
-export const InputPassword: React.FC<Props> = ({ props, className }) => {
+export const InputPassword = forwardRef<IExposeInput, Props>((
+  { className, style, required }, ref
+) => {
 
-  /// VARIABLES
-  const { data, handleChange } = props;
-
+  /// HOOKS
+  const { merge } = useMerge()
   const refInput = useRef<any>()
   const [origVal, setOrigVal] = useState()
   const [visiblePassword, setVisiblePassowrd] = useState(false)
@@ -27,55 +31,39 @@ export const InputPassword: React.FC<Props> = ({ props, className }) => {
     placeholder: '',
     required: false,
     icon: undefined,
-    handleChange: () => { }
+    refresh: () => { },
   })
 
   const [cmpRules, setCmpRules] = useState<IRules[]>([{
-    fnCondition: (val) => props.required && !val,
+    fnCondition: (val) => required && !val,
     messageError: 'Este campo es requerido.'
   }])
 
   /// METODOS
-
-  const initInput = () => {
-    //console.log(`CONSTRUCTOR INPUT ${props.name}`)
-    props.rules?.forEach(rule => {
-      setCmpRules((prevVal) => ([...prevVal, rule]))
-    })
-    setOrigVal(data.value)
-    setLocal(props)
-  }
-
   const validateRules = () => {
     //console.log(`Rules INPUT ${props.name}`)
     for (const rule of cmpRules) {
-
       if (rule.fnCondition(local.data.value)) {
         setLocal((prevVal) => ({
           ...prevVal, data: {
             ...prevVal.data, error: true, messageError: rule.messageError
           }
         }))
-        handleChange(props.name, {
-          value: local.data.value, dirty: local.data.dirty, error: true
-        })
+        local.refresh()
         break;
+      } else {
+        setLocal((prevVal) => ({
+          ...prevVal, data: {
+            ...prevVal.data, error: false, messageError: ''
+          }
+        }))
+        local.refresh()
       }
-
-      setLocal((prevVal) => ({
-        ...prevVal, data: {
-          ...prevVal.data, error: false, messageError: ''
-        }
-      }))
-      handleChange(props.name, {
-        value: local.data.value, dirty: local.data.dirty, error: false
-      })
     }
   }
 
   const update = (evt: any) => {
     const { value } = evt.target;
-    // En caso de cargar imagenes tb
     setLocal((prevVal) => ({
       ...prevVal,
       data: {
@@ -92,10 +80,7 @@ export const InputPassword: React.FC<Props> = ({ props, className }) => {
       ...prevVal,
       data: { error: false, value: origVal, dirty: dirtyFlag }
     }))
-    handleChange(props.name, {
-      error: false, value: origVal, dirty: dirtyFlag
-    })
-    if (refInput.current) refInput.current.value = ''
+    if (refInput.current) refInput.current.value = origVal
   }
 
   const defineCSSInput = () => {
@@ -127,19 +112,54 @@ export const InputPassword: React.FC<Props> = ({ props, className }) => {
     setVisiblePassowrd((prevVal) => !prevVal)
   }
 
-  useEffect(() => { initInput() }, [])
+  useImperativeHandle(ref, () => ({
+    reset, set, setData, props: local
+  }), [local])
+
+  const set = (val: IInputProps, prop?: string) => {
+    console.log(`CONSTRUCTOR INPUT ${val.name}`)
+
+    const data = JSON.parse(JSON.stringify(local))
+    const mergeData: IInputProps = Object.assign(
+      data, merge(data, val, prop)
+    );
+    mergeData.refresh = val.refresh
+    setLocal(mergeData)
+
+    mergeData.rules?.forEach(rule => {
+      setCmpRules((prevVal) => ([...prevVal, rule]))
+    })
+  }
+
+  const setData = (val: IInputData, prop: string) => {
+    const dataMerge: IInputData = merge(local.data, val, prop)
+    // eslint-disable-next-line no-prototype-builtins
+    if (prop === 'value' || val?.hasOwnProperty('value')) {
+      setOrigVal(dataMerge.value)
+    }
+    setLocal((prevVal) => ({ ...prevVal, data: dataMerge }))
+  }
+
+  const reset = () => {
+    setOrigVal(local.data.value)
+    setLocal((prevVal) => ({
+      ...prevVal,
+      data: { ...prevVal.data, dirty: undefined }
+    }))
+  }
 
   useEffect(() => { validateRules() }, [local.data.value])
 
+
   return (
 
-    <div className={`${css.container} ${className}`}>
+    <div className={`${css.container} ${className}`} style={style}>
 
       <div className={css.container__Item}>
 
-        {props.icon && (<label className={css.containerItem__iconPrepend}>  {props.icon} </label>)}
+        {local.icon && (<label className={css.containerItem__iconPrepend}>  {local.icon} </label>)}
 
-        <input ref={refInput} defaultValue={local.data.value} onKeyUp={update} placeholder={props.placeholder} type={visiblePassword ? 'text' : 'password'} name={props.name} required={props.required} autoComplete={props.autoComplete} className={defineCSSInput()} id={`input__${props.name}`} />
+        <input ref={refInput} defaultValue={local.data.value} onKeyUp={update} placeholder={local.placeholder} type={visiblePassword ? 'text' : 'password'} name={local.name} required={local.required} autoComplete={local.autoComplete} className={defineCSSInput()} id={`input__${local.name}`} />
 
 
         {local.data.dirty && (
@@ -158,4 +178,4 @@ export const InputPassword: React.FC<Props> = ({ props, className }) => {
 
     </div>
   );
-};
+});
