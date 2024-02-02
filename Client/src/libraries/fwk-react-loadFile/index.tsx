@@ -1,20 +1,26 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { ui } from '@/libraries/index.libraries';
-import { useEffect, useRef, useState } from 'react';
+import { forwardRef, useImperativeHandle, useRef, useState } from 'react';
 import { IRules } from './interface/IRules';
-import { ILoadFileProps } from './interface/ILoadFile';
+import { ILoadFileData, ILoadFileProps } from './interface/ILoadFile';
 import { CheckCloseSVG } from './svg/CheckCloseSVG';
 import css from './index.module.css'
+import { IExposeFile } from './interface/IExposeFile';
+import { useMerge } from '@/hooks/useMerge';
+
 interface Props {
-    props: ILoadFileProps;
     className?: any;
-    style?: object
+    style?: object;
+    required: boolean;
 }
 
-export const LoadFile: React.FC<Props> = ({ props, className, style }) => {
-    const { data, handleChange } = props;
+
+export const LoadFile = forwardRef<IExposeFile, Props>((
+    { className, style, required }, ref
+) => {
 
     /// HOOKS
+    const { merge } = useMerge()
     const refFile = useRef<HTMLInputElement>(null)
     const [origVal, setOrigVal] = useState()
     const storeUi = ui.useStore()
@@ -24,25 +30,16 @@ export const LoadFile: React.FC<Props> = ({ props, className, style }) => {
         name: '',
         type: 'image',
         required: false,
-        handleChange: () => { },
-        imageDefault: ''
+        imageDefault: '',
+        refresh: () => { }
     })
-    const [fileSelect, setFileSelect] = useState(props.data.value || props.imageDefault);
+    const [fileSelect, setFileSelect] = useState(local.data.value || local.imageDefault);
     const [cmpRules, setCmpRules] = useState<IRules[]>([{
-        fnCondition: (val) => local.required && !val,
+        fnCondition: (val) => required && !val,
         messageError: `Este campo ${local.name} es requerido.`
     }])
 
     /// METODOS
-    const initInput = () => {
-        console.log(`CONSTRUCTOR INPUT ${local.name}`)
-        props.rules?.forEach(rule => {
-            setCmpRules((prevVal) => ([...prevVal, rule]))
-        })
-        setOrigVal(data.value)
-        setLocal(props)
-    }
-
     const openInputFile = () => {
         if (refFile.current) refFile.current.click()
     }
@@ -69,13 +66,13 @@ export const LoadFile: React.FC<Props> = ({ props, className, style }) => {
                         error: true
                     }
                 }))
-                handleChange(local.name, { error: true })
+                local.refresh()
                 storeUi.actions.showNotify(rule.messageError, 'error')
                 return true
             } else {
                 const data = { value: file, dirty: file !== origVal, error: false }
                 setLocal((prevVal) => ({ ...prevVal, data }))
-                handleChange(local.name, data)
+                local.refresh()
             }
         }
         return false
@@ -89,12 +86,36 @@ export const LoadFile: React.FC<Props> = ({ props, className, style }) => {
             data: { error: false, value: origVal, dirty: dirtyFlag }
         }))
         setFileSelect(origVal)
-        handleChange(props.name, {
-            error: false, value: origVal, dirty: dirtyFlag
+        local.refresh()
+    }
+
+    useImperativeHandle(ref, () => ({
+        set, setData, props: local
+    }), [local])
+
+    const set = (val: ILoadFileProps, prop?: string) => {
+        console.log(`CONSTRUCTOR INPUT ${val.name}`)
+
+        const data = JSON.parse(JSON.stringify(local))
+        const mergeData: ILoadFileProps = Object.assign(
+            data, merge(data, val, prop)
+        );
+        mergeData.refresh = val.refresh
+        setLocal(mergeData)
+
+        mergeData.rules?.forEach(rule => {
+            setCmpRules((prevVal) => ([...prevVal, rule]))
         })
     }
 
-    useEffect(() => { initInput() }, [])
+    const setData = (val: ILoadFileData, prop: string) => {
+        const dataMerge: ILoadFileData = merge(local.data, val, prop)
+        // eslint-disable-next-line no-prototype-builtins
+        if (prop === 'value' || val?.hasOwnProperty('value')) {
+            setOrigVal(dataMerge.value)
+        }
+        setLocal((prevVal) => ({ ...prevVal, data: dataMerge }))
+    }
 
     return (
         <div className={`${css.container} ${className}`} style={style}>
@@ -119,4 +140,4 @@ export const LoadFile: React.FC<Props> = ({ props, className, style }) => {
             <input type="file" ref={refFile} style={{ display: 'none' }} onChange={update} />
         </div>
     )
-}
+})

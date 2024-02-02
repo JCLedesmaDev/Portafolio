@@ -8,9 +8,9 @@ export interface ILoadFileProps {
     data: ILoadFileData
     rules?: IRules[]
     imageDefault?: any
-    handleChange: (nameField: string, data: any) => void,
+    refresh: () => void,
 }
-interface ILoadFileData {
+export interface ILoadFileData {
     value: any;
     dirty?: boolean
     error?: boolean,
