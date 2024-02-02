@@ -99,7 +99,9 @@ export const apiSrv = {
         } finally {
             if (options.loader) ui.actions.closeLoader()
         }
-        return res.info.data ?? ((res.info.type !== 'error') && (res.info.type !== 'warning'))
+
+        if (res.info.data && res.info.type === 'success') return res.info.data
+        else return ((res.info.type !== 'error') && (res.info.type !== 'warning'))
     },
 
     callSrv: async (payload: ICallSrvRequest): Promise<ICallSrvResponse> => {
