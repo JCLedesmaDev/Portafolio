@@ -1,3 +1,5 @@
 export type { IResponseUseForm } from './useFormCostum/index'
 export { useFormCustom } from './useFormCostum/index'
 export { useSubscribeEvent } from './useSubscribeEvent/index'
+export { useForzedRefesh } from './useForzedRefresh/index'
+export { useMerge } from './useMerge/index'
