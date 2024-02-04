@@ -4,8 +4,9 @@ import css from "./index.module.css";
 import { CheckCloseSVG } from '../svg/CheckCloseSVG';
 import TextareaAutosize from 'react-textarea-autosize';
 import { useMerge } from '@/hooks/index.hooks';
-import { IExposeInput, IInputData, IInputProps } from '@/libraries/index.libraries';
 import { IRules } from '../interface/IRules';
+import { IExposeInput } from '../interface/IExposeInput';
+import { IInputData, IInputProps } from '../interface/IInput';
 
 interface Props {
   className?: any;
@@ -121,7 +122,7 @@ export const InputObs = forwardRef<IExposeInput, Props>((
     mergeData.refresh = val.refresh
     setLocal(mergeData)
 
-    mergeData.rules?.forEach(rule => {
+    val.rules?.forEach(rule => {
       setCmpRules((prevVal) => ([...prevVal, rule]))
     })
   }

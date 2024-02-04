@@ -121,7 +121,7 @@ export const InputList = forwardRef<IExposeInputList, Props>((
         mergeData.refresh = val.refresh
         setLocal(mergeData)
 
-        mergeData.rules?.forEach(rule => {
+        val.rules?.forEach(rule => {
             setCmpRules((prevVal) => ([...prevVal, rule]))
         })
     }

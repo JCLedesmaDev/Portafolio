@@ -103,7 +103,7 @@ export const LoadFile = forwardRef<IExposeFile, Props>((
         mergeData.refresh = val.refresh
         setLocal(mergeData)
 
-        mergeData.rules?.forEach(rule => {
+        val.rules?.forEach(rule => {
             setCmpRules((prevVal) => ([...prevVal, rule]))
         })
     }

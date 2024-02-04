@@ -22,7 +22,7 @@ export const Profile: React.FC = () => {
     /// VARIABES
     const formProps: IFormProps = {
         fullName: {
-            data: { value: appStore.state.user.fullName },
+            data: { value: appStore.state.user.fullName || '' },
             placeholder: 'Ejem.: Juan Cruz Ledesma',
             type: 'text',
             name: 'fullName',
@@ -31,7 +31,7 @@ export const Profile: React.FC = () => {
             refresh: useForzedRefesh()
         },
         rol: {
-            data: { value: appStore.state.user.rol },
+            data: { value: appStore.state.user.rol || '' },
             placeholder: 'Ejem.: Desarrollador Full-Stack',
             name: 'rol',
             required: true,
@@ -39,7 +39,7 @@ export const Profile: React.FC = () => {
             refresh: useForzedRefesh()
         },
         aboutMe: {
-            data: { value: appStore.state.user.aboutMe },
+            data: { value: appStore.state.user.aboutMe || '' },
             placeholder: 'Hola, soy Juan Cruz, me gusta que me llamen Juan, Juanchi o Juancho, ',
             name: 'aboutMe',
             required: true,
@@ -47,7 +47,7 @@ export const Profile: React.FC = () => {
             refresh: useForzedRefesh()
         },
         imageProfile: {
-            data: { value: appStore.state.user.imageProfile },
+            data: { value: appStore.state.user.imageProfile || '' },
             type: 'image',
             name: 'imageProfile',
             required: false,
@@ -61,7 +61,7 @@ export const Profile: React.FC = () => {
             refresh: useForzedRefesh(),
         },
         curriculumVitae: {
-            data: { value: appStore.state.user.curriculumVitae },
+            data: { value: appStore.state.user.curriculumVitae || '' },
             type: 'file',
             name: 'curriculumVitae',
             required: false,
