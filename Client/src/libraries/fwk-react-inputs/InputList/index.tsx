@@ -107,10 +107,6 @@ export const InputList = forwardRef<IExposeInputList, Props>((
         return style
     }
 
-    useImperativeHandle(ref, () => ({
-        reset, set, setData, props: local
-    }), [local])
-
     const set = (val: IInputListProps, prop?: string) => {
         console.log(`CONSTRUCTOR INPUT ${val.name}`)
 
@@ -142,6 +138,14 @@ export const InputList = forwardRef<IExposeInputList, Props>((
             data: { ...prevVal.data, dirty: undefined }
         }))
     }
+
+    useImperativeHandle(ref, () => {
+        const expose = {
+            reset, set, setData, props: local
+        }
+        local.refresh()
+        return expose
+    }, [local])
 
     useEffect(() => { validateRules() }, [local.data.value])
 

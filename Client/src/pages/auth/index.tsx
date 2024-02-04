@@ -1,71 +1,82 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import css from "./index.module.css"
 import useAuthStore from "./store";
-import { useEffect, useState } from "react"
+import useAppStore from '@/appStore'
+import { useEffect, useRef, useState } from "react"
 import { UserSVG } from "@/assets/UserSVG"
 import { useNavigate } from 'react-router-dom'
-import { InputText, InputPassword } from "@/libraries/index.libraries"
-import { IFormProps, IFormData } from "./interface/IForm"
-import { useFormCustom } from "@/hooks/index.hooks"
+import { InputText, InputPassword, IExposeInput } from "@/libraries/index.libraries"
+import { IFormProps } from "./interface/IForm"
+import { useForzedRefesh } from "@/hooks/index.hooks"
 import { PasswordSVG } from "@/assets/PasswordSVG"
 import imageLogin from '@/assets/rocket-page-logo.png'
 import { validator_Email, validator_Passowrd } from './validators'
+import { initBindingForm } from '@/utils/index.utils';
 
 
 export const Auth: React.FC = () => {
 
-    const [disabledBtn, setDisabledBtn] = useState<boolean>(true)
+    const appStore = useAppStore()
     const store = useAuthStore()
+
+
     const navigate = useNavigate()
+    const [disabledBtn, setDisabledBtn] = useState<boolean>(true)
 
     /// METODOS
-    const { form, handleChange } = useFormCustom<IFormData>({
-        email: { value: undefined, dirty: false, error: false },
-        password: { value: undefined, dirty: false, error: false }
-    })
-
+    const refs = {
+        email: useRef<IExposeInput>(null),
+        password: useRef<IExposeInput>(null),
+    }
     const formProps: IFormProps = {
         email: {
-            data: { value: form['email'].value },
+            data: { value: '' },
             placeholder: 'Ingrese usuario',
             type: 'email',
             name: 'email',
             required: true,
             autoComplete: 'off',
-            icon: <UserSVG className={css.container__Form_fieldIcon} />,
+            //icon: <UserSVG className={css.container__Form_fieldIcon} />,
             rules: [{
                 fnCondition: (val) => !validator_Email.test(val),
                 messageError: 'El correo solo puede contener letras, numeros, puntos, guiones y guion bajo.'
             }],
-            handleChange: handleChange
+            refresh: appStore.actions.forzedRender
         },
         password: {
-            data: { value: form['password'].value },
+            data: { value: '' },
             placeholder: 'Contraseña',
             name: 'password',
             required: true,
             autoComplete: 'off',
-            icon: < PasswordSVG className={css.container__Form_fieldIcon} />,
+            //icon: < PasswordSVG className={css.container__Form_fieldIcon} />,
             rules: [{
                 fnCondition: (val) => !validator_Passowrd.test(val),
                 messageError: 'La contraseña debe contener al menos: 1 letra mayuscula, 1 letra minuscula y 1 numero.'
             }],
-            handleChange: handleChange
+            refresh: appStore.actions.forzedRender
         }
     }
 
     const login = async () => {
         const res = await store.actions.login({
-            email: form.email.value,
-            password: form.password.value
+            email: refs.email.current?.props.data.value,
+            password: refs.password.current?.props.data.value
         })
 
         if (res) navigate("/admin")
     }
 
     useEffect(() => {
-        const flag = (form.email.error || form.password.error) as boolean
-        setDisabledBtn(flag)
-    }, [form.email.error, form.password.error])
+        initBindingForm(refs, formProps)
+    }, [])
+
+
+    useEffect(() => {
+        const flag = (refs.email.current?.props.data.error || refs.password.current?.props.data.error) as boolean
+        console.log("🚀 ~ ABB:")
+        setDisabledBtn(flag ?? true)
+    }, [refs.email.current?.props, refs.password.current?.props])
 
     return (
         <main className={css.main}>
@@ -78,9 +89,11 @@ export const Auth: React.FC = () => {
 
                 <div className={css.container__Form}>
 
-                    <InputText props={formProps.email} />
+                    <InputText ref={refs.email}
+                        required={formProps.email.required} />
 
-                    <InputPassword props={formProps.password} />
+                    <InputPassword ref={refs.password}
+                        required={formProps.email.required} />
 
                     <button onClick={login} className={css.container__Form_btn} disabled={disabledBtn}>
                         Iniciar sesion

@@ -105,12 +105,6 @@ export const InputCalendar = forwardRef<IExposeInputCalendar, Props>((
         return style
     }
 
-
-
-    useImperativeHandle(ref, () => ({
-        reset, set, setData, props: local
-    }), [local])
-
     const set = (val: IInputCalendarProps, prop?: string) => {
         console.log(`CONSTRUCTOR INPUT ${val.name}`)
 
@@ -143,8 +137,15 @@ export const InputCalendar = forwardRef<IExposeInputCalendar, Props>((
         }))
     }
 
-    useEffect(() => { validateRules() }, [local.data.value])
+    useImperativeHandle(ref, () => {
+        const expose = {
+            reset, set, setData, props: local
+        }
+        local.refresh()
+        return expose
+    }, [local])
 
+    useEffect(() => { validateRules() }, [local.data.value])
 
     return (
         <div className={`${css.container} ${className}`} style={style}>

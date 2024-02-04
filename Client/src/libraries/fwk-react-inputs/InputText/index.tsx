@@ -45,7 +45,7 @@ export const InputText = forwardRef<IExposeInput, Props>((
             ...prevVal.data, error: true, messageError: rule.messageError
           }
         }))
-        local.refresh()
+        //local.refresh()
         break;
       } else {
         setLocal((prevVal) => ({
@@ -53,7 +53,7 @@ export const InputText = forwardRef<IExposeInput, Props>((
             ...prevVal.data, error: false, messageError: ''
           }
         }))
-        local.refresh()
+        //local.refresh()
       }
     }
   }
@@ -75,7 +75,10 @@ export const InputText = forwardRef<IExposeInput, Props>((
     const dirtyFlag = origVal ? undefined : false
     setLocal((prevVal) => ({
       ...prevVal,
-      data: { error: false, value: origVal, dirty: dirtyFlag }
+      data: {
+        ...prevVal.data,
+        value: origVal, dirty: dirtyFlag
+      }
     }))
     if (refInput.current) refInput.current.value = origVal
   }
@@ -109,10 +112,6 @@ export const InputText = forwardRef<IExposeInput, Props>((
     return style
   }
 
-  useImperativeHandle(ref, () => ({
-    reset, set, setData, props: local
-  }), [local])
-
   const set = (val: IInputProps, prop?: string) => {
     console.log(`CONSTRUCTOR INPUT ${val.name}`)
 
@@ -144,6 +143,14 @@ export const InputText = forwardRef<IExposeInput, Props>((
       data: { ...prevVal.data, dirty: undefined }
     }))
   }
+
+  useImperativeHandle(ref, () => {
+    const expose = {
+      reset, set, setData, props: local
+    }
+    local.refresh()
+    return expose
+  }, [local])
 
   useEffect(() => { validateRules() }, [local.data.value])
 

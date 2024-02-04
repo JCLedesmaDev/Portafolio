@@ -9,18 +9,26 @@ import mapper from '@/mappers/index.mappers'
 interface IStore {
     readonly state: {
         user: IUserModel;
+        forzedRender: boolean
     },
     actions: {
         setUser: (user: IUserModel) => void;
         logOut: () => Promise<boolean>;
+        forzedRender: () => void
     }
 }
 
 const appStore = createWithEqualityFn<IStore>((set, get) => ({
     state: {
         user: magnamentStorage.get<IUserModel>("user") ?? {} as IUserModel,
+        forzedRender: false
     },
     actions: {
+        forzedRender: () => {
+            set(produce((store: IStore) => {
+                store.state.forzedRender = !store.state.forzedRender
+            }))
+        },
         setUser: (user: IUserModel) => {
             magnamentStorage.set("user", user)
             set(produce((store: IStore) => {
@@ -58,5 +66,4 @@ const appStore = createWithEqualityFn<IStore>((set, get) => ({
 }), shallow)
 
 
-//export const useAppStore = () => ({ ...appStore((state) => (state)) })
 export default appStore
