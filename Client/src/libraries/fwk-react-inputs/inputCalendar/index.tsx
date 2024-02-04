@@ -48,7 +48,6 @@ export const InputCalendar = forwardRef<IExposeInputCalendar, Props>((
                         ...prevVal.data, error: true, messageError: rule.messageError
                     }
                 }))
-                local.refresh()
                 break;
             } else {
                 setLocal((prevVal) => ({
@@ -56,7 +55,6 @@ export const InputCalendar = forwardRef<IExposeInputCalendar, Props>((
                         ...prevVal.data, error: false, messageError: ''
                     }
                 }))
-                local.refresh()
             }
         }
     }
@@ -109,6 +107,7 @@ export const InputCalendar = forwardRef<IExposeInputCalendar, Props>((
         console.log(`CONSTRUCTOR INPUT ${val.name}`)
 
         const data = JSON.parse(JSON.stringify(local))
+
         const mergeData: IInputCalendarProps = Object.assign(
             data, merge(data, val, prop)
         );

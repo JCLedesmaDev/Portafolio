@@ -2,7 +2,6 @@
 import React, { useEffect, useRef, useState } from 'react'
 import css from './index.module.css'
 import { InputText, InputObs, ui, IExposeInput, IExposeFile } from '@/libraries/index.libraries'
-import { useForzedRefesh } from '@/hooks/index.hooks'
 import { IFormProps } from './interface/IForm'
 
 import useStore from './store'
@@ -28,7 +27,7 @@ export const Profile: React.FC = () => {
             name: 'fullName',
             required: true,
             autoComplete: 'off',
-            refresh: useForzedRefesh()
+            refresh: appStore.actions.forzedRender
         },
         rol: {
             data: { value: appStore.state.user.rol || '' },
@@ -36,7 +35,7 @@ export const Profile: React.FC = () => {
             name: 'rol',
             required: true,
             autoComplete: 'off',
-            refresh: useForzedRefesh()
+            refresh: appStore.actions.forzedRender
         },
         aboutMe: {
             data: { value: appStore.state.user.aboutMe || '' },
@@ -44,7 +43,7 @@ export const Profile: React.FC = () => {
             name: 'aboutMe',
             required: true,
             autoComplete: 'off',
-            refresh: useForzedRefesh()
+            refresh: appStore.actions.forzedRender
         },
         imageProfile: {
             data: { value: appStore.state.user.imageProfile || '' },
@@ -58,7 +57,7 @@ export const Profile: React.FC = () => {
                     messageError: 'Debe enviar UNA imagen de formato .png o .jpeg para el perfil.'
                 }
             ],
-            refresh: useForzedRefesh(),
+            refresh: appStore.actions.forzedRender
         },
         curriculumVitae: {
             data: { value: appStore.state.user.curriculumVitae || '' },
@@ -71,7 +70,7 @@ export const Profile: React.FC = () => {
                     messageError: 'Debe enviar UN archivo de formato .pdf para el CV.'
                 }
             ],
-            refresh: useForzedRefesh()
+            refresh: appStore.actions.forzedRender
         },
     }
     const refs = {

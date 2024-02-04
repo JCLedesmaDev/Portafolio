@@ -45,7 +45,6 @@ export const InputText = forwardRef<IExposeInput, Props>((
             ...prevVal.data, error: true, messageError: rule.messageError
           }
         }))
-        //local.refresh()
         break;
       } else {
         setLocal((prevVal) => ({
@@ -53,7 +52,6 @@ export const InputText = forwardRef<IExposeInput, Props>((
             ...prevVal.data, error: false, messageError: ''
           }
         }))
-        //local.refresh()
       }
     }
   }
@@ -115,7 +113,12 @@ export const InputText = forwardRef<IExposeInput, Props>((
   const set = (val: IInputProps, prop?: string) => {
     console.log(`CONSTRUCTOR INPUT ${val.name}`)
 
-    const data = JSON.parse(JSON.stringify(local))
+    const data: IInputProps = JSON.parse(JSON.stringify(local))
+    if (val.icon) { // Se hace porque no se puede stringlificar un componente
+      data.icon = val.icon
+      delete val.icon
+    }
+
     const mergeData: IInputProps = Object.assign(
       data, merge(data, val, prop)
     );

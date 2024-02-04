@@ -7,7 +7,6 @@ import { UserSVG } from "@/assets/UserSVG"
 import { useNavigate } from 'react-router-dom'
 import { InputText, InputPassword, IExposeInput } from "@/libraries/index.libraries"
 import { IFormProps } from "./interface/IForm"
-import { useForzedRefesh } from "@/hooks/index.hooks"
 import { PasswordSVG } from "@/assets/PasswordSVG"
 import imageLogin from '@/assets/rocket-page-logo.png'
 import { validator_Email, validator_Passowrd } from './validators'
@@ -36,7 +35,7 @@ export const Auth: React.FC = () => {
             name: 'email',
             required: true,
             autoComplete: 'off',
-            //icon: <UserSVG className={css.container__Form_fieldIcon} />,
+            icon: <UserSVG className={css.container__Form_fieldIcon} />,
             rules: [{
                 fnCondition: (val) => !validator_Email.test(val),
                 messageError: 'El correo solo puede contener letras, numeros, puntos, guiones y guion bajo.'
@@ -49,7 +48,7 @@ export const Auth: React.FC = () => {
             name: 'password',
             required: true,
             autoComplete: 'off',
-            //icon: < PasswordSVG className={css.container__Form_fieldIcon} />,
+            icon: < PasswordSVG className={css.container__Form_fieldIcon} />,
             rules: [{
                 fnCondition: (val) => !validator_Passowrd.test(val),
                 messageError: 'La contraseña debe contener al menos: 1 letra mayuscula, 1 letra minuscula y 1 numero.'
