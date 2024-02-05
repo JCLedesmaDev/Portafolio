@@ -15,14 +15,13 @@ import { initBindingForm } from '@/utils/index.utils';
 
 export const Auth: React.FC = () => {
 
+    /// HOOKS
     const appStore = useAppStore()
     const store = useAuthStore()
-
-
     const navigate = useNavigate()
     const [disabledBtn, setDisabledBtn] = useState<boolean>(true)
 
-    /// METODOS
+    /// VARIABLES
     const refs = {
         email: useRef<IExposeInput>(null),
         password: useRef<IExposeInput>(null),
@@ -57,6 +56,7 @@ export const Auth: React.FC = () => {
         }
     }
 
+    /// METODOS
     const login = async () => {
         const res = await store.actions.login({
             email: refs.email.current?.props.data.value,
@@ -72,9 +72,8 @@ export const Auth: React.FC = () => {
 
 
     useEffect(() => {
-        const flag = (refs.email.current?.props.data.error || refs.password.current?.props.data.error) as boolean
-        console.log("🚀 ~ ABB:")
-        setDisabledBtn(flag ?? true)
+        const flag = refs.email.current?.props.data.error ?? refs.password.current?.props.data.error ?? true
+        setDisabledBtn(flag)
     }, [refs.email.current?.props, refs.password.current?.props])
 
     return (

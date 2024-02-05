@@ -33,7 +33,7 @@ export const LoadFile = forwardRef<IExposeFile, Props>((
         imageDefault: '',
         refresh: () => { }
     })
-    const [fileSelect, setFileSelect] = useState(local.data.value || local.imageDefault);
+    const [fileSelect, setFileSelect] = useState<string>('');
     const [cmpRules, setCmpRules] = useState<IRules[]>([{
         fnCondition: (val) => required && !val,
         messageError: `Este campo ${local.name} es requerido.`
@@ -66,13 +66,11 @@ export const LoadFile = forwardRef<IExposeFile, Props>((
                         error: true
                     }
                 }))
-                local.refresh()
                 storeUi.actions.showNotify(rule.messageError, 'error')
                 return true
             } else {
                 const data = { value: file, dirty: file !== origVal, error: false }
                 setLocal((prevVal) => ({ ...prevVal, data }))
-                local.refresh()
             }
         }
         return false
@@ -85,13 +83,8 @@ export const LoadFile = forwardRef<IExposeFile, Props>((
             ...prevVal,
             data: { error: false, value: origVal, dirty: dirtyFlag }
         }))
-        setFileSelect(origVal)
-        local.refresh()
+        setFileSelect(origVal as any)
     }
-
-    useImperativeHandle(ref, () => ({
-        set, setData, props: local
-    }), [local])
 
     const set = (val: ILoadFileProps, prop?: string) => {
         console.log(`CONSTRUCTOR INPUT ${val.name}`)
@@ -100,9 +93,11 @@ export const LoadFile = forwardRef<IExposeFile, Props>((
         const mergeData: ILoadFileProps = Object.assign(
             data, merge(data, val, prop)
         );
+
         mergeData.refresh = val.refresh
         setLocal(mergeData)
 
+        if (val.imageDefault) setFileSelect(val.imageDefault)
         val.rules?.forEach(rule => {
             setCmpRules((prevVal) => ([...prevVal, rule]))
         })
@@ -114,8 +109,25 @@ export const LoadFile = forwardRef<IExposeFile, Props>((
         if (prop === 'value' || val?.hasOwnProperty('value')) {
             setOrigVal(dataMerge.value)
         }
+        if (val.value) setFileSelect(val.value)
+
         setLocal((prevVal) => ({ ...prevVal, data: dataMerge }))
     }
+
+    const reset = () => {
+        setOrigVal(local.data.value)
+        setLocal((prevVal) => ({
+            ...prevVal,
+            data: { ...prevVal.data, dirty: undefined }
+        }))
+    }
+    useImperativeHandle(ref, () => {
+        const expose = {
+            reset, set, setData, props: local
+        }
+        setTimeout(() => { local.refresh() }, 10);
+        return expose
+    }, [local])
 
     return (
         <div className={`${css.container} ${className}`} style={style}>

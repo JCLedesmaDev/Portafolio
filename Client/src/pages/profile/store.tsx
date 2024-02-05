@@ -29,6 +29,7 @@ const store = createWithEqualityFn<IStore>(() => ({
 
             const userAdapted: IUserModel = mapper.singleUser(res.user);
             appStore.getState().actions.setUser(userAdapted)
+
             return res
         }
     }

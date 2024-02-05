@@ -146,7 +146,7 @@ export const InputList = forwardRef<IExposeInputList, Props>((
         const expose = {
             reset, set, setData, props: local
         }
-        local.refresh()
+        setTimeout(() => { local.refresh() }, 10);
         return expose
     }, [local])
 

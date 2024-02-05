@@ -8,6 +8,7 @@ import useStore from './store'
 import useAppStore from '@/appStore'
 import imageDefault from '@/assets/imageDefault.png'
 import { LoadFile } from '@/libraries/index.libraries'
+import { initBindingForm } from '@/utils/index.utils'
 
 export const Profile: React.FC = () => {
 
@@ -19,6 +20,13 @@ export const Profile: React.FC = () => {
     const [disabledBtn, setDisabledBtn] = useState<boolean>(false)
 
     /// VARIABES
+    const refs = {
+        fullName: useRef<IExposeInput>(null),
+        rol: useRef<IExposeInput>(null),
+        aboutMe: useRef<IExposeInput>(null),
+        imageProfile: useRef<IExposeFile>(null),
+        curriculumVitae: useRef<IExposeFile>(null),
+    }
     const formProps: IFormProps = {
         fullName: {
             data: { value: appStore.state.user.fullName || '' },
@@ -49,7 +57,7 @@ export const Profile: React.FC = () => {
             data: { value: appStore.state.user.imageProfile || '' },
             type: 'image',
             name: 'imageProfile',
-            required: false,
+            required: true,
             imageDefault: imageDefault,
             rules: [
                 {
@@ -73,82 +81,47 @@ export const Profile: React.FC = () => {
             refresh: appStore.actions.forzedRender
         },
     }
-    const refs = {
-        fullName: useRef<IExposeInput>(null),
-        rol: useRef<IExposeInput>(null),
-        aboutMe: useRef<IExposeInput>(null),
-        imageProfile: useRef<IExposeFile>(null),
-        curriculumVitae: useRef<IExposeFile>(null),
-    }
 
     /// METODOS
-    const updateUser = () => {
-        //const formData = new FormData();
-        //for (const property in form) {
-        //    const formProperty = form[property as keyof IFormData]
-        //    if (formProperty.value !== '') {
-        //        formData.append(property, formProperty.value);
-        //    }
-        //}
-        //store.actions.updateUser(formData)
+    const updateUser = async () => {
+        const formData = new FormData();
+        for (const fields in formProps) {
+            const formProperty = refs[fields as keyof typeof refs]
 
-        console.log('AAAAAAA', refs.fullName.current)
+            if (formProperty.current?.props.data.value !== '') {
+                formData.append(
+                    fields,
+                    formProperty.current?.props.data.value
+                );
+            }
+        }
+        const res = await store.actions.updateUser(formData)
+        if (res) {
+            refs.fullName.current?.reset()
+            refs.aboutMe.current?.reset()
+            refs.rol.current?.reset()
+            refs.curriculumVitae.current?.reset()
+            refs.imageProfile.current?.reset()
+        }
     }
 
     useEffect(() => {
         storeUi.actions.setTitleView('Mi Perfil')
 
-        refs.fullName.current?.set(
-            formProps.fullName
-        )
-        refs.fullName.current?.setData(
-            formProps.fullName.data, '*'
-        )
-        refs.rol.current?.set(
-            formProps.rol
-        )
-        refs.rol.current?.setData(
-            formProps.rol.data, '*'
-        )
-        refs.aboutMe.current?.set(
-            formProps.aboutMe
-        )
-        refs.aboutMe.current?.setData(
-            formProps.aboutMe.data, '*'
-        )
-
-        refs.imageProfile.current?.set(
-            formProps.imageProfile
-        )
-        refs.imageProfile.current?.setData(
-            formProps.imageProfile.data, '*'
-        )
-        refs.curriculumVitae.current?.set(
-            formProps.curriculumVitae
-        )
-        refs.curriculumVitae.current?.setData(
-            formProps.curriculumVitae.data, '*'
-        )
+        initBindingForm(refs, formProps)
     }, [])
 
     useEffect(() => {
-        const flag = (refs.fullName.current?.props.data.error || refs.rol.current?.props.data.error ||
-            refs.aboutMe.current?.props.data.error || refs.imageProfile.current?.props.data.error ||
-            refs.curriculumVitae.current?.props.data.error
-        ) as boolean
-        setDisabledBtn(flag)
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [refs.fullName.current?.props,
-    refs.rol.current?.props,
-    refs.aboutMe.current?.props,
-    refs.imageProfile.current?.props,
-    refs.curriculumVitae.current?.props
-    ]);
+        const flag = refs.fullName.current?.props.data.error || refs.rol.current?.props.data.error || refs.aboutMe.current?.props.data.error || refs.imageProfile.current?.props.data.error || refs.curriculumVitae.current?.props.data.error
 
-    /* PROBANDO */
+        setDisabledBtn(flag ?? true)
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [refs.fullName.current?.props, refs.rol.current?.props,
+    refs.aboutMe.current?.props, refs.imageProfile.current?.props,
+    refs.curriculumVitae.current?.props]);
 
     return (
-        <main className={css.main}>
+        < main className={css.main} >
 
             <h3 className={css.title}>Mi persona: </h3>
 
@@ -202,6 +175,6 @@ export const Profile: React.FC = () => {
                 <button className={css.btn} onClick={updateUser} disabled={disabledBtn}>Guardar</button>
             </div>
 
-        </main>
+        </main >
     )
 }

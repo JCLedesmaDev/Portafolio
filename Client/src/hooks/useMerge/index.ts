@@ -2,7 +2,7 @@
 
 export const useMerge = () => {
     const merge = (src: any, val: any, prop: any) => {
-        console.log('MERGE: ', val, prop)
+        //console.log('MERGE: ', val, prop)
         const v = (typeof (val) !== 'object' || Array.isArray(val)) ? val : JSON.parse(JSON.stringify(val))
         if (prop !== '*') { src[prop] = v }
         if (!prop) { src = { ...src, ...v } }
