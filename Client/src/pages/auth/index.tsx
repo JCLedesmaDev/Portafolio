@@ -72,7 +72,9 @@ export const Auth: React.FC = () => {
 
 
     useEffect(() => {
-        const flag = refs.email.current?.props.data.error ?? refs.password.current?.props.data.error ?? true
+        const flag = (
+            refs.email.current?.props.data.error || refs.password.current?.props.data.error
+        ) as boolean
         setDisabledBtn(flag)
     }, [refs.email.current?.props, refs.password.current?.props])
 
@@ -87,11 +89,9 @@ export const Auth: React.FC = () => {
 
                 <div className={css.container__Form}>
 
-                    <InputText ref={refs.email}
-                        required={formProps.email.required} />
+                    <InputText ref={refs.email} required={formProps.email.required} />
 
-                    <InputPassword ref={refs.password}
-                        required={formProps.email.required} />
+                    <InputPassword ref={refs.password} required={formProps.email.required} />
 
                     <button onClick={login} className={css.container__Form_btn} disabled={disabledBtn}>
                         Iniciar sesion

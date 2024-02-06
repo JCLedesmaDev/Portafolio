@@ -112,6 +112,7 @@ export const LoadFile = forwardRef<IExposeFile, Props>((
         if (val.value) setFileSelect(val.value)
 
         setLocal((prevVal) => ({ ...prevVal, data: dataMerge }))
+        validateRules(val.value)
     }
 
     const reset = () => {

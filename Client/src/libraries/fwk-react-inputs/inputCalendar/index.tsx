@@ -126,6 +126,7 @@ export const InputCalendar = forwardRef<IExposeInputCalendar, Props>((
             setOrigVal(dataMerge.value)
         }
         setLocal((prevVal) => ({ ...prevVal, data: dataMerge }))
+        validateRules()
     }
 
     const reset = () => {

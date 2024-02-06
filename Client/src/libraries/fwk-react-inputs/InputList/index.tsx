@@ -132,6 +132,7 @@ export const InputList = forwardRef<IExposeInputList, Props>((
             setOrigVal(dataMerge.value)
         }
         setLocal((prevVal) => ({ ...prevVal, data: dataMerge }))
+        validateRules()
     }
 
     const reset = () => {

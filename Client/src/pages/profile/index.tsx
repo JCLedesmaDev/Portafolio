@@ -112,9 +112,10 @@ export const Profile: React.FC = () => {
     }, [])
 
     useEffect(() => {
-        const flag = refs.fullName.current?.props.data.error || refs.rol.current?.props.data.error || refs.aboutMe.current?.props.data.error || refs.imageProfile.current?.props.data.error || refs.curriculumVitae.current?.props.data.error
+        const flag = (refs.fullName.current?.props.data.error || refs.rol.current?.props.data.error || refs.aboutMe.current?.props.data.error || refs.imageProfile.current?.props.data.error || refs.curriculumVitae.current?.props.data.error) as boolean
+        console.log("🚀 ~ useEffect ~ flag:", flag)
 
-        setDisabledBtn(flag ?? true)
+        setDisabledBtn(flag)
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [refs.fullName.current?.props, refs.rol.current?.props,
     refs.aboutMe.current?.props, refs.imageProfile.current?.props,
@@ -127,45 +128,40 @@ export const Profile: React.FC = () => {
 
             <div className={css.profile}>
 
-                <div className={css.profile__field}>
+                {/*<div className={css.profile__field}>
                     <h4>Ingrese nombre completo</h4>
-                    <InputText ref={refs.fullName}
-                        required={refs.fullName.current?.props.required as boolean}
+                    <InputText ref={refs.fullName} required={refs.fullName.current?.props.required as boolean}
                     />
                 </div>
 
                 <div className={css.profile__field}>
                     <h4>Ingrese el rol que ocupa actualmente</h4>
-                    <InputText ref={refs.rol}
-                        required={refs.rol.current?.props.required as boolean} />
+                    <InputText ref={refs.rol} required={refs.rol.current?.props.required as boolean} />
                 </div>
 
                 <div className={css.profile__field}>
                     <h4>Sobre mi:</h4>
-                    <InputObs ref={refs.aboutMe}
-                        required={refs.aboutMe.current?.props.required as boolean} rows={11} />
+                    <InputObs ref={refs.aboutMe} required={refs.aboutMe.current?.props.required as boolean} rows={11} />
                 </div>
 
 
                 <div className={`${css.profile__field} ${css.previewVist}`}>
                     <h4>Vista previa</h4>
                     <div dangerouslySetInnerHTML={{ __html: refs.aboutMe.current?.props.data.value }} />
-                </div>
+                </div>*/}
 
             </div>
 
             <div className={css.loadFiles}>
 
-                <div className={css.loadFiles__profile}>
+                {/*<div className={css.loadFiles__profile}>
                     <h4>Imagen de Perfil</h4>
-                    <LoadFile ref={refs.imageProfile}
-                        required={refs.imageProfile.current?.props.required as boolean} />
-                </div>
+                    <LoadFile ref={refs.imageProfile} required={refs.imageProfile.current?.props.required as boolean} />
+                </div>*/}
 
                 <div className={css.loadFiles__cv}>
                     <h4>Curriculum Vitae</h4>
-                    <LoadFile ref={refs.curriculumVitae}
-                        required={refs.curriculumVitae.current?.props.required as boolean} />
+                    <LoadFile ref={refs.curriculumVitae} required={refs.curriculumVitae.current?.props.required as boolean} />
                 </div>
 
             </div>

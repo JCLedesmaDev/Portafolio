@@ -137,6 +137,7 @@ export const InputPassword = forwardRef<IExposeInput, Props>((
       setOrigVal(dataMerge.value)
     }
     setLocal((prevVal) => ({ ...prevVal, data: dataMerge }))
+    validateRules()
   }
 
   const reset = () => {
