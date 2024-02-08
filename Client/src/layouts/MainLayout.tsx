@@ -7,7 +7,6 @@ import { useState } from 'react';
 import { MenuSVG } from '@/assets/MenuSVG';
 import useAppStore from '@/appStore';
 
-import image from '@/assets/rocket-page-logo.png'
 import Project from '@/assets/project.png'
 import Skills from '@/assets/skills.png'
 import AboutMe from '@/assets/AboutMe.png'
@@ -45,7 +44,7 @@ export const MainLayout: React.FC = () => {
             <div className={`${css.sidebarGridContainer} ${toggle ? css.sidebarGridContainerNone : ''}`}>
 
                 <div className={css.sidebarContainer__header}>
-                    <NavLink to="/admin"><img src={image} /></NavLink>
+                    <NavLink to="/admin"><img src={appStore.state.user.imageProfile} /></NavLink>
                 </div>
 
                 <div className={`${css.sidebarContainer__content}`}>

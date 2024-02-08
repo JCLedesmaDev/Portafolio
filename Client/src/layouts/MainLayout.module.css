@@ -101,7 +101,9 @@
 }
 
 .sidebarContainer__header img {
-    width: 9.375rem;
+    width: 12.5rem;
+    height: 12.5rem;
+    border-radius: 50%;
 }
 
 .sidebarContainer__content {
@@ -142,6 +144,7 @@
     .sidebarContainer__header img {
         margin-top: 2rem;
         width: 6.25rem;
+        height: 6.25rem;
     }
 
     .sidebarContainer__content a {
@@ -156,7 +159,8 @@
 
 @media screen and (max-width: 768px) {
     .sidebarContainer__header img {
-        width: 45px;
+        width: 2.8125rem;
+        height: 2.8125rem;
     }
 
     .sidebarContainer__content a h4 {
