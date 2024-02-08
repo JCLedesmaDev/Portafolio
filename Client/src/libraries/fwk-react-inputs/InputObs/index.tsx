@@ -4,7 +4,6 @@ import css from "./index.module.css";
 import { CheckCloseSVG } from '../svg/CheckCloseSVG';
 import TextareaAutosize from 'react-textarea-autosize';
 import { useMerge } from '@/hooks/index.hooks';
-import { IRules } from '../interface/IRules';
 import { IExposeInput } from '../interface/IExposeInput';
 import { IInputData, IInputProps } from '../interface/IInput';
 
@@ -22,7 +21,7 @@ export const InputObs = forwardRef<IExposeInput, Props>((
   /// HOOKS
   const { merge } = useMerge()
   const refTextarea = useRef<any>()
-  const [origVal, setOrigVal] = useState()
+  const origVal = useRef<any>()
   const [local, setLocal] = useState<IInputProps>({
     data: { value: '' },
     autoComplete: 'false',
@@ -31,56 +30,14 @@ export const InputObs = forwardRef<IExposeInput, Props>((
     required: false,
     icon: undefined,
     refresh: () => { },
+    rules: [{
+      fnCondition: (val) => required && !val,
+      messageError: 'Este campo es requerido.'
+    }]
   })
 
-  const [cmpRules, setCmpRules] = useState<IRules[]>([{
-    fnCondition: (val) => required && !val,
-    messageError: 'Este campo es requerido.'
-  }])
 
   /// METODOS
-  const validateRules = () => {
-    //console.log(`Rules INPUT ${props.name}`)
-    for (const rule of cmpRules) {
-
-      if (rule.fnCondition(local.data.value)) {
-        setLocal((prevVal) => ({
-          ...prevVal, data: {
-            ...prevVal.data, error: true, messageError: rule.messageError
-          }
-        }))
-        break;
-      } else {
-        setLocal((prevVal) => ({
-          ...prevVal, data: {
-            ...prevVal.data, error: false, messageError: ''
-          }
-        }))
-      }
-    }
-  }
-
-  const update = (evt: any) => {
-    const { value } = evt.target;
-    setLocal((prevVal) => ({
-      ...prevVal,
-      data: {
-        ...prevVal.data,
-        value: value,
-        dirty: value !== origVal
-      }
-    }))
-  }
-
-  const rollback = () => {
-    const dirtyFlag = origVal ? undefined : false
-    setLocal((prevVal) => ({
-      ...prevVal,
-      data: { error: false, value: origVal, dirty: dirtyFlag }
-    }))
-    if (refTextarea.current) refTextarea.current.value = origVal
-  }
-
   const defineCSSInput = () => {
     let style = '';
 
@@ -105,38 +62,79 @@ export const InputObs = forwardRef<IExposeInput, Props>((
     return style
   }
 
+  const validateRules = () => {
+    for (const rule of local.rules) {
+      if (rule.fnCondition(local.data.value)) {
+        setLocal((prevVal) => ({
+          ...prevVal, data: {
+            ...prevVal.data, error: true, messageError: rule.messageError
+          }
+        }))
+        break;
+      } else {
+        setLocal((prevVal) => ({
+          ...prevVal, data: {
+            ...prevVal.data, error: false, messageError: ''
+          }
+        }))
+      }
+    }
+  }
+
+  const update = (evt: any) => {
+    const { value } = evt.target;
+    setLocal((prevVal) => ({
+      ...prevVal,
+      data: {
+        ...prevVal.data,
+        value: value,
+        dirty: value !== origVal.current
+      }
+    }))
+  }
+
+  const rollback = () => {
+    const dirtyFlag = origVal.current ? undefined : false
+    setLocal((prevVal) => ({
+      ...prevVal,
+      data: { error: false, value: origVal.current, dirty: dirtyFlag }
+    }))
+    if (refTextarea.current) refTextarea.current.value = origVal.current
+  }
+
   const set = (val: IInputProps, prop?: string) => {
     console.log(`CONSTRUCTOR INPUT ${val.name}`)
 
-    const data = JSON.parse(JSON.stringify(local))
-    if (val.icon) { // Se hace porque no se puede stringlificar un componente
-      data.icon = val.icon
+    const copyLocal: IInputProps = JSON.parse(JSON.stringify(local))
+    const rules = local.rules.concat(val.rules)
+
+    // Se hace porque no se puede stringlificar un componente
+    if (val.icon) {
+      copyLocal.icon = val.icon
       delete val.icon
     }
 
-    const mergeData: IInputProps = Object.assign(
-      data, merge(data, val, prop)
-    );
-    mergeData.refresh = val.refresh
-    setLocal(mergeData)
+    Object.assign(copyLocal, merge(copyLocal, val, prop));
+    copyLocal.refresh = val.refresh
+    copyLocal.rules = rules
 
-    val.rules?.forEach(rule => {
-      setCmpRules((prevVal) => ([...prevVal, rule]))
-    })
+    setLocal(copyLocal)
   }
 
   const setData = (val: IInputData, prop: string) => {
-    const dataMerge: IInputData = merge(local.data, val, prop)
+    const dataMerge = merge(local.data, val, prop)
+
     // eslint-disable-next-line no-prototype-builtins
     if (prop === 'value' || val?.hasOwnProperty('value')) {
-      setOrigVal(dataMerge.value)
+      origVal.current = dataMerge.value
     }
+
     setLocal((prevVal) => ({ ...prevVal, data: dataMerge }))
     validateRules()
   }
 
   const reset = () => {
-    setOrigVal(local.data.value)
+    origVal.current = local.data.value
     setLocal((prevVal) => ({
       ...prevVal,
       data: { ...prevVal.data, dirty: undefined }
@@ -149,7 +147,7 @@ export const InputObs = forwardRef<IExposeInput, Props>((
     }
     setTimeout(() => { local.refresh() }, 10);
     return expose
-  }, [local])
+  }, [local.data])
 
   useEffect(() => { validateRules() }, [local.data.value])
 

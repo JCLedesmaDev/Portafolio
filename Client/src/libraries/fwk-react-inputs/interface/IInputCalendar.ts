@@ -7,7 +7,7 @@ export interface IInputCalendarProps {
     autoComplete: string,
     refresh: () => void,
     data: IInputCalendarData,
-    rules?: IRules[]
+    rules: IRules[]
 }
 
 export interface IInputCalendarData {

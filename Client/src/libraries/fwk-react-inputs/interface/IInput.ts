@@ -11,7 +11,7 @@ export interface IInputProps {
     data: IInputData,
     autoComplete: string,
     refresh: () => void,
-    rules?: IRules[]
+    rules: IRules[]
 }
 
 export interface IInputData {

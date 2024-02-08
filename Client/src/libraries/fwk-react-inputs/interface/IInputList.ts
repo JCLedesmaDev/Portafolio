@@ -11,7 +11,7 @@ export interface IInputListProps {
     optId?: string;
     optLbl?: string;
     data: IInputListData,
-    rules?: IRules[]
+    rules: IRules[]
 }
 
 export interface IInputListData {

@@ -2,7 +2,6 @@
 import { forwardRef, useEffect, useImperativeHandle, useRef, useState } from 'react';
 import css from './index.module.css'
 import { CheckCloseSVG } from '../svg/CheckCloseSVG';
-import { IRules } from '../interface/IRules';
 import { IInputListData, IInputListProps } from '../interface/IInputList';
 import { IExposeInputList } from '../interface/IExposeInput';
 import { useMerge } from '@/hooks/useMerge';
@@ -20,7 +19,7 @@ export const InputList = forwardRef<IExposeInputList, Props>((
     /// HOOKS
     const { merge } = useMerge()
     const refSelect = useRef<any>()
-    const [origVal, setOrigVal] = useState()
+    const origVal = useRef<any>()
     const [local, setLocal] = useState<IInputListProps>({
         data: { value: '', options: [] },
         autoComplete: 'false',
@@ -31,16 +30,39 @@ export const InputList = forwardRef<IExposeInputList, Props>((
         required: false,
         icon: undefined,
         refresh: () => { },
+        rules: [{
+            fnCondition: (val) => required && !val,
+            messageError: 'Este campo es requerido.'
+        }]
     })
 
-    const [cmpRules, setCmpRules] = useState<IRules[]>([{
-        fnCondition: (val) => required && !val,
-        messageError: 'Este campo es requerido.'
-    }])
 
     /// METODOS
+    const defineCSSSelect = () => {
+        let style = '';
+
+        if (local.data.value === undefined || local.data.dirty === undefined) return style;
+        if (local.data.error) {
+            style = css['container__Item--incorrect']
+        } else {
+            style = css['container__Item--correct']
+        }
+        return style
+    }
+
+    const defineCSSMessage = () => {
+        let style = css.container__messageError;
+
+        if (local.data.value === undefined || local.data.dirty === undefined) return style;
+        if (local.data.error) {
+            style += ` ${css['container__messageError--active']}`
+        }
+
+        return style
+    }
+
     const validateRules = () => {
-        for (const rule of cmpRules) {
+        for (const rule of local.rules) {
             if (rule.fnCondition(local.data.value)) {
                 setLocal((prevVal) => ({
                     ...prevVal,
@@ -66,77 +88,56 @@ export const InputList = forwardRef<IExposeInputList, Props>((
             data: {
                 ...prevVal.data,
                 value: value,
-                dirty: value !== origVal
+                dirty: value !== origVal.current
             }
         }))
     }
 
     const rollback = () => {
-        const dirtyFlag = origVal ? false : undefined
+        const dirtyFlag = origVal.current ? false : undefined
         setLocal((prevVal) => ({
             ...prevVal,
             data: {
-                options: prevVal.data.options, error: false, value: origVal, dirty: dirtyFlag
+                options: prevVal.data.options, error: false, value: origVal.current, dirty: dirtyFlag
             }
         }))
-        if (refSelect.current) refSelect.current.value = origVal
+        if (refSelect.current) refSelect.current.value = origVal.current
     }
 
-    const defineCSSSelect = () => {
-        let style = '';
-
-        if (local.data.value === undefined || local.data.dirty === undefined) return style;
-        if (local.data.error) {
-            style = css['container__Item--incorrect']
-        } else {
-            style = css['container__Item--correct']
-        }
-        return style
-    }
-
-    const defineCSSMessage = () => {
-        let style = css.container__messageError;
-
-        if (local.data.value === undefined || local.data.dirty === undefined) return style;
-        if (local.data.error) {
-            style += ` ${css['container__messageError--active']}`
-        }
-
-        return style
-    }
 
     const set = (val: IInputListProps, prop?: string) => {
-        console.log(`CONSTRUCTOR INPUT ${val.name}`)
+        console.log(`CONSTRUCTOR INPUT LIST ${val.name}`)
 
-        const data = JSON.parse(JSON.stringify(local))
-        if (val.icon) { // Se hace porque no se puede stringlificar un componente
-            data.icon = val.icon
+        const copyLocal: IInputListProps = JSON.parse(JSON.stringify(local))
+        const rules = local.rules.concat(val.rules)
+
+        // Se hace porque no se puede stringlificar un componente
+        if (val.icon) {
+            copyLocal.icon = val.icon
             delete val.icon
         }
 
-        const mergeData: IInputListProps = Object.assign(
-            data, merge(data, val, prop)
-        );
-        mergeData.refresh = val.refresh
-        setLocal(mergeData)
+        Object.assign(copyLocal, merge(copyLocal, val, prop));
+        copyLocal.refresh = val.refresh
+        copyLocal.rules = rules
 
-        val.rules?.forEach(rule => {
-            setCmpRules((prevVal) => ([...prevVal, rule]))
-        })
+        setLocal(copyLocal)
     }
 
     const setData = (val: IInputListData, prop: string) => {
-        const dataMerge: IInputListData = merge(local.data, val, prop)
+        const dataMerge = merge(local.data, val, prop)
+
         // eslint-disable-next-line no-prototype-builtins
         if (prop === 'value' || val?.hasOwnProperty('value')) {
-            setOrigVal(dataMerge.value)
+            origVal.current = dataMerge.value
         }
+
         setLocal((prevVal) => ({ ...prevVal, data: dataMerge }))
         validateRules()
     }
 
     const reset = () => {
-        setOrigVal(local.data.value)
+        origVal.current = local.data.value
         setLocal((prevVal) => ({
             ...prevVal,
             data: { ...prevVal.data, dirty: undefined }
@@ -149,16 +150,16 @@ export const InputList = forwardRef<IExposeInputList, Props>((
         }
         setTimeout(() => { local.refresh() }, 10);
         return expose
-    }, [local])
+    }, [local.data])
 
     useEffect(() => { validateRules() }, [local.data.value])
 
-    useEffect(() => {
-        setLocal((prevVal) => ({
-            ...prevVal,
-            data: { ...prevVal.data, options: local.data.options }
-        }))
-    }, [local.data.options])
+    //useEffect(() => {
+    //    setLocal((prevVal) => ({
+    //        ...prevVal,
+    //        data: { ...prevVal.data, options: local.data.options }
+    //    }))
+    //}, [local.data.options])
 
     return (
         <div className={`${css.container} ${className}`} style={style}>
