@@ -123,7 +123,8 @@ const updateTechnology = async (payload: IUpdateTechnologyRequest): Promise<ITec
                 name: payload.name,
                 image: payload.image,
                 category: new Types.ObjectId(payload.idCategory)
-            }
+            },
+            { new: true }
         )
     } catch (error) {
         throw new ApplicationError({

@@ -66,7 +66,7 @@ const updateUser = async (payload: IUpdateUserRequest): Promise<IUserSchema | nu
             }),
         }
         return await collections.User.findByIdAndUpdate(
-            payload.idUser, usr
+            payload.idUser, usr, { new: true }
         )
     } catch (error) {
         throw new ApplicationError({
@@ -80,7 +80,7 @@ const addRefProjectToUser = async (idProject: string, usrId: string): Promise<vo
     try {
         await collections.User.findByIdAndUpdate(usrId, {
             $push: { projectsList: new Types.ObjectId(idProject) }
-        })
+        }, { new: true })
     } catch (error) {
         throw new ApplicationError({
             message: 'Ha ocurrido un error al agregar el proyecto al usuario.',
@@ -92,7 +92,7 @@ const deleteRefProjectToUser = async (idProject: string, usrId: string): Promise
     try {
         await collections.User.findByIdAndUpdate(usrId, {
             $pull: { projectsList: new Types.ObjectId(idProject) }
-        })
+        }, { new: true })
     } catch (error) {
         throw new ApplicationError({
             message: 'Ha ocurrido un error al eliminar el proyecto del usuario.',
@@ -105,7 +105,7 @@ const addRefSkillToUser = async (usrId: string, newSkillId: string): Promise<voi
     try {
         await collections.User.findByIdAndUpdate(usrId, {
             $push: { skillsList: new Types.ObjectId(newSkillId) }
-        })
+        }, { new: true })
     } catch (error) {
         throw new ApplicationError({
             message: 'Ha ocurrido un error al agregar la skill al usuario.',
@@ -117,7 +117,7 @@ const deleteRefSkillToUser = async (idSkill: string, usrId: string): Promise<voi
     try {
         await collections.User.findByIdAndUpdate(usrId, {
             $pull: { skillsList: new Types.ObjectId(idSkill) }
-        })
+        }, { new: true })
     } catch (error) {
         throw new ApplicationError({
             message: 'Ha ocurrido un error al eliminar la skill al usuario.',

@@ -76,7 +76,8 @@ const updateProject = async (payload: IUpdateProjectRequest): Promise<IProjectSc
                 }),
                 colaboratorsList: payload.colaboratorsList,
                 user: new Types.ObjectId(payload.usrId),
-            }
+            },
+            { new: true }
         )
     } catch (error) {
         throw new ApplicationError({

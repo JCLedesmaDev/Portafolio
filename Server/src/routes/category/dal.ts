@@ -6,7 +6,7 @@ import { IAddCaterogyRequest } from "./dto/addCategory.dto";
 import { IUpdateCategoryRequest } from "./dto/updateCategory.dto.";
 
 
-const getAll = async () : Promise<ICategorySchema[]> => {
+const getAll = async (): Promise<ICategorySchema[]> => {
     try {
         return await collections.Category.find({})
     } catch (error) {
@@ -57,9 +57,8 @@ const updateCategory = async (payload: IUpdateCategoryRequest): Promise<ICategor
     try {
         return await collections.Category.findByIdAndUpdate(
             payload.idCategory,
-            {
-                name: payload.name,
-            }
+            { name: payload.name, },
+            { new: true }
         )
     } catch (error) {
         throw new ApplicationError({
