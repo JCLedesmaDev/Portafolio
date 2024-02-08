@@ -5,13 +5,14 @@
   justify-content: center;
   gap: 0.50rem;
   position: relative;
+  padding: 1rem;
 }
 
 .container__ItemFile {
   display: flex;
   align-items: center;
   flex-wrap: wrap;
-  padding-right: 2.5rem;
+  gap: .5rem;
   justify-content: center;
 }
 
