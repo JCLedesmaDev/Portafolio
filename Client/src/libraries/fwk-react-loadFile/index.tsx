@@ -1,7 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { ui } from '@/libraries/index.libraries';
 import { forwardRef, useImperativeHandle, useRef, useState } from 'react';
-import { IRules } from './interface/IRules';
 import { ILoadFileData, ILoadFileProps } from './interface/ILoadFile';
 import { CheckCloseSVG } from './svg/CheckCloseSVG';
 import css from './index.module.css'
@@ -11,18 +10,18 @@ import { useMerge } from '@/hooks/useMerge';
 interface Props {
     className?: any;
     style?: object;
-    required: boolean;
 }
 
-
 export const LoadFile = forwardRef<IExposeFile, Props>((
-    { className, style, required }, ref
+    { className, style }, ref
 ) => {
 
     /// HOOKS
     const { merge } = useMerge()
     const refFile = useRef<HTMLInputElement>(null)
-    const [origVal, setOrigVal] = useState()
+    const origVal = useRef<any>()
+    const required = useRef(false)
+    const imageDefaultView = useRef<any>()
     const storeUi = ui.useStore()
 
     const [local, setLocal] = useState<ILoadFileProps>({
@@ -31,104 +30,106 @@ export const LoadFile = forwardRef<IExposeFile, Props>((
         type: 'image',
         required: false,
         imageDefault: '',
-        refresh: () => { }
+        refresh: () => { },
+        rules: [{
+            fnCondition: (val) => required.current && !val,
+            messageError: `Este campo es requerido.`
+        }]
     })
-    const [fileSelect, setFileSelect] = useState<string>('');
-    const [cmpRules, setCmpRules] = useState<IRules[]>([{
-        fnCondition: (val) => required && !val,
-        messageError: `Este campo ${local.name} es requerido.`
-    }])
 
     /// METODOS
+    const validateRules = (file: any) => {
+        const typeFile = file.type?.split("/").pop()
+
+        for (const rule of local.rules) {
+            if (rule.fnCondition(typeFile)) {
+                setLocal((prevVal) => ({
+                    ...prevVal, data: {
+                        dirty: false,
+                        value: imageDefaultView.current,
+                        error: true
+                    }
+                }))
+                storeUi.actions.showNotify(rule.messageError, 'error')
+                break
+            } else {
+                const data = { value: file, dirty: file !== origVal.current, error: false }
+                setLocal((prevVal) => ({ ...prevVal, data }))
+            }
+        }
+    }
+
     const openInputFile = () => {
         if (refFile.current) refFile.current.click()
+    }
+
+    const formatFile = (): string => {
+        if (typeof local.data.value === 'object') {
+            return URL.createObjectURL(local.data.value)
+        }
+        return local.data.value
     }
 
     const update = (evt: any) => {
         const file = evt.target.files[0]
         if (!file) return
-
-        const isError = validateRules(file)
-        if (isError) return
-
-        const urlFile = URL.createObjectURL(file)
-        setFileSelect(urlFile)
+        validateRules(file)
     }
-
-    const validateRules = (file: any) => {
-        const typeFile = file.type?.split("/").pop()
-
-        for (const rule of cmpRules) {
-            if (rule.fnCondition(typeFile)) {
-                setLocal((prevVal) => ({
-                    ...prevVal, data: {
-                        ...prevVal.data,
-                        error: true
-                    }
-                }))
-                storeUi.actions.showNotify(rule.messageError, 'error')
-                return true
-            } else {
-                const data = { value: file, dirty: file !== origVal, error: false }
-                setLocal((prevVal) => ({ ...prevVal, data }))
-            }
-        }
-        return false
-    }
-
 
     const rollback = () => {
-        const dirtyFlag = origVal ? undefined : false
+        const dirtyFlag = origVal.current ? undefined : false
         setLocal((prevVal) => ({
             ...prevVal,
-            data: { error: false, value: origVal, dirty: dirtyFlag }
+            data: { error: false, value: origVal.current, dirty: dirtyFlag }
         }))
-        setFileSelect(origVal as any)
     }
 
     const set = (val: ILoadFileProps, prop?: string) => {
         console.log(`CONSTRUCTOR INPUT ${val.name}`)
 
-        const data = JSON.parse(JSON.stringify(local))
-        const mergeData: ILoadFileProps = Object.assign(
-            data, merge(data, val, prop)
-        );
+        const copyLocal: ILoadFileProps = JSON.parse(JSON.stringify(local))
+        const rules = local.rules.concat(val.rules)
 
-        mergeData.refresh = val.refresh
-        setLocal(mergeData)
+        if (val.imageDefault) imageDefaultView.current = val.imageDefault
+        required.current = val.required
 
-        if (val.imageDefault) setFileSelect(val.imageDefault)
-        val.rules?.forEach(rule => {
-            setCmpRules((prevVal) => ([...prevVal, rule]))
-        })
+        Object.assign(copyLocal, merge(copyLocal, val, prop));
+        copyLocal.refresh = val.refresh
+        copyLocal.rules = rules
+
+        setLocal(copyLocal)
     }
 
     const setData = (val: ILoadFileData, prop: string) => {
         const dataMerge: ILoadFileData = merge(local.data, val, prop)
-        // eslint-disable-next-line no-prototype-builtins
-        if (prop === 'value' || val?.hasOwnProperty('value')) {
-            setOrigVal(dataMerge.value)
+
+        if (!val.value && imageDefaultView.current) {
+            dataMerge.value = imageDefaultView.current
         }
-        if (val.value) setFileSelect(val.value)
+
+        // eslint-disable-next-line no-prototype-builtins
+        if (prop === 'value' || val.hasOwnProperty('value')) {
+            origVal.current = dataMerge.value
+        }
 
         setLocal((prevVal) => ({ ...prevVal, data: dataMerge }))
-        validateRules(val.value)
     }
 
     const reset = () => {
-        setOrigVal(local.data.value)
+        origVal.current = local.data.value
         setLocal((prevVal) => ({
             ...prevVal,
             data: { ...prevVal.data, dirty: undefined }
         }))
     }
+
     useImperativeHandle(ref, () => {
         const expose = {
             reset, set, setData, props: local
         }
         setTimeout(() => { local.refresh() }, 10);
         return expose
-    }, [local])
+    }, [local.data])
 
     return (
         <div className={`${css.container} ${className}`} style={style}>
@@ -138,15 +139,17 @@ export const LoadFile = forwardRef<IExposeFile, Props>((
             )}
 
             {local.type === 'image' && (
-                <img src={fileSelect} alt={local.name}
+                <img src={formatFile()} alt={local.name}
                     onClick={openInputFile} style={{ cursor: 'pointer' }}
                 />
             )}
 
             {local.type === 'file' && (<>
                 <button onClick={openInputFile}>Cargar archivo </button>
-                {fileSelect && (
-                    <a href={fileSelect} target='_blank'>Abrir archivo </a>
+                {local.data.value && (
+                    <a href={local.data.value} target='_blank'>
+                        Abrir archivo
+                    </a>
                 )}
             </>)}
 

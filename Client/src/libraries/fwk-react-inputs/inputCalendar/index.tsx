@@ -10,17 +10,17 @@ import { useMerge } from '@/hooks/useMerge';
 interface Props {
     className?: any;
     style?: object;
-    required: boolean;
 }
 
 export const InputCalendar = forwardRef<IExposeInputCalendar, Props>((
-    { className, style, required }, ref
+    { className, style }, ref
 ) => {
 
     /// VARIABLES
     const { merge } = useMerge()
     const refCalendar = useRef<any>()
     const origVal = useRef<any>()
+    const required = useRef(false)
     const [local, setLocal] = useState<IInputCalendarProps>({
         data: { value: '', },
         autoComplete: 'false',
@@ -29,7 +29,7 @@ export const InputCalendar = forwardRef<IExposeInputCalendar, Props>((
         refresh: () => { },
         rules: [{
             //fnCondition: (val) => !(props.required && !!val),
-            fnCondition: (val) => required && !val,
+            fnCondition: (val) => required.current && !val,
             messageError: 'Este campo es requerido.'
         }]
     })
@@ -104,9 +104,8 @@ export const InputCalendar = forwardRef<IExposeInputCalendar, Props>((
         console.log(`CONSTRUCTOR INPUT ${val.name}`)
 
         const copyLocal: IInputCalendarProps = JSON.parse(JSON.stringify(local))
-
-        let rules = local.rules
-        if (val.rules) rules = local.rules.concat(val.rules)
+        const rules = local.rules.concat(val.rules)
+        required.current = val.required
 
         Object.assign(copyLocal, merge(copyLocal, val, prop));
         copyLocal.refresh = val.refresh
@@ -119,7 +118,7 @@ export const InputCalendar = forwardRef<IExposeInputCalendar, Props>((
         const dataMerge = merge(local.data, val, prop)
 
         // eslint-disable-next-line no-prototype-builtins
-        if (prop === 'value' || val?.hasOwnProperty('value')) {
+        if (prop === 'value' || val.hasOwnProperty('value')) {
             origVal.current = dataMerge.value
         }
 

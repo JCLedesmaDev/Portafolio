@@ -89,9 +89,9 @@ export const Auth: React.FC = () => {
 
                 <div className={css.container__Form}>
 
-                    <InputText ref={refs.email} required={formProps.email.required} />
+                    <InputText ref={refs.email} />
 
-                    <InputPassword ref={refs.password} required={formProps.email.required} />
+                    <InputPassword ref={refs.password} />
 
                     <button onClick={login} className={css.container__Form_btn} disabled={disabledBtn}>
                         Iniciar sesion

@@ -11,17 +11,17 @@ import { useMerge } from '@/hooks/index.hooks';
 interface Props {
   className?: any;
   style?: object;
-  required: boolean;
 }
 
 export const InputPassword = forwardRef<IExposeInput, Props>((
-  { className, style, required }, ref
+  { className, style }, ref
 ) => {
 
   /// HOOKS
   const { merge } = useMerge()
   const refInput = useRef<any>()
   const origVal = useRef<any>()
+  const required = useRef(false)
   const [visiblePassword, setVisiblePassowrd] = useState(false)
   const [local, setLocal] = useState<IInputProps>({
     data: { value: '' },
@@ -32,7 +32,7 @@ export const InputPassword = forwardRef<IExposeInput, Props>((
     icon: undefined,
     refresh: () => { },
     rules: [{
-      fnCondition: (val) => required && !val,
+      fnCondition: (val) => required.current && !val,
       messageError: 'Este campo es requerido.'
     }]
   })
@@ -110,15 +110,14 @@ export const InputPassword = forwardRef<IExposeInput, Props>((
     console.log(`CONSTRUCTOR INPUT ${val.name}`)
 
     const copyLocal: IInputProps = JSON.parse(JSON.stringify(local))
-
-    let rules = local.rules
-    if (val.rules) rules = local.rules.concat(val.rules)
+    const rules = local.rules.concat(val.rules)
 
     // Se hace porque no se puede stringlificar un componente
     if (val.icon) {
       copyLocal.icon = val.icon
       delete val.icon
     }
+    required.current = val.required
 
     Object.assign(copyLocal, merge(copyLocal, val, prop));
     copyLocal.refresh = val.refresh
@@ -131,7 +130,7 @@ export const InputPassword = forwardRef<IExposeInput, Props>((
     const dataMerge = merge(local.data, val, prop)
 
     // eslint-disable-next-line no-prototype-builtins
-    if (prop === 'value' || val?.hasOwnProperty('value')) {
+    if (prop === 'value' || val.hasOwnProperty('value')) {
       origVal.current = dataMerge.value
     }
 

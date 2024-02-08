@@ -6,7 +6,7 @@ export interface ILoadFileProps {
     required: boolean;
     type: 'image' | 'file'
     data: ILoadFileData
-    rules?: IRules[]
+    rules: IRules[]
     imageDefault?: any
     refresh: () => void,
 }

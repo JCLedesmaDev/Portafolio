@@ -9,17 +9,17 @@ import { useMerge } from '@/hooks/useMerge';
 interface Props {
     className?: any;
     style?: object;
-    required: boolean;
 }
 
 export const InputList = forwardRef<IExposeInputList, Props>((
-    { className, style, required }, ref
+    { className, style }, ref
 ) => {
 
     /// HOOKS
     const { merge } = useMerge()
     const refSelect = useRef<any>()
     const origVal = useRef<any>()
+    const required = useRef(false)
     const [local, setLocal] = useState<IInputListProps>({
         data: { value: '', options: [] },
         autoComplete: 'false',
@@ -31,7 +31,7 @@ export const InputList = forwardRef<IExposeInputList, Props>((
         icon: undefined,
         refresh: () => { },
         rules: [{
-            fnCondition: (val) => required && !val,
+            fnCondition: (val) => required.current && !val,
             messageError: 'Este campo es requerido.'
         }]
     })
@@ -109,15 +109,14 @@ export const InputList = forwardRef<IExposeInputList, Props>((
         console.log(`CONSTRUCTOR INPUT LIST ${val.name}`)
 
         const copyLocal: IInputListProps = JSON.parse(JSON.stringify(local))
-
-        let rules = local.rules
-        if (val.rules) rules = local.rules.concat(val.rules)
+        const rules = local.rules.concat(val.rules)
 
         // Se hace porque no se puede stringlificar un componente
         if (val.icon) {
             copyLocal.icon = val.icon
             delete val.icon
         }
+        required.current = val.required
 
         Object.assign(copyLocal, merge(copyLocal, val, prop));
         copyLocal.refresh = val.refresh
@@ -130,7 +129,7 @@ export const InputList = forwardRef<IExposeInputList, Props>((
         const dataMerge = merge(local.data, val, prop)
 
         // eslint-disable-next-line no-prototype-builtins
-        if (prop === 'value' || val?.hasOwnProperty('value')) {
+        if (prop === 'value' || val.hasOwnProperty('value')) {
             origVal.current = dataMerge.value
         }
 
