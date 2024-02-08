@@ -116,8 +116,9 @@ export const Profile: React.FC = () => {
     }, [])
 
     useEffect(() => {
-        const flag = (refs.fullName.current?.props.data.error || refs.rol.current?.props.data.error || refs.aboutMe.current?.props.data.error || refs.imageProfile.current?.props.data.error || refs.curriculumVitae.current?.props.data.error) as boolean
-        console.log("🚀 ~ useEffect ~ flag:", flag)
+        const flag = (
+            refs.fullName.current?.props.data.error || refs.rol.current?.props.data.error || refs.aboutMe.current?.props.data.error || refs.imageProfile.current?.props.data.error || refs.curriculumVitae.current?.props.data.error
+        ) as boolean
 
         setDisabledBtn(!!flag)
         // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -136,6 +137,7 @@ export const Profile: React.FC = () => {
                     <h4>Ingrese nombre completo</h4>
                     <InputText ref={refs.fullName} />
                 </div>
+
                 <div className={css.profile__field}>
                     <h4>Ingrese el rol que ocupa actualmente</h4>
                     <InputText ref={refs.rol} />
@@ -145,7 +147,6 @@ export const Profile: React.FC = () => {
                     <h4>Sobre mi:</h4>
                     <InputObs ref={refs.aboutMe} rows={11} />
                 </div>
-
 
                 <div className={`${css.profile__field} ${css.previewVist}`}>
                     <h4>Vista previa</h4>

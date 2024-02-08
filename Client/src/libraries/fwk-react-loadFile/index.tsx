@@ -46,7 +46,7 @@ export const LoadFile = forwardRef<IExposeFile, Props>((
                 setLocal((prevVal) => ({
                     ...prevVal, data: {
                         dirty: false,
-                        value: imageDefaultView.current,
+                        value: origVal.current,
                         error: true
                     }
                 }))
@@ -144,14 +144,14 @@ export const LoadFile = forwardRef<IExposeFile, Props>((
                 />
             )}
 
-            {local.type === 'file' && (<>
+            {local.type === 'file' && (<div className={css.container__ItemFile}>
                 <button onClick={openInputFile}>Cargar archivo </button>
                 {local.data.value && (
                     <a href={local.data.value} target='_blank'>
                         Abrir archivo
                     </a>
                 )}
-            </>)}
+            </div>)}
 
             <input type="file" ref={refFile} style={{ display: 'none' }} onChange={update} />
         </div>
