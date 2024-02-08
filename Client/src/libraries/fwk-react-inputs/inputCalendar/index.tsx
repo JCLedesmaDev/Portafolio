@@ -104,7 +104,9 @@ export const InputCalendar = forwardRef<IExposeInputCalendar, Props>((
         console.log(`CONSTRUCTOR INPUT ${val.name}`)
 
         const copyLocal: IInputCalendarProps = JSON.parse(JSON.stringify(local))
-        const rules = local.rules.concat(val.rules)
+
+        let rules = local.rules
+        if (val.rules) rules = local.rules.concat(val.rules)
 
         Object.assign(copyLocal, merge(copyLocal, val, prop));
         copyLocal.refresh = val.refresh

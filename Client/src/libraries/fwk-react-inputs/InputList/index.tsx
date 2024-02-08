@@ -109,7 +109,9 @@ export const InputList = forwardRef<IExposeInputList, Props>((
         console.log(`CONSTRUCTOR INPUT LIST ${val.name}`)
 
         const copyLocal: IInputListProps = JSON.parse(JSON.stringify(local))
-        const rules = local.rules.concat(val.rules)
+
+        let rules = local.rules
+        if (val.rules) rules = local.rules.concat(val.rules)
 
         // Se hace porque no se puede stringlificar un componente
         if (val.icon) {
