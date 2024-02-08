@@ -1,8 +1,8 @@
 export { apiSrv } from './fwk-apiSrv/index'
 export type { IConfigInit } from './fwk-apiSrv/interface/index.interfaces'
 
-export { InputText, InputPassword, InputCalendar, InputList, InputObs } from './fwk-react-inputs/index'
-export type { IInputProps, IInputListProps, IInputCalendarProps, IExposeInput } from './fwk-react-inputs/index'
+export { InputText, InputPassword, InputCalendar, InputList, InputObs, InputToggle } from './fwk-react-inputs/index'
+export type { IInputProps, IInputListProps, IInputCalendarProps, IInputToggleProps, IExposeInput, IExposeInputCalendar, IExposeInputList, IExposeInputToggle } from './fwk-react-inputs/index'
 
 export { evtEmitter } from './fwk-eventEmitter/index'
 

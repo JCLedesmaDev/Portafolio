@@ -1,53 +1,54 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { useEffect, useState } from 'react';
-import { InputText, Paginate, ui } from '@/libraries/index.libraries';
+import { useEffect, useRef, useState } from 'react';
 import useLoggerDbStore from './store'
 import { JSONViewer } from './components/jsonViewer';
 import css from './index.module.css'
-
-import Switch from "react-switch";
-
-import { InputList } from '@/libraries/fwk-react-inputs/InputList';
-import { useFormCustom } from '@/hooks/index.hooks';
-import { IFormData, IFormProps } from './interface/IForm';
-import { InputCalendar } from '@/libraries/fwk-react-inputs/inputCalendar';
+import useAppStore from '@/appStore'
+import { IExposeInput, IExposeInputCalendar, IExposeInputList, InputText, InputList, InputCalendar, InputToggle, Paginate, ui, IExposeInputToggle } from '@/libraries/index.libraries';
+import { IFormProps } from './interface/IForm';
+import { initBindingForm } from '@/utils/index.utils';
 
 export const LoggerDB: React.FC = () => {
 
+    /// HOOKS
     const storeUi = ui.useStore()
     const store = useLoggerDbStore()
+    const appStore = useAppStore()
     const [disabledBtn, setDisabledBtn] = useState<boolean>(false)
 
-    const { form, handleChange } = useFormCustom<IFormData>({
-        dateFrom: { value: '' },
-        dateUntil: { value: '' },
-        typeEvent: { value: false },
-        limitPage: { value: 10 },
-        user: { value: '', options: [] },
-    })
-
+    /// VARIABLES
+    const refs = {
+        dateFrom: useRef<IExposeInputCalendar>(null),
+        dateUntil: useRef<IExposeInputCalendar>(null),
+        limitPage: useRef<IExposeInput>(null),
+        user: useRef<IExposeInputList>(null),
+        typeEvent: useRef<IExposeInputToggle>(null),
+    }
     const formProps: IFormProps = {
         dateFrom: {
-            data: { value: form['dateFrom'].value },
+            data: { value: '' },
             name: 'dateFrom',
             required: true,
             autoComplete: 'off',
-            handleChange: handleChange,
+            rules: [],
+            refresh: appStore.actions.forzedRender
         },
         dateUntil: {
-            data: { value: form['dateUntil'].value },
+            data: { value: '' },
             name: 'dateUntil',
             required: true,
             autoComplete: 'off',
-            handleChange: handleChange
+            rules: [],
+            refresh: appStore.actions.forzedRender
         },
         typeEvent: {
-            handleChange: handleChange,
-            data: { value: form['typeEvent'].value },
+            data: { value: false },
             name: 'typeEvent',
+            rules: [],
+            refresh: appStore.actions.forzedRender
         },
         user: {
-            data: { value: form['user'].value, options: store.state.users },
+            data: { value: '', options: store.state.users },
             //data: {
             //    value: form['user'].value, options: [...store.state.users, {
             //        "id": "658d8d790b4915d7e98c839e",
@@ -62,43 +63,51 @@ export const LoggerDB: React.FC = () => {
             name: 'user',
             required: false,
             autoComplete: 'off',
-            handleChange: handleChange
+            rules: [],
+            refresh: appStore.actions.forzedRender
         },
         limitPage: {
-            data: { value: form['limitPage'].value },
+            data: { value: 10 },
             type: 'number',
             placeholder: 'Ingrese un numero.',
             name: 'limitPage',
             required: true,
             autoComplete: 'off',
-            handleChange: handleChange
+            rules: [],
+            refresh: appStore.actions.forzedRender
         }
     }
 
+    /// METODOS
     const changePage = ({ selected }: any) => getAllLoggersDb(selected + 1)
-    const handleToggle = (e: any) => handleChange('typeEvent', { value: e })
 
     const getAllLoggersDb = (page: number = 1) => {
-        console.log("🚀 ~ file: index.tsx:29 ~ form:", form)
         store.actions.getAllLoggersDb({
             page,
-            limitPage: form.limitPage.value,
-            dateFrom: form.dateFrom.value,
-            dateUntil: form.dateUntil.value,
-            userId: form.user.value,
-            typeEvent: !form.typeEvent.value ? 'Evento' : 'Error',
+            limitPage: refs.limitPage.current?.props.data.value,
+            dateFrom: refs.dateFrom.current?.props.data.value,
+            dateUntil: refs.dateUntil.current?.props.data.value,
+            userId: refs.user.current?.props.data.value,
+            typeEvent: !refs.typeEvent.current?.props.data.value ? 'Evento' : 'Error',
         })
     }
 
     useEffect(() => {
         storeUi.actions.setTitleView('Reportes de Logs')
-        store.actions.getAllUsers()
+        store.actions.getAllUsers().then(() => {
+            initBindingForm(refs, formProps)
+        })
     }, [])
 
     useEffect(() => {
-        const flag = (form.dateFrom.error || form.dateUntil.error || form.user.error || form.limitPage.error) as boolean
+        const flag = (
+            refs.dateFrom.current?.props.data.error || refs.dateUntil.current?.props.data.error || refs.user.current?.props.data.error || refs.limitPage.current?.props.data.error
+        ) as boolean
         setDisabledBtn(flag)
-    }, [form.dateFrom.error, form.dateUntil.error, form.user.error, form.limitPage.error])
+    }, [
+        refs.dateFrom.current?.props, refs.dateUntil.current?.props,
+        refs.user.current?.props, refs.limitPage.current?.props
+    ])
 
     return (
         <main className={css.main}>
@@ -107,42 +116,28 @@ export const LoggerDB: React.FC = () => {
 
                 <div className={css.navFilterDate}>
                     <h4 > Fecha desde: </h4>
-                    <InputCalendar props={formProps.dateFrom} />
+                    <InputCalendar ref={refs.dateFrom} />
                 </div>
 
                 <div className={css.navFilterDate}>
                     <h4 > Fecha hasta: </h4>
-                    <InputCalendar props={formProps.dateUntil} />
+                    <InputCalendar ref={refs.dateUntil} />
                 </div>
 
                 <div className={css.navFilterToggle}>
                     <h4>Tipo de Log</h4>
                     <div>
                         <span>Evento</span>
-                        <Switch
-                            checked={formProps.typeEvent.data.value}
-                            onChange={handleToggle}
-                            onColor="#86d3ff"
-                            onHandleColor="#2693e6"
-                            handleDiameter={25}
-                            uncheckedIcon={false}
-                            checkedIcon={false}
-                            boxShadow="0px 1px 5px rgba(0, 0, 0, 0.6)"
-                            activeBoxShadow="0px 0px 1px 10px rgba(0, 0, 0, 0.2)"
-                            height={15}
-                            width={48}
-                            className="react-switch"
-                            id="material-switch"
-                        />
+                        <InputToggle ref={refs.typeEvent} />
                         <span>Error</span>
                     </div>
                 </div>
 
-                <InputList props={formProps['user']} className={css.navFilterInputList} />
+                <InputList ref={refs.user} className={css.navFilterInputList} />
 
                 <div className={css.navFilterInputNumber}>
                     <h4 > Cant. logs X pag.: </h4>
-                    <InputText props={formProps.limitPage} />
+                    <InputText ref={refs.limitPage} />
                 </div>
 
                 <button onClick={() => getAllLoggersDb()}

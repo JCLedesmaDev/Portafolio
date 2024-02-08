@@ -2,6 +2,7 @@
 import { IInputProps } from './IInput';
 import { IInputCalendarProps } from './IInputCalendar';
 import { IInputListProps } from './IInputList';
+import { IInputToggleProps } from './IInputToggle';
 
 export interface IExposeInput {
     props: IInputProps;
@@ -23,4 +24,13 @@ export interface IExposeInputCalendar {
     set: (val: IInputCalendarProps, prop?: string) => void;
     setData: (val: any, prop: string) => void;
 }
+
+export interface IExposeInputToggle {
+    props: IInputToggleProps;
+    reset: () => void;
+    set: (val: IInputToggleProps, prop?: string) => void;
+    setData: (val: any, prop: string) => void;
+}
+
+
 
