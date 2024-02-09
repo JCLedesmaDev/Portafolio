@@ -1,6 +1,6 @@
 
 
-export const Projects: React.FC = () => {
+export const MyProjects: React.FC = () => {
 
     return (
         <main >

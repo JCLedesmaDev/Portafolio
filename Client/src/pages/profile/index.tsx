@@ -10,7 +10,7 @@ import imageDefault from '@/assets/imageDefault.png'
 import { LoadFile } from '@/libraries/index.libraries'
 import { initBindingForm } from '@/utils/index.utils'
 
-export const Profile: React.FC = () => {
+export const MyProfile: React.FC = () => {
 
     /// HOOKS    
     const storeUi = ui.useStore()

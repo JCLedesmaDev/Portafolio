@@ -146,8 +146,7 @@ export const LoggerDB: React.FC = () => {
 
                 <button onClick={() => getAllLoggersDb()}
                     className={css.navFilterBtn}
-                    disabled={disabledBtn}
-                >
+                    disabled={disabledBtn}>
                     Cargar registros
                 </button>
 

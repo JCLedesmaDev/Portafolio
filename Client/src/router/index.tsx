@@ -5,9 +5,9 @@ import { Auth } from "@/pages/auth";
 import { LoggerDB } from "@/pages/loggerDb";
 import { Home } from '@/pages/home';
 import { Portfolio } from '@/pages/portfolio';
-import { Skills } from '@/pages/skills';
-import { Projects } from '@/pages/projects';
-import { Profile } from '@/pages/profile';
+import { MySkills } from '@/pages/skills';
+import { MyProjects } from '@/pages/projects';
+import { MyProfile } from '@/pages/profile';
 import { RoutePrivate } from '@/components/index.components';
 
 const router = createBrowserRouter([
@@ -29,15 +29,15 @@ const router = createBrowserRouter([
       },
       {
         path: 'myProfile',
-        element: <Profile />
+        element: <MyProfile />
       },
       {
         path: 'myProjects',
-        element: <Projects />
+        element: <MyProjects />
       },
       {
         path: 'mySkills',
-        element: <Skills />
+        element: <MySkills />
       },
       {
         path: 'loggerDb',
