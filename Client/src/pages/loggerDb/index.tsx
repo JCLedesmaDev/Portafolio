@@ -94,15 +94,19 @@ export const LoggerDB: React.FC = () => {
 
     useEffect(() => {
         storeUi.actions.setTitleView('Reportes de Logs')
-        store.actions.getAllUsers().then(() => {
-            initBindingForm(refs, formProps)
-        })
+        store.actions.getAllUsers()
     }, [])
+
+    useEffect(() => {
+        if (store.state.users.length === 0) return
+        initBindingForm(refs, formProps)
+    }, [store.state.users])
 
     useEffect(() => {
         const flag = (
             refs.dateFrom.current?.props.data.error || refs.dateUntil.current?.props.data.error || refs.user.current?.props.data.error || refs.limitPage.current?.props.data.error
         ) as boolean
+
         setDisabledBtn(flag)
     }, [
         refs.dateFrom.current?.props, refs.dateUntil.current?.props,

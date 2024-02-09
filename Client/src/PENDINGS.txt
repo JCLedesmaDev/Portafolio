@@ -3,8 +3,4 @@
  -> Encriptar todos los keys y values del localStorage
  -> Idem pero con las cookies en back
 
-
 🕐 Hacer que no aparezcan los console.log y ofuscar el codigo al deployar.
-
-
-Crear un hooks que fuerze un re render y pasarlo a los inputs para ejecutarlo en el update.
