@@ -64,9 +64,12 @@ const store = createWithEqualityFn<IStore>((set, get) => ({
                 },
                 options: { loader: true }
             })
-            const loggersAdapted: ILoggerDB[] = mapper.loggerDb(res.docs);
-            get().actions.setLoggersDb(loggersAdapted)
-            get().actions.setPaginate(res)
+
+            if (res) {
+                const loggersAdapted: ILoggerDB[] = mapper.loggerDb(res.docs);
+                get().actions.setLoggersDb(loggersAdapted)
+                get().actions.setPaginate(res)
+            }
 
             return res
         },
@@ -80,8 +83,10 @@ const store = createWithEqualityFn<IStore>((set, get) => ({
                 },
                 options: { loader: true }
             })
-            const usersAdapted: IUserModel[] = mapper.multipleUsers(res.users);
-            get().actions.setUsers(usersAdapted)
+            if (res) {
+                const usersAdapted: IUserModel[] = mapper.multipleUsers(res.users);
+                get().actions.setUsers(usersAdapted)
+            }
         }
     }
 }), shallow)
