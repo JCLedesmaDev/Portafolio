@@ -18,7 +18,7 @@ export const MySkills: React.FC = () => {
 
     /// METODOS
     useEffect(() => {
-        storeUi.actions.setTitleView('Mis habilidades blandas:')
+        storeUi.actions.setTitleView('Mis habilidades:')
     }, [])
 
 
