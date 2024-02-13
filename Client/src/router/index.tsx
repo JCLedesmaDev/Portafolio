@@ -1,53 +1,70 @@
 import { createBrowserRouter } from "react-router-dom";
-import { MainLayout } from "@/layouts/MainLayout";
 import { NotFound } from "@/pages/notFound";
-import { Auth } from "@/pages/auth";
-import { LoggerDB } from "@/pages/loggerDb";
-import { Home } from '@/pages/home';
-import { Portfolio } from '@/pages/portfolio';
-import { MySkills } from '@/pages/skills';
-import { MyProjects } from '@/pages/projects';
-import { MyProfile } from '@/pages/profile';
-import { RoutePrivate } from '@/components/index.components';
 
 const router = createBrowserRouter([
   {
     path: '/',
-    element: <Portfolio />,
+    lazy: async () => {
+      const { Portfolio } = await import('@/pages/portfolio')
+      return { Component: Portfolio }
+    },
     errorElement: <NotFound />,
   },
   {
     path: '/admin',
-    element: (<RoutePrivate redirectTo='/auth'>
-      <MainLayout />
-    </RoutePrivate>
-    ),
+    lazy: async () => {
+      const { MainLayout } = await import('@/layouts/MainLayout')
+      const { RoutePrivate } = await import('@/components/index.components')
+      return {
+        element: <RoutePrivate redirectTo='/auth'>
+          <MainLayout />
+        </RoutePrivate>
+      }
+    },
     children: [
       {
         index: true,
-        element: <Home />
+        lazy: async () => {
+          const { Home } = await import('@/pages/home/index')
+          return { Component: Home }
+        },
       },
       {
         path: 'myProfile',
-        element: <MyProfile />
+        lazy: async () => {
+          const { MyProfile } = await import('@/pages/profile/index')
+          return { Component: MyProfile }
+        }
       },
       {
         path: 'myProjects',
-        element: <MyProjects />
+        lazy: async () => {
+          const { MyProjects } = await import('@/pages/projects/index')
+          return { Component: MyProjects }
+        }
       },
       {
         path: 'mySkills',
-        element: <MySkills />
+        lazy: async () => {
+          const { MySkills } = await import('@/pages/skills/index')
+          return { Component: MySkills }
+        }
       },
       {
         path: 'loggerDb',
-        element: <LoggerDB />
+        lazy: async () => {
+          const { LoggerDB } = await import('@/pages/loggerDb/index')
+          return { Component: LoggerDB }
+        }
       },
     ]
   },
   {
     path: '/auth',
-    element: <Auth />
+    lazy: async () => {
+      const { Auth } = await import('@/pages/auth')
+      return { Component: Auth }
+    },
   }
 ])
 

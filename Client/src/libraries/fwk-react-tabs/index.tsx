@@ -28,7 +28,9 @@ export const Tabs: React.FC<IProps> = ({ tabsArray, className }) => {
             </div>
 
             <div className={css.container}>
-                <TabContent Component={tabsArray[tabActiva].content} />
+                {tabsArray[tabActiva]?.content && (
+                    <TabContent Component={tabsArray[tabActiva].content} />
+                )}
             </div>
 
         </div>

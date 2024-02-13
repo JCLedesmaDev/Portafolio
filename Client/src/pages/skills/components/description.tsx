@@ -14,7 +14,6 @@ export const Description: React.FC = () => {
 
     /// VARIABES
     const refs = { mySoftSkills: useRef<IExposeInput>(null) }
-
     const formProps = {
         mySoftSkills: {
             data: { value: appStore.state.user.mySoftSkills || '' },
@@ -24,35 +23,19 @@ export const Description: React.FC = () => {
             autoComplete: 'off',
             refresh: appStore.actions.forzedRender,
             rules: []
-        },
-        fullName: { data: { value: appStore.state.user.fullName } },
-        rol: { data: { value: appStore.state.user.rol } },
-        aboutMe: { data: { value: appStore.state.user.aboutMe } },
+        }
     }
 
     /// METODOS
     const updateSkills = async () => {
         const formData = new FormData();
-        for (const fields in formProps) {
-            const formProperty = refs[fields as keyof typeof refs]
-
-            if (formProperty?.current && formProperty?.current?.props.data.value !== '') {
-                formData.append(
-                    fields,
-                    formProperty.current?.props.data.value
-                );
-            } else {
-                formData.append(
-                    fields,
-                    formProps[fields as keyof typeof refs].data.value
-                );
-            }
-        }
+        formData.append('mySoftSkills', refs.mySoftSkills.current?.props.data.value);
+        formData.append('fullName', appStore.state.user.fullName as any);
+        formData.append('rol', appStore.state.user.rol as any);
+        formData.append('aboutMe', appStore.state.user.aboutMe as any);
 
         const res = await appStore.actions.updateUser(formData)
-        if (res) {
-            refs.mySoftSkills.current?.reset()
-        }
+        if (res) refs.mySoftSkills.current?.reset()
     }
 
     useEffect(() => { initBindingForm(refs, formProps) }, [])
