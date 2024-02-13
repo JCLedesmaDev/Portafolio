@@ -19,7 +19,7 @@
     align-items: center;
 }
 
-.profile {
+.container {
     grid-area: profile;
     display: flex;
     justify-content: space-around;
@@ -28,12 +28,12 @@
     overflow: auto;
 }
 
-.profile__field {
+.container__field {
     width: 45%;
     margin: 0 1rem;
 }
 
-.profile__field h4 {
+.container__field h4 {
     margin-bottom: 1rem;
 }
 
@@ -110,7 +110,7 @@
         grid-template-rows: min(100%, 5rem) .5fr 1fr;
     }
 
-    .profile {
+    .container {
         overflow: visible;
     }
 
@@ -127,7 +127,7 @@
 }
 
 @media screen and (max-width: 1024px) {
-    .profile__field {
+    .container__field {
         width: 100%;
     }
 }

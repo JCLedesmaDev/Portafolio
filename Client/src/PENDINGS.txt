@@ -4,3 +4,6 @@
  -> Idem pero con las cookies en back
 
 🕐 Hacer que no aparezcan los console.log y ofuscar el codigo al deployar.
+
+Si hago const appStore = useAppStore() Estoy subscribiendo automaticamente el componente, 
+ver que apsa si uso de la manera useAppStore.getState().state...

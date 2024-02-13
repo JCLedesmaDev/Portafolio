@@ -14,7 +14,8 @@ interface IStore {
     actions: {
         setUser: (user: IUserModel) => void;
         logOut: () => Promise<boolean>;
-        forzedRender: () => void
+        forzedRender: () => void,
+        updateUser: (usrData: FormData) => Promise<boolean>
     }
 }
 
@@ -61,6 +62,23 @@ const appStore = createWithEqualityFn<IStore>((set, get) => ({
             })
             if (data) magnamentStorage.remove("user");
             return data
+        },
+        updateUser: async (usrData: FormData) => {
+            const res = await apiSrv.callBackEnd({
+                preCallback: async () => {
+                    return await apiSrv.callSrv({
+                        method: 'POST',
+                        path: '/users/updateUser',
+                        data: usrData
+                    })
+                },
+                options: { loader: true, status: true }
+            })
+
+            const userAdapted: IUserModel = mapper.singleUser(res.user);
+            appStore.getState().actions.setUser(userAdapted)
+
+            return res
         }
     },
 }), shallow)

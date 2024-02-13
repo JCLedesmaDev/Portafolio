@@ -4,7 +4,6 @@ import css from './index.module.css'
 import { InputText, InputObs, ui, IExposeInput, IExposeFile } from '@/libraries/index.libraries'
 import { IFormProps } from './interface/IForm'
 
-import useStore from './store'
 import useAppStore from '@/appStore'
 import imageDefault from '@/assets/imageDefault.png'
 import { LoadFile } from '@/libraries/index.libraries'
@@ -14,7 +13,6 @@ export const MyProfile: React.FC = () => {
 
     /// HOOKS    
     const storeUi = ui.useStore()
-    const store = useStore()
     const appStore = useAppStore()
 
     const [disabledBtn, setDisabledBtn] = useState<boolean>(false)
@@ -99,7 +97,7 @@ export const MyProfile: React.FC = () => {
                 );
             }
         }
-        const res = await store.actions.updateUser(formData)
+        const res = await appStore.actions.updateUser(formData)
         if (res) {
             refs.fullName.current?.reset()
             refs.aboutMe.current?.reset()
@@ -131,24 +129,24 @@ export const MyProfile: React.FC = () => {
 
             <h3 className={css.title}>Mi persona: </h3>
 
-            <div className={css.profile}>
+            <div className={css.container}>
 
-                <div className={css.profile__field}>
+                <div className={css.container__field}>
                     <h4>Ingrese nombre completo</h4>
                     <InputText ref={refs.fullName} />
                 </div>
 
-                <div className={css.profile__field}>
+                <div className={css.container__field}>
                     <h4>Ingrese el rol que ocupa actualmente</h4>
                     <InputText ref={refs.rol} />
                 </div>
 
-                <div className={css.profile__field}>
+                <div className={css.container__field}>
                     <h4>Sobre mi:</h4>
                     <InputObs ref={refs.aboutMe} rows={11} />
                 </div>
 
-                <div className={`${css.profile__field} ${css.previewVist}`}>
+                <div className={`${css.container__field} ${css.previewVist}`}>
                     <h4>Vista previa</h4>
                     <div dangerouslySetInnerHTML={{ __html: refs.aboutMe.current?.props.data.value }} />
                 </div>

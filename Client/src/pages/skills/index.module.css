@@ -1,12 +1,7 @@
 .main {
     display: grid;
-    grid-template-columns: 0.70fr 0.30fr;
-    grid-template-rows: min(100%, 4rem) 1fr 1fr min(100%, 3rem);
-    grid-template-areas:
-        "title title"
-        "skills loadFiles"
-        "skills loadFiles"
-        "actions loadFiles";
+    grid-template-columns: 1fr;
+    grid-template-rows: min(100%, 4rem) 1fr;
     gap: .25rem;
     height: 88vh;
     margin: 1rem 2rem 0rem 2rem;
@@ -14,13 +9,11 @@
 }
 
 .title {
-    grid-area: title;
     display: flex;
     align-items: center;
 }
 
-.skills {
-    grid-area: skills;
+.container {
     display: flex;
     justify-content: space-around;
     align-content: flex-start;
@@ -28,12 +21,25 @@
     overflow: auto;
 }
 
-.skills__field {
+
+/* DESCRIPCION  */
+.containerDescription {
+    display: grid;
+    grid-template-rows: 1fr min(100%, 3rem);
+    height: 100%;
+}
+
+.containerDescription__fields {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.containerDescription__field {
     width: 45%;
     margin: 0 1rem;
 }
 
-.skills__field h4 {
+.containerDescription__field h4 {
     margin-bottom: 1rem;
 }
 
@@ -43,41 +49,14 @@
     text-align: center;
 }
 
-.loadFiles {
-    grid-area: loadFiles;
-    /*display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 2rem;
-    justify-content: start;*/
-}
-
-/*
-.loadFiles__profile,
-.loadFiles__cv {
-    display: flex;
-    gap: 1rem;
-    align-items: center;
-    flex-direction: column;
-}
-
-.loadFiles__profile img {
-    width: 13rem;
-    height: 13rem;
-    border-radius: 50%;
-}*/
-
-
 .btnContainer {
-    grid-area: actions;
     margin: auto;
     width: 100%;
     display: flex;
     justify-content: space-around;
-    /*padding: 2rem 0;*/
+    margin-bottom: 2rem;
 }
 
-.loadFiles__cv button,
 .btn {
     border: none;
     color: var(--color-blanco);
@@ -88,8 +67,6 @@
     transition: all 0.2s ease;
 }
 
-.loadFiles__cv button:focus,
-.loadFiles__cv button:hover,
 .btn:focus,
 .btn:hover {
     background: #F0382C;
@@ -103,33 +80,19 @@
 
 @media screen and (max-width: 768px) {
     .main {
-        grid-template-areas:
-            "title title"
-            "loadFiles loadFiles"
-            "profile profile"
-            "actions actions";
-        grid-template-rows: min(100%, 5rem) .5fr 1fr;
+        grid-template-rows: min(100%, 5rem) 1fr;
     }
 
-    .skills {
+    .container {
         overflow: visible;
     }
-
-    /*
-    .loadFiles {
-        flex-direction: row;
-        justify-content: space-around;
-    }
-
-    .loadFiles__profile img {
-        width: 10rem;
-        height: 10rem;
-        border-radius: 50%;
-    }*/
 }
 
 @media screen and (max-width: 1024px) {
-    .skills__field {
+
+    .containerDescription__field {
         width: 100%;
     }
 }
+
+/* TECNOLOGIAS  */
