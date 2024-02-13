@@ -1,11 +1,11 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { useEffect, useRef, useState } from 'react';
-import css from '../index.module.css'
+import css from './index.module.css'
 import { IExposeInput, InputObs } from '@/libraries/index.libraries';
 import useAppStore from '@/appStore'
 import { initBindingForm } from '@/utils/index.utils';
 
-export const Description: React.FC = () => {
+export const SoftSkills: React.FC = () => {
 
     /// HOOKS
     const appStore = useAppStore()
@@ -51,7 +51,7 @@ export const Description: React.FC = () => {
 
             < div className={css.containerDescription__fields}>
                 <div className={css.containerDescription__field}>
-                    <h4>Mis habilidades blandas:</h4>
+                    <h4>Descripcion:</h4>
                     <InputObs ref={refs.mySoftSkills} rows={11} />
                 </div>
 

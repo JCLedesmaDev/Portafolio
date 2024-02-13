@@ -47,7 +47,7 @@ const deleteProject = async (payload: IDeleteProjectRequest) => {
 
     if (projectDelete) {
         fndProject.images.forEach(image => deleteFile(image))
-        externalDbUser.addRefProjectToUser(fndProject._id, payload.usrId)
+        externalDbUser.deleteRefProjectToUser(fndProject._id, payload.usrId)
     }
 
     return responseMessage.success({
@@ -63,7 +63,6 @@ const updateProject = async (payload: IUpdateProjectRequest) => {
     if (fndProject === null) throw new ApplicationError({
         message: 'No existe un proyecto con este nombre. Intentelo nuevamente'
     })
-
 
     const projectUpdate = await externalDb.updateProject(payload)
 

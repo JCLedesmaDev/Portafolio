@@ -53,8 +53,9 @@ const deleteCategory = async (payload: IDeleteCategoryRequest) => {
         message: 'No existe una categoria con este nombre. Intentelo nuevamente'
     })
 
-
     await externalDb.deleteCategory(payload.idCategory);
+
+    ///  TODO: VER DE QUE NO SE PUEDA ELIMINAR CATEGORIA CUANDO EXISTAN TECNOLOGIAS QUE ESTEN DENTRO DE ESA CATEGORIA
 
     return responseMessage.success({
         message: 'Se elimino correctamente!',

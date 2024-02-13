@@ -18,12 +18,12 @@ export const Tabs: React.FC<IProps> = ({ tabsArray, className }) => {
 
             <div className={`${css.navTabs} ${className}`}>
                 {tabsArray.map((tab, index) => (
-                    <a key={index}
+                    <li key={index}
                         className={index === tabActiva ? css.active : ''}
                         onClick={() => setTabActiva(index)}
                     >
                         {tab.title}
-                    </a>
+                    </li>
                 ))}
             </div>
 

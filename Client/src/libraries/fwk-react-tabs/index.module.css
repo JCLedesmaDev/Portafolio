@@ -11,7 +11,7 @@
     /*flex-direction: column;*/
 }
 
-.navTabs a {
+.navTabs li {
     color: #000;
     font-size: 1rem;
     font-weight: bold;
@@ -20,16 +20,16 @@
     transition: all 1s ease;
     opacity: 1;
     cursor: pointer;
+    list-style-type: none;
 }
 
 .active,
-.navTabs a:hover {
+.navTabs li:hover {
     color: var(--color-blanco) !important;
     background-color: var(--color-principal);
     font-weight: 600;
     opacity: 0.75;
 }
-
 
 .container {
     margin-top: 1rem;

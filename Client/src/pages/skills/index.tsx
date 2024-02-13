@@ -3,8 +3,8 @@ import css from './index.module.css'
 import { ui } from '@/libraries/index.libraries'
 import { useEffect, useState } from 'react'
 import { Tabs } from '@/libraries/fwk-react-tabs'
-import { Description } from './components/description'
-import { Technologies } from './components/technologies'
+import { SoftSkills } from './components/softSkills'
+import { LearnedTechnologies } from './components/learnedTechnologies'
 
 export const MySkills: React.FC = () => {
 
@@ -17,8 +17,8 @@ export const MySkills: React.FC = () => {
         storeUi.actions.setTitleView('Mis habilidades:')
 
         setTabs([
-            { title: 'Descripcion', content: Description },
-            { title: 'Tecnologias', content: Technologies },
+            { title: 'Habilidades blandas', content: SoftSkills },
+            { title: 'Tecnologias aprendidas', content: LearnedTechnologies },
         ])
     }, [])
 
