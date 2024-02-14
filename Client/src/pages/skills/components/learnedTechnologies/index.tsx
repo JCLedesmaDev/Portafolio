@@ -23,7 +23,7 @@ export const LearnedTechnologies: React.FC = () => {
 
             <div>
                 <div className={css.navCategories__title}>
-                    <h4>Categorias:</h4>
+                    <h3>Categorias:</h3>
                     <AddSVG onClick={() => alert('Para crear una categoria')} />
                 </div>
 
@@ -41,7 +41,7 @@ export const LearnedTechnologies: React.FC = () => {
             </div>
 
             <div className={css.BBB}>
-                <h4>Tecnologias conocidas:</h4>
+                <h3>Tecnologias conocidas:</h3>
             </div>
 
         </div>
