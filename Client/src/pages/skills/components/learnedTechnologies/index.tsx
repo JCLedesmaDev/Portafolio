@@ -9,8 +9,11 @@ export const LearnedTechnologies: React.FC = () => {
     const arrCategories = [
         { title: 'Front-End', },
         { title: 'Back-End' },
-        { title: 'Otros' },
-        { title: 'Otros' },
+        //{ title: 'Back-End' },
+        //{ title: 'Back-End' },
+        //{ title: 'Back-End' },
+        //{ title: 'Otros' },
+        //{ title: 'Otros' },
         { title: 'Otros' },
         { title: 'Proximamente' }
     ]
@@ -18,8 +21,7 @@ export const LearnedTechnologies: React.FC = () => {
     return (
         <div className={css.containerTechnologies} >
 
-            <div className={css.navCategories}>
-
+            <div>
                 <div className={css.navCategories__title}>
                     <h4>Categorias:</h4>
                     <AddSVG onClick={() => alert('Para crear una categoria')} />

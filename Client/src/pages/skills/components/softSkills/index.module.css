@@ -8,6 +8,7 @@
 .containerDescription__fields {
     display: flex;
     flex-wrap: wrap;
+    justify-content: space-around;
 }
 
 .containerDescription__field {

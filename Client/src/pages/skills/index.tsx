@@ -27,9 +27,7 @@ export const MySkills: React.FC = () => {
 
             <h3 className={css.title}>Sobre mi: </h3>
 
-            <div className={css.container}>
-                <Tabs tabsArray={tabs} />
-            </div>
+            <Tabs tabsArray={tabs} />
 
         </main>
     )

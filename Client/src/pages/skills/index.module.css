@@ -3,7 +3,8 @@
     grid-template-columns: 1fr;
     grid-template-rows: min(100%, 4rem) 1fr;
     gap: .25rem;
-    height: 88vh;
+    max-height: 88vh;
+    height: 100%;
     margin: 1rem 2rem 0rem 2rem;
     background-color: #eee;
 }
@@ -11,22 +12,4 @@
 .title {
     display: flex;
     align-items: center;
-}
-
-.container {
-    display: flex;
-    justify-content: space-around;
-    align-content: flex-start;
-    flex-wrap: wrap;
-    overflow: auto;
-}
-
-@media screen and (max-width: 768px) {
-    .main {
-        grid-template-rows: min(100%, 5rem) 1fr;
-    }
-
-    .container {
-        overflow: visible;
-    }
 }
