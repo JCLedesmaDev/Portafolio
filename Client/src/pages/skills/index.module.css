@@ -3,10 +3,11 @@
     grid-template-columns: 1fr;
     grid-template-rows: min(100%, 4rem) 1fr;
     gap: .25rem;
-    max-height: 88vh;
-    height: 100%;
+    min-height: 90vh;
     margin: 1rem 2rem 0rem 2rem;
     background-color: #eee;
+    overflow: hidden;
+    padding-bottom: 3rem;
 }
 
 .title {

@@ -1,21 +1,27 @@
 .containerTechnologies {
     display: grid;
     grid-template-columns: minmax(6.25rem, 0.4fr) 1fr;
-    grid-template-rows: 1fr;
     height: 100%;
 }
 
-.navCategories__title {
+.navCategories__title,
+.technologies__title {
     display: flex;
     align-items: center;
     justify-content: space-between;
     padding: 1rem;
+    text-decoration: underline;
+    text-underline-offset: 10px;
+    text-decoration-thickness: 0.125rem;
 }
 
-.navCategories__title svg {
+.navCategories__title svg,
+.technologies__title svg {
     border: 1px solid #000;
     cursor: pointer;
 }
+
+/* ---------------------------------------- */
 
 .navCategories__items {
     display: flex;
@@ -69,13 +75,13 @@
 @media screen and (max-width: 768px) {
     .containerTechnologies {
         grid-template-columns: 1fr;
-        grid-template-rows: 1fr 1fr;
     }
+
     .navCategories__items {
         overflow: auto;
         max-height: 25vh;
     }
-    
+
     .navCategories__items li {
         padding: .75rem;
     }
@@ -83,9 +89,17 @@
 
 /* ---------------------------------------- */
 
+.technologies__items {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+    grid-auto-rows: 7.8125rem;
+    justify-content: space-evenly;
 
-.BBB {
-    background: orange;
+    gap: .25rem;
+    max-height: 65vh;
+    height: 100%;
+    overflow: auto;
+    padding: 1rem;
 }
 
 
@@ -99,69 +113,74 @@
     border-radius: 1rem;
     animation: visual 1s 1 normal 0s ease-in-out;
     transition: transform 0.4s ease;
-  }
-  .technology span{
+}
+
+.technology span {
     padding: 0 .3rem;
-  }
-  
-  @keyframes visual {
+}
+
+@keyframes visual {
     0% {
-      visibility: hidden;
-      opacity: 0;
+        visibility: hidden;
+        opacity: 0;
     }
-  
+
     100% {
-      visibility: visible;
-      opacity: 1;
+        visibility: visible;
+        opacity: 1;
     }
-  }
-  
-  .technology:hover {
+}
+
+.technology:hover {
     cursor: pointer;
     transform: scale(1.075);
-  }
-  
-  .technology img {
+}
+
+.technology img {
     width: 100%;
     height: 100%;
     border-radius: 1rem;
-  }
-  
-  /* Especie de Popup */
-  .technology > div {
+}
+
+/* Especie de Popup */
+.technology>div {
     position: relative;
     display: none;
-  }
-  .technology > div > p {
+}
+
+.technology>div>p {
     position: absolute;
     top: 0.25rem;
     width: 5.25rem;
     min-height: 1.15rem;
-  
+
     background-color: var(--color-principal);
     border-radius: 1rem;
     margin: 0 auto;
     font-size: 13px;
     color: #fff;
-  }
-  .technology:hover > div {
-    display: block;
-  }
-  /* Especie de Popup */
-  
+}
 
-  /* Express JS*/
-  .technology p {
+.technology:hover>div {
+    display: block;
+}
+
+/* Especie de Popup */
+
+
+/* Express JS*/
+.technology p {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
-  
+
     margin: 1rem auto;
     font-size: 1.15rem;
     font-weight: bold;
     font-family: Arial, Helvetica, sans-serif;
-  }
-  .technology p span {
+}
+
+.technology p span {
     background-color: #f0db4f;
-  }
+}

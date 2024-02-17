@@ -69,8 +69,16 @@ export const LearnedTechnologies: React.FC = () => {
                     image: blazor
                 },
                 {
+                    name: 'Zustand',
+                    image: zustand
+                },
+                {
                     name: '"Vue 3',
                     image: vue
+                },
+                {
+                    name: 'Blazor',
+                    image: blazor
                 },
                 {
                     name: '"Quasar V2',
@@ -79,6 +87,14 @@ export const LearnedTechnologies: React.FC = () => {
                 {
                     name: 'jQuery',
                     image: jquery
+                },
+                {
+                    name: 'Blazor',
+                    image: blazor
+                },
+                {
+                    name: 'Blazor',
+                    image: blazor
                 },
             ]
         }
@@ -107,12 +123,16 @@ export const LearnedTechnologies: React.FC = () => {
                 </div>
             </div>
 
-            <div className={css.BBB}>
-                <h3>Tecnologias conocidas:</h3>
+            <div>
+                <div className={css.technologies__title}>
+                    <h3>Tecnologias conocidas:</h3>
+                    <AddSVG onClick={() => alert('Para crear una categoria')} />
 
-                <div>
-                    {arrTecnologias[0].technologysList.map(x => (
-                        <ImageTechnology technology={x} />
+                </div>
+
+                <div className={css.technologies__items}>
+                    {arrTecnologias[0].technologysList.map((x, index) => (
+                        <ImageTechnology key={index} technology={x} />
                     ))}
                 </div>
             </div>

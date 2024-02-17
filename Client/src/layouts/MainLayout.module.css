@@ -86,6 +86,8 @@
         opacity 0.3s ease-in-out,
         pointer-events 0.3s ease-in-out,
         transform 0.3s ease-in-out;
+
+    /*height: auto !important;*/
 }
 
 .sidebarGridContainerNone {
