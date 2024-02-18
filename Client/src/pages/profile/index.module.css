@@ -8,9 +8,13 @@
         "profile loadFiles"
         "actions loadFiles";
     gap: .25rem;
-    height: 88vh;
     margin: 1rem 2rem 0rem 2rem;
     background-color: #eee;
+
+    min-height: 90vh;
+    overflow: hidden;
+    /*padding-bottom: 1rem;*/
+    background: greenyellow;
 }
 
 .title {
@@ -38,6 +42,7 @@
 }
 
 .previewVist div {
+    background-color: #F0382C;
     max-height: 48vh;
     overflow-y: auto;
     text-align: center;
@@ -56,6 +61,7 @@
 .loadFiles__cv {
     display: flex;
     gap: 1rem;
+    height: 80%;
     align-items: center;
     flex-direction: column;
 }
@@ -103,25 +109,36 @@
 @media screen and (max-width: 768px) {
     .main {
         grid-template-areas:
-            "title title"
-            "loadFiles loadFiles"
-            "profile profile"
-            "actions actions";
-        grid-template-rows: min(100%, 5rem) .5fr 1fr;
+            "title"
+            "loadFiles"
+            "profile"
+            "actions";
+        grid-template-columns: 1fr;
+        grid-template-rows: min(100%, 5rem) .5fr 1fr 3rem;
+        /*grid-template-rows: min(100%, 4rem) 1rem 0.70fr 0.1fr;*/
+        padding-bottom: 2rem;
     }
 
     .container {
+        background: red;
         overflow: visible;
     }
 
+    .previewVist div {
+        background-color: burlywood;
+        max-height: 30vh;
+    }
+
     .loadFiles {
+        background: orange;
         flex-direction: row;
         justify-content: space-around;
     }
 
+
     .loadFiles__profile img {
-        width: 10rem;
-        height: 10rem;
+        max-width: 6.25rem;
+        max-height: 6.25rem;
         border-radius: 50%;
     }
 }
