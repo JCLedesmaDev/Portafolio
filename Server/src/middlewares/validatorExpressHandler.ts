@@ -39,11 +39,3 @@ const deleteFilesWhenExistError = (files: any[]) => {
         deleteFile(filesGlobal.filename)
     })
 }
-
-const mapperErrorsFields = (errors: Result<ValidationError>) => {
-    let extractedErrors: any[] = []
-    errors.array({ onlyFirstError: true }).map(err => {
-        extractedErrors.push({ [err.param]: err.msg })
-    });
-    return extractedErrors
-}
