@@ -1,6 +1,6 @@
+import { validationResult } from 'express-validator'
 import { Request, Response, NextFunction } from "express";
 import { deleteFile, responseMessage } from "@utils/index.utils";
-import { Result, ValidationError, validationResult } from 'express-validator'
 
 
 const validateResultsHandler = (req: Request, res: Response, next: NextFunction) => {
