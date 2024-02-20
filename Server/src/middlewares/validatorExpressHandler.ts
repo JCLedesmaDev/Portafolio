@@ -1,10 +1,9 @@
 import { Request, Response, NextFunction } from "express";
-import responseMessage from '@utils/responseMessage';
+import { deleteFile, responseMessage } from "@utils/index.utils";
 import { Result, ValidationError, validationResult } from 'express-validator'
-import { deleteFile } from "@utils/deleteFile";
 
 
-const validateResults = (req: Request, res: Response, next: NextFunction) => {
+const validateResultsHandler = (req: Request, res: Response, next: NextFunction) => {
     try {
         // Valida los datos que se estan enviando y si no cumple con las condiciones
         // el .throw() forza que se vaya todo al catch
@@ -29,7 +28,7 @@ const validateResults = (req: Request, res: Response, next: NextFunction) => {
     }
 }
 
-export { validateResults }
+export { validateResultsHandler }
 
 
 const deleteFilesWhenExistError = (files: any[]) => {

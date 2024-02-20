@@ -1,6 +1,5 @@
+import { ApplicationError, jwt } from '@utils/index.utils'
 import { Request, Response, NextFunction } from 'express'
-import { ApplicationError } from '@utils/applicationError'
-import jwt from '@utils/jwt'
 
 const authHandler = (req: Request, res: Response, next: NextFunction) => {
     try {

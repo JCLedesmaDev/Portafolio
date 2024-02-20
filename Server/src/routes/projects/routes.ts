@@ -1,8 +1,7 @@
 import express from "express";
 import controller from "./controller";
-import { authHandler } from "@middlewares/authHandler";
-import { fileMulterHandler } from "@middlewares/fileMulterHandler";
 import { validatorAddProjectRequest } from "./validators/addProject.validator";
+import { fileMulterHandler, authHandler } from "@middlewares/index.middlewares";
 import { validatorDeleteProjectRequest } from "./validators/deleteProject.validator";
 import { validatorUpdateProjectRequest } from "./validators/updateProject.validator";
 

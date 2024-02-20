@@ -1,9 +1,9 @@
-import { IProjectSchema } from "@models/ICollections"
-import collections from "@models/index.collections";
-import { ApplicationError } from "@utils/applicationError";
-import { IAddProjectRequest } from "./dto/addProject.dto";
-import { Types } from "mongoose";
 import config from 'config'
+import { Types } from "mongoose";
+import collections from "@models/index.collections";
+import { IProjectSchema } from "@models/ICollections"
+import { ApplicationError } from "@utils/index.utils";
+import { IAddProjectRequest } from "./dto/addProject.dto";
 import { IUpdateProjectRequest } from "./dto/updateProject.dto.";
 
 

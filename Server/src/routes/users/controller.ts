@@ -1,9 +1,9 @@
+import logic from './logic'
+import config from 'config'
 import { Request, Response } from "express";
 import { matchedData } from 'express-validator'
-import config from 'config'
-import { controllerWrapper } from "@utils/controllerWrapper";
-import logic from './logic'
 import { ILoginDtoRequest } from "./dto/login.dto";
+import { controllerWrapper } from "@utils/index.utils";
 import { IUpdateUserRequest } from "./dto/updateUser.dto";
 
 

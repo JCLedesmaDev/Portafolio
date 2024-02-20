@@ -1,8 +1,8 @@
-import { controllerWrapper } from "@utils/controllerWrapper";
-import { matchedData } from "express-validator"
-import { Request } from "express"
 import logic from './logic'
+import { Request } from "express"
+import { matchedData } from "express-validator"
 import { IAddProjectRequest } from "./dto/addProject.dto";
+import { controllerWrapper } from "@utils/index.utils";
 import { IDeleteProjectRequest } from "./dto/deleteProject.dto";
 import { IUpdateProjectRequest } from "./dto/updateProject.dto.";
 

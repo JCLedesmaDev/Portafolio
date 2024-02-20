@@ -1,5 +1,5 @@
 import { IFileRequest } from "@interface/index.interfaces";
-import { validateResults } from "@middlewares/validatorExpressHandler";
+import { validateResultsHandler } from "@middlewares/index.middlewares";
 import { Request, Response, NextFunction } from "express";
 import { body } from "express-validator";
 
@@ -76,5 +76,5 @@ export const validatorAddProjectRequest = [
         })
         .withMessage('Debe enviar TODAS las imagenes en formato .png o .jpeg o jpg.'),
 
-    (req: Request, res: Response, next: NextFunction) => validateResults(req, res, next)
+    (req: Request, res: Response, next: NextFunction) => validateResultsHandler(req, res, next)
 ]

@@ -1,8 +1,8 @@
-import { IUserSchema } from "@models/ICollections";
-import collections from "@models/index.collections"
-import { ApplicationError } from "@utils/applicationError";
 import config from 'config'
 import { Types } from "mongoose";
+import collections from "@models/index.collections"
+import { ApplicationError } from "@utils/index.utils";
+import { IUserSchema } from "@models/ICollections";
 import { IUpdateUserRequest } from "./dto/updateUser.dto";
 
 /**

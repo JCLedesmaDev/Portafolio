@@ -1,6 +1,6 @@
 import express from "express";
 import controller from './controller'
-import { authHandler } from "@middlewares/authHandler";
+import { authHandler } from "@middlewares/index.middlewares";
 import { getAllLogerDbRequest } from './validators/getAll.validator';
 
 const router = express.Router();

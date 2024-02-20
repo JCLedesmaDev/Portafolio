@@ -1,7 +1,7 @@
-import { controllerWrapper } from "@utils/controllerWrapper";
-import { Request } from "express"
 import logic from './logic'
+import { Request } from "express"
 import { matchedData } from 'express-validator';
+import { controllerWrapper } from "@utils/index.utils";
 import { IGetAllLoggerDbRequest } from './dto/getAllLoggerDb.dto';
 
 const getAllLogerDb = controllerWrapper(async (req: Request) => {

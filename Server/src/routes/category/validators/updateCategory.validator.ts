@@ -1,4 +1,4 @@
-import { validateResults } from "@middlewares/validatorExpressHandler";
+import { validateResultsHandler } from "@middlewares/index.middlewares";
 import { Request, Response, NextFunction } from "express";
 import { body, param } from "express-validator";
 
@@ -14,5 +14,5 @@ export const validatorUpdateCaterogyRequest = [
         .trim() // Elimina los espacios del comienzo y final del texto
         .notEmpty(), // No puede venir vacio
 
-    (req: Request, res: Response, next: NextFunction) => validateResults(req, res, next)
+    (req: Request, res: Response, next: NextFunction) => validateResultsHandler(req, res, next)
 ]

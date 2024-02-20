@@ -1,8 +1,8 @@
-import { controllerWrapper } from "@utils/controllerWrapper";
-import { matchedData } from "express-validator"
-import { Request } from "express"
 import logic from './logic'
-import {  IAddCaterogyRequest } from "./dto/addCategory.dto";
+import { Request } from "express"
+import { matchedData } from "express-validator"
+import { controllerWrapper } from "@utils/index.utils";
+import { IAddCaterogyRequest } from "./dto/addCategory.dto";
 import { IDeleteCategoryRequest } from "./dto/deleteCategory.dto";
 import { IUpdateCategoryRequest } from "./dto/updateCategory.dto.";
 
