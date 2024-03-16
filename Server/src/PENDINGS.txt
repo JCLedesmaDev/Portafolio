@@ -4,3 +4,4 @@
 Eliminar la interface de PaginationREquest en todos lados y reemplazar por express-validator
 
 🕐 Hacer que las key de las cookies se envien encriptadas y desencriptar en el back
+🕐 Revisar que si dentro de un modulo, utilizo logica de otro modulo, hacer que se conecte por peticion HTTP, para simular un micro servicio aparte...(Desarrollar un HttpAxios)
