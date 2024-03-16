@@ -1,7 +1,7 @@
 
 // Configuracion por defecto del proyecto 
 module.exports = {
-    connectionBD: 'mongodb://localhost:27017/Portafolio',
+    connectionBD: 'mongodb://127.0.0.1/Portafolio',
     node_env: 'development',
 
     jwt_secret: 'claveSuperSecreta',

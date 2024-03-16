@@ -27,8 +27,8 @@ function startServer (connectionServer: string) {
     }));
 
     app.listen(config.get('server.port'), async () => {
-        await createMocksDateHandler()
         console.log(`⚡️[server]: Server is running in ${connectionServer}`);
+        await createMocksDateHandler()
     });
 
     app.use(httpRequestHandler) // Definimos como manejamos todos los datos provenientes del http request. 
