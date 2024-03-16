@@ -6,11 +6,8 @@ import cors from 'cors';
 import logger from 'morgan'
 import config from 'config'
 import indexRoutes from './routes/index.routes'
-import { httpRequestHandler } from './middlewares/httpRequestHandler';
-import { errorHandler } from './middlewares/errorHandler';
-import { eventHandler } from './middlewares/eventHandler';
-import { notFoundRouterHandler } from './middlewares/notFoundRouteHandler';
-import { createMocksDateHandler } from './utils/createMocksDate';
+import { errorHandler, eventHandler, httpRequestHandler, notFoundRouterHandler } from '@middlewares/index.middlewares';
+import { createMocksDateHandler } from '@utils/index.utils';
 
 function startServer (connectionServer: string) {
 

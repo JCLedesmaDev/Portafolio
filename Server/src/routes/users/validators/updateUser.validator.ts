@@ -1,6 +1,6 @@
 import { body } from 'express-validator'
 import { Request, Response, NextFunction } from "express";
-import { validateResults } from '@middlewares/validatorExpressHandler'
+import { validateResultsHandler } from '@middlewares/index.middlewares'
 
 
 export const validatorUpdateUserRequest = [
@@ -46,5 +46,5 @@ export const validatorUpdateUserRequest = [
         })
         .withMessage('Debe enviar UN archivo de formato .pdf para el CV.'),
 
-    (req: Request, res: Response, next: NextFunction) => validateResults(req, res, next)
+    (req: Request, res: Response, next: NextFunction) => validateResultsHandler(req, res, next)
 ]

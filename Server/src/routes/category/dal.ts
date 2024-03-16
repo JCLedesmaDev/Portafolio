@@ -1,8 +1,7 @@
-import { ICategorySchema } from "@models/ICollections"
 import collections from "@models/index.collections";
-import { ApplicationError } from "@utils/applicationError";
+import { ICategorySchema } from "@models/ICollections"
+import { ApplicationError } from "@utils/index.utils";
 import { IAddCaterogyRequest } from "./dto/addCategory.dto";
-
 import { IUpdateCategoryRequest } from "./dto/updateCategory.dto.";
 
 

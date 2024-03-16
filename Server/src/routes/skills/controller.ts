@@ -1,7 +1,7 @@
 import logic from './logic'
 import { Request } from "express"
 import { matchedData } from "express-validator"
-import { controllerWrapper } from "@utils/controllerWrapper"
+import { controllerWrapper } from "@utils/index.utils"
 import { IAddTechnologyRequest } from "./dto/addTechnology.dto";
 import { IDeleteTechnologyRequest } from "./dto/deleteTechnology.dto";
 import { IUpdateTechnologyRequest } from "./dto/updateTechnology.dto";

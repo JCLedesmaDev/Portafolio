@@ -1,6 +1,6 @@
 import express from "express";
 import controller from './controller'
-import { authHandler } from "@middlewares/authHandler";
+import { authHandler } from "@middlewares/index.middlewares";
 import { validatorAddCategoryRequest } from "./validators/addCategory.validator";
 import { validatorDeleteCategoryRequest } from "./validators/deleteCategory.validator";
 

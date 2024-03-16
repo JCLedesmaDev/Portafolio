@@ -1,5 +1,5 @@
 import { body } from 'express-validator'
-import { validateResults } from '../../../middlewares/validatorExpressHandler'
+import { validateResultsHandler } from '@middlewares/index.middlewares'
 import { Request, Response, NextFunction } from "express";
 
 export const validatorLoginRequest = [
@@ -20,5 +20,5 @@ export const validatorLoginRequest = [
         .isLength({ min: 3, max: 20 })
         .withMessage('El campo debe tener entre 3 a 20 caracteres'),
 
-    (req: Request, res: Response, next: NextFunction) => validateResults(req, res, next)
+    (req: Request, res: Response, next: NextFunction) => validateResultsHandler(req, res, next)
 ]

@@ -1,11 +1,11 @@
-import collections from "@models/index.collections"
-import { ApplicationError } from "@utils/applicationError";
-import { ICategorySchema, ISkillSchema, ITechnologySchema } from "@models/ICollections";
-import { Types } from "mongoose";
-import { IAddTechnologyRequest } from "./dto/addTechnology.dto";
 import config from 'config'
-import { IUpdateTechnologyRequest } from "./dto/updateTechnology.dto";
+import { Types } from "mongoose";
+import collections from "@models/index.collections"
+import { ApplicationError } from "@utils/index.utils";
+import { IAddTechnologyRequest } from "./dto/addTechnology.dto";
 import { IDeleteTechnologyRequest } from "./dto/deleteTechnology.dto";
+import { IUpdateTechnologyRequest } from "./dto/updateTechnology.dto";
+import { ICategorySchema, ISkillSchema, ITechnologySchema } from "@models/ICollections";
 
 const getSkills = async (usrId: string): Promise<ISkillSchema[]> => {
     try {

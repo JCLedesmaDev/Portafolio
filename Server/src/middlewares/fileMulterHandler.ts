@@ -1,7 +1,6 @@
 import multer from 'multer'
 import { Request, Response, NextFunction } from "express";
-import { ApplicationError } from '@utils/applicationError'
-import responseMessage from '@utils/responseMessage';
+import { responseMessage, ApplicationError } from '@utils/index.utils';
 
 interface INameFields {
     name: string;

@@ -1,4 +1,4 @@
-import { validateResults } from "@middlewares/validatorExpressHandler";
+import { validateResultsHandler } from "@middlewares/index.middlewares";
 import { Request, Response, NextFunction } from "express";
 import { body } from "express-validator";
 
@@ -30,5 +30,5 @@ export const getAllLogerDbRequest = [
         .trim() // Elimina los espacios del comienzo y final del texto
         .isMongoId(),
 
-    (req: Request, res: Response, next: NextFunction) => validateResults(req, res, next)
+    (req: Request, res: Response, next: NextFunction) => validateResultsHandler(req, res, next)
 ]
