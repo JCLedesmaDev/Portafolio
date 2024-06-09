@@ -1,4 +1,4 @@
-import { ICategorySchema } from '@models/ICollections';
+import { ICategorySchema } from '@models/ISchemaCollections';
 import { model, Schema } from 'mongoose';
 import mongooseDelete, { SoftDeleteModel } from 'mongoose-delete';
 

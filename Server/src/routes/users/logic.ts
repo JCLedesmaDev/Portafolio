@@ -1,7 +1,7 @@
 import config from 'config'
 import externalDb from "./dal"
 import mappers from "@mappers/index.mappers"
-import { IUserSchema } from '@models/ICollections';
+import { IUserSchema } from '@models/ISchemaCollections';
 import { IGetUserResponse } from './dto/getUser.dto';
 import { IUpdateUserRequest } from './dto/updateUser.dto';
 import { IGetAllUserResponse } from './dto/getAllUsers.dto';

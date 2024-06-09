@@ -1,6 +1,6 @@
 import externalDb from './dal'
 import mappers from "@mappers/index.mappers";
-import { ICategorySchema } from "@models/ICollections";
+import { ICategorySchema } from "@models/ISchemaCollections";
 import { IGetCategoryResponse } from "./dto/getCategory.dto";
 import { IDeleteCategoryRequest } from "./dto/deleteCategory.dto";
 import { responseMessage, ApplicationError } from "@utils/index.utils";

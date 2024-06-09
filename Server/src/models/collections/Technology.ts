@@ -1,11 +1,11 @@
-import { ITechnologySchema } from '@models/ICollections';
+import { ITechnologySchema } from '@models/ISchemaCollections';
 import { model, Schema, Types } from 'mongoose';
 import mongooseDelete, { SoftDeleteModel } from 'mongoose-delete';
 
 
 const TechnologySchema = new Schema<ITechnologySchema>({
     name: { type: String, required: true },
-    image: { type: String, required: true }, 
+    image: { type: String, required: true },
     category: { type: Types.ObjectId, ref: 'Category', required: true },
 }, {
     timestamps: true, // Nos crea un campo mas con la fecha de creacion y actualizacion del registro

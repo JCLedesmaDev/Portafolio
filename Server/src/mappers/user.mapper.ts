@@ -1,5 +1,5 @@
 import { IUser } from "@interface/index.interfaces";
-import { IProjectSchema, ISkillSchema, IUserSchema } from "@models/ICollections";
+import { IProjectSchema, ISkillSchema, IUserSchema } from "@models/ISchemaCollections";
 import mappers from "./index.mappers";
 
 /**

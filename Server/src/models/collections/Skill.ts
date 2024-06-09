@@ -1,4 +1,4 @@
-import { ISkillSchema } from '@models/ICollections';
+import { ISkillSchema } from '@models/ISchemaCollections';
 import { model, Schema, Types } from 'mongoose';
 import mongooseDelete, { SoftDeleteModel } from 'mongoose-delete';
 
@@ -14,7 +14,7 @@ const SkillSchema = new Schema<ISkillSchema>({
 
 /* Le indicamos a nuestro modelo, que sobre escriba los metodos
  le que brinda mongoose, por los que nos brinda mongooseDelete */
- SkillSchema.plugin(mongooseDelete, { overrideMethods: 'all' })
+SkillSchema.plugin(mongooseDelete, { overrideMethods: 'all' })
 
 
 export default model<ISkillSchema, SoftDeleteModel<ISkillSchema>>('Skill', SkillSchema);

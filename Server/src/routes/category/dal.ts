@@ -1,5 +1,5 @@
 import collections from "@models/index.collections";
-import { ICategorySchema } from "@models/ICollections"
+import { ICategorySchema } from "@models/ISchemaCollections"
 import { ApplicationError } from "@utils/index.utils";
 import { IAddCaterogyRequest } from "./dto/addCategory.dto";
 import { IUpdateCategoryRequest } from "./dto/updateCategory.dto.";

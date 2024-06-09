@@ -1,7 +1,7 @@
 import config from 'config'
 import { Types } from "mongoose";
 import collections from "@models/index.collections";
-import { IProjectSchema } from "@models/ICollections"
+import { IProjectSchema } from "@models/ISchemaCollections"
 import { ApplicationError } from "@utils/index.utils";
 import { IAddProjectRequest } from "./dto/addProject.dto";
 import { IUpdateProjectRequest } from "./dto/updateProject.dto.";

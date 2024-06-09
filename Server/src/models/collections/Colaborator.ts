@@ -1,6 +1,6 @@
 import { model, Schema } from 'mongoose';
 import mongooseDelete, { SoftDeleteModel } from 'mongoose-delete';
-import { IColaboratorSchema } from '@models/ICollections';
+import { IColaboratorSchema } from '@models/ISchemaCollections';
 
 const ColaboratorSchema = new Schema<IColaboratorSchema>({
     name: { type: String, required: true },

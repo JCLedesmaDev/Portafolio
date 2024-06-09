@@ -1,5 +1,5 @@
 import { ICategory } from "@interface/index.interfaces";
-import { ICategorySchema } from "@models/ICollections";
+import { ICategorySchema } from "@models/ISchemaCollections";
 
 
 export const multipleCategories = (resource: ICategorySchema[]): ICategory[] => {

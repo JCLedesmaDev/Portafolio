@@ -1,7 +1,7 @@
 import externalDb from './dal'
 import mappers from "@mappers/index.mappers";
 import externalDbUser from "@src/routes/users/dal"
-import { IProjectSchema } from "@models/ICollections";
+import { IProjectSchema } from "@models/ISchemaCollections";
 import { IDeleteProjectRequest } from "./dto/deleteProject.dto";
 import { ApplicationError, responseMessage, deleteFile } from "@utils/index.utils";
 import { IAddProjectRequest, IAddProjectResponse } from "./dto/addProject.dto";

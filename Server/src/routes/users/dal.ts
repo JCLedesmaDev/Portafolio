@@ -2,7 +2,7 @@ import config from 'config'
 import { Types } from "mongoose";
 import collections from "@models/index.collections"
 import { ApplicationError } from "@utils/index.utils";
-import { IUserSchema } from "@models/ICollections";
+import { IUserSchema } from "@models/ISchemaCollections";
 import { IUpdateUserRequest } from "./dto/updateUser.dto";
 
 /**

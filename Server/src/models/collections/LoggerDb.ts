@@ -1,4 +1,4 @@
-import { ILoggerDbSchema } from '@models/ICollections';
+import { ILoggerDbSchema } from '@models/ISchemaCollections';
 import { model, Schema, PaginateModel, Types } from 'mongoose';
 import mongoosePaginate from 'mongoose-paginate-v2'
 

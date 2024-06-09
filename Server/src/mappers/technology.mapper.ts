@@ -1,5 +1,5 @@
 import { ITechnology } from "@interface/index.interfaces";
-import { ITechnologySchema } from "@models/ICollections";
+import { ITechnologySchema } from "@models/ISchemaCollections";
 
 /**
  * Mappea los datos de muchas tecnologias

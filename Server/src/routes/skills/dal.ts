@@ -5,7 +5,7 @@ import { ApplicationError } from "@utils/index.utils";
 import { IAddTechnologyRequest } from "./dto/addTechnology.dto";
 import { IDeleteTechnologyRequest } from "./dto/deleteTechnology.dto";
 import { IUpdateTechnologyRequest } from "./dto/updateTechnology.dto";
-import { ICategorySchema, ISkillSchema, ITechnologySchema } from "@models/ICollections";
+import { ICategorySchema, ISkillSchema, ITechnologySchema } from "@models/ISchemaCollections";
 
 const getSkills = async (usrId: string): Promise<ISkillSchema[]> => {
     try {

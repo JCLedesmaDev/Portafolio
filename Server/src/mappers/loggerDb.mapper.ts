@@ -1,5 +1,5 @@
 import { IRegisterDb } from "@interface/index.interfaces";
-import { ILoggerDbSchema, IUserSchema } from "@models/ICollections";
+import { ILoggerDbSchema, IUserSchema } from "@models/ISchemaCollections";
 import mappers from "./index.mappers";
 
 export const multipleLoggerDb = (docs: ILoggerDbSchema[]): IRegisterDb[] => {

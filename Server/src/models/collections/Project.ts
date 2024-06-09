@@ -1,4 +1,4 @@
-import { IProjectSchema } from '@models/ICollections';
+import { IProjectSchema } from '@models/ISchemaCollections';
 import { model, Schema, Types } from 'mongoose';
 import mongooseDelete, { SoftDeleteModel } from 'mongoose-delete';
 

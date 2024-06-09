@@ -1,4 +1,4 @@
-import { ICategorySchema, ISkillSchema, ITechnologySchema } from "@models/ICollections";
+import { ICategorySchema, ISkillSchema, ITechnologySchema } from "@models/ISchemaCollections";
 import mappers from "./index.mappers";
 import { ISkill } from "@interface/index.interfaces";
 

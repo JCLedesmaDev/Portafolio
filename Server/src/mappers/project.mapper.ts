@@ -1,4 +1,4 @@
-import { IColaboratorSchema, IProjectSchema, IUserSchema } from "@models/ICollections";
+import { IColaboratorSchema, IProjectSchema, IUserSchema } from "@models/ISchemaCollections";
 import { IProject, IColaborator } from "@interface/index.interfaces";
 
 
@@ -39,7 +39,7 @@ const multipleColaborators = (resource: IColaboratorSchema[]): IColaborator[] =>
             id: colaborator.id,
             name: colaborator.name,
             repositoryLink: colaborator.repositoryLink
-        }   
+        }
         return mapper
     })
 }

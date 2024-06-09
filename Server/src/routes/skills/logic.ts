@@ -4,7 +4,7 @@ import mappers from "@mappers/index.mappers"
 import externalDbUser from "@src/routes/users/dal"
 import { responseMessage, ApplicationError } from "@utils/index.utils"
 import { IDeleteTechnologyRequest } from "./dto/deleteTechnology.dto"
-import { ISkillSchema, ITechnologySchema } from "@models/ICollections"
+import { ISkillSchema, ITechnologySchema } from "@models/ISchemaCollections"
 import { IAddTechnologyRequest, IAddTechnologyResponse } from "./dto/addTechnology.dto"
 import { IUpdateTechnologyRequest, IUpdateTechnologyResponse } from "./dto/updateTechnology.dto"
 
