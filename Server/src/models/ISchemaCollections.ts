@@ -1,6 +1,7 @@
 import { ObjectId, Document } from "mongoose";
 import { SoftDeleteInterface } from "mongoose-delete";
 
+// VER SI SE PUEDE UNIFICAR EN EL INDEX 
 export interface IUserSchema extends Document, SoftDeleteInterface {
     fullName: string;
     rol: string;
