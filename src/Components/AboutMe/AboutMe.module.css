@@ -34,10 +34,9 @@
 }
 
 .technologyContainer > .technologyContainer__navLinks {
-  /* background-color: orange; */
   display: flex;
   justify-content: space-evenly;
-  margin-top: 1rem;
+  margin: 1rem 0;
 }
 
 .technologyContainer > .technologyContainer__navLinks > a {

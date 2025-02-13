@@ -10,7 +10,7 @@ import quasar from "./images/technologies/front/quasar.png";
 
 // Back-End
 import mongodb from "./images/technologies/back/mongodb.svg";
-import nodejs from "./images/technologies/back/node.png";
+import nodejs from "./images/technologies/back/nodejs.png";
 import entityFramework from "./images/technologies/back/entity.png";
 import net from "./images/technologies/back/net.png";
 import sqlServer from "./images/technologies/back/sqlserver.png";
@@ -106,9 +106,11 @@ export const myDataES = {
         rol: "Desarrollador Full-Stack.",
         aboutme: "Sobre mi:",
         presentations: [
-            `Hola, soy Juan Cruz, me gusta que me llamen Juan, Juanchi o Juancho, tengo ${age} años y soy una persona que se caracteriza por saber escuchar y entender rápidamente las necesidades de los clientes. Me apasiona el diseño web y me esfuerzo por crear sitios web que combinen una estética y un arte equilibrado que se adapte perfectamente a las necesidades de cada cliente.`,
-            "Mi formación en el diseño de planos arquitectónicos me enseñó la importancia de tener una buena arquitectura y diseño en cualquier proyecto. Por eso, me mantengo en constante formación en el Desarrollo <i> <b>Back-End</b> </i> para lograr un código robusto, elegante y flexible. Me emociona aprender cosas nuevas y siempre estoy en busca de nuevas oportunidades para seguir creciendo en mi carrera.",
-            "Actualmente estoy cursando la <b>Tecnicatura Superior en Desarrollo de Software</b> en el Instituto Técnico Superior Córdoba (I.T.S. Córdoba) para profundizar mis conocimientos en el mundo del <b>Software</b>. Si bien me defino como Desarrollador <i> <b>Front-End</b> </i>, también tengo algunos conocimientos en el entorno de <b>NodeJS</b>. Actualmente, me estoy enfocando en comprender cabalmente estos lenguajes para definirme como <b>Full-Stack</b>."
+            `🙋🏻 ¡Hola! Te cuento un poco sobre mí: <br/> Tengo ${age} años, soy <b>Técnico Superior en Desarrollo de Software</b>, egresado del Instituto Técnico Superior de Córdoba, con experiencia en el desarrollo de aplicaciones completas, abarcando tanto el lado del cliente como el servidor. Me destaco por mi capacidad de escuchar y entender rápidamente las necesidades de los clientes, lo que me permite crear soluciones eficientes y personalizadas.`,
+
+            "Actualmente, me desempeño como <b>Desarrollador Full-Stack </b> en <b>Telecom Argentina S.A.</b>, donde desarrollo soluciones enfocadas en mejorar las operaciones del personal técnico en campo y la atención al cliente. Mi experiencia previa en diseño arquitectónico me enseñó la importancia de la buena arquitectura y organización en cualquier proyecto, lo que aplico en el desarrollo de software.",
+
+            "Me apasiona el desarrollo web y estoy en constante formación para aprender nuevas tecnologías y enfrentar nuevos desafíos. Disfruto del trabajo en equipo y me motiva crecer profesionalmente cada día. Siempre busco nuevas oportunidades para mejorar mis habilidades y contribuir al desarrollo de soluciones innovadoras."
         ],
         downloadCV: "DESCARGA MI CV",
         CVLink: "https://drive.google.com/file/d/1q4NHm8Nyiwkc69mUGQxvNc951-eWYUYA/view?usp=drive_link",
@@ -156,13 +158,13 @@ export const myDataES = {
                 css: ""
             },
             {
-                title: "Ionic 5",
+                title: "Ionic Framework",
                 alt: "icon ionic",
                 image: ionic,
                 css: "#bbb"
             },
             {
-                title: "Quasar v2",
+                title: "Quasar Framework",
                 alt: "icon quasar",
                 image: quasar,
                 css: ""
