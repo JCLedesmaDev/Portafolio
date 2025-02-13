@@ -4,9 +4,9 @@ import html from "./images/technologies/front/html.svg";
 import ionic from "./images/technologies/front/ionic.svg";
 import js from "./images/technologies/front/js.svg";
 import react from "./images/technologies/front/react.svg";
-import zustand from "./images/technologies/front/zustand.png";
 import vue from "./images/technologies/front/vue.svg";
 import quasar from "./images/technologies/front/quasar.png";
+import capacitor from "./images/technologies/front/capacitor.jpg";
 
 // Back-End
 import mongodb from "./images/technologies/back/mongodb.svg";
@@ -14,16 +14,18 @@ import nodejs from "./images/technologies/back/nodejs.png";
 import entityFramework from "./images/technologies/back/entity.png";
 import net from "./images/technologies/back/net.png";
 import sqlServer from "./images/technologies/back/sqlserver.png";
+import typeOrm from "./images/technologies/back/typeOrm.jpg";
+import mysql from "./images/technologies/back/mysql.svg";
 
 // Otros
 import typescript from "./images/technologies/other/typescript.svg";
 import git from "./images/technologies/other/git.png";
 import nvm from "./images/technologies/other/nvm.png";
+import tortoise from "./images/technologies/other/tortoise.jpg";
 
 // Proximamente
-import nextjs from "./images/technologies/comingSon/nextjs.svg";
-import mysql from "./images/technologies/comingSon/mysql.svg";
-import reactnative from "./images/technologies/comingSon/react-native.png";
+import angular from "./images/technologies/comingSon/angular.jpg";
+import nestJS from "./images/technologies/comingSon/nestJs.jpg";
 
 /* Proyecto Figuras */
 import figuritas1 from "./images/projects/albumes/figuritas1.png"
@@ -70,6 +72,9 @@ import productos3 from "./images/projects/control-productos/productos3.png"
 import productos4 from "./images/projects/control-productos/productos4.png"
 import productos5 from "./images/projects/control-productos/productos5.png"
 
+/* Gestion de equipos */
+import equipos1 from "./images/projects/gestion-equipos/equipos1.jpg"
+
 
 const calculateAge = () => {
     const today = new Date();
@@ -113,7 +118,7 @@ export const myDataES = {
             "Me apasiona el desarrollo web y estoy en constante formación para aprender nuevas tecnologías y enfrentar nuevos desafíos. Disfruto del trabajo en equipo y me motiva crecer profesionalmente cada día. Siempre busco nuevas oportunidades para mejorar mis habilidades y contribuir al desarrollo de soluciones innovadoras."
         ],
         downloadCV: "DESCARGA MI CV",
-        CVLink: "https://drive.google.com/file/d/1q4NHm8Nyiwkc69mUGQxvNc951-eWYUYA/view?usp=drive_link",
+        CVLink: "https://drive.google.com/file/d/1hZ5SyHrv_HqMo_PKEGnjlZ0Wn0EwhUID/view?usp=drive_link",
         mySkills: "Mis Habilidades:",
         mySkillsPresentations: [
             "Considero que soy <b>detallista</b> (hablando del diseño), me importan mucho los detalles aunque estos sean mínimos y trato de que todo esté en armonía en cuanto a los colores y formas de los objetos.",
@@ -170,11 +175,11 @@ export const myDataES = {
                 css: ""
             },
             {
-                title: "Zustand",
-                alt: "icon Zustand",
-                image: zustand,
+                title: "Capacitor",
+                alt: "icon capacitor",
+                image: capacitor,
                 css: ""
-            }
+            },
         ],
         back_Technologies: [
             {
@@ -217,7 +222,14 @@ export const myDataES = {
                 alt: "icon mysql",
                 image: mysql,
                 css: "#eee"
-            }
+            },
+            {
+                title: "TypeORM",
+                alt: "icon typeOrm",
+                image: typeOrm,
+                css: ""
+            },
+
         ],
         other_technology: [
             {
@@ -233,6 +245,12 @@ export const myDataES = {
                 css: ""
             },
             {
+                title: "Tortoise Git",
+                alt: "icon tortoise",
+                image: tortoise,
+                css: "red"
+            },
+            {
                 title: "NVM",
                 alt: "icon nvm",
                 image: nvm,
@@ -241,16 +259,16 @@ export const myDataES = {
         ],
         coming_soon: [
             {
-                title: "NextJS",
-                alt: "icon nextjs",
-                image: nextjs,
+                title: "Angular",
+                alt: "icon Angular",
+                image: angular,
                 css: ""
             },
             {
-                title: "React Native",
+                title: "NestJS",
                 alt: "icon react native",
-                image: reactnative,
-                css: "#fff"
+                image: nestJS,
+                css: ""
             }
         ]
     },
@@ -258,9 +276,32 @@ export const myDataES = {
         myWorks: "Proyectos realizados",
         projects: [
             {
+                title: "Gestión y Monitoreo de Equipos de Fotocopiado",
+                description: "Permite a los usuarios gestionar el negocio del alquiler/mantenimiento de equipos de fotocopiado. El sistema esta enfocado en eliminar tareas manuales repetitivas y propensas a errores.",
+                createdWith: "Esta aplicacion esta siendo creada utilizando: <br/> <b>- En el <i>Back-End</i> :</b> NodeJS, ExpressJS, TypeScript y MySQL con TypeORM. Implementando una <b>Arquitectura modular combinada con una arquitectura en capas.</b> <br/> <b>- En el <i>Front-End</i> :</b> Vue 3, Quasar Framework v2 con Capacitor v6 y Vite <b> implementando una Arquitectura Modular.</b> <br/>",
+                datesModal: [
+                    {
+                        title: "<b>PERIODO:</b>",
+                        content: "18/02/2024 - 14/01/2025"
+                    },
+                    {
+                        title: "<b>TIPO:</b>",
+                        content: "Sitio <i>Web</i> y <i>Mobile</i>"
+                    },
+                    {
+                        title: "<b>REPOSITORIO:</b>",
+                        content: "<div>Privado</div>"
+                    }
+                ],
+                images: {
+                    mainImage: equipos1,
+                    imagesModal: [equipos1],
+                }
+            },
+            {
                 title: "Album Virtual",
-                "description": "Este proyecto fue desarrollado previamente dentro del cursado de la Tecnicatura de Software. Nos permite coleccionar albumes y comprar las figuras de los albumes coleccionados.",
-                "createdWith": "Esta aplicacion esta siendo creada utilizando: <br/> <b>- En el <i>Back-End</i> :</b> NodeJS, ExpressJS, TypeScript y MongoDB, implementando una <b>Arquitectura orientada a Microservicios.</b> <br/> <b>- En el <i>Front-End</i> :</b> ReactJS con sus respectivos Hooks y Custom Hooks, TypeScript, Zustand y Vite <b> implementando una arquitectura orientada al Clean Architecture.</b> <br/>",
+                description: "Este proyecto fue desarrollado previamente dentro del cursado de la Tecnicatura de Software. Nos permite coleccionar albumes y comprar las figuras de los albumes coleccionados.",
+                createdWith: "Esta aplicacion esta siendo creada utilizando: <br/> <b>- En el <i>Back-End</i> :</b> NodeJS, ExpressJS, TypeScript y MongoDB, implementando una <b>Arquitectura modular combinada con una arquitectura en capas.</b> <br/> <b>- En el <i>Front-End</i> :</b> ReactJS con sus respectivos Hooks y Custom Hooks, TypeScript, Zustand y Vite <b> implementando una Arquitectura Modular.</b> <br/>",
                 datesModal: [
                     {
                         title: "<b>PERIODO:</b>",
@@ -286,13 +327,9 @@ export const myDataES = {
             },
             {
                 title: "Sistema de Gestion de Productos",
-                "description": "Este proyecto fue desarrollado dentro del cursado de la Tecnicatura de Software en colaboracion con Vanesa Herrera. Nos permite gestionar Productos.",
-                "createdWith": "Esta aplicacion esta siendo creada utilizando: <br/> <b>- En el <i>Back-End</i> :</b> .NET 4.7.2 y SqlClient aplicando conocimientos sobre Store Procedure. <br/> <b>- En el <i>Front-End</i> :</b> Windows Form. <br/>",
+                description: "Este proyecto fue desarrollado dentro del cursado de la Tecnicatura de Software. Nos permite gestionar Productos.",
+                createdWith: "Esta aplicacion esta siendo creada utilizando: <br/> <b>- En el <i>Back-End</i> :</b> .NET 4.7.2 y SqlClient aplicando conocimientos sobre Store Procedure. <br/> <b>- En el <i>Front-End</i> :</b> Windows Form. <br/>",
                 datesModal: [
-                    {
-                        title: "<b>COLABORADORA:</b>",
-                        content: "<a href='https://github.com/Vanemariel' target='_blank' rel='noopener'> Github de Vanesa Herrera </a>"
-                    },
                     {
                         title: "<b>PERIODO:</b>",
                         content: "14/09/2022 - 21/10/2022"
@@ -313,8 +350,8 @@ export const myDataES = {
             },
             {
                 title: "Turnero de Peluqueria",
-                "description": "Este proyecto fue desarrollado dentro del cursado de la Tecnicatura de Software. Nos permite saber si hay un turno reservado.",
-                "createdWith": "Esta aplicacion esta siendo creada utilizando: <br/> <b>- En el <i>Back-End</i> :</b> .NET 6, Entity Framework, SQL Server. <br/> <b>- En el <i>Front-End</i> :</b> Blazor Web Assembly acompañada de la libreria 'Radzen Blazor Components', aplicando conocimientos tales como el manejo de estados por Actions <br/>",
+                description: "Este proyecto fue desarrollado dentro del cursado de la Tecnicatura de Software. Nos permite saber si hay un turno reservado.",
+                createdWith: "Esta aplicacion esta siendo creada utilizando: <br/> <b>- En el <i>Back-End</i> :</b> .NET 6, Entity Framework, SQL Server. <br/> <b>- En el <i>Front-End</i> :</b> Blazor Web Assembly acompañada de la libreria 'Radzen Blazor Components', aplicando conocimientos tales como el manejo de estados por Actions <br/>",
                 datesModal: [
                     {
                         title: "<b>PERIODO:</b>",
@@ -336,8 +373,8 @@ export const myDataES = {
             },
             {
                 title: "Sistema de Gestion Mis actividades",
-                "description": "Proyecto que nos permite registrar nuestras actividades dependiendo de su categoria",
-                "createdWith": "Esta aplicacion fue creada utilizando: <br> <b>- En el <i>Front-End</i> :</b> Ionic con React y TypeScript con sus respectivos Hooks tales como:  useEffect, useContext, useReducer y Hooks personalizados. <br/>",
+                description: "Proyecto que nos permite registrar nuestras actividades dependiendo de su categoria",
+                createdWith: "Esta aplicacion fue creada utilizando: <br> <b>- En el <i>Front-End</i> :</b> Ionic con React y TypeScript con sus respectivos Hooks tales como:  useEffect, useContext, useReducer y Hooks personalizados. <br/>",
                 datesModal: [
                     {
                         title: "<b>PERIODO:</b>",
@@ -363,8 +400,8 @@ export const myDataES = {
             },
             {
                 title: "Pagina Web - Mi portafolio",
-                "description": "Proyecto para la presentacion de mis conocimientos en el desarrollo web.",
-                "createdWith": "Esta aplicacion fue creada utilizando: <br> <b>- En el <i>Front-End</i> :</b> React con TypeScript, Axios, Html-react-parser",
+                description: "Proyecto para la presentacion de mis conocimientos en el desarrollo web.",
+                createdWith: "Esta aplicacion fue creada utilizando: <br> <b>- En el <i>Front-End</i> :</b> React con TypeScript, Axios, Html-react-parser",
                 datesModal: [
                     {
                         title: "<b>PERIODO:</b>",
@@ -386,8 +423,8 @@ export const myDataES = {
             },
             {
                 title: "Sistema de Gestion de Proyectos con Stack M.E.R.N",
-                "description": "Proyecto que nos permite anotar las tareas pendientes a desarrollar, de cada proyecto en particular en el que estemos trabajando.",
-                "createdWith": "Esta aplicacion esta siendo creada utilizando: <br/> <b>- En el <i>Back-End</i> :</b> NodeJS, Express, MongoDB. <br/> <b>- En el <i>Front-End</i> :</b> ReactJS con sus respectivos Hooks tales como: useState, useEffect, useContext y useReducer; <br/>",
+                description: "Proyecto que nos permite anotar las tareas pendientes a desarrollar, de cada proyecto en particular en el que estemos trabajando.",
+                createdWith: "Esta aplicacion esta siendo creada utilizando: <br/> <b>- En el <i>Back-End</i> :</b> NodeJS, Express, MongoDB. <br/> <b>- En el <i>Front-End</i> :</b> ReactJS con sus respectivos Hooks tales como: useState, useEffect, useContext y useReducer; <br/>",
                 datesModal: [
                     {
                         title: "<b>PERIODO:</b>",
@@ -409,8 +446,8 @@ export const myDataES = {
             },
             {
                 title: "Sistema de Gestion de Libros",
-                "description": "Proyecto que lleva el registro de una bibloteca personal para organizar tu propia bibloteca.",
-                "createdWith": "Esta aplicacion fue creada utilizando: <br/> <b>- En el <i> Back-End</i> :</b> NodeJS, ExpressJS, MongoDB. <br/> <b>- En el <i>Front-End</i> :</b> HTML5, CSS3 / Bootstrap 4 y Vanilla JavaScript.",
+                description: "Proyecto que lleva el registro de una bibloteca personal para organizar tu propia bibloteca.",
+                createdWith: "Esta aplicacion fue creada utilizando: <br/> <b>- En el <i> Back-End</i> :</b> NodeJS, ExpressJS, MongoDB. <br/> <b>- En el <i>Front-End</i> :</b> HTML5, CSS3 / Bootstrap 4 y Vanilla JavaScript.",
                 datesModal: [
                     {
                         title: "<b>PERIODO:</b>",
