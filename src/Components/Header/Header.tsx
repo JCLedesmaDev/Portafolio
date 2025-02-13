@@ -77,9 +77,7 @@ export const Header: React.FC = () => {
             <a href="#portfolio" data-scroll-spy onClick={redirectSection}>
               {header?.portfolio}
             </a>
-            <a href="#contact" data-scroll-spy onClick={redirectSection}>
-              {header?.contact}
-            </a>
+
             {/* <a onClick={changeLenguage}> Cambiar </a> */}
           </div>
         </div>

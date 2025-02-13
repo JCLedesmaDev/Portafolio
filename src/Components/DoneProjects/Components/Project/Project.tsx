@@ -1,5 +1,4 @@
 import { Fragment, useEffect } from "react"
-import { myProjects } from "../../../../Utils/myProjects";
 import { useLocation } from "react-use";
 import { ModalContainer } from "../../../ModalContainer/ModalContainer";
 import ProjectCSS from './Project.module.css'
@@ -10,52 +9,52 @@ interface Props {
   project: any;
 }
 
-export const Project : React.FC<Props> = ({project}) => {
+export const Project: React.FC<Props> = ({ project }) => {
 
-    /// VARIABLES
-    const location = useLocation().hash;
-    const IndexProject = myProjects.findIndex(element => element.title === project.title)
+  /// HOOKS
+  const { doneProjects } = useMyData();
 
+  /// VARIABLES
+  const location = useLocation().hash;
 
-    /// HOOKS
-    const { doneProjects } = useMyData();
+  const IndexProject = doneProjects.projects.findIndex(element => element.title === project.title)
 
-    /// METODOS
-    const getDataProject = () => myProjects.find(element => element.title === project.title)
+  /// METODOS
+  const getDataProject = () => doneProjects.projects.find(element => element.title === project.title)?.images
 
-    return (
-      <Fragment>
+  return (
+    <Fragment>
 
-        <div className={ProjectCSS.projectContainer}>
+      <div className={ProjectCSS.projectContainer}>
 
-          <img className={ProjectCSS.projectContainer__mainImage}
-            src={getDataProject()?.mainImage}
-            alt={`trabajo practica ${IndexProject}`}
-          />
+        <img className={ProjectCSS.projectContainer__mainImage}
+          src={getDataProject()?.mainImage}
+          alt={`trabajo practica ${IndexProject}`}
+        />
 
-          <a href={`#trabajo_${IndexProject}`}
-            className={ProjectCSS.projectContainer__infoProject}
-          >
-            <div className={ProjectCSS.projectContainer__infoContainer}>
-             
-              <h3>{project.title}</h3>
+        <a href={`#trabajo_${IndexProject}`}
+          className={ProjectCSS.projectContainer__infoProject}
+        >
+          <div className={ProjectCSS.projectContainer__infoContainer}>
 
-              <p>{project.description}</p>
+            <h3>{project.title}</h3>
 
-              <div className={ProjectCSS.projectContainer__infoEnlace}>
-                <button className="button">{doneProjects?.clickMe}</button>
-              </div>
+            <p>{project.description}</p>
 
+            <div className={ProjectCSS.projectContainer__infoEnlace}>
+              <button className="button">{doneProjects?.clickMe}</button>
             </div>
 
-          </a>
+          </div>
 
-        </div>
+        </a>
 
-        <ModalContainer validation={location?.includes(`#trabajo_${IndexProject}`)}>
-          <ModalProject Project={project} IndexProject={IndexProject}/> 
-        </ModalContainer>
+      </div>
 
-      </Fragment>
-    )
+      <ModalContainer validation={location?.includes(`#trabajo_${IndexProject}`)}>
+        <ModalProject project={project} indexProject={IndexProject} />
+      </ModalContainer>
+
+    </Fragment>
+  )
 }

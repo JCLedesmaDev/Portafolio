@@ -1,0 +1,314 @@
+{
+    // See https://go.microsoft.com/fwlink/?LinkId=733558
+    // for the documentation about the tasks.json format
+    "version": "2.0.0",
+    "tasks": [
+        // change node version 16.16.0
+        {
+            "label": "change node version to 16.16.0",
+            "type": "shell",
+            "command": "nvm",
+            "args": [
+                "use",
+                "16.16.0"
+            ],
+        },
+        //change node version to 8.13.0
+        {
+            "label": "change node version to 8.13.0",
+            "type": "shell",
+            "command": "nvm",
+            "args": [
+                "use",
+                "8.13.0"
+            ]
+        },
+        //--------- //
+        {
+            "label": "start dbm server",
+            "type": "shell",
+            "command": "quasar",
+            "args": [
+                "dev"
+            ],
+            "dependsOn": [
+                "change node version to 16.16.0"
+            ],
+            "options": {
+                "cwd": "${workspaceFolder}/dbmPlus/"
+            },
+            "isBackground": true,
+            "problemMatcher": {
+                "pattern": [
+                    {
+                        "regexp": ".",
+                        "file": 1,
+                        "location": 2,
+                        "message": 3,
+                    },
+                ],
+                "background": {
+                    "activeOnStart": true,
+                    "beginsPattern": {
+                        "regexp": "COMPILATION FAILED"
+                    }, // COMPILATION FAILED
+                    "endsPattern": {
+                        "regexp": "Opening default browser"
+                    } // Opening default browser
+                }
+            }
+        },
+        {
+            "label": "start apoyo server",
+            "type": "shell",
+            "command": "quasar",
+            "args": [
+                "dev"
+            ],
+            "dependsOn": [
+                "change node version to 16.16.0"
+            ],
+            "options": {
+                "cwd": "${workspaceFolder}/apps/apoyo"
+            },
+            "isBackground": true,
+            "problemMatcher": {
+                "pattern": [
+                    {
+                        "regexp": ".",
+                        "file": 1,
+                        "location": 2,
+                        "message": 3,
+                    },
+                ],
+                "background": {
+                    "activeOnStart": true,
+                    "beginsPattern": {
+                        "regexp": "COMPILATION FAILED"
+                    },
+                    "endsPattern": {
+                        "regexp": "Opening default browser"
+                    }
+                }
+            }
+        },
+        {
+            "label": "start dtec server",
+            "type": "shell",
+            "command": "quasar",
+            "args": [
+                "dev"
+            ],
+            "dependsOn": [
+                "change node version to 16.16.0"
+            ],
+            "options": {
+                "cwd": "${workspaceFolder}/apps/dtec/"
+            },
+            "isBackground": true,
+            "problemMatcher": {
+                "pattern": [
+                    {
+                        "regexp": ".",
+                        "file": 1,
+                        "location": 2,
+                        "message": 3,
+                    },
+                ],
+                "background": {
+                    "activeOnStart": true,
+                    "beginsPattern": {
+                        "regexp": "COMPILATION FAILED"
+                    }, // COMPILATION FAILED
+                    "endsPattern": {
+                        "regexp": "Opening default browser"
+                    } // Opening default browser
+                }
+            }
+        },
+        {
+            "label": "start firma server",
+            "type": "shell",
+            "command": "quasar",
+            "args": [
+                "dev"
+            ],
+            "dependsOn": [
+                "change node version to 16.16.0"
+            ],
+            "options": {
+                "cwd": "${workspaceFolder}/apps/firma/"
+            },
+            "isBackground": true,
+            "problemMatcher": {
+                "pattern": [
+                    {
+                        "regexp": ".",
+                        "file": 1,
+                        "location": 2,
+                        "message": 3,
+                    },
+                ],
+                "background": {
+                    "activeOnStart": true,
+                    "beginsPattern": {
+                        "regexp": "COMPILATION FAILED"
+                    }, // COMPILATION FAILED
+                    "endsPattern": {
+                        "regexp": "Opening default browser"
+                    } // Opening default browser
+                }
+            }
+        },
+        {
+            "label": "start maximo server",
+            "type": "shell",
+            "command": "quasar",
+            "args": [
+                "dev"
+            ],
+            "dependsOn": [
+                "change node version to 16.16.0"
+            ],
+            "options": {
+                "cwd": "${workspaceFolder}/apps/maximo"
+            },
+            "isBackground": true,
+            "problemMatcher": {
+                "pattern": [
+                    {
+                        "regexp": ".",
+                        "file": 1,
+                        "location": 2,
+                        "message": 3,
+                    },
+                ],
+                "background": {
+                    "activeOnStart": true,
+                    "beginsPattern": {
+                        "regexp": "COMPILATION FAILED"
+                    }, // COMPILATION FAILED
+                    "endsPattern": {
+                        "regexp": "Opening default browser"
+                    } // Opening default browser
+                }
+            }
+        },
+        {
+            "label": "start otmanager server",
+            "type": "shell",
+            "command": "quasar",
+            "args": [
+                "dev"
+            ],
+            "dependsOn": [
+                "change node version to 16.16.0"
+            ],
+            "options": {
+                "cwd": "${workspaceFolder}/apps/otmanager/"
+            },
+            "isBackground": true,
+            "problemMatcher": {
+                "pattern": [
+                    {
+                        "regexp": ".",
+                        "file": 1,
+                        "location": 2,
+                        "message": 3,
+                    },
+                ],
+                "background": {
+                    "activeOnStart": true,
+                    "beginsPattern": {
+                        "regexp": "COMPILATION FAILED"
+                    }, // COMPILATION FAILED
+                    "endsPattern": {
+                        "regexp": "Opening default browser"
+                    } // Opening default browser
+                }
+            }
+        },
+        {
+            "label": "start sam server",
+            "type": "shell",
+            "command": "quasar",
+            "args": [
+                "dev"
+            ],
+            "dependsOn": [
+                "change node version to 16.16.0"
+            ],
+            "options": {
+                "cwd": "${workspaceFolder}/apps/sam/"
+            },
+            "isBackground": true,
+            "problemMatcher": {
+                "pattern": [
+                    {
+                        "regexp": ".",
+                        "file": 1,
+                        "location": 2,
+                        "message": 3,
+                    },
+                ],
+                "background": {
+                    "activeOnStart": true,
+                    "beginsPattern": {
+                        "regexp": "COMPILATION FAILED"
+                    }, // COMPILATION FAILED
+                    "endsPattern": {
+                        "regexp": "Opening default browser"
+                    } // Opening default browser
+                }
+            }
+        },
+        {
+            "label": "start wiki server",
+            "type": "shell",
+            "command": "quasar",
+            "args": [
+                "dev"
+            ],
+            "dependsOn": [
+                "change node version to 16.16.0"
+            ],
+            "options": {
+                "cwd": "${workspaceFolder}/apps/wiki/"
+            },
+            "isBackground": true,
+            "problemMatcher": {
+                "pattern": [
+                    {
+                        "regexp": ".",
+                        "file": 1,
+                        "location": 2,
+                        "message": 3,
+                    },
+                ],
+                "background": {
+                    "activeOnStart": true,
+                    "beginsPattern": {
+                        "regexp": "COMPILATION FAILED"
+                    }, // COMPILATION FAILED
+                    "endsPattern": {
+                        "regexp": "Opening default browser"
+                    } // Opening default browser
+                }
+            }
+        },
+        {
+            "label": "start mobile server",
+            "type": "shell",
+            "command": "npm",
+            "args": [
+                "start"
+            ],
+            "options": {
+                "cwd": "${workspaceFolder}/mobile/"
+            },
+            "dependsOn": [
+                "change node version to 8.13.0"
+            ]
+        }
+    ]
+}

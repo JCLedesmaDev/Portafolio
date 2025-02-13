@@ -2,17 +2,17 @@ import { Fragment } from 'react';
 import { useLocation } from 'react-use';
 import parse from "html-react-parser";
 import ModalProjectCSS from './ModalProject.module.css'
-import { myProjects } from "../../../../Utils/myProjects";
+import { IProyect } from '../../../../Interface/IMyData';
 
 interface Props {
-  Project: any;
-  IndexProject: number;
+  project: IProyect;
+  indexProject: number;
 }
 enum Images { CANTIDAD_MININA = 5 }
 
 
-export const ModalProject : React.FC <Props> = ({Project, IndexProject}) => {
-  
+export const ModalProject: React.FC<Props> = ({ project, indexProject }) => {
+
   /// VARIABLES
 
   let indeximage = 0, translateX = 0;
@@ -22,20 +22,20 @@ export const ModalProject : React.FC <Props> = ({Project, IndexProject}) => {
     ${ModalProjectCSS.slidesContainer__imagenes___Carrousel} 
   `;
 
-  const validacionSlide = location?.includes(`#trabajo_${IndexProject}`) &&
-    myProjects[IndexProject]?.imagesModal.length >= Images.CANTIDAD_MININA //Para que los proyectos con menos de 5 imagens no se muevan.
+  const validacionSlide = location?.includes(`#trabajo_${indexProject}`) &&
+    project.images.imagesModal.length >= Images.CANTIDAD_MININA //Para que los proyectos con menos de 5 imagens no se muevan.
 
 
   /// MEOTODS
 
   const returnImagesModal = (): JSX.Element[] => {
-    return myProjects[IndexProject]?.imagesModal.map((image, indexImg) => (
+    return project.images.imagesModal.map((image, indexImg) => (
       <img key={indexImg} src={image}
-        alt={`Trabajo ${IndexProject} - Foto ${indexImg + 1}`}
+        alt={`Trabajo ${indexProject} - Foto ${indexImg + 1}`}
       />
     ));
   };
-  
+
   const returnDatesModal = (datesModal: any): JSX.Element[] => {
     return datesModal.map((details: any, indexSmall: any) => (
       <Fragment key={indexSmall}>
@@ -83,51 +83,51 @@ export const ModalProject : React.FC <Props> = ({Project, IndexProject}) => {
   };
 
 
-    return (
-      <div className={ModalProjectCSS.modalContainer}>
+  return (
+    <div className={ModalProjectCSS.modalContainer}>
 
-        <a href="#close" className={ModalProjectCSS.modalContainer__closeBtn}>
-          <i className="fas fa-times"></i>
-        </a>
+      <a href="#close" className={ModalProjectCSS.modalContainer__closeBtn}>
+        <i className="fas fa-times"></i>
+      </a>
 
-        <article className={ModalProjectCSS.modalContainer__info}>
+      <article className={ModalProjectCSS.modalContainer__info}>
 
-          <div className={ModalProjectCSS.slidesContainer} id={`carrousel_${IndexProject}`}>
-           
-            <div className={validacionSlide 
-               ? CssCarrouselSlide 
-               : `${ModalProjectCSS.slidesContainer__imagenes}`
-            }>{returnImagesModal()}</div>
+        <div className={ModalProjectCSS.slidesContainer} id={`carrousel_${indexProject}`}>
+
+          <div className={validacionSlide
+            ? CssCarrouselSlide
+            : `${ModalProjectCSS.slidesContainer__imagenes}`
+          }>{returnImagesModal()}</div>
 
 
-            {myProjects[IndexProject]?.imagesModal.length >=
-              Images.CANTIDAD_MININA && (
-                <div className={ModalProjectCSS.slidesContainer__buttons}>
-                  <button className="prev"
-                    onClick={() => buttonSlide("prev", `#carrousel_${IndexProject}`)}
-                  > &laquo; </button>
-                  <button className="next"
-                    onClick={() => buttonSlide("next", `#carrousel_${IndexProject}`)}
-                  > &raquo; </button>
-                </div>
+          {project.images.imagesModal.length >=
+            Images.CANTIDAD_MININA && (
+              <div className={ModalProjectCSS.slidesContainer__buttons}>
+                <button className="prev"
+                  onClick={() => buttonSlide("prev", `#carrousel_${indexProject}`)}
+                > &laquo; </button>
+                <button className="next"
+                  onClick={() => buttonSlide("next", `#carrousel_${indexProject}`)}
+                > &raquo; </button>
+              </div>
             )}
 
-          </div>
+        </div>
 
-          <div className={ModalProjectCSS.slidesContainer__info}>
+        <div className={ModalProjectCSS.slidesContainer__info}>
 
-            <h3>{Project.title}</h3>
+          <h3>{project.title}</h3>
 
-            <p>{parse(Project.createdWith)}</p>
+          <p>{parse(project.createdWith)}</p>
 
-            <aside className={ModalProjectCSS.slidesContainer__infoDetails}>
-              {returnDatesModal(Project.datesModal)}
-            </aside>
+          <aside className={ModalProjectCSS.slidesContainer__infoDetails}>
+            {returnDatesModal(project.datesModal)}
+          </aside>
 
-          </div>
+        </div>
 
-        </article>
+      </article>
 
-      </div>
-    )
+    </div>
+  )
 }

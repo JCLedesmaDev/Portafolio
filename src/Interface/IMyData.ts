@@ -1,34 +1,3 @@
-interface ITechnologies {
-  title: string;
-  alt?: string;
-  content?: string;
-}
-interface IProyects {
-  title: string;
-  description: string;
-  createdWith: string;
-  datesModal: {
-    title: string;
-    content: string;
-  }[];
-}
-
-interface IModeContact {
-  icon: string;
-  title: string;
-  links: string[];
-}
-
-interface IFormInputs {
-  type: string;
-  name: string;
-  placeholder: string;
-  messageError: string;
-  autoComplete: string;
-  cols?: number;
-  rows?: number;
-}
-
 export interface IMyData {
   lenguage: string;
 
@@ -57,19 +26,19 @@ export interface IMyData {
     mySkillsPresentations: string[];
 
     skills_area: string[];
-    technology: string;
-    front_Technologies: ITechnologies[];
+    technologies: string;
+    front_Technologies: ITechnology[];
 
-    back_Technologies: ITechnologies[];
+    back_Technologies: ITechnology[];
 
-    other_technology: ITechnologies[];
+    other_technology: ITechnology[];
 
-    coming_soon: ITechnologies[];
+    coming_soon: ITechnology[];
   };
 
-  portfolio: {
+  doneProjects: {
     myWorks: string;
-    proyects: IProyects[];
+    proyects: IProyect[];
     clickMe: string;
   };
 
@@ -82,10 +51,38 @@ export interface IMyData {
     modalContact: string;
     modalContactError: string;
   };
+  footer: { sitie: string; linkedIn: string; gitHub: string; };
+}
+export interface ITechnology {
+  title: string;
+  alt?: string;
+  content?: string;
+  css: string;
+  image: string;
+}
+export interface IProyect {
+  title: string;
+  description: string;
+  createdWith: string;
+  datesModal: Array<{ title: string; content: string; }>;
+  images: {
+    mainImage: string
+    imagesModal: string[]
+  }
+}
 
-  footer: {
-    sitie: string;
-    linkedIn: string;
-    gitHub: string;
-  };
+interface IModeContact {
+  icon: string;
+  title: string;
+  links: string[];
+}
+
+interface IFormInputs {
+  type: string;
+  name: string;
+  placeholder: string;
+  messageError: string;
+  autoComplete: string;
+  cols?: number;
+  rows?: number;
 }

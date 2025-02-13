@@ -6,11 +6,10 @@ import { Home } from "./Components/Home/Home";
 import { AboutMe } from "./Components/AboutMe/AboutMe";
 import { DoneProjects } from "./Components/DoneProjects/DoneProjects";
 import { Footer } from "./Components/Footer/Footer";
-import { Contact } from "./Components/Contact/Contact";
 
 // localStorage.setItem("leng", "ES")
 
-function App() {
+function App () {
 
   return (
     <Fragment>
@@ -22,8 +21,6 @@ function App() {
         <AboutMe />
 
         <DoneProjects />
-
-        <Contact />
 
         <Footer />
       </main>

@@ -4,13 +4,12 @@ import { useMyData } from "../../Hooks/useMyData";
 import parse from "html-react-parser";
 import AboutMeCSS from "./AboutMe.module.css";
 
-import myPhoto from "../../Static/img.jpg";
-
-import loaderSVG from "../../Static/Spin-1s-200px.svg";
+import myPhoto from "../../data/images/img.jpg";
+import loaderSVG from "../../data/images/Spin-1s-200px.svg";
 
 import { usePaginate } from "../../Hooks/usePaginate";
-import { ITechnology } from "../../Interface/ITechnology";
 import { Technologys } from "./Components/Technologys/Technologys";
+import { ITechnology } from '../../Interface/IMyData';
 
 
 enum Technology {
@@ -24,8 +23,8 @@ export const AboutMe: React.FC = () => {
   const [technologies, setTechnologies] = useState<ITechnology[]>([]);
   const [filterActive, setFilterActive] = useState(0);
   const { aboutMe } = useMyData();
-  const { 
-    elementsPaginate, pageCount, 
+  const {
+    elementsPaginate, pageCount,
     locatedPageNumber, loader,
     changePage, setLoader
   } = usePaginate(Technology.PER_PAGE, technologies)
@@ -51,14 +50,14 @@ export const AboutMe: React.FC = () => {
     }
 
     setFilterActive(index);
-    changePage({selected: 0})
+    changePage({ selected: 0 })
     setTechnologies(Technologies);
-  
+
     setTimeout(() => setLoader(false), 500);
   };
 
 
-  const getCssFilter = (indexArea: number) => filterActive === indexArea 
+  const getCssFilter = (indexArea: number) => filterActive === indexArea
     ? AboutMeCSS.technologyContainer__navLinksActive : ""
 
 
@@ -75,7 +74,7 @@ export const AboutMe: React.FC = () => {
 
       {/* Mi descripcion */}
       <article className="article-space text-center">
-        
+
         <aside>
           <h1>{aboutMe?.nameCompleted}</h1>
           <h4 className="text-color-principal">{aboutMe?.rol}</h4>
@@ -105,14 +104,14 @@ export const AboutMe: React.FC = () => {
 
       {/*  Mis habilidades */}
       <article className={`${AboutMeCSS.aboutMeContainer__skills} text-center`}>
-       
+
         <h2 className="sub-section-title">{aboutMe?.mySkills}</h2>
 
         {aboutMe?.mySkillsPresentations.map((skillsPresent, indexSkill) => (
           <p key={indexSkill}>{parse(`${skillsPresent}`)}</p>
         ))}
 
-        <h3 className="sub-section-title">{aboutMe?.technology}</h3>
+        <h3 className="sub-section-title">{aboutMe.technologies}</h3>
 
         <aside className={AboutMeCSS.technologyContainer}>
 
@@ -132,13 +131,13 @@ export const AboutMe: React.FC = () => {
 
           <div className={AboutMeCSS.technologyContainer__technologys}>
             {
-              loader ? ( <img src={loaderSVG} alt="loader" className="loader"/> ) : ( 
-                <Technologys 
+              loader ? (<img src={loaderSVG} alt="loader" className="loader" />) : (
+                <Technologys
                   ElementsPaginate={elementsPaginate}
                   ChangePage={changePage}
                   PageCount={pageCount}
                   LocatedPageNumber={locatedPageNumber}
-                /> 
+                />
               )
             }
           </div>

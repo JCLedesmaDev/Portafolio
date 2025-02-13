@@ -1,6 +1,6 @@
 /* .homeContainer > article { */
 .homeContainer > .homeContainer__backgroundImage  {
-  background-image: url("../../Static/home-image.jpg");
+  background-image: url("../../data/images/home-image.jpg");
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;

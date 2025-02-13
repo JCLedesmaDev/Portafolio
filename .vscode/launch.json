@@ -1,0 +1,118 @@
+{
+    // Use IntelliSense para saber los atributos posibles.
+    // Mantenga el puntero para ver las descripciones de los existentes atributos.
+    // Para más información, visite: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Launch xdeps",
+            "program": "${workspaceFolder}/apps/xdeps.js",
+            "request": "launch",
+            "skipFiles": [
+                "<node_internals>/**"
+            ],
+            "type": "node"
+        },
+        {
+            "preLaunchTask": "start dbm server",
+            "type": "chrome",
+            "request": "launch",
+            "name": "Start debug DBM PLUS",
+            "url": "http://localhost:8080",
+            "webRoot": "${workspaceFolder}/dbmPlus/",
+            /*"breakOnLoad": true,*/
+            /* "sourceMapPathOverrides": {
+                "webpack://dbmplus/./src/*": "${webRoot}/*"
+            }*/
+        },
+        {
+            "preLaunchTask": "start apoyo server",
+            "type": "chrome",
+            "request": "launch",
+            "name": "Start debug apoyo",
+            "url": "http://localhost:9000",
+            "webRoot": "${workspaceFolder}/apps/apoyo/src",
+            "sourceMapPathOverrides": {
+                "vite://com.telecom.toolbox.apoyo/./src/*": "${webRoot}/*"
+            }
+        },
+        {
+            "preLaunchTask": "start dtec server",
+            "type": "chrome",
+            "request": "launch",
+            "name": "Start debug dtec",
+            "url": "http://localhost:9000",
+            "webRoot": "${workspaceFolder}/apps/dtec/src",
+            "sourceMapPathOverrides": {
+                "vite://com.telecom.toolbox.dtec/./src/*": "${webRoot}/*"
+            }
+        },
+        {
+            "preLaunchTask": "start firma server",
+            "type": "chrome",
+            "request": "launch",
+            "name": "Start debug firma",
+            "url": "http://localhost:9000",
+            "webRoot": "${workspaceFolder}/apps/firma/src",
+            "sourceMapPathOverrides": {
+                "vite://firma/./src/*": "${webRoot}/*"
+            }
+        },
+        {
+            "preLaunchTask": "start maximo server",
+            "type": "chrome",
+            "request": "launch",
+            "name": "Start debug maximo",
+            "url": "http://localhost:9000",
+            "webRoot": "${workspaceFolder}/apps/maximo/src",
+            "sourceMapPathOverrides": {
+                "vite://com.telecom.toolbox.maximo/./src/*": "${webRoot}/*"
+            }
+        },
+        {
+            "preLaunchTask": "start otmanager server",
+            "type": "chrome",
+            "request": "launch",
+            "name": "Start debug otManager",
+            "url": "http://localhost:9000",
+            "webRoot": "${workspaceFolder}/apps/otmanager/src",
+            "sourceMapPathOverrides": {
+                "vite://com.telecom.toolbox.otmanager/./src/*": "${webRoot}/*"
+            }
+        },
+        {
+            "preLaunchTask": "start sam server",
+            "type": "chrome",
+            "request": "launch",
+            "name": "Start debug sam",
+            "url": "http://localhost:9000",
+            "webRoot": "${workspaceFolder}/apps/sam/src",
+            "sourceMapPathOverrides": {
+                "vite://com.telecom.toolbox.sam/./src/*": "${webRoot}/*"
+            }
+        },
+        {
+            "preLaunchTask": "start wiki server",
+            "type": "chrome",
+            "request": "launch",
+            "name": "Start debug wiki",
+            "url": "http://localhost:8080",
+            "webRoot": "${workspaceFolder}/apps/wiki/"
+        },
+        {
+            "preLaunchTask": "start mobile server",
+            "type": "chrome",
+            "request": "launch",
+            "name": "Start debug mobile",
+            "url": "http://localhost:8100",
+            "webRoot": "${workspaceFolder}/mobile/src"
+        },
+        {
+            "type": "chrome",
+            "request": "launch",
+            "name": "Launch Chrome against localhost",
+            "url": "http://localhost:9000",
+            "webRoot": "${workspaceFolder}"
+        }
+    ]
+}

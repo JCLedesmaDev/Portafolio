@@ -1,11 +1,10 @@
-import myDataES from "../Language/myData-ES.json";
-import myDataEN from "../Language/myData-EN.json";
+//import myDataES from "../Language/myData-ES.json";
+import { myDataES } from "../data/myDataES";
 import { useEffect, useState } from "react";
 import { IMyData } from "../Interface/IMyData";
 
 const INITIAL_STATE = {
   spanish: myDataES,
-  english: myDataEN,
 };
 
 export const useMyData = () => {
