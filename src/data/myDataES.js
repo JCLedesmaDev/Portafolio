@@ -278,7 +278,7 @@ export const myDataES = {
             {
                 title: "Gestión y Monitoreo de Equipos de Fotocopiado",
                 description: "Permite a los usuarios gestionar el negocio del alquiler/mantenimiento de equipos de fotocopiado. El sistema esta enfocado en eliminar tareas manuales repetitivas y propensas a errores.",
-                createdWith: "Esta aplicacion esta siendo creada utilizando: <br/> <b>- En el <i>Back-End</i> :</b> NodeJS, ExpressJS, TypeScript y MySQL con TypeORM. Implementando una <b>Arquitectura modular combinada con una arquitectura en capas.</b> <br/> <b>- En el <i>Front-End</i> :</b> Vue 3, Quasar Framework v2 con Capacitor v6 y Vite <b> implementando una Arquitectura Modular.</b> <br/>",
+                createdWith: "Esta aplicacion esta siendo creada utilizando: <br/> <b>- En el <i>Back-End</i> :</b> NodeJS, ExpressJS, TypeScript y MySQL con TypeORM. Implementando una <b>Arquitectura modular combinada con una arquitectura en capas.</b> <br/> <b>- En el <i>Front-End</i> :</b> Vue 3, Quasar Framework v2 con Capacitor v6 y Vite <b> implementando una Arquitectura Modular.</b> <br/> <b>- Para el desarrollo del instalador del sistema de monitoreo: </b> C# con Windows Form, JavaScript Vanilla, biblioteca '<b>Playwright</b>' para la realización de scraping, biblioteca '<b>node-windows</b>' para la creación de servicios de Windows. <br/> El instalador es un ejecutable creado utilizando <b>Microsoft Visual Studio Installer Projects </b>.",
                 datesModal: [
                     {
                         title: "<b>PERIODO:</b>",
@@ -301,7 +301,7 @@ export const myDataES = {
             {
                 title: "Album Virtual",
                 description: "Este proyecto fue desarrollado previamente dentro del cursado de la Tecnicatura de Software. Nos permite coleccionar albumes y comprar las figuras de los albumes coleccionados.",
-                createdWith: "Esta aplicacion esta siendo creada utilizando: <br/> <b>- En el <i>Back-End</i> :</b> NodeJS, ExpressJS, TypeScript y MongoDB, implementando una <b>Arquitectura modular combinada con una arquitectura en capas.</b> <br/> <b>- En el <i>Front-End</i> :</b> ReactJS con sus respectivos Hooks y Custom Hooks, TypeScript, Zustand y Vite <b> implementando una Arquitectura Modular.</b> <br/>",
+                createdWith: "Esta aplicacion esta siendo creada utilizando: <br/> <b>- En el <i>Back-End</i> :</b> NodeJS, ExpressJS, TypeScript y MongoDB, implementando una <b>Arquitectura modular combinada con una arquitectura en capas.</b> <br/> <b>- En el <i>Front-End</i> :</b> ReactJS con sus respectivos Hooks y Custom Hooks, TypeScript, Zustand y Vite <b> implementando una Arquitectura Modular.</b> <br/> ",
                 datesModal: [
                     {
                         title: "<b>PERIODO:</b>",
